@@ -1,0 +1,96 @@
+很好，既然你已经选择了 Flask 作为后端，并采用前后端不分离的方式（即传统的服务端渲染页面方式），下面是你开发一个代码提交平台所需要考虑的技术栈与模块规划。
+
+---
+
+## 🧱 一、核心功能模块（MVP）
+
+### ✅ 用户模块
+
+* 用户注册 / 登录 / 登出（用户名 + 密码）
+* 权限管理（普通用户 / 管理员）
+* 用户信息页面
+
+### ✅ 仓库模块
+
+* 创建代码仓库（支持创建空仓库）
+* 显示代码文件树 / 浏览文件
+* 显示提交历史 / diff 变更
+* 支持上传文件或提交变更（模拟 git commit）
+* 支持在线编辑器 + 提交（可选）
+
+### ✅ 提交模块
+
+* 提交记录管理（提交人、时间、注释）
+* 显示历史记录
+* 比对 diff
+* 回退或恢复版本（可选）
+
+---
+
+## ⚙️ 二、技术栈建议（你选的 Flask 为主）
+
+| 功能     | 推荐技术                                  |
+| ------ | ------------------------------------- |
+| 后端框架   | `Flask`（你已选）                          |
+| 数据库    | `SQLite`（开发期） / `PostgreSQL`（部署）      |
+| ORM    | `SQLAlchemy`                          |
+| 模板引擎   | `Jinja2`（Flask 默认）                    |
+| Git 接口 | `subprocess` 调用系统 Git 或使用 `GitPython` |
+| 文件管理   | 存仓库存储目录，使用裸仓库（`git init --bare`）      |
+| 表单处理   | Flask-WTF（验证、上传）                      |
+| 用户认证   | Flask-Login                           |
+| 日志记录   | Flask logging                         |
+| 静态资源   | Bootstrap / jQuery（非前后端分离）            |
+| 权限控制   | Flask-Principal / 自定义装饰器              |
+
+---
+
+## 📁 三、仓库设计思路
+
+```bash
+repo_root/
+├── mysite/                 # Flask 主程序
+│   ├── templates/
+│   ├── static/
+│   ├── routes/            # 蓝图：user, repo, submit
+│   ├── models.py
+│   └── app.py
+├── repos/                 # 存放裸仓库，如 test.git/
+│   └── user1/
+│       └── myrepo.git/
+├── db.sqlite3
+```
+
+---
+
+## 🧩 四、Git 接入方式（支持 Git 客户端）
+
+1. 用户通过 Web UI 创建一个裸仓库目录（`git init --bare`）
+2. Flask 提供 HTTP API 接收 `push/pull` 请求（通过调用 `git-http-backend`）
+3. 使用 nginx / gunicorn 转发请求给后端
+4. 或者使用 SSH 私钥签名（高级）
+
+---
+
+## 📜 五、你可以这样开始开发
+
+1. 初始化 Flask 项目
+2. 添加用户系统（Flask-Login）
+3. 实现仓库创建和浏览功能
+4. 使用 GitPython 管理仓库操作（或 subprocess）
+5. 用 Bootstrap + Jinja2 写页面
+6. 部署：使用 Gunicorn + Nginx + Supervisor + SQLite/PostgreSQL
+
+---
+
+## 🎯 你接下来的第一步
+
+从这几步选一个开始：
+
+* ✅ 初始化 Flask + 页面模板结构？
+* ✅ 添加用户注册 / 登录页面？
+* ✅ 搭建仓库管理视图（新建 repo，展示文件列表）？
+
+---
+
+我可以为你提供完整的 Flask 项目起步模板，并带你逐步添加功能。你想从哪一部分开始写？我可以手把手带你做一个 MVP。
