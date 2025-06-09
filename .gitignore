@@ -1,0 +1,7 @@
+*.log
+*.tmp
+.idea
+.venv
+LICENSE
+*.pyc
+__pycache__/

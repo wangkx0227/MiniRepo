@@ -1,0 +1,6 @@
+用户菜单图标库：https://www.iconfont.cn/collections/detail?spm=a313x.collections_index.i1.d9df05512.38993a81RfVp90&cid=22664
+界面菜单图标：https://www.iconfont.cn/collections/detail?spm=a313x.collections_index.i1.d9df05512.347d3a813V8kqX&cid=52104
+css样式：https://soberjs.com/
+进度条：https://rstacruz.github.io/nprogress/
+后端API框架Flask-RESTX ： https://flask-restx.readthedocs.io/en/latest/
+后端框架Flask ：https://flask.palletsprojects.com/en/stable/ https://flask.github.net.cn/
