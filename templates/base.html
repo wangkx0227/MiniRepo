@@ -145,16 +145,36 @@
                         </div>
                     </s-popup>
                 </div>
-                <!-- 按钮 -->
+                <!-- +按钮 -->
                 <div slot="action">
-                    <s-tooltip align="bottom">
-                        <s-icon-button slot="trigger">
-                            <s2-icon name="interface_add"></s2-icon>
-                        </s-icon-button>
-                        添加
-                    </s-tooltip>
+                    <s-popup-menu>
+                        <div slot="trigger">
+                            <s-icon-button slot="trigger">
+                                <s2-icon name="interface_add"></s2-icon>
+                            </s-icon-button>
+                        </div>
+                        <div class="popup-menu-item">
+                            <s-popup-menu-item >
+                                <s-icon slot="start">
+                                    <s2-icon name="interface_add_menu_add"></s-2icon>
+                                </s-icon>
+                                <span>新建项目/仓库</span>
+                            </s-popup-menu-item>
+                            <s-popup-menu-item >
+                                <s-icon slot="start">
+                                    <s2-icon name="interface_add_menu_group"></s-2icon>
+                                </s-icon>
+                                <span>新建群组</span>
+                            </s-popup-menu-item>
+                            <s-popup-menu-item>
+                                <s-icon slot="start">
+                                    <s2-icon name="interface_add_menu_code"></s-2icon>
+                                </s-icon>
+                                <span>新建代码片段</span>
+                            </s-popup-menu-item>
+                        </div>
+                    </s-popup-menu>
                 </div>
-
                 <!-- 用户菜单 -->
                 <div slot="action">
                     <s-popup-menu>
