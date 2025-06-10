@@ -44,9 +44,3 @@ function NProgressLongin() {
   };
 }
 
-// 导航栏切换--有问题
-function setNavTitle(title) {
-  const nav = document.querySelector('.breadcrumb a');
-  if (nav) nav.textContent = title;
-}
-setNavTitle("用户中心");
