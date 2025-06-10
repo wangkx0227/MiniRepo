@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="/static/base/base.css">
 
     <script src="/static/base/nprogress/nprogress.js"></script>
-    <link rel="stylesheet" href="/static/base/nprogress/nprogress.css"/>
+    <link rel="stylesheet" href="/static/base/nprogress/nprogress.css" />
     <script src="/static/base/sober/sober.min.js"></script>
     <!-- 菜单栏的icon图标 -->
     <script src="/static/base/menu/menu-icon.js"></script>
@@ -25,198 +25,198 @@
 </head>
 
 <body>
-<s-page class="content">
-    <s-drawer id="drawer">
-        <div slot="start">
-            <s-menu style="max-width: 280px; margin: 0;">
-                <div slot="label">
-                    菜单
-                </div>
-                <s-menu-item>
-                    <s-icon slot="start">
-                        <s2-icon name="interface_work"></s2-icon>
-                    </s-icon>
-                    工作台
-                </s-menu-item>
-                <s-menu-item>
-                    <s-icon slot="start">
-                        <s2-icon name="interface_file_code"></s2-icon>
-                    </s-icon>
-                    项目
-                </s-menu-item>
-                <s-menu-item>
-                    <s-icon slot="start">
-                        <s2-icon name="interface_user_group"></s2-icon>
-                    </s-icon>
-                    群组
-                </s-menu-item>
-                <s-menu-item>
-                    <s-icon slot="start">
-                        <s2-icon name="interface_merge"></s2-icon>
-                    </s-icon>
-                    合并请求
-                </s-menu-item>
-                <s-menu-item>
-                    <s-icon slot="start">
-                        <s2-icon name="interface_export"></s2-icon>
-                    </s-icon>
-                    待办事项列表
-                </s-menu-item>
-
-            </s-menu>
-            <s-menu style="max-width: 280px; margin: 0">
-                <div slot="label">其他</div>
-                <s-menu-item>
-                    <s-icon slot="start">
-                        <s2-icon name="interface_setting"></s2-icon>
-                    </s-icon>
-                    设置
-                    <s-menu slot="menu">
-                        <s-menu-item>
-                            <s-icon slot="start">
-                                <s2-icon name="interface_user_setting"></s2-icon>
-                            </s-icon>
-                            账号设置
-                        </s-menu-item>
-                        <s-menu-item>
-                            <s-icon slot="start">
-                                <s2-icon name="interface_secured"></s2-icon>
-                            </s-icon>
-                            安全设置
-                        </s-menu-item>
-                    </s-menu>
-                </s-menu-item>
-                <s-menu-item>
-                    <s-icon slot="start" name="add"></s-icon>
-                    其他菜单-01
-                </s-menu-item>
-                <s-menu-item>
-                    <s-icon slot="start" name="add"></s-icon>
-                    其他菜单-02
-                </s-menu-item>
-                <s-menu-item>
-                    <s-icon slot="start" name="add"></s-icon>
-                    其他菜单-03
-                </s-menu-item>
-            </s-menu>
-        </div>
-        <s-appbar style="width: 100%;">
-            <!--左侧菜单按钮-->
-            <s-tooltip align="bottom" slot="navigation">
-                <s-icon-button slot="trigger" id="DrawerTriggerBut">
-                    <s2-icon name="interface_menu_fold"></s2-icon>
-                </s-icon-button>
-                <span id="interface_menu_tip">隐藏侧边栏</span>
-            </s-tooltip>
-            <!--标题-->
-            <div slot="headline">
-                <span class="title" id="HeadIndex">MiniRepo</span>
-            </div>
-            <!-- 搜索 -->
-            <div slot="action">
-                <s-search id="SearchInput" placeholder="搜索关键字" value="">
-                    <s-icon name="search" slot="start"></s-icon>
-                    <s-icon-button slot="end" id="clearBtn">
-                        <s-icon name="close"></s-icon>
-                    </s-icon-button>
-                </s-search>
-            </div>
-            <!-- 通知 -->
-            <div slot="action">
-                <s-tooltip align="bottom">
-                    <s-icon-button slot="trigger">
-                        <s2-icon name="interface_notification"></s2-icon>
-                    </s-icon-button>
-                    通知
-                </s-tooltip>
-            </div>
-            <!-- 按钮 -->
-            <div slot="action">
-                <s-tooltip align="bottom">
-                    <s-icon-button slot="trigger">
-                        <s2-icon name="interface_add"></s2-icon>
-                    </s-icon-button>
-                    添加
-                </s-tooltip>
-            </div>
-
-            <!-- 用户菜单 -->
-            <div slot="action">
-                <s-popup-menu>
-                    <div class="popup-menu-item-button" slot="trigger">
-                        <s-tooltip align="bottom">
-                            <s-icon-button slot="trigger">
-                                <s-avatar slot="start" style="color: #FFFFFF;">US</s-avatar>
-                            </s-icon-button>
-                            用户
-                        </s-tooltip>
+    <s-page class="content">
+        <s-drawer id="drawer">
+            <div slot="start">
+                <s-menu style="max-width: 280px; margin: 0;">
+                    <div slot="label">
+                        菜单
                     </div>
-                    <div class="popup-menu-item">
-                        <s-popup-menu-item id="menuUTodos">
-                            <s-icon slot="start">
-                                <!-- s2-icon 自建标签，用来显示图标 -->
-                                <s2-icon name="export"></s-2icon>
-                            </s-icon>
-                            <span>待办</span>
-                        </s-popup-menu-item>
-                        <s-popup-menu-item id="menuURelated">
-                            <s-icon slot="start">
-                                <s2-icon name="notification"></s-2icon>
-                            </s-icon>
-                            <span>与我相关</span>
-                        </s-popup-menu-item>
-                        <s-divider></s-divider>
-                        <s-popup-menu-item id="menuUSetting">
-                            <s-icon slot="start">
-                                <s2-icon name="setting"></s-2icon>
-                            </s-icon>
-                            <span>个人设置</span>
-                        </s-popup-menu-item>
-                        <s-divider></s-divider>
-                        <s-popup-menu-item id="menuUStars">
-                            <s-icon slot="start">
-                                <s2-icon name="favorite"></s-2icon>
-                            </s-icon>
-                            <span>我的关注</span>
-                        </s-popup-menu-item>
-                        <s-popup-menu-item id="menuUHome">
-                            <s-icon slot="start">
-                                <s2-icon name="home"></s-2icon>
-                            </s-icon>
-                            <span>我的主页</span>
-                        </s-popup-menu-item>
-                        <s-popup-menu-item id="menuURepos">
-                            <s-icon slot="start">
-                                <s2-icon name="code"></s-2icon>
-                            </s-icon>
-                            <span>我的仓库</span>
-                        </s-popup-menu-item>
-                        <s-divider></s-divider>
-                        <s-popup-menu-item>
-                            <s-icon slot="start">
-                                <s2-icon name="signout"></s-2icon>
-                            </s-icon>
-                            <span>退出登录</span>
-                        </s-popup-menu-item>
-                    </div>
-                </s-popup-menu>
-            </div>
-        </s-appbar>
-        <s-scroll-view style="height: 320px; background: var(--s-color-surface-container-low)">
-            <div class="view-content" style="height: 1080px;background-color: #FFFFFF;">
-                <div class="navigation-bar">
-                    <span>当前位置：</span>
-                    <span class="breadcrumb"><a href="/">首页</a></span>
-                    {% block view_navigation_bar %}
+                    <s-menu-item>
+                        <s-icon slot="start">
+                            <s2-icon name="interface_work"></s2-icon>
+                        </s-icon>
+                        工作台
+                    </s-menu-item>
+                    <s-menu-item>
+                        <s-icon slot="start">
+                            <s2-icon name="interface_file_code"></s2-icon>
+                        </s-icon>
+                        项目
+                    </s-menu-item>
+                    <s-menu-item>
+                        <s-icon slot="start">
+                            <s2-icon name="interface_user_group"></s2-icon>
+                        </s-icon>
+                        群组
+                    </s-menu-item>
+                    <s-menu-item>
+                        <s-icon slot="start">
+                            <s2-icon name="interface_merge"></s2-icon>
+                        </s-icon>
+                        合并请求
+                    </s-menu-item>
+                    <s-menu-item>
+                        <s-icon slot="start">
+                            <s2-icon name="interface_export"></s2-icon>
+                        </s-icon>
+                        待办事项列表
+                    </s-menu-item>
 
-                    {% endblock view_navigation_bar %}
-                </div>
-                {% block view_content %}
-                {% endblock view_content %}
+                </s-menu>
+                <s-menu style="max-width: 280px; margin: 0">
+                    <div slot="label">其他</div>
+                    <s-menu-item>
+                        <s-icon slot="start">
+                            <s2-icon name="interface_setting"></s2-icon>
+                        </s-icon>
+                        设置
+                        <s-menu slot="menu">
+                            <s-menu-item>
+                                <s-icon slot="start">
+                                    <s2-icon name="interface_user_setting"></s2-icon>
+                                </s-icon>
+                                账号设置
+                            </s-menu-item>
+                            <s-menu-item>
+                                <s-icon slot="start">
+                                    <s2-icon name="interface_secured"></s2-icon>
+                                </s-icon>
+                                安全设置
+                            </s-menu-item>
+                        </s-menu>
+                    </s-menu-item>
+                    <s-menu-item>
+                        <s-icon slot="start" name="add"></s-icon>
+                        其他菜单-01
+                    </s-menu-item>
+                    <s-menu-item>
+                        <s-icon slot="start" name="add"></s-icon>
+                        其他菜单-02
+                    </s-menu-item>
+                    <s-menu-item>
+                        <s-icon slot="start" name="add"></s-icon>
+                        其他菜单-03
+                    </s-menu-item>
+                </s-menu>
             </div>
-        </s-scroll-view>
-    </s-drawer>
-</s-page>
+            <s-appbar style="width: 100%;background-color: #FFFFFF;border-bottom: 1px solid #eceef0;">
+                <!--左侧菜单按钮-->
+                <s-tooltip align="bottom" slot="navigation">
+                    <s-icon-button slot="trigger" id="DrawerTriggerBut">
+                        <s2-icon name="interface_menu_fold"></s2-icon>
+                    </s-icon-button>
+                    <span id="interface_menu_tip">隐藏侧边栏</span>
+                </s-tooltip>
+                <!--标题-->
+                <div slot="headline">
+                    <span class="title" id="HeadIndex">MiniRepo</span>
+                </div>
+                <!-- 搜索 -->
+                <div slot="action">
+                    <s-search id="SearchInput" placeholder="搜索关键字" value="">
+                        <s-icon name="search" slot="start"></s-icon>
+                        <s-icon-button slot="end" id="clearBtn">
+                            <s-icon name="close"></s-icon>
+                        </s-icon-button>
+                    </s-search>
+                </div>
+                <!-- 通知 -->
+                <div slot="action">
+                    <s-tooltip align="bottom">
+                        <s-icon-button slot="trigger">
+                            <s2-icon name="interface_notification"></s2-icon>
+                        </s-icon-button>
+                        通知
+                    </s-tooltip>
+                </div>
+                <!-- 按钮 -->
+                <div slot="action">
+                    <s-tooltip align="bottom">
+                        <s-icon-button slot="trigger">
+                            <s2-icon name="interface_add"></s2-icon>
+                        </s-icon-button>
+                        添加
+                    </s-tooltip>
+                </div>
+
+                <!-- 用户菜单 -->
+                <div slot="action">
+                    <s-popup-menu>
+                        <div class="popup-menu-item-button" slot="trigger">
+                            <s-tooltip align="bottom">
+                                <s-icon-button slot="trigger">
+                                    <s-avatar slot="start" style="color: #FFFFFF;">US</s-avatar>
+                                </s-icon-button>
+                                用户
+                            </s-tooltip>
+                        </div>
+                        <div class="popup-menu-item">
+                            <s-popup-menu-item id="menuUTodos">
+                                <s-icon slot="start">
+                                    <!-- s2-icon 自建标签，用来显示图标 -->
+                                    <s2-icon name="export"></s-2icon>
+                                </s-icon>
+                                <span>待办</span>
+                            </s-popup-menu-item>
+                            <s-popup-menu-item id="menuURelated">
+                                <s-icon slot="start">
+                                    <s2-icon name="notification"></s-2icon>
+                                </s-icon>
+                                <span>与我相关</span>
+                            </s-popup-menu-item>
+                            <s-divider></s-divider>
+                            <s-popup-menu-item id="menuUSetting">
+                                <s-icon slot="start">
+                                    <s2-icon name="setting"></s-2icon>
+                                </s-icon>
+                                <span>个人设置</span>
+                            </s-popup-menu-item>
+                            <s-divider></s-divider>
+                            <s-popup-menu-item id="menuUStars">
+                                <s-icon slot="start">
+                                    <s2-icon name="favorite"></s-2icon>
+                                </s-icon>
+                                <span>我的关注</span>
+                            </s-popup-menu-item>
+                            <s-popup-menu-item id="menuUHome">
+                                <s-icon slot="start">
+                                    <s2-icon name="home"></s-2icon>
+                                </s-icon>
+                                <span>我的主页</span>
+                            </s-popup-menu-item>
+                            <s-popup-menu-item id="menuURepos">
+                                <s-icon slot="start">
+                                    <s2-icon name="code"></s-2icon>
+                                </s-icon>
+                                <span>我的仓库</span>
+                            </s-popup-menu-item>
+                            <s-divider></s-divider>
+                            <s-popup-menu-item>
+                                <s-icon slot="start">
+                                    <s2-icon name="signout"></s-2icon>
+                                </s-icon>
+                                <span>退出登录</span>
+                            </s-popup-menu-item>
+                        </div>
+                    </s-popup-menu>
+                </div>
+            </s-appbar>
+            <s-scroll-view style="height: 320px; background: var(--s-color-surface-container-low)">
+                <div class="view-content" style="height: 1080px;background-color: #FFFFFF;">
+                    <div class="navigation-bar">
+                        <span>当前位置：</span>
+                        <span class="breadcrumb"><a href="/">首页</a></span>
+                        {% block view_navigation_bar %}
+
+                        {% endblock view_navigation_bar %}
+                    </div>
+                    {% block view_content %}
+                    {% endblock view_content %}
+                </div>
+            </s-scroll-view>
+        </s-drawer>
+    </s-page>
 
 </body>
 <script src="/static/base/base.js"></script>
@@ -274,27 +274,27 @@
         {
             #.then(res => {
                 #
-            }
+        }
             {
                 #        if(!res.ok)
-                throw new Error('加载失败');
+            throw new Error('加载失败');
                 #
-            }
-            {
-                #        return
-                res.json();
-                #
-            }
-            {
-                #
-            }
-        )
-            #
         }
         {
+                #        return
+            res.json();
+                #
+        }
+        {
+                #
+        }
+        )
+            #
+    }
+    {
             #.then(data => {
                 #
-            }
+    }
             {
                 #        console.log('JSON 数据:', data);
                 #
@@ -302,13 +302,13 @@
             {
                 #
             }
-        )
+    )
             #
-        }
-        {
+    }
+    {
             #.catch(err => {
                 #
-            }
+    }
             {
                 #        console.error('读取 JSON 失败:', err);
                 #
@@ -316,9 +316,9 @@
             {
                 #
             }
-        )
+    )
             ;#
-        }
+    }
 </script>
 
 </html>
