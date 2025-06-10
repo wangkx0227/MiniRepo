@@ -13,6 +13,8 @@
     <script src="/static/base/sober/sober.min.js"></script>
     <link rel="stylesheet" href="/static/base/nprogress/nprogress.css" />
 
+    <!-- 菜单栏路由函数 -->
+    <script src="/static/base/menu/menu-public.js"></script>
     <!-- 菜单栏的icon图标 -->
     <script src="/static/base/menu/menu-icon.js"></script>
     <link rel="stylesheet" href="/static/base/base.css">
@@ -155,19 +157,19 @@
                             </s-icon-button>
                         </div>
                         <div class="popup-menu-item">
-                            <s-popup-menu-item>
+                            <s-popup-menu-item id="menuAddProjects">
                                 <s-icon slot="start">
                                     <s2-icon name="interface_add_menu_add"></s-2icon>
                                 </s-icon>
                                 <span>新建项目/仓库</span>
                             </s-popup-menu-item>
-                            <s-popup-menu-item>
+                            <s-popup-menu-item id="menuAddOrganizations">
                                 <s-icon slot="start">
                                     <s2-icon name="interface_add_menu_group"></s-2icon>
                                 </s-icon>
                                 <span>新建群组</span>
                             </s-popup-menu-item>
-                            <s-popup-menu-item>
+                            <s-popup-menu-item id="menuAddCodes">
                                 <s-icon slot="start">
                                     <s2-icon name="interface_add_menu_code"></s-2icon>
                                 </s-icon>
@@ -236,7 +238,7 @@
                 </div>
             </s-appbar>
             <s-scroll-view style="height: 100%;background-color: #FFFFFF;">
-                <div class="main-content-base" >
+                <div class="main-content-base">
                     <div class="main-navigation-bar">
                         <span>当前位置：</span>
                         <span class="breadcrumb"><a href="/">首页</a></span>
@@ -257,6 +259,7 @@
 </body>
 <script src="/static/base/base.js"></script>
 <script src="/static/base/menu/menu-user.js"></script>
+<script src="/static/base/menu/menu-new-add.js"></script>
 <script src="/static/base/navigation/notification/notification.js"></script>
 
 {% block js_end %}

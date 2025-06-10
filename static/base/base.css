@@ -42,6 +42,7 @@ s-popup-menu {
   
 
 .main-navigation-bar a {
+    color: #551a8b;
     text-decoration: none;
     /* 默认无下划线 */
 }
