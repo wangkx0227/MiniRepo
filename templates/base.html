@@ -9,13 +9,14 @@
         {% block title %}
         {% endblock title %}
     </title>
-    <link rel="stylesheet" href="/static/base/base.css">
-
     <script src="/static/base/nprogress/nprogress.js"></script>
-    <link rel="stylesheet" href="/static/base/nprogress/nprogress.css" />
     <script src="/static/base/sober/sober.min.js"></script>
+    <link rel="stylesheet" href="/static/base/nprogress/nprogress.css" />
+
     <!-- 菜单栏的icon图标 -->
     <script src="/static/base/menu/menu-icon.js"></script>
+    <link rel="stylesheet" href="/static/base/base.css">
+    <link rel="stylesheet" href="/static/base/navigation/notification/notification.css">
     <!-- 导入css样式表 -->
     {% block css %}
     {% endblock css %}
@@ -123,12 +124,26 @@
                 </div>
                 <!-- 通知 -->
                 <div slot="action">
-                    <s-tooltip align="bottom">
+                    <s-popup align="center">
                         <s-icon-button slot="trigger">
                             <s2-icon name="interface_notification"></s2-icon>
                         </s-icon-button>
-                        通知
-                    </s-tooltip>
+                        <div style="min-height: 180px; width: 350px;background-color: #FFFFFF;">
+                            <s-tab mode="fixed">
+                                <s-tab-item selected="true" id="notification-referer">
+                                    <div slot="text">@我</div>
+                                </s-tab-item>
+                                <s-tab-item id="notification-message">
+                                    <div slot="text">消息</div>
+                                </s-tab-item>
+                                <s-tab-item id="notification-other">
+                                    <div slot="text">其他</div>
+                                </s-tab-item>
+                            </s-tab>
+                            <div class="notification-content" id="notification-content" style="min-height: 164px;">
+                            </div>
+                        </div>
+                    </s-popup>
                 </div>
                 <!-- 按钮 -->
                 <div slot="action">
@@ -221,6 +236,7 @@
 </body>
 <script src="/static/base/base.js"></script>
 <script src="/static/base/menu/menu-user.js"></script>
+<script src="/static/base/navigation/notification/notification.js"></script>
 
 {% block js_end %}
 {% endblock js_end %}
@@ -242,83 +258,17 @@
     });
 
 
-    // 公共方法导入
-    // 导入js文件
-    {
-        #import
-        {
-            API_BASE_URL, add
-        }
-        from
-        '/static/public/variable.js';
-        #
-    }
-    {
-        #
-        #
-    }
-    {
-        #console.log(API_BASE_URL)
-        #
-    }
-    {
-        #console.log(add(3, 4));
-        #
-    }
-    {
-        #// 导入js文件#}
-        {
-            #fetch('/static/public/config.json')
-            #
-        }
-        {
-            #.then(res => {
-                #
-        }
-            {
-                #        if(!res.ok)
-            throw new Error('加载失败');
-                #
-        }
-        {
-                #        return
-            res.json();
-                #
-        }
-        {
-                #
-        }
-        )
-            #
-    }
-    {
-            #.then(data => {
-                #
-    }
-            {
-                #        console.log('JSON 数据:', data);
-                #
-            }
-            {
-                #
-            }
-    )
-            #
-    }
-    {
-            #.catch(err => {
-                #
-    }
-            {
-                #        console.error('读取 JSON 失败:', err);
-                #
-            }
-            {
-                #
-            }
-    )
-            ;#
-    }
+    // // 公共方法导入
+    // // 导入js文件
+    // import { API_BASE_URL, add } from '/static/public/variable.js';
+
+
+    // // 导入js文件
+    // fetch('/static/public/config.json').then(res => {
+    //     if (!res.ok)
+    //         throw new Error('加载失败');
+    //     return res.json();
+    // })
 </script>
 
 </html>
