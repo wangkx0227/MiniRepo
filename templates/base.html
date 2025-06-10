@@ -17,6 +17,7 @@
     <script src="/static/base/menu/menu-icon.js"></script>
     <link rel="stylesheet" href="/static/base/base.css">
     <link rel="stylesheet" href="/static/base/navigation/notification/notification.css">
+
     <!-- 导入css样式表 -->
     {% block css %}
     {% endblock css %}
@@ -154,13 +155,13 @@
                             </s-icon-button>
                         </div>
                         <div class="popup-menu-item">
-                            <s-popup-menu-item >
+                            <s-popup-menu-item>
                                 <s-icon slot="start">
                                     <s2-icon name="interface_add_menu_add"></s-2icon>
                                 </s-icon>
                                 <span>新建项目/仓库</span>
                             </s-popup-menu-item>
-                            <s-popup-menu-item >
+                            <s-popup-menu-item>
                                 <s-icon slot="start">
                                     <s2-icon name="interface_add_menu_group"></s-2icon>
                                 </s-icon>
@@ -234,17 +235,20 @@
                     </s-popup-menu>
                 </div>
             </s-appbar>
-            <s-scroll-view style="height: 320px; background: var(--s-color-surface-container-low)">
-                <div class="view-content" style="height: 1080px;background-color: #FFFFFF;">
-                    <div class="navigation-bar">
+            <s-scroll-view style="height: 100%;background-color: #FFFFFF;">
+                <div class="main-content-base" >
+                    <div class="main-navigation-bar">
                         <span>当前位置：</span>
                         <span class="breadcrumb"><a href="/">首页</a></span>
-                        {% block view_navigation_bar %}
+                        {% block main_navigation_bar %}
 
-                        {% endblock view_navigation_bar %}
+                        {% endblock main_navigation_bar %}
                     </div>
-                    {% block view_content %}
-                    {% endblock view_content %}
+                    <div class="main-content">
+                        {% block main_content %}
+                        {% endblock main_content %}
+                    </div>
+
                 </div>
             </s-scroll-view>
         </s-drawer>
