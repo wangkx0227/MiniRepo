@@ -40,16 +40,21 @@ def stars():
 def repos():
     return render_template("user/repos.html")
 
+
 @app.route('/u/projects/new')
 def projects():
     return render_template("newadd/projects.html")
+
 
 @app.route('/u/organizations/new')
 def organizations():
     return render_template("newadd/organizations.html")
 
+
 @app.route('/u/codes/new')
 def codes():
     return render_template("newadd/codes.html")
+
+
 if __name__ == '__main__':
     app.run(debug=True)
