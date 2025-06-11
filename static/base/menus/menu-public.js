@@ -4,8 +4,6 @@ const sMenuItemList = document.getElementsByTagName("s-menu-item")
 function MenuItemSelection(menuItemId) {
     for (let i = 0; i < sMenuItemList.length; i++) {
         sMenuItemList[i].setAttribute("checked", "false");
-        // 如果存在二级菜单，当前属性时默认展开作用，每次需要进行重置
-        sMenuItemList[i].setAttribute("folded", "true");
     }
     document.getElementById(menuItemId).setAttribute("checked", "true");
 }
