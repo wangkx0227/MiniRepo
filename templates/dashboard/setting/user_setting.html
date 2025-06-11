@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}
+账户设置
+{% endblock %}
+<!-- 导入css样式表 -->
+{% block css %}
+{% endblock css %}
+<!-- 导入js-start -->
+{% block js_start %}
+{% endblock js_start %}
+<!--导航条-->
+{% block main_navigation_bar %}
+<span><a href="#">菜单</a></span>
+<span>/</span>
+<span><a href="#">设置</a></span>
+<span>/</span>
+<span><a href="#">账户设置</a></span>
+{% endblock main_navigation_bar %}
+<!--主体内容-->
+{% block main_content %}
+{% endblock main_content %}
+<!-- 导入js-end -->
+{% block js_end %}
+<script>
+    window.addEventListener('load', function () {
+        const MenuID = localStorage.getItem("selection_menu");
+        MenuItemSelection(MenuID);
+        document.getElementById("interfaceSidebarSetting").setAttribute("folded","false")
+    });
+</script>
+{% endblock js_end %}

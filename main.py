@@ -79,5 +79,15 @@ def dashboard_todos():
     return render_template("dashboard/todos.html")
 
 
+@app.route('/dashboard/setting/user_setting')
+def dashboard_user_setting():
+    return render_template("dashboard/setting/user_setting.html")
+
+
+@app.route('/dashboard/setting/secured_setting')
+def dashboard_secured_setting():
+    return render_template("dashboard/setting/secured_setting.html")
+
+
 if __name__ == '__main__':
-    app.run(debug=True,host="0.0.0.0")
+    app.run(debug=True, host="0.0.0.0")
