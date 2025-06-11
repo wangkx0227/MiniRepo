@@ -1,6 +1,5 @@
 from flask import Flask
-from blueprints.authentication.app import user_bp
-from blueprints.dashboard.app import dashboard_bp
+from blueprints import user_bp, dashboard_bp
 
 
 def create_app():
