@@ -5,19 +5,16 @@ app = Flask(__file__)
 
 @app.route('/')
 def index():
-    lis = 150
     return render_template("index.html")
 
 
 @app.route('/u/home')
 def home():
-    lis = 150
     return render_template("user/home.html")
 
 
 @app.route('/u/setting')
 def setting():
-    lis = 150
     return render_template("user/setting.html")
 
 
