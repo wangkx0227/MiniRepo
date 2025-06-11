@@ -1,4 +1,4 @@
-# MiniRepo
+# GitMiniRepo
 
 #### 介绍
 代码仓库项目1
