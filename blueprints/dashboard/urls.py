@@ -1,1 +1,1 @@
-# 用户的路由
+from .app import dashboard_bp as dashboard
