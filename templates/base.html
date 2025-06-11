@@ -75,7 +75,9 @@
             <s-menu style="max-width: 280px; margin: 0">
                 <div slot="label">其他</div>
                 <!--folded="false" 展开二级菜单-->
-                <s-menu-item id="interfaceSidebarSetting" folded="false">
+                <!--通过Jinja2方式控制菜单展示效果，它在服务器端把你的 HTML 模板和变量“渲染成”最终的 HTML 字符串，然后把这个字符串返回给浏览器-->
+                <s-menu-item id="interfaceSidebarSetting"
+                             folded="{{ 'false' if folded =='interfaceSidebarSetting' else 'true' }}">
                     <s-icon slot="start">
                         <s2-icon name="interface_setting"></s2-icon>
                     </s-icon>
@@ -123,14 +125,14 @@
                 <span class="title" id="HeadIndex">GitMiniRepo</span>
             </div>
             <!-- 搜索 -->
-<!--            <div slot="action">-->
-<!--                <s-search id="SearchInput" placeholder="搜索关键字" value="">-->
-<!--                    <s-icon name="search" slot="start"></s-icon>-->
-<!--                    <s-icon-button slot="end" id="clearBtn">-->
-<!--                        <s-icon name="close"></s-icon>-->
-<!--                    </s-icon-button>-->
-<!--                </s-search>-->
-<!--            </div>-->
+            <!--            <div slot="action">-->
+            <!--                <s-search id="SearchInput" placeholder="搜索关键字" value="">-->
+            <!--                    <s-icon name="search" slot="start"></s-icon>-->
+            <!--                    <s-icon-button slot="end" id="clearBtn">-->
+            <!--                        <s-icon name="close"></s-icon>-->
+            <!--                    </s-icon-button>-->
+            <!--                </s-search>-->
+            <!--            </div>-->
             <!-- 通知 -->
             <div slot="action">
                 <s-popup align="center">

@@ -81,12 +81,14 @@ def dashboard_todos():
 
 @app.route('/dashboard/setting/user_setting')
 def dashboard_user_setting():
-    return render_template("dashboard/setting/user_setting.html")
+    folded = "interfaceSidebarSetting"  # 用来控制1级菜单展开属性
+    return render_template("dashboard/setting/user_setting.html", folded=folded)
 
 
 @app.route('/dashboard/setting/secured_setting')
 def dashboard_secured_setting():
-    return render_template("dashboard/setting/secured_setting.html")
+    folded = "interfaceSidebarSetting"  # 用来控制1级菜单展开属性
+    return render_template("dashboard/setting/secured_setting.html", folded=folded)
 
 
 if __name__ == '__main__':
