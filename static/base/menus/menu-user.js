@@ -1,6 +1,6 @@
 // 菜单字典
 const menuUMap = {
-  HeadIndex: "/",
+  HeadIndexTile: "/dashboard/workbenches",
   menuUTodos: "/u/todos",
   menuURelated: "/u/related",
   menuUSetting: "/u/setting",
