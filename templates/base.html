@@ -40,31 +40,31 @@
                 <div slot="label">
                     菜单
                 </div>
-                <s-menu-item id="interface-work">
+                <s-menu-item id="interfaceSidebarWork">
                     <s-icon slot="start">
                         <s2-icon name="interface_work"></s2-icon>
                     </s-icon>
                     <span>工作台</span>
                 </s-menu-item>
-                <s-menu-item id="interface-file-code">
+                <s-menu-item id="interfaceSidebarProjects">
                     <s-icon slot="start">
                         <s2-icon name="interface_file_code"></s2-icon>
                     </s-icon>
                     <span>项目</span>
                 </s-menu-item>
-                <s-menu-item id="interface-user-group">
+                <s-menu-item id="interfaceSidebarGroups">
                     <s-icon slot="start">
                         <s2-icon name="interface_user_group"></s2-icon>
                     </s-icon>
                     <span>群组</span>
                 </s-menu-item>
-                <s-menu-item id="interface-merge">
+                <s-menu-item id="interfaceSidebarMergeRequests">
                     <s-icon slot="start">
                         <s2-icon name="interface_merge"></s2-icon>
                     </s-icon>
                     <span>合并请求</span>
                 </s-menu-item>
-                <s-menu-item id="interface-export">
+                <s-menu-item id="interfaceSidebarTodos">
                     <s-icon slot="start">
                         <s2-icon name="interface_export"></s2-icon>
                     </s-icon>
@@ -120,24 +120,24 @@
             </s-tooltip>
             <!--标题-->
             <div slot="headline">
-                <span class="title" id="HeadIndex">MiniRepo</span>
+                <span class="title" id="HeadIndex">GitMiniRepo</span>
             </div>
             <!-- 搜索 -->
-            <div slot="action">
-                <s-search id="SearchInput" placeholder="搜索关键字" value="">
-                    <s-icon name="search" slot="start"></s-icon>
-                    <s-icon-button slot="end" id="clearBtn">
-                        <s-icon name="close"></s-icon>
-                    </s-icon-button>
-                </s-search>
-            </div>
+<!--            <div slot="action">-->
+<!--                <s-search id="SearchInput" placeholder="搜索关键字" value="">-->
+<!--                    <s-icon name="search" slot="start"></s-icon>-->
+<!--                    <s-icon-button slot="end" id="clearBtn">-->
+<!--                        <s-icon name="close"></s-icon>-->
+<!--                    </s-icon-button>-->
+<!--                </s-search>-->
+<!--            </div>-->
             <!-- 通知 -->
             <div slot="action">
                 <s-popup align="center">
                     <s-icon-button slot="trigger" id="DrawerNotificationBut">
                         <s2-icon name="interface_notification"></s2-icon>
                     </s-icon-button>
-                    <div style="min-height: 180px; width: 350px;background-color: #FFFFFF;">
+                    <div class="main-interface-notification">
                         <s-tab mode="fixed">
                             <s-tab-item selected="true" id="notification-referer">
                                 <div slot="text">@我</div>
@@ -264,6 +264,7 @@
 <script src="/static/base/base.js"></script>
 <script src="/static/base/menus/menu-user.js"></script>
 <script src="/static/base/menus/menu-new-add.js"></script>
+<script src="/static/base/menus/menu-sidebar.js"></script>
 <script src="/static/base/navigations/notification/notification.js"></script>
 
 {% block js_end %}

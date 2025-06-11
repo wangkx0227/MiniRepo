@@ -1,21 +1,21 @@
 // 进度条
 NProgress.configure({ showSpinner: false, trickleSpeed: 200 });
 
-// 搜索框
-const SearchInput = document.getElementById("SearchInput");
-const clearBtn = document.getElementById("clearBtn");
-// 清除框
-clearBtn.addEventListener("click", () => {
-  // 如果是标准 Web Component，最好设置属性和属性同步
-  SearchInput.value = "";
-});
-// 回车进行搜索
-SearchInput.addEventListener("keydown", () => {
-  if (event.key === "Enter") {
-    // Snackbar.builder('hello world')
-    alert(SearchInput.value);
-  }
-});
+// // 搜索框
+// const SearchInput = document.getElementById("SearchInput");
+// const clearBtn = document.getElementById("clearBtn");
+// // 清除框
+// clearBtn.addEventListener("click", () => {
+//   // 如果是标准 Web Component，最好设置属性和属性同步
+//   SearchInput.value = "";
+// });
+// // 回车进行搜索
+// SearchInput.addEventListener("keydown", () => {
+//   if (event.key === "Enter") {
+//     // Snackbar.builder('hello world')
+//     alert(SearchInput.value);
+//   }
+// });
 
 // 侧边栏控制
 const Drawer = document.querySelector("#drawer"); // 抽屉

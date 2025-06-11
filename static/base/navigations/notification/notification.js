@@ -8,7 +8,6 @@ const NotificationContentLabel = document.getElementById("notification-content")
 // ajax请求，发送后端请求数据
 function notificationMessageAjax(params) {
   // params：点击时的按钮id
-  console.log(params);
   setTimeout(() => {
     NotificationContentLabel.innerHTML = `<s-empty>暂时没有消息</s-empty>`;
   }, 5000);
