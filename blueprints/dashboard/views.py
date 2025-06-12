@@ -1,7 +1,10 @@
-from flask import render_template
+from flask import render_template,session
+
 
 
 def workbenches():
+    session["userStatus"] = "asdasdasdwxc312313asdqe"
+    print(session.get("userStatus"))
     return render_template("dashboard/workbenches.html")
 
 
