@@ -28,5 +28,12 @@ function createMenuItem(labelId, url) {
   });
 }
 
+// 菜单默认选中
+function autoSelectMenu() {
+  const MenuID = localStorage.getItem("selectionMenu");
+  if (MenuID) {
+      MenuItemSelection(MenuID);
+  }
+}
 window.createMenuItem = createMenuItem;
-window.MenuItemSelection = MenuItemSelection;
+window.autoSelectMenu = autoSelectMenu;

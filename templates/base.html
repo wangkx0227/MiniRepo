@@ -269,7 +269,8 @@
 
 {% block js_end %}
 {% endblock js_end %}
-<script type="module">
+<script>
+    window.autoSelectMenu && window.autoSelectMenu(); // 侧边栏默认选中
     // ajax使用
     // const stopProgress = NProgressLongin(); // 开始加载条
     // // 异步操作完成后调用：
