@@ -20,18 +20,20 @@ NProgress.configure({ showSpinner: false, trickleSpeed: 200 });
 // 侧边栏控制
 const Drawer = document.querySelector("#drawer"); // 抽屉
 const DrawerTriggerBut = document.getElementById("DrawerTriggerBut"); // 侧边栏按钮
-localStorage.setItem("interface_menu", "show"); // 初始化页面侧边栏展示状态
+localStorage.setItem("SidebarDisplayProperties", "show"); // 初始化页面侧边栏展示状态
 const InterfaceMenuTip = document.getElementById("interface_menu_tip"); // 侧边栏提示
 // 侧边栏-按钮 Drawer.toggle();
 DrawerTriggerBut.addEventListener("click", () => {
   Drawer.toggle();
-  const interface_menu = localStorage.getItem("interface_menu");
-  if (interface_menu === "hide") {
+  const SidebarDisplayPropertiesStatus = localStorage.getItem(
+    "SidebarDisplayProperties"
+  );
+  if (SidebarDisplayPropertiesStatus === "hide") {
     InterfaceMenuTip.innerText = "隐藏侧边栏";
-    localStorage.setItem("interface_menu", "show");
+    localStorage.setItem("SidebarDisplayProperties", "show");
   } else {
     InterfaceMenuTip.innerText = "展开侧边栏";
-    localStorage.setItem("interface_menu", "hide");
+    localStorage.setItem("SidebarDisplayProperties", "hide");
   }
 });
 
@@ -43,4 +45,3 @@ function NProgressLongin() {
     NProgress.done();
   };
 }
-
