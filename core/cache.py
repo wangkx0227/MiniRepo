@@ -1,39 +1,42 @@
+import os
+import json
 import redis
 
 
 class RedisLink:
-    __doc__ = "Redis 连接池对象"
+    """Redis 连接池对象"""
+    _instance = None
+
+    def __new__(cls, *args, **kwargs):
+        if cls._instance is None:
+            cls._instance = super().__new__(cls)
+        return cls._instance
 
     def __init__(self, host, port, db, password=None, max_connections=20, socket_timeout=5):
-        self.host = host
-        self.port = port
-        self.db = db
-        self.password = password
-        self.max_connections = max_connections
-        self.socket_timeout = socket_timeout
+        self._pool = redis.ConnectionPool(
+            host=host,
+            port=port,
+            db=db,
+            password=password,
+            max_connections=max_connections,
+            socket_timeout=socket_timeout,
+            decode_responses=True
+        )
+        self._redis = redis.Redis(connection_pool=self._pool)
 
     @property
-    def pool(self):
-        # 创建连接池
-        pool = redis.ConnectionPool(
-            host=self.host,
-            port=self.port,
-            db=self.db,
-            password=self.password,  # 没有密码可以省略
-            max_connections=self.max_connections,  # 最大连接数，可自定义
-            socket_timeout=self.socket_timeout
-        )
-        return pool
+    def redis_link(self):
+        return self._redis
 
 
+file_path = os.path.dirname(__file__)
+config_file = os.path.join(file_path, "config.json")
+with open(config_file, "r", encoding="utf-8") as f:
+    config = json.load(f)  # 用json.load直接读成dict
 
-# # # 使用连接池创建 Redis 客户端
-#
-# r = RedisLink(host="127.0.0.1", port=6379, db=0)
-#
-# r2 = redis.Redis(connection_pool=r.pool)
-# print(r2.ping())
-# try:
-#     r2.set("key", "value")  # 此时才会尝试连接 Redis 服务器
-# except redis.exceptions.ConnectionError as e:
-#     print("连接失败：", e)
+cache_config = config.get("CACHE_CONFIG")
+
+r = RedisLink(host=cache_config.get("host"), port=cache_config.get("port"), db=cache_config.get("db"),
+              password=cache_config.get("password"), max_connections=cache_config.get("max_connections"),
+              socket_timeout=cache_config.get("socket_timeout"))
+redis_link = r.redis_link
