@@ -32,8 +32,20 @@ function createMenuItem(labelId, url) {
 function autoSelectMenu() {
   const MenuID = localStorage.getItem("selectionMenu");
   if (MenuID) {
-      MenuItemSelection(MenuID);
+    MenuItemSelection(MenuID);
   }
 }
+// 跟路由跳转，默认菜单选中
+document.addEventListener("DOMContentLoaded", function () {
+  // 如果 localStorage 没有选中项，且当前url是 "/dashboard/workbenches"
+  if (
+    !localStorage.getItem("selectionMenu") !== "interfaceSidebarWork" &&
+    window.location.pathname === "/dashboard/workbenches"
+  ) {
+    localStorage.setItem("selectionMenu", "interfaceSidebarWork");
+  }
+  autoSelectMenu(); // 触发选中函数
+});
+
 window.createMenuItem = createMenuItem;
 window.autoSelectMenu = autoSelectMenu;

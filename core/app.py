@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask,redirect, url_for
 from blueprints import user_bp, dashboard_bp, new_bp
 
 
@@ -11,3 +11,9 @@ def create_app():
     return app
 
 
+app = create_app()
+
+
+@app.route("/")
+def index():
+    return redirect(url_for("dashboard.workbenches"))

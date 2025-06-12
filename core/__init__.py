@@ -1,6 +1,6 @@
-from .app import create_app
+from .app import app as run_app
 
-__all__ = ["create_app"]
+__all__ = ["run_app"]
 
 """
 blueprints
