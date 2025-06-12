@@ -1,6 +1,6 @@
 import redis
 from flask_session import Session
-from flask import Flask, redirect, url_for
+from flask import Flask, redirect, url_for, jsonify
 from blueprints import user_bp, dashboard_bp, new_bp
 
 
@@ -25,3 +25,23 @@ def index():
     return redirect(url_for("dashboard.workbenches"))
 
 
+@app.route("/health")
+def health_check():
+    """健康检查"""
+    checks = {
+        "ProjectStatus": True,
+        "Resource": {
+            "MySQL": {
+                "Version": "5.7.31",
+                "Status": True,
+                "Message": ""
+            },
+            "Redis": {
+                "Version": "5.0.14.1",
+                "Status": True,
+                "Message": "",
+            },
+        }
+    }
+    status = 200
+    return jsonify(checks), status

@@ -1,9 +1,11 @@
 from flask import render_template, session
+from resource import redis_link
 
 
 def workbenches():
     # print(session.get("userStatus")) # 登录使用
     session["userStatus"] = "asdasdasdwxc312313asdqe"
+    print(redis_link.keys())
     return render_template("dashboard/workbenches.html")
 
 

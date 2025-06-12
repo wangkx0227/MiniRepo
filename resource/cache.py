@@ -25,7 +25,7 @@ class RedisLink:
         self._redis = redis.Redis(connection_pool=self._pool)
 
     @property
-    def redis_link(self):
+    def redis_link_object(self):
         return self._redis
 
 
@@ -39,4 +39,4 @@ cache_config = config.get("CACHE_CONFIG")
 r = RedisLink(host=cache_config.get("host"), port=cache_config.get("port"), db=cache_config.get("db"),
               password=cache_config.get("password"), max_connections=cache_config.get("max_connections"),
               socket_timeout=cache_config.get("socket_timeout"))
-redis_link = r.redis_link
+redis_link = r.redis_link_object
