@@ -4,7 +4,7 @@ from flask import render_template,session
 
 def workbenches():
     session["userStatus"] = "asdasdasdwxc312313asdqe"
-    print(session.get("userStatus"))
+    print(session.get("userStatus")) # 登录使用
     return render_template("dashboard/workbenches.html")
 
 
@@ -21,15 +21,14 @@ def merge_requests():
 
 
 def todos():
-    print(2131312)
     return render_template("dashboard/todos.html")
 
 
 def user_setting():
-    folded = "interfaceSidebarSetting"  # 用来控制1级菜单展开属性
+    folded = True  # 用来控制1级菜单展开属性
     return render_template("dashboard/setting/user_setting.html", folded=folded)
 
 
 def secured_setting():
-    folded = "interfaceSidebarSetting"  # 用来控制1级菜单展开属性
+    folded = True  # 用来控制1级菜单展开属性
     return render_template("dashboard/setting/secured_setting.html", folded=folded)
