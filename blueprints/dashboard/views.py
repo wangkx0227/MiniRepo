@@ -18,6 +18,7 @@ def merge_requests():
 
 
 def todos():
+    print(2131312)
     return render_template("todos.html")
 
 
