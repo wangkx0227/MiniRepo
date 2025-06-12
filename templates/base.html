@@ -12,12 +12,12 @@
     <!-- 三方样式   -->
     <script src="/static/lib/nprogress/nprogress.js"></script>
     <script src="/static/lib/sober/sober.min.js"></script>
-    <link rel="stylesheet" href="/static/lib/nprogress/nprogress.css"/>
+    <link rel="stylesheet" href="/static/lib/nprogress/nprogress.css" />
 
+    <!-- 菜单栏的icon图标 -->
+    <script src="/static/base/menus/menuIcon.js"></script>
     <!-- 菜单栏路由函数 -->
     <script src="/static/base/menus/menuPublic.js"></script>
-    <!-- 菜单栏的icon图标 -->
-    <script src="/static/base/menus/menu-icon.js"></script>
 
     <link rel="stylesheet" href="/static/base/base.css">
     <link rel="stylesheet" href="/static/base/main-content/navigation/navigation.css">
@@ -33,234 +33,234 @@
 </head>
 
 <body>
-<s-page class="content">
-    <s-drawer id="drawer">
-        <div slot="start">
-            <s-menu style="max-width: 280px; margin: 0;">
-                <div slot="label">
-                    菜单
-                </div>
-                <s-menu-item id="interfaceSidebarWork">
-                    <s-icon slot="start">
-                        <s2-icon name="interface_work"></s2-icon>
-                    </s-icon>
-                    <span>工作台</span>
-                </s-menu-item>
-                <s-menu-item id="interfaceSidebarProjects">
-                    <s-icon slot="start">
-                        <s2-icon name="interface_file_code"></s2-icon>
-                    </s-icon>
-                    <span>项目</span>
-                </s-menu-item>
-                <s-menu-item id="interfaceSidebarGroups">
-                    <s-icon slot="start">
-                        <s2-icon name="interface_user_group"></s2-icon>
-                    </s-icon>
-                    <span>群组</span>
-                </s-menu-item>
-                <s-menu-item id="interfaceSidebarMergeRequests">
-                    <s-icon slot="start">
-                        <s2-icon name="interface_merge"></s2-icon>
-                    </s-icon>
-                    <span>合并请求</span>
-                </s-menu-item>
-                <s-menu-item id="interfaceSidebarTodos">
-                    <s-icon slot="start">
-                        <s2-icon name="interface_export"></s2-icon>
-                    </s-icon>
-                    <span>待办事项列表</span>
-                </s-menu-item>
+    <s-page class="content">
+        <s-drawer id="drawer">
+            <div slot="start">
+                <s-menu style="max-width: 280px; margin: 0;">
+                    <div slot="label">
+                        菜单
+                    </div>
+                    <s-menu-item id="interfaceSidebarWork">
+                        <s-icon slot="start">
+                            <s2-icon name="interface_work"></s2-icon>
+                        </s-icon>
+                        <span>工作台</span>
+                    </s-menu-item>
+                    <s-menu-item id="interfaceSidebarProjects">
+                        <s-icon slot="start">
+                            <s2-icon name="interface_file_code"></s2-icon>
+                        </s-icon>
+                        <span>项目</span>
+                    </s-menu-item>
+                    <s-menu-item id="interfaceSidebarGroups">
+                        <s-icon slot="start">
+                            <s2-icon name="interface_user_group"></s2-icon>
+                        </s-icon>
+                        <span>群组</span>
+                    </s-menu-item>
+                    <s-menu-item id="interfaceSidebarMergeRequests">
+                        <s-icon slot="start">
+                            <s2-icon name="interface_merge"></s2-icon>
+                        </s-icon>
+                        <span>合并请求</span>
+                    </s-menu-item>
+                    <s-menu-item id="interfaceSidebarTodos">
+                        <s-icon slot="start">
+                            <s2-icon name="interface_export"></s2-icon>
+                        </s-icon>
+                        <span>待办事项列表</span>
+                    </s-menu-item>
 
-            </s-menu>
-            <s-menu style="max-width: 280px; margin: 0">
-                <div slot="label">其他</div>
-                <!--folded="false" 展开二级菜单-->
-                <!--通过Jinja2方式控制菜单展示效果，它在服务器端把你的 HTML 模板和变量“渲染成”最终的 HTML 字符串，然后把这个字符串返回给浏览器-->
-                <s-menu-item id="interfaceSidebarSetting"
-                             folded="{{ 'false' if folded =='interfaceSidebarSetting' else 'true' }}">
-                    <s-icon slot="start">
-                        <s2-icon name="interface_setting"></s2-icon>
-                    </s-icon>
-                    <span>设置</span>
-                    <s-menu slot="menu">
-                        <!--默认选择 checked="true"-->
-                        <s-menu-item id="interfaceSidebarUserSetting">
-                            <s-icon slot="start">
-                                <s2-icon name="interface_user_setting"></s2-icon>
-                            </s-icon>
-                            <span>账号设置</span>
-                        </s-menu-item>
-                        <s-menu-item id="interfaceSidebarSecuredSetting">
-                            <s-icon slot="start">
-                                <s2-icon name="interface_secured"></s2-icon>
-                            </s-icon>
-                            <span>安全设置</span>
-                        </s-menu-item>
-                    </s-menu>
-                </s-menu-item>
-                <s-menu-item>
-                    <s-icon slot="start" name="add"></s-icon>
-                    其他菜单-01
-                </s-menu-item>
-                <s-menu-item>
-                    <s-icon slot="start" name="add"></s-icon>
-                    其他菜单-02
-                </s-menu-item>
-                <s-menu-item>
-                    <s-icon slot="start" name="add"></s-icon>
-                    其他菜单-03
-                </s-menu-item>
-            </s-menu>
-        </div>
-        <s-appbar style="width: 100%;background-color: #FFFFFF;border-bottom: 1px solid #eceef0;">
-            <!--左侧菜单按钮-->
-            <s-tooltip align="bottom" slot="navigation">
-                <s-icon-button slot="trigger" id="DrawerTriggerBut">
-                    <s2-icon name="interface_menu_fold"></s2-icon>
-                </s-icon-button>
-                <span id="interface_menu_tip">隐藏侧边栏</span>
-            </s-tooltip>
-            <!--标题-->
-            <div slot="headline">
-                <span class="title" id="HeadIndexTile">GitMiniRepo</span>
+                </s-menu>
+                <s-menu style="max-width: 280px; margin: 0">
+                    <div slot="label">其他</div>
+                    <!--folded="false" 展开二级菜单-->
+                    <!--通过Jinja2方式控制菜单展示效果，它在服务器端把你的 HTML 模板和变量“渲染成”最终的 HTML 字符串，然后把这个字符串返回给浏览器-->
+                    <s-menu-item id="interfaceSidebarSetting"
+                        folded="{{ 'false' if folded =='interfaceSidebarSetting' else 'true' }}">
+                        <s-icon slot="start">
+                            <s2-icon name="interface_setting"></s2-icon>
+                        </s-icon>
+                        <span>设置</span>
+                        <s-menu slot="menu">
+                            <!--默认选择 checked="true"-->
+                            <s-menu-item id="interfaceSidebarUserSetting">
+                                <s-icon slot="start">
+                                    <s2-icon name="interface_user_setting"></s2-icon>
+                                </s-icon>
+                                <span>账号设置</span>
+                            </s-menu-item>
+                            <s-menu-item id="interfaceSidebarSecuredSetting">
+                                <s-icon slot="start">
+                                    <s2-icon name="interface_secured"></s2-icon>
+                                </s-icon>
+                                <span>安全设置</span>
+                            </s-menu-item>
+                        </s-menu>
+                    </s-menu-item>
+                    <s-menu-item>
+                        <s-icon slot="start" name="add"></s-icon>
+                        其他菜单-01
+                    </s-menu-item>
+                    <s-menu-item>
+                        <s-icon slot="start" name="add"></s-icon>
+                        其他菜单-02
+                    </s-menu-item>
+                    <s-menu-item>
+                        <s-icon slot="start" name="add"></s-icon>
+                        其他菜单-03
+                    </s-menu-item>
+                </s-menu>
             </div>
-            <!-- 搜索 -->
-            <!--            <div slot="action">-->
-            <!--                <s-search id="SearchInput" placeholder="搜索关键字" value="">-->
-            <!--                    <s-icon name="search" slot="start"></s-icon>-->
-            <!--                    <s-icon-button slot="end" id="clearBtn">-->
-            <!--                        <s-icon name="close"></s-icon>-->
-            <!--                    </s-icon-button>-->
-            <!--                </s-search>-->
-            <!--            </div>-->
-            <!-- 通知 -->
-            <div slot="action">
-                <s-popup align="center">
-                    <s-icon-button slot="trigger" id="DrawerNotificationBut">
-                        <s2-icon name="interface_notification"></s2-icon>
+            <s-appbar style="width: 100%;background-color: #FFFFFF;border-bottom: 1px solid #eceef0;">
+                <!--左侧菜单按钮-->
+                <s-tooltip align="bottom" slot="navigation">
+                    <s-icon-button slot="trigger" id="DrawerTriggerBut">
+                        <s2-icon name="interface_menu_fold"></s2-icon>
                     </s-icon-button>
-                    <div class="main-interface-notification">
-                        <s-tab mode="fixed">
-                            <s-tab-item selected="true" id="notification-referer">
-                                <div slot="text">@我</div>
-                            </s-tab-item>
-                            <s-tab-item id="notification-message">
-                                <div slot="text">消息</div>
-                            </s-tab-item>
-                            <s-tab-item id="notification-other">
-                                <div slot="text">其他</div>
-                            </s-tab-item>
-                        </s-tab>
-                        <div class="notification-content" id="notification-content" style="min-height: 164px;">
+                    <span id="interface_menu_tip">隐藏侧边栏</span>
+                </s-tooltip>
+                <!--标题-->
+                <div slot="headline">
+                    <span class="title" id="HeadIndexTile">GitMiniRepo</span>
+                </div>
+                <!-- 搜索 -->
+                <!--            <div slot="action">-->
+                <!--                <s-search id="SearchInput" placeholder="搜索关键字" value="">-->
+                <!--                    <s-icon name="search" slot="start"></s-icon>-->
+                <!--                    <s-icon-button slot="end" id="clearBtn">-->
+                <!--                        <s-icon name="close"></s-icon>-->
+                <!--                    </s-icon-button>-->
+                <!--                </s-search>-->
+                <!--            </div>-->
+                <!-- 通知 -->
+                <div slot="action">
+                    <s-popup align="center">
+                        <s-icon-button slot="trigger" id="DrawerNotificationBut">
+                            <s2-icon name="interface_notification"></s2-icon>
+                        </s-icon-button>
+                        <div class="main-interface-notification">
+                            <s-tab mode="fixed">
+                                <s-tab-item selected="true" id="notification-referer">
+                                    <div slot="text">@我</div>
+                                </s-tab-item>
+                                <s-tab-item id="notification-message">
+                                    <div slot="text">消息</div>
+                                </s-tab-item>
+                                <s-tab-item id="notification-other">
+                                    <div slot="text">其他</div>
+                                </s-tab-item>
+                            </s-tab>
+                            <div class="notification-content" id="notification-content" style="min-height: 164px;">
+                            </div>
                         </div>
-                    </div>
-                </s-popup>
-            </div>
-            <!-- +按钮 -->
-            <div slot="action">
-                <s-popup-menu>
-                    <div slot="trigger">
-                        <s-icon-button slot="trigger">
-                            <s2-icon name="interface_add"></s2-icon>
-                        </s-icon-button>
-                    </div>
-                    <div class="popup-menu-item">
-                        <s-popup-menu-item id="menuAddProjects">
-                            <s-icon slot="start">
-                                <s2-icon name="interface_add_menu_add"></s-2icon>
-                            </s-icon>
-                            <span>新建项目/仓库</span>
-                        </s-popup-menu-item>
-                        <s-popup-menu-item id="menuAddOrganizations">
-                            <s-icon slot="start">
-                                <s2-icon name="interface_add_menu_group"></s-2icon>
-                            </s-icon>
-                            <span>新建群组</span>
-                        </s-popup-menu-item>
-                        <s-popup-menu-item id="menuAddCodes">
-                            <s-icon slot="start">
-                                <s2-icon name="interface_add_menu_code"></s-2icon>
-                            </s-icon>
-                            <span>新建代码片段</span>
-                        </s-popup-menu-item>
-                    </div>
-                </s-popup-menu>
-            </div>
-            <!-- 用户菜单 -->
-            <div slot="action">
-                <s-popup-menu>
-                    <div class="popup-menu-item-button" slot="trigger">
-                        <s-icon-button slot="trigger">
-                            <s-avatar slot="start" style="color: #FFFFFF;">US</s-avatar>
-                        </s-icon-button>
-                    </div>
-                    <div class="popup-menu-item">
-                        <s-popup-menu-item id="menuUTodos">
-                            <s-icon slot="start">
-                                <!-- s2-icon 自建标签，用来显示图标 -->
-                                <s2-icon name="user_menu_export"></s-2icon>
-                            </s-icon>
-                            <span>待办</span>
-                        </s-popup-menu-item>
-                        <s-popup-menu-item id="menuURelated">
-                            <s-icon slot="start">
-                                <s2-icon name="user_menu_notification"></s-2icon>
-                            </s-icon>
-                            <span>与我相关</span>
-                        </s-popup-menu-item>
-                        <s-divider></s-divider>
-                        <s-popup-menu-item id="menuUSetting">
-                            <s-icon slot="start">
-                                <s2-icon name="user_menu_setting"></s-2icon>
-                            </s-icon>
-                            <span>个人设置</span>
-                        </s-popup-menu-item>
-                        <s-divider></s-divider>
-                        <s-popup-menu-item id="menuUStars">
-                            <s-icon slot="start">
-                                <s2-icon name="user_menu_star"></s-2icon>
-                            </s-icon>
-                            <span>我的关注</span>
-                        </s-popup-menu-item>
-                        <s-popup-menu-item id="menuUHome">
-                            <s-icon slot="start">
-                                <s2-icon name="user_menu_home"></s-2icon>
-                            </s-icon>
-                            <span>我的主页</span>
-                        </s-popup-menu-item>
-                        <s-popup-menu-item id="menuURepos">
-                            <s-icon slot="start">
-                                <s2-icon name="user_menu_code"></s-2icon>
-                            </s-icon>
-                            <span>我的仓库</span>
-                        </s-popup-menu-item>
-                        <s-divider></s-divider>
-                        <s-popup-menu-item>
-                            <s-icon slot="start">
-                                <s2-icon name="user_menu_logout"></s-2icon>
-                            </s-icon>
-                            <span>退出登录</span>
-                        </s-popup-menu-item>
-                    </div>
-                </s-popup-menu>
-            </div>
-        </s-appbar>
-        <s-scroll-view style="height: 100%;background-color: #FFFFFF;">
-            <div class="main-content-base">
-                <div class="main-navigation-bar">
-                    <span>当前位置：</span>
-                    {% block main_navigation_bar %}
-                    {% endblock main_navigation_bar %}
+                    </s-popup>
                 </div>
-                <div class="main-content">
-                    {% block main_content %}
-                    {% endblock main_content %}
+                <!-- +按钮 -->
+                <div slot="action">
+                    <s-popup-menu>
+                        <div slot="trigger">
+                            <s-icon-button slot="trigger">
+                                <s2-icon name="interface_add"></s2-icon>
+                            </s-icon-button>
+                        </div>
+                        <div class="popup-menu-item">
+                            <s-popup-menu-item id="menuAddProjects">
+                                <s-icon slot="start">
+                                    <s2-icon name="interface_add_menu_add"></s-2icon>
+                                </s-icon>
+                                <span>新建项目/仓库</span>
+                            </s-popup-menu-item>
+                            <s-popup-menu-item id="menuAddOrganizations">
+                                <s-icon slot="start">
+                                    <s2-icon name="interface_add_menu_group"></s-2icon>
+                                </s-icon>
+                                <span>新建群组</span>
+                            </s-popup-menu-item>
+                            <s-popup-menu-item id="menuAddCodes">
+                                <s-icon slot="start">
+                                    <s2-icon name="interface_add_menu_code"></s-2icon>
+                                </s-icon>
+                                <span>新建代码片段</span>
+                            </s-popup-menu-item>
+                        </div>
+                    </s-popup-menu>
                 </div>
+                <!-- 用户菜单 -->
+                <div slot="action">
+                    <s-popup-menu>
+                        <div class="popup-menu-item-button" slot="trigger">
+                            <s-icon-button slot="trigger">
+                                <s-avatar slot="start" style="color: #FFFFFF;">US</s-avatar>
+                            </s-icon-button>
+                        </div>
+                        <div class="popup-menu-item">
+                            <s-popup-menu-item id="menuUTodos">
+                                <s-icon slot="start">
+                                    <!-- s2-icon 自建标签，用来显示图标 -->
+                                    <s2-icon name="user_menu_export"></s-2icon>
+                                </s-icon>
+                                <span>待办</span>
+                            </s-popup-menu-item>
+                            <s-popup-menu-item id="menuURelated">
+                                <s-icon slot="start">
+                                    <s2-icon name="user_menu_notification"></s-2icon>
+                                </s-icon>
+                                <span>与我相关</span>
+                            </s-popup-menu-item>
+                            <s-divider></s-divider>
+                            <s-popup-menu-item id="menuUSetting">
+                                <s-icon slot="start">
+                                    <s2-icon name="user_menu_setting"></s-2icon>
+                                </s-icon>
+                                <span>个人设置</span>
+                            </s-popup-menu-item>
+                            <s-divider></s-divider>
+                            <s-popup-menu-item id="menuUStars">
+                                <s-icon slot="start">
+                                    <s2-icon name="user_menu_star"></s-2icon>
+                                </s-icon>
+                                <span>我的关注</span>
+                            </s-popup-menu-item>
+                            <s-popup-menu-item id="menuUHome">
+                                <s-icon slot="start">
+                                    <s2-icon name="user_menu_home"></s-2icon>
+                                </s-icon>
+                                <span>我的主页</span>
+                            </s-popup-menu-item>
+                            <s-popup-menu-item id="menuURepos">
+                                <s-icon slot="start">
+                                    <s2-icon name="user_menu_code"></s-2icon>
+                                </s-icon>
+                                <span>我的仓库</span>
+                            </s-popup-menu-item>
+                            <s-divider></s-divider>
+                            <s-popup-menu-item>
+                                <s-icon slot="start">
+                                    <s2-icon name="user_menu_logout"></s-2icon>
+                                </s-icon>
+                                <span>退出登录</span>
+                            </s-popup-menu-item>
+                        </div>
+                    </s-popup-menu>
+                </div>
+            </s-appbar>
+            <s-scroll-view style="height: 100%;background-color: #FFFFFF;">
+                <div class="main-content-base">
+                    <div class="main-navigation-bar">
+                        <span>当前位置：</span>
+                        {% block main_navigation_bar %}
+                        {% endblock main_navigation_bar %}
+                    </div>
+                    <div class="main-content">
+                        {% block main_content %}
+                        {% endblock main_content %}
+                    </div>
 
-            </div>
-        </s-scroll-view>
-    </s-drawer>
-</s-page>
+                </div>
+            </s-scroll-view>
+        </s-drawer>
+    </s-page>
 
 </body>
 <script src="/static/base/base.js"></script>

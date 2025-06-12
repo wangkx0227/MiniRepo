@@ -1,26 +1,6 @@
-// const menuRouteMap = {
-//   HeadIndexTile: "/dashboard/workbenches", // 需要修改
-//   menuUTodos: "/user/todos",
-//   menuURelated: "/user/related",
-//   menuUSetting: "/user/setting",
-//   menuUStars: "/user/stars",
-//   menuUHome: "/user/home",
-//   menuURepos: "/user/repos",
-//   interfaceSidebarWork: "/dashboard/workbenches",
-//   interfaceSidebarProjects: "/dashboard/projects",
-//   interfaceSidebarGroups: "/dashboard/groups",
-//   interfaceSidebarMergeRequests: "/dashboard/merge_requests",
-//   interfaceSidebarTodos: "/dashboard/todos",
-//   interfaceSidebarUserSetting: "/dashboard/setting/user_setting",
-//   interfaceSidebarSecuredSetting: "/dashboard/setting/secured_setting",
-//   menuAddProjects: "/new/projects",
-//   menuAddOrganizations: "/new/organizations",
-//   menuAddCodes: "/new/codes",
-// };
-
 // 路由
 const menuRouteMap = [
-  { labelId: "HeadIndexTile", url: "/dashboard/workbenches", labelName: "" },
+  { labelId: "HeadIndexTile", url: "/dashboard/workbenches", labelName: "" }, // 需要修改
   { labelId: "menuUTodos", url: "/user/todos", labelName: "" },
   { labelId: "menuURelated", url: "/user/related", labelName: "" },
   { labelId: "menuUSetting", url: "/user/setting", labelName: "" },
