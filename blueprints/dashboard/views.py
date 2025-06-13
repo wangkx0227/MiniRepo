@@ -2,11 +2,32 @@ from flask import render_template, session
 from resource import redis_link
 
 
+# 工作台
 def workbenches():
     # print(session.get("userStatus")) # 登录使用
     session["userStatus"] = "asdasdasdwxc312313asdqe"
     print(redis_link.keys())
     return render_template("dashboard/workbenches.html")
+
+
+# 工作台-概览
+def workbenches_overview():
+    return render_template("dashboard/workbenches/overview.html")
+
+
+# 工作台-仓库
+def workbenches_warehouse():
+    return render_template("dashboard/workbenches/warehouse.html")
+
+
+# 工作台-统计分析
+def workbenches_analysis():
+    return render_template("dashboard/workbenches/analysis.html")
+
+
+# 工作台-代码片段
+def workbenches_fragment():
+    return render_template("dashboard/workbenches/fragment.html")
 
 
 def projects():

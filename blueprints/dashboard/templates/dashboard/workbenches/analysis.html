@@ -1,0 +1,7 @@
+{% extends 'dashboard/workbenches.html' %}
+<!-- {{ super() }} 继承父类的内容不重写,而是增加 -->
+{% block main_navigation_bar %}
+{{ super() }}
+<span>/</span>
+<span><a href="#">分析</a></span>
+{% endblock main_navigation_bar %}

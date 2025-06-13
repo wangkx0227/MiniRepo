@@ -1,0 +1,95 @@
+/*内部的每个块样式*/
+.calendar-wrap {
+    display: flex;
+    align-items: flex-start;
+}
+
+
+.calendar {
+    display: flex;
+    flex-direction: column;
+}
+
+.months {
+    display: flex;
+    margin-left: 24px;
+}
+
+.month-label {
+    flex: 1;
+    text-align: left;
+    font-size: 12px;
+    color: #888;
+    min-width: 14px;
+}
+
+.weeks {
+    display: flex;
+}
+
+.week {
+    display: flex;
+    flex-direction: column;
+}
+
+.day {
+    width: 1vw;
+    height: 2vh;
+    margin: 2px;
+    border-radius: 3px;
+    background: #ebedf0;
+    box-sizing: border-box;
+    transition: background 0.2s;
+    cursor: pointer;
+}
+
+
+/*星期显示标签样式*/
+.weekdays {
+    height: 16vh;
+    width: 30px;
+    font-size: 12px;
+    margin-top: 21px;
+    align-items: center;
+    flex-direction: column;
+    display: inline-flex;
+    justify-content: space-between;
+}
+
+/*展示颜色深度多少代表含义*/
+.legend {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    justify-content: flex-end;
+    gap: 3px; /*设置间距*/
+}
+
+.legend-box {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    display: inline-block;
+}
+
+/*颜色等级 0-4 从浅到深*/
+.level-0 {
+    background: #ebedf0
+}
+
+.level-1 {
+    background: #c6e48b;
+}
+
+.level-2 {
+    background: #7bc96f;
+}
+
+.level-3 {
+    background: #239a3b;
+}
+
+.level-4 {
+    background: #196127;
+}
