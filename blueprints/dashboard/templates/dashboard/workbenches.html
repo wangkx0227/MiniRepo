@@ -6,14 +6,43 @@
 <!-- 导入css样式表 -->
 {% block css %}
 <style>
+    /*内部的每个块样式*/
+    .calendar-wrap {
+        display: flex;
+        align-items: flex-start;
+    }
+
+
+    .calendar {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .months {
+        display: flex;
+        margin-left: 24px;
+    }
+
+    .month-label {
+        flex: 1;
+        text-align: left;
+        font-size: 12px;
+        color: #888;
+        min-width: 14px;
+    }
+
+    .weeks {
+        display: flex;
+    }
+
     .week {
         display: flex;
         flex-direction: column;
     }
 
     .day {
-        width: 14px;
-        height: 14px;
+        width: 1vw;
+        height: 2vh;
         margin: 2px;
         border-radius: 3px;
         background: #ebedf0;
@@ -36,23 +65,31 @@
         transition: opacity 0.15s;
     }
 
-    .calendar {
-        display: flex;
-        justify-content: center;
+    /*星期显示标签样式*/
+    .weekdays {
+        height: 16vh;
+        width: 30px;
+        font-size: 12px;
+        margin-top: 35px;
+        align-items: center;
+        flex-direction: column;
+        display: inline-flex;
+        justify-content: space-between;
     }
 
-
+    /*展示颜色深度多少代表含义*/
     .legend {
         margin-top: 8px;
         display: flex;
         align-items: center;
         font-size: 12px;
+        justify-content: flex-end;
+        gap: 3px; /*设置间距*/
     }
 
     .legend-box {
         width: 14px;
         height: 14px;
-        margin: 0 2px;
         border-radius: 3px;
         display: inline-block;
     }
@@ -77,6 +114,7 @@
     .level-4 {
         background: #196127;
     }
+
 </style>
 {% endblock css %}
 <!-- 导入js-start -->
@@ -90,34 +128,84 @@
 {% endblock main_navigation_bar %}
 <!--主体内容-->
 {% block main_content %}
-<!--<div id="calendar" class="calendar"></div>-->
-<!--<div class="legend">-->
-<!--    <span>少</span>-->
-<!--    <span class="legend-box level-0"></span>-->
-<!--    <span class="legend-box level-1"></span>-->
-<!--    <span class="legend-box level-2"></span>-->
-<!--    <span class="legend-box level-3"></span>-->
-<!--    <span class="legend-box level-4"></span>-->
-<!--    <span>多</span>-->
-<!--</div>-->
-<!--<div id="tooltip" class="tooltip"></div>-->
-<s-tab mode="fixed">
-    <s-tab-item selected="true">
-        <div slot="text">概览</div>
-        <!--代码上传的日期和上传的动态记录-->
-    </s-tab-item>
-    <s-tab-item>
-        <div slot="text">仓库</div>
-    </s-tab-item>
-    <s-tab-item>
-        <div slot="text">统计分析</div>
-        <!--（展示更详细的活跃度、代码量、周/月报等。） -->
-    </s-tab-item>
-    <s-tab-item>
-        <div slot="text">代码片段</div>
-        <!--存放个人常用代码片段、开发备忘-->
-    </s-tab-item>
-</s-tab>
+
+<div class="head-tab-content">
+    <s-tab mode="fixed">
+        <s-tab-item selected="true">
+            <div slot="text">概览</div>
+            <!--代码上传的日期和上传的动态记录-->
+        </s-tab-item>
+        <s-tab-item>
+            <div slot="text">仓库</div>
+        </s-tab-item>
+        <s-tab-item>
+            <div slot="text">统计分析</div>
+            <!--（展示更详细的活跃度、代码量、周/月报等。） -->
+        </s-tab-item>
+        <s-tab-item>
+            <div slot="text">代码片段</div>
+            <!--存放个人常用代码片段、开发备忘-->
+        </s-tab-item>
+    </s-tab>
+</div>
+<div class="actual-display-content" style="width: 80%;margin: 0 auto">
+    <div class="main-contribute">
+        <div class="contribute-head"
+             style="margin-top:2em;display: flex;justify-content: space-between;align-items: center;">
+            <h3 class="fonts-color-major">贡献度</h3>
+            <div>
+                <s-picker label="日期">
+                    <s-picker-item value="gui yang" selectd="select">2025</s-picker-item>
+                    <s-picker-item value="bei jing">2024</s-picker-item>
+                    <s-picker-item value="shang hai">2023</s-picker-item>
+                    <s-picker-item value="shen zhen">2022</s-picker-item>
+                    <s-picker-item value="cheng du">2021</s-picker-item>
+                    <s-picker-item value="wu han">2020</s-picker-item>
+                </s-picker>
+            </div>
+        </div>
+        <div class="contribute-content">
+            <div class="calendar-wrap">
+                <div class="weekdays fonts-color-minor" id="weekdays"></div>
+                <div class="calendar">
+                    <div class="months" id="months"></div>
+
+                    <div class="weeks" id="calendar">
+                    </div>
+                </div>
+            </div>
+            <div class="legend fonts-color-routine">
+                <span>少</span>
+                <span class="legend-box level-0"></span>
+                <span class="legend-box level-1"></span>
+                <span class="legend-box level-2"></span>
+                <span class="legend-box level-3"></span>
+                <span class="legend-box level-4"></span>
+                <span>多</span>
+            </div>
+            <div id="tooltip" class="tooltip"></div>
+            <div class="describe">
+                <p class="fonts-color-minor" style="display: inline-block;margin-right: 20px;font-size: 12px;">
+                    最近一年贡献：49 次</p>
+                <p class="fonts-color-minor" style="display: inline-block;margin-right: 20px;font-size: 12px;">最长连续贡献：5
+                    日</p>
+                <p class="fonts-color-minor" style="display: inline-block;margin-right: 20px;font-size: 12px;">最近连续贡献：5
+                    日</p>
+                <p style="margin: 0;font-size: 12px;" class="fonts-color-routine">
+                    贡献度的统计数据包括代码提交、创建任务 / Pull Request、合并 Pull Request，其中代码提交的次数需本地配置的 git 邮箱帐号已确认绑定的才会被统计。
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="main-dynamics">
+        <div class="dynamics-head">
+            <h3 class="fonts-color-major">动态</h3>
+        </div>
+        <div class="dynamics-content">
+        </div>
+    </div>
+
+</div>
 
 {% endblock main_content %}
 <!-- 导入js-end -->
@@ -134,12 +222,24 @@
             const d = new Date(today);
             d.setDate(today.getDate() - i);
             const dateStr = d.toISOString().slice(0, 10);
-            // 随机贡献数，可替换为你的真实数据
             data[dateStr] = Math.random() < 0.8 ? Math.floor(Math.random() * 5) : 0;
         }
         return data;
     }
-
+    // 热力图-星期展示
+    function drawWeekdays() {
+        // 只显示“周一/三/五”示例
+        const weekdays = ['周一', '周二', '周三', '周四', '周五', '周六', '周日'];
+        const showIdx = [0, 3, 6]; // 只显示周一/四/日
+        let html = '';
+        for (let i = 0; i < 7; i++) {
+            if (showIdx.includes(i)) {
+                html += `<span >${weekdays[i]}</span>`;
+            }
+        }
+        document.getElementById('weekdays').innerHTML = html;
+    }
+    // 热力图-根据后端数据,区分每天的颜色
     function getColorLevel(count) {
         if (count === 0) return '';
         if (count < 2) return 'level-1';
@@ -148,41 +248,68 @@
         return 'level-4';
     }
 
+
+
     function drawCalendar(data) {
         const calendar = document.getElementById('calendar');
+        const months = document.getElementById('months');
         calendar.innerHTML = '';
+        months.innerHTML = '';
 
-        // 计算从哪一天开始（向前推364天）
+        // 计算开始日期（向前推364天，补齐到周日）
         const today = new Date();
         let start = new Date(today);
         start.setDate(today.getDate() - 364);
-        // 补齐到周日
-        while (start.getDay() !== 0) {
-            start.setDate(start.getDate() - 1);
-        }
+        while (start.getDay() !== 0) start.setDate(start.getDate() - 1);
 
-        // 生成每一列（每周）
+        // 生成每一列（每周），每列放7天
+        let monthLabels = [];
+        let lastMonth = null;
         for (let week = 0; week < 53; week++) {
             const weekColumn = document.createElement('div');
             weekColumn.className = 'week';
+            let hasMonthLabel = false;
             for (let day = 0; day < 7; day++) {
                 const d = new Date(start);
                 d.setDate(start.getDate() + week * 7 + day);
                 const dateStr = d.toISOString().slice(0, 10);
                 const count = data[dateStr] || 0;
-
                 const dayBox = document.createElement('div');
                 dayBox.className = 'day ' + getColorLevel(count);
                 dayBox.title = `${dateStr}: ${count} 次贡献`;
                 dayBox.dataset.date = dateStr;
                 dayBox.dataset.count = count;
                 weekColumn.appendChild(dayBox);
+
+                // 只在本周第一个格子且是1号时，显示月份
+                if (day === 0) {
+                    const curMonth = d.getMonth();
+                    if (curMonth !== lastMonth) {
+                        hasMonthLabel = true;
+                        lastMonth = curMonth;
+                    }
+                }
             }
             calendar.appendChild(weekColumn);
+            // 记录月份名或空字符串
+            if (hasMonthLabel) {
+                const d = new Date(start);
+                d.setDate(start.getDate() + week * 7);
+                monthLabels.push(`${d.getMonth() + 1}月`);
+            } else {
+                monthLabels.push('');
+            }
+        }
+        // 渲染月份
+        for (let i = 0; i < monthLabels.length; i++) {
+            const monthDiv = document.createElement('div');
+            monthDiv.className = 'month-label';
+            monthDiv.innerHTML = monthLabels[i] ? monthLabels[i] : '&nbsp;';
+            months.appendChild(monthDiv);
         }
     }
 
-    // 简单悬浮提示
+    // 悬浮提示
     const tooltip = document.getElementById('tooltip');
     document.addEventListener('mousemove', function (e) {
         if (tooltip.style.opacity === "1") {
@@ -203,7 +330,9 @@
     });
 
     // 初始化
-    const data = generateData(); // 这里换成你的数据即可
+    const data = generateData();
+    console.log(data)
+    drawWeekdays();
     drawCalendar(data);
 </script>
 {% endblock js_end %}

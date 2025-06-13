@@ -3,8 +3,7 @@ body {
     padding: 0;
     margin: 0;
     height: 100%;
-    font-family: var(--default-regular-font, "GitLab Sans"), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans", Ubuntu, Cantarell, "Helvetica Neue", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-
+    font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
 }
 
 .icon {
@@ -14,6 +13,21 @@ body {
 
 .title {
     color: black;
+}
+
+/*字体颜色-主要*/
+.fonts-color-major {
+    color: #303133;
+}
+
+/*字体颜色-常规*/
+.fonts-color-routine {
+    color: #606266;
+}
+
+/*字体颜色-次要*/
+.fonts-color-minor {
+    color: #909399;
 }
 
 /* 用户菜单背景颜色重写 */
