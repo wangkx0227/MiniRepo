@@ -65,5 +65,6 @@
 </div>
 {% endblock workbenches_content %}
 {% block js_end %}
+{{ super() }}
 <script src="{{ url_for('dashboard.static', filename='workbenches/overview/overview.js') }}"></script>
 {% endblock js_end %}

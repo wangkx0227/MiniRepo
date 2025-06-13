@@ -11,18 +11,19 @@
 {% block main_content %}
 <div class="head-tab-content">
     <s-tab mode="fixed">
-        <s-tab-item selected="true">
+        <s-tab-item  id="workbenches-overview">
             <div slot="text">概览</div>
             <!--代码上传的日期和上传的动态记录-->
         </s-tab-item>
-        <s-tab-item>
+        <s-tab-item id="workbenches-warehouse">
             <div slot="text">仓库</div>
+            <!--仓库相关信息-->
         </s-tab-item>
-        <s-tab-item>
+        <s-tab-item id="workbenches-analysis">
             <div slot="text">统计分析</div>
             <!--（展示更详细的活跃度、代码量、周/月报等。） -->
         </s-tab-item>
-        <s-tab-item>
+        <s-tab-item id="workbenches-fragment">
             <div slot="text">代码片段</div>
             <!--存放个人常用代码片段、开发备忘-->
         </s-tab-item>
@@ -33,4 +34,7 @@
     {% endblock workbenches_content %}
 </div>
 {% endblock main_content %}
+{% block js_end %}
+<script src="{{ url_for('dashboard.static', filename='/workbenches/workbenches.js') }}"></script>
+{% endblock js_end%}
 
