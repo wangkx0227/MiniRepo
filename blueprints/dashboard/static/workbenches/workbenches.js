@@ -1,7 +1,7 @@
 // 工作台路由-虽然与菜单路由类似,但是还是不同
 const WorkbenchesRouteMap = [
     {labelId: "workbenches-overview", url: "/dashboard/workbenches/overview", labelName: ""},
-    {labelId: "workbenches-warehouse", url: "/dashboard/workbenches/warehouse", labelName: ""},
+    {labelId: "workbenches-repository", url: "/dashboard/workbenches/repository", labelName: ""},
     {labelId: "workbenches-analysis", url: "/dashboard/workbenches/analysis", labelName: ""},
     {labelId: "workbenches-fragment", url: "/dashboard/workbenches/fragment", labelName: ""},
 ];

@@ -17,9 +17,9 @@ def workbenches_overview():
 
 
 # 工作台-仓库
-def workbenches_warehouse():
+def workbenches_repository():
     selected = True
-    return render_template("dashboard/workbenches/warehouse.html")
+    return render_template("dashboard/workbenches/repository.html")
 
 
 # 工作台-统计分析
