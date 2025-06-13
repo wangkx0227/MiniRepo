@@ -21,7 +21,8 @@ def workbenches():
     }
     # 默认用 overview，无论是登录跳转还是点击工作台
     template = template_map.get(tab, 'dashboard/workbenches/overview.html')
-    return render_template(template)
+    # 传递 tab 让前端的tab标签默认选中
+    return render_template(template, tab=tab)
 
 
 def projects():

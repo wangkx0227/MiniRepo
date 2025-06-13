@@ -4,21 +4,19 @@ function createMenuItem(labelId, url, saveToLocal) {
     if (!el) return;
     el.style.cursor = "pointer"; // 鼠标样式手型提示
     el.addEventListener("click", () => {
-        // 默认工作台-tab选中属性
-        if (saveToLocal) {
-            localStorage.setItem("selectionWorkbenchesTab", labelId)
-        }
-        // 菜单默认选中
-        if (labelId === "HeadIndexTile") {
-            localStorage.setItem("selectionMenu", "interfaceSidebarWork");
-        } else {
-            localStorage.setItem("selectionMenu", labelId);
+        // 默认工作台-tab不做菜单存储
+        if (!saveToLocal) {
+            if (labelId === "HeadIndexTile") {
+                localStorage.setItem("selectionMenu", "interfaceSidebarWork"); // 当点击网站标题 默认选中工作台侧边栏
+            } else {
+                localStorage.setItem("selectionMenu", labelId);
+            }
         }
         // 等待菜单按钮动画效果结束后执行跳转
         setTimeout(() => {
             // 执行页面跳转
             window.location.href = url;
-        }, 300);
+        }, 350);
     });
 }
 
@@ -35,13 +33,11 @@ function autoSelectMenu() {
     }
 }
 
-// 当访问 / 路由是进行跳转，默认菜单选中
+// 当访问 /（首页默认菜单选中） 路由是进行跳转，默认菜单选中
 document.addEventListener("DOMContentLoaded", function () {
     // 如果 localStorage 没有选中项，且当前url是 "/dashboard/workbenches"
-    if (localStorage.getItem("selectionMenu") !== "interfaceSidebarWork" &&
-        window.location.pathname === "/dashboard/workbenches"
-    ) {
-        localStorage.setItem("selectionMenu", "interfaceSidebarWork");
+    if (localStorage.getItem("selectionMenu") !== "interfaceSidebarWorkbenches" && window.location.pathname === "/dashboard/workbenches") {
+        localStorage.setItem("selectionMenu", "interfaceSidebarWorkbenches"); // 默认选中工作台侧边栏
     }
     autoSelectMenu(); // 触发选中函数
 });

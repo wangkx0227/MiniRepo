@@ -10,7 +10,7 @@ const menuRouteMap = [
     {labelId: "menuUHome", url: "/user/home", saveToLocal: false},
     {labelId: "menuURepos", url: "/user/repos", saveToLocal: false},
     // 侧边栏菜单地址
-    {labelId: "interfaceSidebarWork", url: "/dashboard/workbenches?tab=overview", saveToLocal: false},
+    {labelId: "interfaceSidebarWorkbenches", url: "/dashboard/workbenches?tab=overview", saveToLocal: false},
     {labelId: "interfaceSidebarProjects", url: "/dashboard/projects", saveToLocal: false},
     {labelId: "interfaceSidebarGroups", url: "/dashboard/groups", saveToLocal: false},
     {labelId: "interfaceSidebarMergeRequests", url: "/dashboard/merge_requests", saveToLocal: false},
@@ -33,16 +33,6 @@ const menuRouteMap = [
     for (const item of menuRouteMap) {
         if (window.createMenuItem) {
             window.createMenuItem(item.labelId, item.url, item.saveToLocal);
-            // 工作台tab默认选中
-            if (item.saveToLocal) {
-                const selectionWorkbenchesTab = localStorage.getItem("selectionWorkbenchesTab")
-                let labelObject = document.getElementById(`${item.labelId}`)
-                if (selectionWorkbenchesTab === item.labelId) {
-                    labelObject.setAttribute("selected", "true")
-                } else {
-                    labelObject.setAttribute("selected", "false")
-                }
-            }
         }
     }
 })();
