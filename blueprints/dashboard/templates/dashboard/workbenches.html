@@ -1,38 +1,39 @@
 {% extends 'base.html' %}
 {% block title %}
-工作台
+    工作台
 {% endblock %}
 {% block main_navigation_bar %}
-<span><a href="#">菜单</a></span>
-<span>/</span>
-<span><a href="#">工作台</a></span>
+    <span><a href="#">菜单</a></span>
+    <span>/</span>
+    <span><a href="#">工作台</a></span>
 {% endblock main_navigation_bar %}
 <!--主体内容-->
 {% block main_content %}
-<div class="head-tab-content">
-    <s-tab mode="fixed">
-        <s-tab-item  id="workbenches-overview" selected="{% if tab=='overview' %}true{% endif %}">
-            <div slot="text">概览</div>
-            <!--代码上传的日期和上传的动态记录-->
-        </s-tab-item>
-        <s-tab-item id="workbenches-repository" selected="{% if tab=='repository' %}true{% endif %}">
-            <div slot="text">仓库</div>
-            <!--仓库相关信息-->
-        </s-tab-item>
-        <s-tab-item id="workbenches-analysis" selected="{% if tab=='analysis' %}true{% endif %}">
-            <div slot="text">统计分析</div>
-            <!--（展示更详细的活跃度、代码量、周/月报等。） -->
-        </s-tab-item>
-        <s-tab-item id="workbenches-fragment" selected="{% if tab=='fragment' %}true{% endif %}">
-            <div slot="text">代码片段</div>
-            <!--存放个人常用代码片段、开发备忘-->
-        </s-tab-item>
-    </s-tab>
-</div>
-<div class="actual-display-content" style="width: 80%;margin: 0 auto">
-    {% block workbenches_content %}
-    {% endblock workbenches_content %}
-</div>
+    <div class="head-tab-content">
+        <s-tab mode="fixed">
+            <s-tab-item id="workbenches-overview" selected="{% if tab=='overview' %}true{% endif %}">
+                <div slot="text">概览</div>
+                <!--代码上传的日期和上传的动态记录-->
+            </s-tab-item>
+            <s-tab-item id="workbenches-repository" selected="{% if tab=='repository' %}true{% endif %}">
+                <div slot="text">仓库</div>
+                <!--仓库相关信息-->
+            </s-tab-item>
+            <s-tab-item id="workbenches-analysis" selected="{% if tab=='analysis' %}true{% endif %}">
+                <div slot="text">统计分析</div>
+                <!--（展示更详细的活跃度、代码量、周/月报等。） -->
+            </s-tab-item>
+            <s-tab-item id="workbenches-fragment" selected="{% if tab=='fragment' %}true{% endif %}">
+                <div slot="text">代码片段</div>
+                <!--存放个人常用代码片段、开发备忘-->
+            </s-tab-item>
+        </s-tab>
+    </div>
+    <div class="actual-display-content" style="width: 80%;margin: 0 auto">
+        {% block workbenches_content %}
+
+        {% endblock workbenches_content %}
+    </div>
 {% endblock main_content %}
 
 
