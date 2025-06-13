@@ -70,7 +70,7 @@
         height: 16vh;
         width: 30px;
         font-size: 12px;
-        margin-top: 35px;
+        margin-top: 21px;
         align-items: center;
         flex-direction: column;
         display: inline-flex;
@@ -183,7 +183,6 @@
                 <span class="legend-box level-4"></span>
                 <span>多</span>
             </div>
-            <div id="tooltip" class="tooltip"></div>
             <div class="describe">
                 <p class="fonts-color-minor" style="display: inline-block;margin-right: 20px;font-size: 12px;">
                     最近一年贡献：49 次</p>
@@ -215,10 +214,11 @@
      * 生成模拟贡献数据：返回一个对象 { '2025-05-01': 1, ... }
      * 你可以用后台接口数据替换此处
      */
+    // 假数据
     function generateData() {
         const data = {};
         const today = new Date();
-        for (let i = 0; i < 365; i++) {
+        for (let i = 0; i < 364; i++) {
             const d = new Date(today);
             d.setDate(today.getDate() - i);
             const dateStr = d.toISOString().slice(0, 10);
@@ -226,6 +226,7 @@
         }
         return data;
     }
+
     // 热力图-星期展示
     function drawWeekdays() {
         // 只显示“周一/三/五”示例
@@ -247,9 +248,7 @@
         if (count < 7) return 'level-3';
         return 'level-4';
     }
-
-
-
+    // 热力图-数据渲染
     function drawCalendar(data) {
         const calendar = document.getElementById('calendar');
         const months = document.getElementById('months');
@@ -263,7 +262,7 @@
         while (start.getDay() !== 0) start.setDate(start.getDate() - 1);
 
         // 生成每一列（每周），每列放7天
-        let monthLabels = [];
+        let monthLabels = []; // 月列表
         let lastMonth = null;
         for (let week = 0; week < 53; week++) {
             const weekColumn = document.createElement('div');
@@ -296,11 +295,10 @@
                 const d = new Date(start);
                 d.setDate(start.getDate() + week * 7);
                 monthLabels.push(`${d.getMonth() + 1}月`);
-            } else {
-                monthLabels.push('');
             }
         }
         // 渲染月份
+        console.log(monthLabels)
         for (let i = 0; i < monthLabels.length; i++) {
             const monthDiv = document.createElement('div');
             monthDiv.className = 'month-label';
@@ -308,30 +306,8 @@
             months.appendChild(monthDiv);
         }
     }
-
-    // 悬浮提示
-    const tooltip = document.getElementById('tooltip');
-    document.addEventListener('mousemove', function (e) {
-        if (tooltip.style.opacity === "1") {
-            tooltip.style.left = (e.pageX + 10) + "px";
-            tooltip.style.top = (e.pageY - 20) + "px";
-        }
-    });
-    document.getElementById('calendar').addEventListener('mouseover', function (e) {
-        if (e.target.classList.contains('day')) {
-            tooltip.textContent = `${e.target.dataset.date}: ${e.target.dataset.count} 次贡献`;
-            tooltip.style.opacity = "1";
-        }
-    });
-    document.getElementById('calendar').addEventListener('mouseout', function (e) {
-        if (e.target.classList.contains('day')) {
-            tooltip.style.opacity = "0";
-        }
-    });
-
     // 初始化
     const data = generateData();
-    console.log(data)
     drawWeekdays();
     drawCalendar(data);
 </script>
