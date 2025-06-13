@@ -12,21 +12,25 @@ def workbenches():
 
 # 工作台-概览
 def workbenches_overview():
+    selected = True
     return render_template("dashboard/workbenches/overview.html")
 
 
 # 工作台-仓库
 def workbenches_warehouse():
+    selected = True
     return render_template("dashboard/workbenches/warehouse.html")
 
 
 # 工作台-统计分析
 def workbenches_analysis():
+    selected = True
     return render_template("dashboard/workbenches/analysis.html")
 
 
 # 工作台-代码片段
 def workbenches_fragment():
+    selected = True
     return render_template("dashboard/workbenches/fragment.html")
 
 

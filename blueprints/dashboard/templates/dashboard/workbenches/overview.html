@@ -8,7 +8,62 @@
 {% block css %}
 <link rel="stylesheet" href="{{ url_for('dashboard.static', filename='workbenches/overview/overview.css') }}">
 {% endblock css %}
+{% block workbenches_content %}
+<div class="main-contribute">
+    <div class="contribute-head"
+         style="margin-top:2em;display: flex;justify-content: space-between;align-items: center;">
+        <h3 class="fonts-color-major">贡献度</h3>
+        <div>
+            <s-picker label="日期">
+                <s-picker-item value="gui yang" selectd="select">2025</s-picker-item>
+                <s-picker-item value="bei jing">2024</s-picker-item>
+                <s-picker-item value="shang hai">2023</s-picker-item>
+                <s-picker-item value="shen zhen">2022</s-picker-item>
+                <s-picker-item value="cheng du">2021</s-picker-item>
+                <s-picker-item value="wu han">2020</s-picker-item>
+            </s-picker>
+        </div>
+    </div>
+    <div class="contribute-content">
+        <div class="calendar-wrap">
+            <div class="weekdays fonts-color-minor" id="weekdays"></div>
+            <div class="calendar">
+                <div class="months" id="months"></div>
 
+                <div class="weeks" id="calendar">
+                </div>
+            </div>
+        </div>
+        <div class="legend fonts-color-routine">
+            <span>少</span>
+            <span class="legend-box level-0"></span>
+            <span class="legend-box level-1"></span>
+            <span class="legend-box level-2"></span>
+            <span class="legend-box level-3"></span>
+            <span class="legend-box level-4"></span>
+            <span>多</span>
+        </div>
+        <div class="describe">
+            <p class="fonts-color-minor" style="display: inline-block;margin-right: 20px;font-size: 12px;">
+                最近一年贡献：49 次</p>
+            <p class="fonts-color-minor" style="display: inline-block;margin-right: 20px;font-size: 12px;">最长连续贡献：5
+                日</p>
+            <p class="fonts-color-minor" style="display: inline-block;margin-right: 20px;font-size: 12px;">最近连续贡献：5
+                日</p>
+            <p style="margin: 0;font-size: 12px;" class="fonts-color-routine">
+                贡献度的统计数据包括代码提交、创建任务 / Pull Request、合并 Pull Request，其中代码提交的次数需本地配置的 git 邮箱帐号已确认绑定的才会被统计。
+            </p>
+        </div>
+    </div>
+</div>
+<div class="main-dynamics">
+    <div class="dynamics-head">
+        <h3 class="fonts-color-major">动态</h3>
+    </div>
+    <div class="dynamics-content">
+    </div>
+</div>
+{% endblock workbenches_content %}
 {% block js_end %}
 <script src="{{ url_for('dashboard.static', filename='workbenches/overview/overview.js') }}"></script>
 {% endblock js_end %}
