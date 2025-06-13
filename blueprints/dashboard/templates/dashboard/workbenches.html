@@ -1,10 +1,83 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    工作台
+工作台
 {% endblock %}
 <!-- 导入css样式表 -->
 {% block css %}
+<style>
+    .week {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .day {
+        width: 14px;
+        height: 14px;
+        margin: 2px;
+        border-radius: 3px;
+        background: #ebedf0;
+        box-sizing: border-box;
+        transition: background 0.2s;
+        cursor: pointer;
+    }
+
+    /*提示*/
+    .tooltip {
+        position: absolute;
+        pointer-events: none;
+        background: #333;
+        color: #fff;
+        padding: 4px 8px;
+        border-radius: 3px;
+        font-size: 12px;
+        z-index: 10;
+        opacity: 0;
+        transition: opacity 0.15s;
+    }
+
+    .calendar {
+        display: flex;
+        justify-content: center;
+    }
+
+
+    .legend {
+        margin-top: 8px;
+        display: flex;
+        align-items: center;
+        font-size: 12px;
+    }
+
+    .legend-box {
+        width: 14px;
+        height: 14px;
+        margin: 0 2px;
+        border-radius: 3px;
+        display: inline-block;
+    }
+
+    /*颜色等级 0-4 从浅到深*/
+    .level-0 {
+        background: #ebedf0
+    }
+
+    .level-1 {
+        background: #c6e48b;
+    }
+
+    .level-2 {
+        background: #7bc96f;
+    }
+
+    .level-3 {
+        background: #239a3b;
+    }
+
+    .level-4 {
+        background: #196127;
+    }
+</style>
 {% endblock css %}
 <!-- 导入js-start -->
 {% block js_start %}
@@ -17,9 +90,120 @@
 {% endblock main_navigation_bar %}
 <!--主体内容-->
 {% block main_content %}
+<!--<div id="calendar" class="calendar"></div>-->
+<!--<div class="legend">-->
+<!--    <span>少</span>-->
+<!--    <span class="legend-box level-0"></span>-->
+<!--    <span class="legend-box level-1"></span>-->
+<!--    <span class="legend-box level-2"></span>-->
+<!--    <span class="legend-box level-3"></span>-->
+<!--    <span class="legend-box level-4"></span>-->
+<!--    <span>多</span>-->
+<!--</div>-->
+<!--<div id="tooltip" class="tooltip"></div>-->
+<s-tab mode="fixed">
+    <s-tab-item selected="true">
+        <div slot="text">概览</div>
+        <!--代码上传的日期和上传的动态记录-->
+    </s-tab-item>
+    <s-tab-item>
+        <div slot="text">仓库</div>
+    </s-tab-item>
+    <s-tab-item>
+        <div slot="text">统计分析</div>
+        <!--（展示更详细的活跃度、代码量、周/月报等。） -->
+    </s-tab-item>
+    <s-tab-item>
+        <div slot="text">代码片段</div>
+        <!--存放个人常用代码片段、开发备忘-->
+    </s-tab-item>
+</s-tab>
+
 {% endblock main_content %}
 <!-- 导入js-end -->
 {% block js_end %}
 <script>
+    /**
+     * 生成模拟贡献数据：返回一个对象 { '2025-05-01': 1, ... }
+     * 你可以用后台接口数据替换此处
+     */
+    function generateData() {
+        const data = {};
+        const today = new Date();
+        for (let i = 0; i < 365; i++) {
+            const d = new Date(today);
+            d.setDate(today.getDate() - i);
+            const dateStr = d.toISOString().slice(0, 10);
+            // 随机贡献数，可替换为你的真实数据
+            data[dateStr] = Math.random() < 0.8 ? Math.floor(Math.random() * 5) : 0;
+        }
+        return data;
+    }
+
+    function getColorLevel(count) {
+        if (count === 0) return '';
+        if (count < 2) return 'level-1';
+        if (count < 4) return 'level-2';
+        if (count < 7) return 'level-3';
+        return 'level-4';
+    }
+
+    function drawCalendar(data) {
+        const calendar = document.getElementById('calendar');
+        calendar.innerHTML = '';
+
+        // 计算从哪一天开始（向前推364天）
+        const today = new Date();
+        let start = new Date(today);
+        start.setDate(today.getDate() - 364);
+        // 补齐到周日
+        while (start.getDay() !== 0) {
+            start.setDate(start.getDate() - 1);
+        }
+
+        // 生成每一列（每周）
+        for (let week = 0; week < 53; week++) {
+            const weekColumn = document.createElement('div');
+            weekColumn.className = 'week';
+            for (let day = 0; day < 7; day++) {
+                const d = new Date(start);
+                d.setDate(start.getDate() + week * 7 + day);
+                const dateStr = d.toISOString().slice(0, 10);
+                const count = data[dateStr] || 0;
+
+                const dayBox = document.createElement('div');
+                dayBox.className = 'day ' + getColorLevel(count);
+                dayBox.title = `${dateStr}: ${count} 次贡献`;
+                dayBox.dataset.date = dateStr;
+                dayBox.dataset.count = count;
+                weekColumn.appendChild(dayBox);
+            }
+            calendar.appendChild(weekColumn);
+        }
+    }
+
+    // 简单悬浮提示
+    const tooltip = document.getElementById('tooltip');
+    document.addEventListener('mousemove', function (e) {
+        if (tooltip.style.opacity === "1") {
+            tooltip.style.left = (e.pageX + 10) + "px";
+            tooltip.style.top = (e.pageY - 20) + "px";
+        }
+    });
+    document.getElementById('calendar').addEventListener('mouseover', function (e) {
+        if (e.target.classList.contains('day')) {
+            tooltip.textContent = `${e.target.dataset.date}: ${e.target.dataset.count} 次贡献`;
+            tooltip.style.opacity = "1";
+        }
+    });
+    document.getElementById('calendar').addEventListener('mouseout', function (e) {
+        if (e.target.classList.contains('day')) {
+            tooltip.style.opacity = "0";
+        }
+    });
+
+    // 初始化
+    const data = generateData(); // 这里换成你的数据即可
+    drawCalendar(data);
 </script>
 {% endblock js_end %}
