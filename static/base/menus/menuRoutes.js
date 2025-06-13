@@ -25,7 +25,7 @@ const menuRouteMap = [
     {labelId: "workbenches-overview", url: "?tab=overview", saveToLocal: true},
     {labelId: "workbenches-repository", url: "?tab=repository", saveToLocal: true},
     {labelId: "workbenches-analysis", url: "?tab=analysis", saveToLocal: true},
-    {labelId: "workbenches-fragment", url: "?tab=fragment", saveToLocal: true},
+    {labelId: "workbenches-snippet", url: "?tab=snippet", saveToLocal: true},
 ];
 
 // 循环生成或者说赋值点击函数

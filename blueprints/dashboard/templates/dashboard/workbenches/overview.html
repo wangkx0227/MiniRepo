@@ -3,7 +3,7 @@
 {% block main_navigation_bar %}
 {{ super() }}
 <span>/</span>
-<span><a href="#">概览</a></span>
+<span><a href="javascript:void(0);">概览</a></span>
 {% endblock main_navigation_bar %}
 {% block css %}
 <link rel="stylesheet" href="{{ url_for('dashboard.static', filename='workbenches/overview/overview.css') }}">

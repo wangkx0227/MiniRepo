@@ -3,9 +3,9 @@
     工作台
 {% endblock %}
 {% block main_navigation_bar %}
-    <span><a href="#">菜单</a></span>
+    <span><a href="javascript:void(0);">菜单</a></span>
     <span>/</span>
-    <span><a href="#">工作台</a></span>
+    <span><a href="javascript:void(0);">工作台</a></span>
 {% endblock main_navigation_bar %}
 <!--主体内容-->
 {% block main_content %}
@@ -23,7 +23,7 @@
                 <div slot="text">统计分析</div>
                 <!--（展示更详细的活跃度、代码量、周/月报等。） -->
             </s-tab-item>
-            <s-tab-item id="workbenches-fragment" selected="{% if tab=='fragment' %}true{% endif %}">
+            <s-tab-item id="workbenches-snippet" selected="{% if tab=='snippet' %}true{% endif %}">
                 <div slot="text">代码片段</div>
                 <!--存放个人常用代码片段、开发备忘-->
             </s-tab-item>
