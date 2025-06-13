@@ -17,7 +17,7 @@ NProgress.configure({ showSpinner: false, trickleSpeed: 200 });
 //   }
 // });
 
-// 侧边栏控制
+// 侧边栏抽屉控制显示
 const Drawer = document.querySelector("#drawer"); // 抽屉
 const DrawerTriggerBut = document.getElementById("DrawerTriggerBut"); // 侧边栏按钮
 localStorage.setItem("SidebarDisplayProperties", "show"); // 初始化页面侧边栏展示状态

@@ -1,37 +1,27 @@
-from flask import render_template, session
+from flask import render_template, session, redirect, url_for, request
 from resource import redis_link
+
+"""
+    # print(session.get("userStatus")) # 登录使用
+    # session["userStatus"] = "asdasdasdwxc312313asdqe"
+    # print(redis_link.keys())
+
+"""
 
 
 # 工作台
 def workbenches():
-    # print(session.get("userStatus")) # 登录使用
-    session["userStatus"] = "asdasdasdwxc312313asdqe"
-    print(redis_link.keys())
-    return render_template("dashboard/workbenches.html")
-
-
-# 工作台-概览
-def workbenches_overview():
-    selected = True
-    return render_template("dashboard/workbenches/overview.html")
-
-
-# 工作台-仓库
-def workbenches_repository():
-    selected = True
-    return render_template("dashboard/workbenches/repository.html")
-
-
-# 工作台-统计分析
-def workbenches_analysis():
-    selected = True
-    return render_template("dashboard/workbenches/analysis.html")
-
-
-# 工作台-代码片段
-def workbenches_fragment():
-    selected = True
-    return render_template("dashboard/workbenches/fragment.html")
+    tab = request.args.get('tab', 'overview')
+    # 工作台tab标签，对应get请求参数对应的模版路径
+    template_map = {
+        'repository': 'dashboard/workbenches/repository.html',
+        'analysis': 'dashboard/workbenches/analysis.html',
+        'fragment': 'dashboard/workbenches/fragment.html',
+        'overview': 'dashboard/workbenches/overview.html'
+    }
+    # 默认用 overview，无论是登录跳转还是点击工作台
+    template = template_map.get(tab, 'dashboard/workbenches/overview.html')
+    return render_template(template)
 
 
 def projects():

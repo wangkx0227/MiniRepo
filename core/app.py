@@ -22,7 +22,7 @@ app = create_app()
 
 @app.route("/")
 def index():
-    return redirect(url_for("dashboard.workbenches"))
+    return redirect(url_for("dashboard.workbenches", tab="overview"))
 
 
 @app.route("/health")
