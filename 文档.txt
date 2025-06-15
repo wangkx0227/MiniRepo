@@ -3,3 +3,4 @@ css样式：https://soberjs.com/
 进度条：https://rstacruz.github.io/nprogress/
 后端API框架Flask-RESTX ： https://flask-restx.readthedocs.io/en/latest/
 后端框架Flask ：https://flask.palletsprojects.com/en/stable/ https://flask.github.net.cn/
+单元测试 pytest：https://docs.pytest.org/en/stable/ -- https://learning-pytest.readthedocs.io/zh/latest/doc/intro/getting-started.html
