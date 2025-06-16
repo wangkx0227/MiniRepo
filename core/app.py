@@ -1,6 +1,6 @@
 import redis
 from flask_session import Session
-from flask import Flask, redirect, url_for, jsonify
+from flask import Flask, redirect, url_for, jsonify, request, render_template
 from blueprints import user_bp, dashboard_bp, new_bp
 
 
@@ -20,9 +20,32 @@ def create_app():
 app = create_app()
 
 
+# 设置请求钩子,处理用户登录状态. -- 全局生效,验证是否存在登录状态
+@app.before_request
+def before_request():
+    # 不做用户凭证验证
+    if request.endpoint == "login" or (
+            request.endpoint == 'static'
+            or request.endpoint.endswith('.static')
+    ):
+        return
+    original_url = request.full_path  # 原url
+    # 如果用户凭证到期,进行重新登录,携带最后访问的页面url
+    # return redirect(url_for("login", get_url=original_url))
+
+
 @app.route("/")
 def index():
     return redirect(url_for("dashboard.workbenches", tab="overview"))
+
+
+@app.route("/login")
+def login():
+    # 获取参数,然后登录成功后,跳转到最后访问页面的url
+    next_url = request.args.get("get_url")
+    if next_url:
+        return redirect(next_url)
+    return render_template("login.html")
 
 
 @app.route("/health")
