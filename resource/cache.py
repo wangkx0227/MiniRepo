@@ -20,7 +20,7 @@ class RedisLink:
             password=password,
             max_connections=max_connections,
             socket_timeout=socket_timeout,
-            decode_responses=True
+            decode_responses=False
         )
         self._redis = redis.Redis(connection_pool=self._pool)
 
