@@ -35,7 +35,7 @@
 <body>
 <s-page class="content">
     <s-drawer id="drawer">
-        <div slot="start">
+        <div slot="start" {% if page_show_status %} style="display: none" {% endif %}>
             <s-menu style="max-width: 280px; margin: 0;">
                 <div slot="label">
                     菜单
@@ -115,7 +115,7 @@
         <s-appbar style="width: 100%;background-color: #FFFFFF;border-bottom: 1px solid #eceef0;">
             <!--左侧菜单按钮-->
             <s-tooltip align="bottom" slot="navigation">
-                <s-icon-button slot="trigger" id="DrawerTriggerBut">
+                <s-icon-button slot="trigger" id="DrawerTriggerBut"  {% if page_show_status  %} disabled="true" {% endif %} >
                     <s2-icon name="interface_menu_fold"></s2-icon>
                 </s-icon-button>
                 <span id="interface_menu_tip">隐藏侧边栏</span>

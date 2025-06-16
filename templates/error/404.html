@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-</body>
-</html>
+{% block title %}
+404 资源不存在
+{% endblock title %}
+{% block main_navigation_bar %}
+<span><a href="javascript:void(0);">错误页面</a></span>
+<span>/</span>
+<span><a href="javascript:void(0);">404资源不存在</a></span>
+{% endblock main_navigation_bar %}

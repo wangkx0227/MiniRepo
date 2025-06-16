@@ -10,3 +10,4 @@ SESSION_USE_SIGNER = True  # 对 session id 做签名，提高安全性
 SESSION_COOKIE_NAME = "authentication-uid"  # 前端cookie名称
 SESSION_COOKIE_HTTPONLY = True  # 前端 JS 不能读取（默认就是 True）"
 PERMANENT_SESSION_LIFETIME = timedelta(hours=2)  # session的过期时间
+FILTER_URL_LIST = ["/login", "/error/403", "/error/404"]  # 过滤url,不会被验证,直接放行
