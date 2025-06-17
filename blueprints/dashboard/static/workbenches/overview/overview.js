@@ -88,7 +88,6 @@ function drawCalendar(data) {
         }
     }
     // 渲染月份
-    console.log(monthLabels)
     for (let i = 0; i < monthLabels.length; i++) {
         const monthDiv = document.createElement('div');
         monthDiv.className = 'month-label';

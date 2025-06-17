@@ -7,6 +7,67 @@
 {% endblock main_navigation_bar %}
 {% block css %}
 <link rel="stylesheet" href="{{ url_for('dashboard.static', filename='workbenches/overview/overview.css') }}">
+<style>
+    .dynamics-content {
+        min-height: 300px;
+    }
+
+    .event-line {
+        position: relative;
+        border-left: 1px solid #e3e9ed;
+    }
+
+    .time-line-group {
+        padding-left: 15px;
+        margin-bottom: 30px;
+    }
+
+    .time-line-items {
+        margin-left: 0;
+        padding-left: 0;
+        list-style: none;
+    }
+
+    .time-line-item {
+        gap: 5px;
+        display: flex;
+        font-size: 14px;
+        align-items: center;
+        margin-bottom: 18px;
+        flex-direction: row;
+    }
+
+    .time-line-item s-avatar {
+        height: 32px;
+        width: 32px
+    }
+
+    .time-line-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .time-line-group a {
+        text-decoration: none; /* 默认无下划线 */
+        color: #005980;
+    }
+
+    .time-line-meta {
+        font-size: 14px;
+        margin-left: 10px;
+        flex-shrink: 0;
+    }
+
+    .dynamics-loading {
+        min-height: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+</style>
 {% endblock css %}
 {% block workbenches_content %}
 <div class="main-contribute">
@@ -61,10 +122,220 @@
         <h3 class="fonts-color-major">动态</h3>
     </div>
     <div class="dynamics-content">
+
+
+        <!--        <div class="event-line">-->
+        <!--            <div class="time-line-group">-->
+        <!--                <div class="fonts-color-major">2025-06-14</div>-->
+        <!--                <ul class="time-line-items fonts-color-major">-->
+        <!--                    <li class="time-line-item">-->
+        <!--                        &lt;!&ndash;头像&ndash;&gt;-->
+        <!--                        <s-avatar src="https://avatars.githubusercontent.com/u/3369400?v=4"></s-avatar>-->
+        <!--                        &lt;!&ndash;更新上传信息&ndash;&gt;-->
+        <!--                        <div class="time-line-content fonts-color-routine">-->
+        <!--                            <div>-->
+        <!--                                <span>推送到了</span>-->
+        <!--                                <a href="#">不会换牙的道鱼/MiniRepo</a>-->
+        <!--                                <span>的 master 分支</span>-->
+        <!--                            </div>-->
+        <!--                            <div>-->
+        <!--                                <span><a href="#">53d1107</a></span>-->
+        <!--                                <span>更新</span>-->
+        <!--                            </div>-->
+        <!--                        </div>-->
+        <!--                        <div class="time-line-meta fonts-color-minor">3 天前</div>-->
+        <!--                    </li>-->
+        <!--                    <li class="time-line-item">-->
+        <!--                        &lt;!&ndash;头像&ndash;&gt;-->
+        <!--                        <s-avatar src="https://avatars.githubusercontent.com/u/3369400?v=4"></s-avatar>-->
+        <!--                        &lt;!&ndash;更新上传信息&ndash;&gt;-->
+        <!--                        <div class="time-line-content fonts-color-routine">-->
+        <!--                            <div>-->
+        <!--                                <span>推送到了</span>-->
+        <!--                                <a href="#">不会换牙的道鱼/MiniRepo</a>-->
+        <!--                                <span>的 master 分支</span>-->
+        <!--                            </div>-->
+        <!--                            <div>-->
+        <!--                                <span><a href="#">53d1107</a></span>-->
+        <!--                                <span>更新</span>-->
+        <!--                            </div>-->
+        <!--                        </div>-->
+        <!--                        <div class="time-line-meta fonts-color-minor">3 天前</div>-->
+        <!--                    </li>-->
+        <!--                    <li class="time-line-item">-->
+        <!--                        &lt;!&ndash;头像&ndash;&gt;-->
+        <!--                        <s-avatar src="https://avatars.githubusercontent.com/u/3369400?v=4"></s-avatar>-->
+        <!--                        &lt;!&ndash;更新上传信息&ndash;&gt;-->
+        <!--                        <div class="time-line-content fonts-color-routine">-->
+        <!--                            <div>-->
+        <!--                                <span>推送到了</span>-->
+        <!--                                <a href="#">不会换牙的道鱼/MiniRepo</a>-->
+        <!--                                <span>的 master 分支</span>-->
+        <!--                            </div>-->
+        <!--                            <div>-->
+        <!--                                <span><a href="#">53d1107</a></span>-->
+        <!--                                <span>更新12313232132</span>-->
+        <!--                            </div>-->
+        <!--                        </div>-->
+        <!--                        <div class="time-line-meta fonts-color-minor">3 天前</div>-->
+        <!--                    </li>-->
+        <!--                    &lt;!&ndash;展示按钮&ndash;&gt;-->
+        <!--                    <li style=" font-size: 14px;margin-top: 5px" class="fonts-color-minor">-->
+        <!--                        <span>已隐藏 5 条推送信息，</span>-->
+        <!--                        <a href="#" style="color: #409EFF;">展开查看</a>-->
+        <!--                    </li>-->
+        <!--                </ul>-->
+        <!--            </div>-->
+        <!--            <div class="time-line-group">-->
+        <!--                <div class="fonts-color-major">2025-06-15</div>-->
+        <!--                <ul class="time-line-items fonts-color-major">-->
+        <!--                    <li class="time-line-item">-->
+        <!--                        &lt;!&ndash;头像&ndash;&gt;-->
+        <!--                        <s-avatar src="https://avatars.githubusercontent.com/u/3369400?v=4"></s-avatar>-->
+        <!--                        &lt;!&ndash;更新上传信息&ndash;&gt;-->
+        <!--                        <div class="time-line-content fonts-color-routine">-->
+        <!--                            <div>-->
+        <!--                                <span>推送到了</span>-->
+        <!--                                <a href="#">不会换牙的道鱼/MiniRepo</a>-->
+        <!--                                <span>的 master 分支</span>-->
+        <!--                            </div>-->
+        <!--                            <div>-->
+        <!--                                <span><a href="#">53d1107</a></span>-->
+        <!--                                <span>更新</span>-->
+        <!--                            </div>-->
+        <!--                        </div>-->
+        <!--                        <div class="time-line-meta fonts-color-minor">3 天前</div>-->
+        <!--                    </li>-->
+        <!--                    <li class="time-line-item">-->
+        <!--                        &lt;!&ndash;头像&ndash;&gt;-->
+        <!--                        <s-avatar src="https://avatars.githubusercontent.com/u/3369400?v=4"></s-avatar>-->
+        <!--                        &lt;!&ndash;更新上传信息&ndash;&gt;-->
+        <!--                        <div class="time-line-content fonts-color-routine">-->
+        <!--                            <div>-->
+        <!--                                <span>推送到了</span>-->
+        <!--                                <a href="#">不会换牙的道鱼/MiniRepo</a>-->
+        <!--                                <span>的 master 分支</span>-->
+        <!--                            </div>-->
+        <!--                            <div>-->
+        <!--                                <span><a href="#">53d1107</a></span>-->
+        <!--                                <span>更新</span>-->
+        <!--                            </div>-->
+        <!--                        </div>-->
+        <!--                        <div class="time-line-meta fonts-color-minor">3 天前</div>-->
+        <!--                    </li>-->
+        <!--                    <li class="time-line-item">-->
+        <!--                        &lt;!&ndash;头像&ndash;&gt;-->
+        <!--                        <s-avatar src="https://avatars.githubusercontent.com/u/3369400?v=4"></s-avatar>-->
+        <!--                        &lt;!&ndash;更新上传信息&ndash;&gt;-->
+        <!--                        <div class="time-line-content fonts-color-routine">-->
+        <!--                            <div>-->
+        <!--                                <span>推送到了</span>-->
+        <!--                                <a href="#">不会换牙的道鱼/MiniRepo</a>-->
+        <!--                                <span>的 master 分支</span>-->
+        <!--                            </div>-->
+        <!--                            <div>-->
+        <!--                                <span><a href="#">53d1107</a></span>-->
+        <!--                                <span>更新12313232132</span>-->
+        <!--                            </div>-->
+        <!--                        </div>-->
+        <!--                        <div class="time-line-meta fonts-color-minor">3 天前</div>-->
+        <!--                    </li>-->
+        <!--                    &lt;!&ndash;展示按钮&ndash;&gt;-->
+        <!--                    <li style=" font-size: 14px;margin-top: 5px" class="fonts-color-minor">-->
+        <!--                        <span>已隐藏 5 条推送信息，</span>-->
+        <!--                        <a href="#" style="color: #409EFF;">展开查看</a>-->
+        <!--                    </li>-->
+        <!--                </ul>-->
+        <!--            </div>-->
+        <!--            <div class="time-line-group">-->
+        <!--                <div class="fonts-color-major">2025-06-16</div>-->
+        <!--                <ul class="time-line-items fonts-color-major">-->
+        <!--                    <li class="time-line-item">-->
+        <!--                        &lt;!&ndash;头像&ndash;&gt;-->
+        <!--                        <s-avatar src="https://avatars.githubusercontent.com/u/3369400?v=4"></s-avatar>-->
+        <!--                        &lt;!&ndash;更新上传信息&ndash;&gt;-->
+        <!--                        <div class="time-line-content fonts-color-routine">-->
+        <!--                            <div>-->
+        <!--                                <span>推送到了</span>-->
+        <!--                                <a href="#">不会换牙的道鱼/MiniRepo</a>-->
+        <!--                                <span>的 master 分支</span>-->
+        <!--                            </div>-->
+        <!--                            <div>-->
+        <!--                                <span><a href="#">53d1107</a></span>-->
+        <!--                                <span>更新</span>-->
+        <!--                            </div>-->
+        <!--                        </div>-->
+        <!--                        <div class="time-line-meta fonts-color-minor">3 天前</div>-->
+        <!--                    </li>-->
+        <!--                    <li class="time-line-item">-->
+        <!--                        &lt;!&ndash;头像&ndash;&gt;-->
+        <!--                        <s-avatar src="https://avatars.githubusercontent.com/u/3369400?v=4"></s-avatar>-->
+        <!--                        &lt;!&ndash;更新上传信息&ndash;&gt;-->
+        <!--                        <div class="time-line-content fonts-color-routine">-->
+        <!--                            <div>-->
+        <!--                                <span>推送到了</span>-->
+        <!--                                <a href="#">不会换牙的道鱼/MiniRepo</a>-->
+        <!--                                <span>的 master 分支</span>-->
+        <!--                            </div>-->
+        <!--                            <div>-->
+        <!--                                <span><a href="#">53d1107</a></span>-->
+        <!--                                <span>更新</span>-->
+        <!--                            </div>-->
+        <!--                        </div>-->
+        <!--                        <div class="time-line-meta fonts-color-minor">3 天前</div>-->
+        <!--                    </li>-->
+        <!--                    <li class="time-line-item">-->
+        <!--                        &lt;!&ndash;头像&ndash;&gt;-->
+        <!--                        <s-avatar src="https://avatars.githubusercontent.com/u/3369400?v=4"></s-avatar>-->
+        <!--                        &lt;!&ndash;更新上传信息&ndash;&gt;-->
+        <!--                        <div class="time-line-content fonts-color-routine">-->
+        <!--                            <div>-->
+        <!--                                <span>推送到了</span>-->
+        <!--                                <a href="#">不会换牙的道鱼/MiniRepo</a>-->
+        <!--                                <span>的 master 分支</span>-->
+        <!--                            </div>-->
+        <!--                            <div>-->
+        <!--                                <span><a href="#">53d1107</a></span>-->
+        <!--                                <span>更新12313232132</span>-->
+        <!--                            </div>-->
+        <!--                        </div>-->
+        <!--                        <div class="time-line-meta fonts-color-minor">3 天前</div>-->
+        <!--                    </li>-->
+        <!--                    &lt;!&ndash;展示按钮&ndash;&gt;-->
+        <!--                    <li style=" font-size: 14px;margin-top: 5px" class="fonts-color-minor">-->
+        <!--                        <span>已隐藏 5 条推送信息，</span>-->
+        <!--                        <a href="#" style="color: #409EFF;">展开查看</a>-->
+        <!--                    </li>-->
+        <!--                </ul>-->
+        <!--            </div>-->
+        <!--        </div>-->
+        <!--        <div style="height: 80px">-->
+        <!--            <s-button style="display: flex;border-radius: 0;" type="outlined"> 加载更多</s-button>-->
+        <!--        </div>-->
     </div>
 </div>
 {% endblock workbenches_content %}
 {% block js_end %}
 {{ super() }}
 <script src="{{ url_for('dashboard.static', filename='workbenches/overview/overview.js') }}"></script>
+<script>
+    const dynamicsContent = document.getElementsByClassName("dynamics-content")[0]
+    document.addEventListener('DOMContentLoaded', function () {
+
+        const dateLoading = document.createElement('div'); // Loading加载容器标签
+        dateLoading.className = "dynamics-loading";
+        dynamicsContent.appendChild(dateLoading); // 将Loading加载容器加入到显示展示中
+        dateLoading.innerHTML = `<s-circular-progress indeterminate="true" style="width: 35px"></s-circular-progress>` // Loading加载状态
+
+
+
+
+
+
+        setTimeout(() => {
+            dateLoading.innerHTML = `<s-empty style="min-height: 300px">暂时没有数据</s-empty>` // 如果无数据就展示
+        }, 2000)
+
+    });
+</script>
 {% endblock js_end %}
