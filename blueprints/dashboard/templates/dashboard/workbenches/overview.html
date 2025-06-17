@@ -38,8 +38,8 @@
     }
 
     .time-line-item s-avatar {
-        height: 32px;
-        width: 32px
+        height: 20px;
+        width: 20px
     }
 
     .time-line-content {
@@ -123,45 +123,46 @@
     </div>
     <div class="dynamics-content">
         {% if data %}
-            <div class="event-line">
-                {% for event in data.event_list %}
-                <div class="time-line-group">
-                    <div class="fonts-color-major">{{ event.date }} -110</div>
-                    <ul class="time-line-items fonts-color-major">
-                        {% for commit in event.save_commit_list %}
-                        <li class="time-line-item">
-                            <!--头像-->
-                            <s-avatar src="{{ commit.profile_photo_link }}"></s-avatar>
-                            <!--更新上传信息-->
-                            <div class="time-line-content fonts-color-routine">
-                                <div>
-                                    <span>推送到了</span>
-                                    <a href="{{ commit.project_tree_path }}">{{ commit.name_with_namespace }}</a>
-                                    <span>的 {{ commit.branch_name}} 分支</span>
-                                </div>
-                                <div>
-                                    <span><a href="{{ commit.project_commit_path }}">{{ commit.commit_from }}</a></span>
-                                    <span>{{ commit.message }}</span>
-                                </div>
+        <div class="event-line">
+            {% for event in data.event_list %}
+            <div class="time-line-group">
+                <div class="fonts-color-major">{{ event.date }}</div>
+                <ul class="time-line-items fonts-color-major">
+                    {% for commit in event.save_commit_list %}
+                    <li class="time-line-item">
+                        <!--更新上传信息-->
+                        <div class="time-line-content fonts-color-routine">
+                            <div>
+                                <span>推送到了</span>
+                                <a href="{{ commit.project_tree_path }}">{{ commit.name_with_namespace }}</a>
+                                <span>的 {{ commit.branch_name}} 分支</span>
                             </div>
-                            <div class="time-line-meta fonts-color-minor">{{ commit.create_at_date | do_date_differ}}</div>
-                        </li>
-                        {% endfor %}
-                        <!--展示按钮-->
-                        <li style=" font-size: 14px;margin-top: 5px" class="fonts-color-minor">
-                            <span>已隐藏 5 条推送信息，</span>
-                            <a href="#" style="color: #409EFF;">展开查看</a>
-                        </li>
-                    </ul>
-                </div>
-                {% endfor %}
+                            <div>
+                                <s-avatar src="{{ commit.profile_photo_link }}"></s-avatar><!--头像-->
+                                <span><a href="{{ commit.project_commit_path }}">{{ commit.commit_from }}</a></span>
+                                <span>{{ commit.message }}</span>
+                            </div>
+                        </div>
+                        <div class="time-line-meta fonts-color-minor">{{ commit.create_at_date | do_date_differ}}</div>
+                    </li>
+                    {% endfor %}
+                    <!--展示按钮-->
+                    <li style=" font-size: 14px;margin-top: 5px" class="fonts-color-minor">
+                        <span>已隐藏 5 条推送信息，</span>
+                        <a href="#" style="color: #409EFF;">展开查看</a>
+                    </li>
+                </ul>
+            </div>
+            {% endfor %}
 
-            </div>
-            <div style="height: 80px">
-                <s-button style="display: flex;border-radius: 0;" type="outlined"> 加载更多</s-button>
-            </div>
+        </div>
+        <div style="height: 80px">
+            <s-button style="display: flex;border-radius: 0;" type="outlined" id="TimeLineLoadMore">
+                加载更多
+            </s-button>
+        </div>
         {% else %}
-            <s-empty style="min-height: 300px">暂时没有数据</s-empty>
+        <s-empty style="min-height: 300px">暂时没有数据</s-empty>
         {% endif %}
     </div>
 </div>
@@ -170,5 +171,13 @@
 {{ super() }}
 <script src="{{ url_for('dashboard.static', filename='workbenches/overview/overview.js') }}"></script>
 <script>
+    const TimeLineLoadMore = document.getElementById("TimeLineLoadMore")
+    TimeLineLoadMore.addEventListener("click", () => {
+        TimeLineLoadMore.innerHTML = `<s-circular-progress indeterminate="true" slot="start"></s-circular-progress>`
+
+        setTimeout(()=>{
+            TimeLineLoadMore.innerText = "加载更多"
+        },2000)
+    })
 </script>
 {% endblock js_end %}
