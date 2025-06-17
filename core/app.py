@@ -69,6 +69,7 @@ def before_request():
             match_status = True
     if not match_status:
         return redirect(url_for("error_404"))
+    print(session.get("user_status"))
     return
 
 
@@ -76,6 +77,7 @@ def before_request():
 @app.errorhandler(403)
 def handle_404(e):
     return redirect(url_for("error_403"))
+
 
 # 错误地址直接渲染
 @app.errorhandler(404)

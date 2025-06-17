@@ -1,34 +1,8 @@
-html,
-body {
-    padding: 0;
-    margin: 0;
-    height: 100%;
-    font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
-}
 
-.icon {
-    width: 75%;
-    height: 75%;
-}
-
-.title {
+#HeadIndexTile {
     color: black;
 }
 
-/*字体颜色-主要*/
-.fonts-color-major {
-    color: #303133;
-}
-
-/*字体颜色-常规*/
-.fonts-color-routine {
-    color: #606266;
-}
-
-/*字体颜色-次要*/
-.fonts-color-minor {
-    color: #909399;
-}
 
 /* 用户菜单背景颜色重写 */
 s-popup-menu {
