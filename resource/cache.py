@@ -1,6 +1,6 @@
-import os
-import json
+
 import redis
+from .config import cache_conf_dict
 
 
 class RedisLink:
@@ -29,12 +29,7 @@ class RedisLink:
         return self._redis
 
 
-file_path = os.path.dirname(__file__)
-config_file = os.path.join(file_path, "config.json")
-with open(config_file, "r", encoding="utf-8") as f:
-    config = json.load(f)  # 用json.load直接读成dict
-
-cache_config = config.get("CACHE_CONFIG")
+cache_config = cache_conf_dict
 
 r = RedisLink(host=cache_config.get("host"), port=cache_config.get("port"), db=cache_config.get("db"),
               password=cache_config.get("password"), max_connections=cache_config.get("max_connections"),
