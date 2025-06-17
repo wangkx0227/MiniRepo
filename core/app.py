@@ -39,7 +39,6 @@ def before_request():
             2.路由过滤
             3.登录凭证验证
     """
-    # 不做用户凭证验证
     url_path = request.path  # 当前访问的路由
     url_method = request.method  # 当前路由访问方法
     endpoint = request.endpoint  # 当前访问路由的视图名称
@@ -50,6 +49,7 @@ def before_request():
     # 过滤指定的路由
     if url_path in filter_url_list:
         return
+    # 凭证验证
     if not session.get("user_status"):
         original_url = request.full_path  # 原url
         # 如果路由尾部时?说明没有携带get参数,直接分解获取url携带.
@@ -57,7 +57,7 @@ def before_request():
             original_url = original_url.split("?")[0]
         # 如果用户凭证到期,进行重新登录,携带最后访问的页面url
         return redirect(url_for("login", get_url=original_url))
-    # 路由匹配机制，如果对应不上解析的路由，那么直接就返回404
+    # 路由验证
     routes = redis_link.get(app.config["URL_REDIS_KEY"])
     adapter = app.url_map.bind("localhost")
     _endpoint, _args = adapter.match(url_path, method=url_method)  # 解析的路由参数与路由视图的名称
