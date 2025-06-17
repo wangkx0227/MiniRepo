@@ -2,10 +2,11 @@ import json
 from flask_session import Session
 from flask import Flask, redirect, url_for, request, session
 
-from blueprints import user_bp, dashboard_bp, new_bp
-
-from .public import save_routes_to_redis, redis_link
+# core包
 from .views import index, error_403, error_404, health_check
+from .public import save_routes_to_redis, register_filters, redis_link
+# 外部导入包
+from blueprints import user_bp, dashboard_bp, new_bp
 
 
 def create_app():
@@ -24,6 +25,8 @@ def create_app():
     app.add_url_rule('/health_check', view_func=health_check, methods=['GET'])
     # 存储项目下的全部url
     save_routes_to_redis(app)
+    # 注册过滤起
+    register_filters(app)
     return app
 
 
