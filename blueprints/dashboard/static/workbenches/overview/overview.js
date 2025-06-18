@@ -43,78 +43,85 @@ function getColorLevel(count) {
 
 // 热力图-数据渲染
 function drawCalendar(data, selectYear) {
-    const weekOrder = [1, 2, 3, 4, 5, 6, 0];
     const calendar = document.getElementById('calendar');
     const months = document.getElementById('months');
     calendar.innerHTML = '';
     months.innerHTML = '';
 
-    // 1.计算开始日期 - 结束日期
+    // 1. 计算开始和结束日期
     let today = new Date();
     if (selectYear) {
-        // 判断当前传递的年,如果是今年,那么从当天日期进行计算,如果不是那么从12-31号推算到上一年的12-31
         const year = new Date().getFullYear();
         if (selectYear !== year.toString()) {
             today = getLastDayOfYear(selectYear);
         }
     }
-    let endDate = new Date(today); // 当天时间-结束日期
-    const startDate = new Date(today); // 开始日期
+    let endDate = new Date(today);
+    let startDate = new Date(today);
     startDate.setFullYear(today.getFullYear() - 1);
 
-    // 2.计算总天数
-    const totalDays = Math.floor((endDate - startDate) / 86400000) + 1;
-    // 3.计算周 开始日期是周几 - 结束日期是周几
-    const startDayOfWeek = startDate.getDay(); // 0(周日),1(周一)...6(周六)
+    // 2. 让startDate对齐到周一（如果不是周一，前面补空格）
+    // JS getDay()：0=周日，1=周一，...6=周六
+    // 假设你的热力图第一列是周一
+    let startDay = startDate.getDay();
+    let leadingEmpty = (startDay + 6) % 7; // 让周一是第一格
 
-    const totalWeeks = Math.ceil((startDayOfWeek + totalDays) / 7);
-    // 4. 渲染每一列（每周）
+    let current = new Date(startDate);
+
     let monthLabels = [];
     let lastMonth = -1;
-    for (let week = 0; week < totalWeeks; week++) {
+
+    // 以列为单位循环
+    while (current <= endDate || leadingEmpty > 0) {
         const weekColumn = document.createElement('div');
         weekColumn.className = 'week';
         let hasMonthLabel = false;
-        for (let i = 0; i < 7; i++) {
-            const day = weekOrder[i];
-            // 当前格子的实际显示日期范围
-            const dayOffset = week * 7 + i - ((startDayOfWeek + 6) % 7); // 修正首周偏移
-            const current = new Date(startDate);
-            current.setDate(startDate.getDate() + dayOffset);
 
-            // 只渲染在范围内的格子
-            if (current >= startDate && current <= endDate) {
-                const dateStr = current.toISOString().slice(0, 10);
-                const count = data[dateStr] || 0;
-                const dayBox = document.createElement('div');
-                dayBox.className = 'day ' + getColorLevel(count);
-                dayBox.title = `${dateStr}: ${count} 次贡献`;
-                dayBox.dataset.date = dateStr;
-                weekColumn.appendChild(dayBox);
-            } else {
-                // 在范围之外的只占位置不显示
+        for (let i = 0; i < 7; i++) {
+            // 首周需要补空格
+            if (leadingEmpty > 0) {
                 const emptyBox = document.createElement('div');
-                emptyBox.className = 'day '
-                emptyBox.style.visibility = "hidden"
+                emptyBox.className = 'day ';
+                emptyBox.style.visibility = "hidden";
                 weekColumn.appendChild(emptyBox);
+                leadingEmpty--;
+                continue;
             }
-            // 只有一周中,存在1号,并且 lastMonth 不等于 原赋值的月
+            // 当前日期超出endDate，补空格
+            if (current > endDate) {
+                const emptyBox = document.createElement('div');
+                emptyBox.className = 'day ';
+                emptyBox.style.visibility = "hidden";
+                weekColumn.appendChild(emptyBox);
+                continue;
+            }
+            // 正常渲染
+            const dateStr = current.toISOString().slice(0, 10);
+            const count = data[dateStr] || 0;
+            const dayBox = document.createElement('div');
+            dayBox.className = 'day ' + getColorLevel(count);
+            dayBox.title = `${dateStr}: ${count} 次贡献`;
+            dayBox.dataset.date = dateStr;
+            weekColumn.appendChild(dayBox);
+
+            // 月份标签
             if (current.getMonth() !== lastMonth && current.getDate() === 1) {
                 hasMonthLabel = true;
                 lastMonth = current.getMonth();
             }
+            // 日期+1
+            current.setDate(current.getDate() + 1);
         }
         calendar.appendChild(weekColumn);
+
         // 记录月份名或空字符串
         if (hasMonthLabel) {
             monthLabels.push(`${lastMonth + 1}月`);
         } else {
             monthLabels.push('');
         }
-        // 重置
-        hasMonthLabel = false;
-        lastMonth = -1
     }
+
     // 渲染月份标签
     for (let i = 0; i < monthLabels.length; i++) {
         const monthDiv = document.createElement('div');
@@ -122,7 +129,6 @@ function drawCalendar(data, selectYear) {
         monthDiv.innerHTML = monthLabels[i] ? monthLabels[i] : '&nbsp;';
         months.appendChild(monthDiv);
     }
-
 }
 
 // drawCalendar(data);
