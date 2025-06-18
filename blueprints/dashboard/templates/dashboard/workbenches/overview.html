@@ -8,64 +8,8 @@
 {% block css %}
 <link rel="stylesheet" href="{{ url_for('dashboard.static', filename='workbenches/overview/overview.css') }}">
 <style>
-    .dynamics-content {
-        min-height: 300px;
-    }
 
-    .event-line {
-        position: relative;
-        border-left: 1px solid #e3e9ed;
-    }
 
-    .time-line-group {
-        padding-left: 15px;
-        margin-bottom: 30px;
-    }
-
-    .time-line-items {
-        margin-left: 0;
-        padding-left: 0;
-        list-style: none;
-    }
-
-    .time-line-item {
-        gap: 5px;
-        display: flex;
-        font-size: 14px;
-        align-items: center;
-        margin-bottom: 18px;
-        flex-direction: row;
-    }
-
-    .time-line-item s-avatar {
-        height: 20px;
-        width: 20px
-    }
-
-    .time-line-content {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .time-line-group a {
-        text-decoration: none; /* 默认无下划线 */
-        color: #005980;
-    }
-
-    .time-line-meta {
-        font-size: 14px;
-        margin-left: 10px;
-        flex-shrink: 0;
-    }
-
-    .dynamics-loading {
-        min-height: 300px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
 
 </style>
 {% endblock css %}
@@ -76,12 +20,12 @@
         <h3 class="fonts-color-major">贡献度</h3>
         <div>
             <s-picker label="日期">
-                <s-picker-item value="gui yang" selectd="select">2025</s-picker-item>
-                <s-picker-item value="bei jing">2024</s-picker-item>
-                <s-picker-item value="shang hai">2023</s-picker-item>
-                <s-picker-item value="shen zhen">2022</s-picker-item>
-                <s-picker-item value="cheng du">2021</s-picker-item>
-                <s-picker-item value="wu han">2020</s-picker-item>
+                <s-picker-item value="2025" selected="true">2025</s-picker-item>
+                <s-picker-item value="2024">2024</s-picker-item>
+                <s-picker-item value="2023">2023</s-picker-item>
+                <s-picker-item value="2022" >2022</s-picker-item>
+                <s-picker-item value="2021">2021</s-picker-item>
+                <s-picker-item value="2020">2020</s-picker-item>
             </s-picker>
         </div>
     </div>
@@ -90,7 +34,6 @@
             <div class="weekdays fonts-color-minor" id="weekdays"></div>
             <div class="calendar">
                 <div class="months" id="months"></div>
-
                 <div class="weeks" id="calendar">
                 </div>
             </div>
@@ -112,7 +55,7 @@
             <p class="fonts-color-minor" style="display: inline-block;margin-right: 20px;font-size: 12px;">最近连续贡献：5
                 日</p>
             <p style="margin: 0;font-size: 12px;" class="fonts-color-routine">
-                贡献度的统计数据包括代码提交、创建任务 / Pull Request、合并 Pull Request，其中代码提交的次数需本地配置的 git 邮箱帐号已确认绑定的才会被统计。
+                贡献度的统计数据包括代码提交、创建任务 / Pull Request、合并 Pull Request，其中代码提交的次数需本地配置的 Git 邮箱帐号已确认绑定的才会被统计。
             </p>
         </div>
     </div>

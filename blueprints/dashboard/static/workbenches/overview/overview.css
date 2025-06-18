@@ -93,3 +93,55 @@
 .level-4 {
     background: #196127;
 }
+
+.dynamics-content {
+    min-height: 300px;
+}
+
+.event-line {
+    position: relative;
+    border-left: 1px solid #e3e9ed;
+}
+
+.time-line-group {
+    padding-left: 15px;
+    margin-bottom: 30px;
+}
+
+.time-line-items {
+    margin-left: 0;
+    padding-left: 0;
+    list-style: none;
+}
+
+.time-line-item {
+    gap: 5px;
+    display: flex;
+    font-size: 14px;
+    align-items: center;
+    margin-bottom: 18px;
+    flex-direction: row;
+}
+
+.time-line-item s-avatar {
+    height: 20px;
+    width: 20px
+}
+
+.time-line-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.time-line-group a {
+    text-decoration: none; /* 默认无下划线 */
+    color: #005980;
+}
+
+.time-line-meta {
+    font-size: 14px;
+    margin-left: 10px;
+    flex-shrink: 0;
+}
