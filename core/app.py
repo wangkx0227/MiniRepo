@@ -3,7 +3,7 @@ from flask_session import Session
 from flask import Flask, redirect, url_for, request, session
 
 # core包
-from .views import index, error_403, error_404, health_check
+from .views import index, error_403, error_404, health_check,login
 from .public import save_routes_to_redis, register_filters, redis_link
 # 外部导入包
 from blueprints import user_bp, dashboard_bp, new_bp
@@ -20,6 +20,7 @@ def create_app():
     app.register_blueprint(dashboard_bp)
     # 注册全局视图路由
     app.add_url_rule('/', view_func=index, methods=['GET'])
+    app.add_url_rule('/login', view_func=login, methods=['GET'])
     app.add_url_rule('/error/403', view_func=error_403, methods=['GET'])
     app.add_url_rule('/error/404', view_func=error_404, methods=['GET'])
     app.add_url_rule('/health_check', view_func=health_check, methods=['GET'])
