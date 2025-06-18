@@ -1,11 +1,13 @@
-import json
 from flask_session import Session
-from flask import Flask, redirect, url_for, request, session
+from flask import Flask, redirect, url_for
 
 # core包
-from .views import index, error_403, error_404, health_check,login
-from .public import save_routes_to_redis, register_filters, redis_link
+from .views import index, error_403, error_404, health_check, login
+from .public import save_routes_to_redis
+from .filters import do_date_differ
+from .hooks import register_hooks
 # 外部导入包
+from resource import redis_link
 from blueprints import user_bp, dashboard_bp, new_bp
 
 
@@ -15,6 +17,7 @@ def create_app():
     app.config.from_pyfile("config.py")
     app.config['SESSION_REDIS'] = redis_link
     Session(app)
+    # 注册蓝图
     app.register_blueprint(new_bp)
     app.register_blueprint(user_bp)
     app.register_blueprint(dashboard_bp)
@@ -26,55 +29,14 @@ def create_app():
     app.add_url_rule('/health_check', view_func=health_check, methods=['GET'])
     # 存储项目下的全部url
     save_routes_to_redis(app)
-    # 注册过滤起
-    register_filters(app)
+    # 注册钩子,需要在存储url路由之后
+    register_hooks(app)
+    # 注册过滤器
+    app.add_template_filter(do_date_differ, "do_date_differ")
     return app
 
 
 app = create_app()
-
-
-# 设置请求钩子,处理用户登录状态. -- 全局生效,验证是否存在登录状态
-@app.before_request
-def before_request():
-    """
-        作用：
-            1.路由验证
-            2.路由过滤
-            3.登录凭证验证
-    """
-    url_path = request.path  # 当前访问的路由
-    url_method = request.method  # 当前路由访问方法
-    endpoint = request.endpoint  # 当前访问路由的视图名称
-    filter_url_list = app.config["FILTER_URL_LIST"]
-    # 静态文件和无效路由过滤
-    if endpoint is None or endpoint == 'static' or endpoint.endswith('.static'):
-        return
-    # 过滤指定的路由
-    if url_path in filter_url_list:
-        return
-    # 凭证验证
-    if not session.get("user_status"):
-        original_url = request.full_path  # 原url
-        # 如果路由尾部时?说明没有携带get参数,直接分解获取url携带.
-        if original_url.endswith("?"):
-            original_url = original_url.split("?")[0]
-        # 如果用户凭证到期,进行重新登录,携带最后访问的页面url
-        return redirect(url_for("login", get_url=original_url))
-    # 路由验证
-    routes = redis_link.get(app.config["URL_REDIS_KEY"])
-    adapter = app.url_map.bind("localhost")
-    _endpoint, _args = adapter.match(url_path, method=url_method)  # 解析的路由参数与路由视图的名称
-    if routes:
-        routes = json.loads(routes.decode('utf-8'))
-    match_status = False
-    for i in routes:
-        if i.get("endpoint") == _endpoint:
-            match_status = True
-    if not match_status:
-        return redirect(url_for("error_404"))
-    print(session.get("user_status"))
-    return
 
 
 # 错误地址直接渲染

@@ -18,7 +18,6 @@ def index():
 
 
 # 登录页
-
 def login():
     # 获取参数,然后登录成功后,跳转到最后访问页面的url
     session["user_status"] = "asdasdasdwxc312313asdqe"  # 默认登录状态

@@ -1,6 +1,7 @@
 import json
 from resource import redis_link
-from .filters import do_date_differ
+
+from .variable import URL_REDIS_KEY
 
 
 def save_routes_to_redis(f_app):
@@ -17,8 +18,4 @@ def save_routes_to_redis(f_app):
             "methods": list(rule.methods)
         })
     # 保存为 JSON 字符串
-    redis_link.set(f_app.config["URL_REDIS_KEY"], json.dumps(routes, ensure_ascii=False))
-
-
-def register_filters(f_app):
-    f_app.add_template_filter(do_date_differ, "do_date_differ")
+    redis_link.set(URL_REDIS_KEY, json.dumps(routes, ensure_ascii=False))
