@@ -18,7 +18,7 @@
 .month-label {
     flex: 1;
     text-align: left;
-    font-size: 12px;
+    font-size: 10px;
     color: #888;
     min-width: 14px;
 }
@@ -46,14 +46,14 @@
 
 /*星期显示标签样式*/
 .weekdays {
-    height: 16vh;
     width: 30px;
-    font-size: 12px;
-    margin-top: 21px;
+    font-size: 10px;
+    margin-top: 17px;
     align-items: center;
     flex-direction: column;
     display: inline-flex;
     justify-content: space-between;
+    gap: 55px;
 }
 
 /*展示颜色深度多少代表含义*/
