@@ -2,6 +2,19 @@
  * 生成模拟贡献数据：返回一个对象 { '2025-05-01': 1, ... }
  * 你可以用后台接口数据替换此处
  */
+
+
+// 根据已知的年获取当前的最后一天
+function getLastDayOfYear(yearStr) {
+    // 1. 生成下一年一月一日
+    const nextYear = Number(yearStr) + 1;
+    const firstDayNextYear = new Date(`${nextYear}-01-01`);
+    // 2. 上一年最后一天就是减一天
+    firstDayNextYear.setDate(firstDayNextYear.getDate() - 1);
+    return firstDayNextYear; // Date对象
+}
+
+
 // 热力图-星期展示
 function drawWeekdays() {
     // 只显示“周一/三/五”示例
@@ -28,18 +41,9 @@ function getColorLevel(count) {
 }
 
 
-// 根据已知的年获取当前的最后一天
-function getLastDayOfYear(yearStr) {
-    // 1. 生成下一年一月一日
-    const nextYear = Number(yearStr) + 1;
-    const firstDayNextYear = new Date(`${nextYear}-01-01`);
-    // 2. 上一年最后一天就是减一天
-    firstDayNextYear.setDate(firstDayNextYear.getDate() - 1);
-    return firstDayNextYear; // Date对象
-}
-
 // 热力图-数据渲染
 function drawCalendar(data, selectYear) {
+    const weekOrder = [1, 2, 3, 4, 5, 6, 0];
     const calendar = document.getElementById('calendar');
     const months = document.getElementById('months');
     calendar.innerHTML = '';
@@ -71,11 +75,13 @@ function drawCalendar(data, selectYear) {
         const weekColumn = document.createElement('div');
         weekColumn.className = 'week';
         let hasMonthLabel = false;
-        for (let day = 0; day < 7; day++) {
+        for (let i = 0; i < 7; i++) {
+            const day = weekOrder[i];
             // 当前格子的实际显示日期范围
-            const dayOffset = week * 7 + day - startDayOfWeek; // 可能为负数
+            const dayOffset = week * 7 + i - ((startDayOfWeek + 6) % 7); // 修正首周偏移
             const current = new Date(startDate);
             current.setDate(startDate.getDate() + dayOffset);
+
             // 只渲染在范围内的格子
             if (current >= startDate && current <= endDate) {
                 const dateStr = current.toISOString().slice(0, 10);
