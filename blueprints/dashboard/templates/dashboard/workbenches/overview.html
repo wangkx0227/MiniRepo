@@ -10,7 +10,6 @@
 <style>
 
 
-
 </style>
 {% endblock css %}
 {% block workbenches_content %}
@@ -19,11 +18,11 @@
          style="margin-top:2em;display: flex;justify-content: space-between;align-items: center;">
         <h3 class="fonts-color-major">贡献度</h3>
         <div>
-            <s-picker label="日期">
+            <s-picker label="日期" id="contribute-year-select">
                 <s-picker-item value="2025" selected="true">2025</s-picker-item>
                 <s-picker-item value="2024">2024</s-picker-item>
                 <s-picker-item value="2023">2023</s-picker-item>
-                <s-picker-item value="2022" >2022</s-picker-item>
+                <s-picker-item value="2022">2022</s-picker-item>
                 <s-picker-item value="2021">2021</s-picker-item>
                 <s-picker-item value="2020">2020</s-picker-item>
             </s-picker>
@@ -114,13 +113,27 @@
 {{ super() }}
 <script src="{{ url_for('dashboard.static', filename='workbenches/overview/overview.js') }}"></script>
 <script>
+    // 日期选择框事项
+    document.getElementById('contribute-year-select').addEventListener('change', function () {
+        const year = this.value;
+        fetch(`/dashboard/user/contribution_data?year=${year}`)
+            .then(res => res.json())
+            .then(data => {
+                let selectYear = year
+                drawCalendar(data, selectYear); // 热力图数据
+                // renderActivityList(data.activities); // 动态列表数据
+            });
+    });
+
+
     const TimeLineLoadMore = document.getElementById("TimeLineLoadMore")
     TimeLineLoadMore.addEventListener("click", () => {
         TimeLineLoadMore.innerHTML = `<s-circular-progress indeterminate="true" slot="start"></s-circular-progress>`
 
-        setTimeout(()=>{
+        setTimeout(() => {
             TimeLineLoadMore.innerText = "加载更多"
-        },2000)
+        }, 2000)
     })
+
 </script>
 {% endblock js_end %}

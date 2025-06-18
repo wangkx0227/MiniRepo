@@ -16,6 +16,8 @@ function drawWeekdays() {
     document.getElementById('weekdays').innerHTML = html;
 }
 
+drawWeekdays();
+
 // 热力图-根据后端数据,区分每天的颜色
 function getColorLevel(count) {
     if (count === 0) return '';
@@ -25,28 +27,33 @@ function getColorLevel(count) {
     return 'level-4';
 }
 
-// 假数据
-function generateData() {
-    const data = {};
-    const today = new Date();
-    for (let i = 0; i < 364; i++) {
-        const d = new Date(today);
-        d.setDate(today.getDate() - i);
-        const dateStr = d.toISOString().slice(0, 10);
-        data[dateStr] = Math.random() < 0.8 ? Math.floor(Math.random() * 5) : 0;
-    }
-    return data;
+
+// 根据已知的年获取当前的最后一天
+function getLastDayOfYear(yearStr) {
+    // 1. 生成下一年一月一日
+    const nextYear = Number(yearStr) + 1;
+    const firstDayNextYear = new Date(`${nextYear}-01-01`);
+    // 2. 上一年最后一天就是减一天
+    firstDayNextYear.setDate(firstDayNextYear.getDate() - 1);
+    return firstDayNextYear; // Date对象
 }
 
 // 热力图-数据渲染
-function drawCalendar(data) {
+function drawCalendar(data, selectYear) {
     const calendar = document.getElementById('calendar');
     const months = document.getElementById('months');
     calendar.innerHTML = '';
     months.innerHTML = '';
 
     // 1.计算开始日期 - 结束日期
-    const today = new Date(); // 当天的时间
+    let today = new Date();
+    if (selectYear) {
+        // 判断当前传递的年,如果是今年,那么从当天日期进行计算,如果不是那么从12-31号推算到上一年的12-31
+        const year = new Date().getFullYear();
+        if (selectYear !== year.toString()) {
+            today = getLastDayOfYear(selectYear);
+        }
+    }
     let endDate = new Date(today); // 当天时间-结束日期
     const startDate = new Date(today); // 开始日期
     startDate.setFullYear(today.getFullYear() - 1);
@@ -54,10 +61,9 @@ function drawCalendar(data) {
     // 2.计算总天数
     const totalDays = Math.floor((endDate - startDate) / 86400000) + 1;
     // 3.计算周 开始日期是周几 - 结束日期是周几
-    const startDayOfWeek = startDate.getDay(); // 0(周日),1(周一),...,6(周六)
-    const endDayOfWeek = endDate.getDay();
-    const totalWeeks = Math.ceil((startDayOfWeek + totalDays) / 7);
+    const startDayOfWeek = startDate.getDay(); // 0(周日),1(周一)...6(周六)
 
+    const totalWeeks = Math.ceil((startDayOfWeek + totalDays) / 7);
     // 4. 渲染每一列（每周）
     let monthLabels = [];
     let lastMonth = -1;
@@ -65,7 +71,6 @@ function drawCalendar(data) {
         const weekColumn = document.createElement('div');
         weekColumn.className = 'week';
         let hasMonthLabel = false;
-
         for (let day = 0; day < 7; day++) {
             // 当前格子的实际显示日期范围
             const dayOffset = week * 7 + day - startDayOfWeek; // 可能为负数
@@ -114,7 +119,18 @@ function drawCalendar(data) {
 
 }
 
-// 初始化
-const data = generateData();
-drawWeekdays();
-drawCalendar(data);
+// drawCalendar(data);
+
+
+// 假数据 函数
+// function generateData() {
+//     const data = {};
+//     const today = new Date();
+//     for (let i = 0; i < 364; i++) {
+//         const d = new Date(today);
+//         d.setDate(today.getDate() - i);
+//         const dateStr = d.toISOString().slice(0, 10);
+//         data[dateStr] = Math.random() < 0.8 ? Math.floor(Math.random() * 5) : 0;
+//     }
+//     return data;
+// }
