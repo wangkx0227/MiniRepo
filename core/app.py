@@ -8,7 +8,7 @@ from .views import index, error_403, error_404, health_check, login
 
 # 外部导入包
 from resource import redis_link
-from blueprints import user_bp, dashboard_bp, new_bp
+from blueprints import user_api, user_page_bp, new_api, new_page_bp, dashboard_page_bp, dashboard_api
 
 
 def create_app():
@@ -17,10 +17,11 @@ def create_app():
     app.config.from_pyfile("config.py")
     app.config['SESSION_REDIS'] = redis_link
     Session(app)
-    # 注册蓝图
-    app.register_blueprint(new_bp)
-    app.register_blueprint(user_bp)
-    app.register_blueprint(dashboard_bp)
+    # 注册蓝图 - page蓝图
+    app.register_blueprint(new_page_bp)
+    app.register_blueprint(user_page_bp)
+    app.register_blueprint(dashboard_page_bp)
+    # 注册蓝图 - api蓝图
     # 注册全局视图路由
     app.add_url_rule('/', view_func=index, methods=['GET'])
     app.add_url_rule('/login', view_func=login, methods=['GET'])

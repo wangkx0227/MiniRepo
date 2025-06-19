@@ -6,7 +6,7 @@
 <span><a href="javascript:void(0);">概览</a></span>
 {% endblock main_navigation_bar %}
 {% block css %}
-<link rel="stylesheet" href="{{ url_for('dashboard.static', filename='workbenches/overview/overview.css') }}">
+<link rel="stylesheet" href="{{ url_for('dashboard_page.static', filename='workbenches/overview/overview.css') }}">
 {% endblock css %}
 {% block workbenches_content %}
 
@@ -115,7 +115,7 @@
 {% endblock workbenches_content %}
 {% block js_end %}
 {{ super() }}
-<script src="{{ url_for('dashboard.static', filename='workbenches/overview/overview.js') }}"></script>
+<script src="{{ url_for('dashboard_page.static', filename='workbenches/overview/overview.js') }}"></script>
 <script>
 
 </script>
