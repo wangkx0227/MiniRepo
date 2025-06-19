@@ -1,5 +1,5 @@
 from flask import request
-from core.api_base import BaseResource
+from utils.api_base import BaseResource
 
 
 # 年度贡献数据接口

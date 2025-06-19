@@ -4,7 +4,7 @@ from flask_restful import Resource
 import traceback
 import logging
 
-from .config import USER_SESSION_KEY
+from core.config import USER_SESSION_KEY
 
 
 class BaseResource(Resource):
