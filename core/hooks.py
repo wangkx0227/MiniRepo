@@ -2,7 +2,7 @@ import json
 from flask import redirect, url_for, session, request
 
 from resource import redis_link
-from .variable import FILTER_URL_LIST, URL_REDIS_KEY
+from .variable import FILTER_URL_LIST, URL_REDIS_KEY, USER_SESSION_KEY
 
 
 def register_hooks(app):
@@ -25,7 +25,7 @@ def register_hooks(app):
         if url_path in filter_url_list:
             return
         # 凭证验证
-        if not session.get("user_status"):
+        if not session.get(USER_SESSION_KEY):
             original_url = request.full_path  # 原url
             # 如果路由尾部时?说明没有携带get参数,直接分解获取url携带.
             if original_url.endswith("?"):

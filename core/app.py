@@ -41,13 +41,13 @@ def create_app():
 app = create_app()
 
 
-# 错误地址直接渲染
-@app.errorhandler(403)
-def handle_404(e):
-    return redirect(url_for("error_403"))
-
-
-# 错误地址直接渲染
-@app.errorhandler(404)
-def handle_404(e):
-    return redirect(url_for("error_404"))
+# # 错误地址直接渲染
+# @app.errorhandler(403)
+# def handle_404(e):
+#     return redirect(url_for("error_403"))
+#
+#
+# # 错误地址直接渲染
+# @app.errorhandler(404)
+# def handle_404(e):
+#     return redirect(url_for("error_404"))

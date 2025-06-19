@@ -1,5 +1,7 @@
 from flask import jsonify, render_template, session, redirect, url_for, request
 
+from .variable import USER_SESSION_KEY
+
 
 def index():
     """
@@ -14,7 +16,7 @@ def login():
         获取参数,然后登录成功后,跳转到最后访问页面的url
 
     """
-    session["user_info"] = "asdasdasdwxc312313asdqe"  # 默认登录状态
+    session[USER_SESSION_KEY] = "asdasdasdwxc312313asdqe"  # 默认登录状态
     next_url = request.args.get("get_url")
     if next_url:
         return redirect(next_url)
