@@ -4,8 +4,8 @@
  */
 
 
-// 根据已知的年获取当前的最后一天
-function getLastDayOfYear(yearStr) {
+// 贡献图-根据年获取最后一天
+function contributionGetLastDayOfYear(yearStr) {
     // 1. 生成下一年一月一日
     const nextYear = Number(yearStr) + 1;
     const firstDayNextYear = new Date(`${nextYear}-01-01`);
@@ -15,8 +15,8 @@ function getLastDayOfYear(yearStr) {
 }
 
 
-// 热力图-根据后端数据,区分每天的颜色
-function getColorLevel(count) {
+// 贡献图-级别
+function contributionGrade(count) {
     if (count === 0) return '';
     if (count < 2) return 'level-1';
     if (count < 4) return 'level-2';
@@ -25,8 +25,8 @@ function getColorLevel(count) {
 }
 
 
-// 热力图-数据渲染
-function drawCalendar(data, selectYear) {
+// 贡献图-数据渲染
+function contributionRendering(data, selectYear = null) {
     const calendar = document.getElementById('calendar');
     const months = document.getElementById('months');
     calendar.innerHTML = '';
@@ -37,7 +37,7 @@ function drawCalendar(data, selectYear) {
     if (selectYear) {
         const year = new Date().getFullYear();
         if (selectYear !== year.toString()) {
-            today = getLastDayOfYear(selectYear);
+            today = contributionGetLastDayOfYear(selectYear);
         }
     }
     let endDate = new Date(today);
@@ -83,7 +83,7 @@ function drawCalendar(data, selectYear) {
             const dateStr = current.toISOString().slice(0, 10);
             const count = data[dateStr] || 0;
             const dayBox = document.createElement('div');
-            dayBox.className = 'day ' + getColorLevel(count);
+            dayBox.className = 'day ' + contributionGrade(count);
             dayBox.title = `${dateStr}: ${count} 次贡献`;
             dayBox.dataset.date = dateStr;
             weekColumn.appendChild(dayBox);
@@ -123,12 +123,12 @@ document.getElementById('contribute-year-select').addEventListener('change', fun
         .then(res => res.json())
         .then(data => {
             let selectYear = year
-            drawCalendar(data, selectYear); // 热力图数据
+            contributionRendering(data, selectYear); // 热力图数据
             // renderActivityList(data.activities); // 动态列表数据
         });
 });
 
-// 动态-加载更多按钮
+// 动态区域-加载更多按钮
 const TimeLineLoadMore = document.getElementById("TimeLineLoadMore")
 TimeLineLoadMore.addEventListener("click", () => {
     TimeLineLoadMore.innerHTML = `<s-circular-progress indeterminate="true" slot="start"></s-circular-progress>`
@@ -141,5 +141,7 @@ TimeLineLoadMore.addEventListener("click", () => {
 
 // 页面初始化加载贡献图
 document.addEventListener('DOMContentLoaded', function () {
-    drawCalendar({"2025-06-15": 10});
+    const contribute_data_dict = document.getElementById("contribute_data_dict").dataset.info;
+    const contributeData = JSON.parse(contribute_data_dict);
+    contributionRendering(contributeData);
 });

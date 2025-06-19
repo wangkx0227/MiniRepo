@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="{{ url_for('dashboard.static', filename='workbenches/overview/overview.css') }}">
 {% endblock css %}
 {% block workbenches_content %}
+
 <div class="main-contribute">
     <div class="contribute-head"
          style="margin-top:2em;display: flex;justify-content: space-between;align-items: center;">
@@ -25,6 +26,8 @@
         </div>
     </div>
     <div class="contribute-content">
+        <!--显示jinja2模板传递的数据-->
+        <div id="contribute_data_dict" data-info='{{ data.contribute_data_dict|tojson }}' hidden></div>
         <div class="calendar-wrap">
             <div class="weekdays fonts-color-minor" id="weekdays">
                 <span>周一</span>
@@ -66,7 +69,7 @@
     <div class="dynamics-content">
         {% if data %}
         <div class="event-line">
-            {% for event in data.event_list %}
+            {% for event in data.event_data_list %}
             <div class="time-line-group">
                 <div class="fonts-color-major">{{ event.date }}</div>
                 <ul class="time-line-items fonts-color-major">
