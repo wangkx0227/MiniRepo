@@ -1,6 +1,6 @@
-from .app import dashboard_page_bp, dashboard_api_bp, dashboard_api
+from .app import dashboard_page_bp, dashboard_api, dashboard_api_bp
 from .views import workbenches, projects, groups, merge_requests, todos, user_setting, secured_setting
-from .api.workbenches import AnnualContributionDataApi
+from .api.workbenches import AnnualContributionDataApi, DynamicTimelineDataApi
 
 # page页面
 dashboard_page_bp.add_url_rule('/workbenches', view_func=workbenches, methods=['GET'])
@@ -13,3 +13,4 @@ dashboard_page_bp.add_url_rule('/setting/secured_setting', view_func=secured_set
 
 # api接口
 dashboard_api.add_resource(AnnualContributionDataApi, '/annual_contribution_data')
+dashboard_api.add_resource(DynamicTimelineDataApi, '/dynamic_time_line_data')

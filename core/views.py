@@ -1,6 +1,6 @@
 from flask import jsonify, render_template, session, redirect, url_for, request
 
-from .variable import USER_SESSION_KEY
+from .config import USER_SESSION_KEY
 
 
 def index():

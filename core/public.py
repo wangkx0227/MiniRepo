@@ -1,7 +1,7 @@
 import json
-from resource import redis_link
+from utils import redis_link
 
-from .variable import URL_REDIS_KEY
+from .config import URL_REDIS_KEY
 
 
 def save_routes_to_redis(f_app):

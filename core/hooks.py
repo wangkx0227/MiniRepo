@@ -1,8 +1,8 @@
 import json
 from flask import redirect, url_for, session, request
 
-from resource import redis_link
-from .variable import FILTER_URL_LIST, URL_REDIS_KEY, USER_SESSION_KEY
+from utils import redis_link
+from .config import FILTER_URL_LIST, URL_REDIS_KEY, USER_SESSION_KEY
 
 
 def register_hooks(app):
@@ -44,5 +44,4 @@ def register_hooks(app):
                 match_status = True
         if not match_status:
             return redirect(url_for("error_404"))
-        print(session.get("user_status"))
         return

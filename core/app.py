@@ -2,19 +2,20 @@ from flask_session import Session
 from flask import Flask, redirect, url_for
 
 # core包
+from .config import Config
 from .hooks import register_hooks
 from .public import save_routes_to_redis
 from .views import index, error_403, error_404, health_check, login
 
 # 外部导入包
-from resource import redis_link
+from utils import redis_link
 from blueprints import user_api_bp, user_page_bp, new_api_bp, new_page_bp, dashboard_page_bp, dashboard_api_bp
 
 
 def create_app():
     app = Flask(__name__, template_folder='../templates',
                 static_folder='../static')
-    app.config.from_pyfile("config.py")
+    app.config.from_object(Config)
     app.config['SESSION_REDIS'] = redis_link
     Session(app)
     # 注册蓝图 - page蓝图
@@ -39,7 +40,6 @@ def create_app():
 
 
 app = create_app()
-
 
 # # 错误地址直接渲染
 # @app.errorhandler(403)

@@ -1,5 +1,5 @@
 from flask import render_template, session, redirect, url_for, request
-from resource import redis_link
+# from utils import redis_link
 
 from .views_data import get_workbenches_data
 

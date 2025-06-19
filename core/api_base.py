@@ -1,14 +1,19 @@
-from flask import jsonify
+from flask import jsonify, session
 from flask_restful import Resource
 
 import traceback
 import logging
+
+from .config import USER_SESSION_KEY
 
 
 class BaseResource(Resource):
     """
     项目通用API基类，实现统一响应、异常处理、权限校验、日志等
     """
+
+    def __init__(self):
+        self.user_info = None
 
     def before_auth(self):
         """
@@ -37,6 +42,8 @@ class BaseResource(Resource):
         pass
 
     def dispatch_request(self, *args, **kwargs):
+        # 获取用户信息，在当前方法下获取，不能再初始化是获取，因为请求上下文(request/session/g等)才已经建立，可以安全地访问 session。
+        self.user_info = session.get(USER_SESSION_KEY)
         try:
             # 鉴权钩子
             self.before_auth()
