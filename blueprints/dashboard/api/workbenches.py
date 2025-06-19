@@ -1,8 +1,11 @@
+from flask import request, session
 from resource.api_base import BaseResource
 
 
-# 你可以在这里添加API资源
-class UserResource(BaseResource):
+# 年度贡献数据接口
+class AnnualContributionDataApi(BaseResource):
     def get(self):
-        print(1)
-        return {"msg": "hello"}
+        user_info = session.get("user_info")
+        print(user_info)
+        year = request.args.get('year', type=int)
+        return {"year": year, "contribution_data": {f"{year}-11-12": 10}}

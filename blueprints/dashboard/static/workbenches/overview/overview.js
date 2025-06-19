@@ -157,13 +157,20 @@ TimeLineLoadMore.addEventListener("click", () => {
 })
 
 // 贡献度-日期选择框事项
-document.getElementById('contributeYearSelect').addEventListener('change', function () {
+const contributeYearSelect = document.getElementById('contributeYearSelect')
+contributeYearSelect.addEventListener('change', function () {
     const year = this.value;
-    fetch(`/dashboard/user/contribution_data?year=${year}`)
+    fetch(`/dashboard/api/annual_contribution_data?year=${year}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    })
         .then(res => res.json())
         .then(data => {
-            let selectYear = year
-            contributionRendering(data, selectYear); // 热力图数据
+            console.log(data)
+            let contributionData = data.data.contribution_data;
+            contributionRendering(contributionData, year); // 热力图数据
             // renderActivityList(data.activities); // 动态列表数据
         });
 });

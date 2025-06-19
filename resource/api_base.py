@@ -48,7 +48,6 @@ class BaseResource(Resource):
 
             # 业务主逻辑
             response = super().dispatch_request(*args, **kwargs)
-            print(response)
             # 响应处理钩子
             return self.response_message(response)
         except Exception as e:
