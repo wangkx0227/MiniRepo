@@ -1,6 +1,6 @@
-from .urls import dashboard_page_bp, dashboard_api
+from .urls import dashboard_page_bp, dashboard_api_bp
 
-__all__ = ['dashboard_page_bp','dashboard_api']
+__all__ = ['dashboard_page_bp','dashboard_api_bp']
 
 """
 ==========  =====================  ==================================

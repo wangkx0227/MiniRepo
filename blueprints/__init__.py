@@ -1,14 +1,14 @@
-from .new import new_page_bp, new_api
-from .user import user_page_bp, user_api
-from .dashboard import dashboard_page_bp, dashboard_api
+from .new import new_page_bp, new_api_bp
+from .user import user_page_bp, user_api_bp
+from .dashboard import dashboard_page_bp, dashboard_api_bp
 
 __all__ = [
     'new_page_bp',
     'user_page_bp',
     'dashboard_page_bp',
-    'new_api',
-    'user_api',
-    'dashboard_api',
+    'new_api_bp',
+    'user_api_bp',
+    'dashboard_api_bp',
 ]
 
 """

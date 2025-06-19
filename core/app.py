@@ -8,7 +8,7 @@ from .views import index, error_403, error_404, health_check, login
 
 # 外部导入包
 from resource import redis_link
-from blueprints import user_api, user_page_bp, new_api, new_page_bp, dashboard_page_bp, dashboard_api
+from blueprints import user_api_bp, user_page_bp, new_api_bp, new_page_bp, dashboard_page_bp, dashboard_api_bp
 
 
 def create_app():
@@ -22,6 +22,9 @@ def create_app():
     app.register_blueprint(user_page_bp)
     app.register_blueprint(dashboard_page_bp)
     # 注册蓝图 - api蓝图
+    app.register_blueprint(new_api_bp)
+    app.register_blueprint(user_api_bp)
+    app.register_blueprint(dashboard_api_bp)
     # 注册全局视图路由
     app.add_url_rule('/', view_func=index, methods=['GET'])
     app.add_url_rule('/login', view_func=login, methods=['GET'])

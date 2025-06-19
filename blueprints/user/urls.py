@@ -1,4 +1,4 @@
-from .app import user_page_bp,user_api
+from .app import user_page_bp, user_api_bp, user_api
 from .views import home, setting, todos, repos, stars, related
 
 user_page_bp.add_url_rule('/home', view_func=home, methods=['GET'])

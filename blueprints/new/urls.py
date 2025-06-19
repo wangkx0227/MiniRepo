@@ -1,4 +1,4 @@
-from .app import new_page_bp, new_api
+from .app import new_page_bp, new_api_bp, new_api
 from .views import projects, organizations, codes
 
 new_page_bp.add_url_rule('/projects', view_func=projects, methods=['GET'])
