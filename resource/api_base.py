@@ -1,4 +1,4 @@
-from flask import jsonify, Response
+from flask import jsonify
 from flask_restful import Resource
 
 import traceback
@@ -48,6 +48,7 @@ class BaseResource(Resource):
 
             # 业务主逻辑
             response = super().dispatch_request(*args, **kwargs)
+            print(response)
             # 响应处理钩子
             return self.response_message(response)
         except Exception as e:
@@ -55,7 +56,8 @@ class BaseResource(Resource):
             logging.error(traceback.format_exc())
             return self.handle_exception(e)
 
-    def handle_exception(self, e):
+    @staticmethod
+    def handle_exception(e):
         """
         统一异常响应和日志
         """
@@ -80,7 +82,8 @@ class BaseResource(Resource):
             "data": None
         }), http_code
 
-    def response_message(self, data=None, message="success", code=0, http_code=200):
+    @staticmethod
+    def response_message(data=None, message="success", code=0):
         """
         统一成功响应消息
         """
@@ -88,4 +91,4 @@ class BaseResource(Resource):
             "code": code,
             "message": message,
             "data": data
-        }), http_code
+        })
