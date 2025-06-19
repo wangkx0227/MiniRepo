@@ -7,10 +7,6 @@
 {% endblock main_navigation_bar %}
 {% block css %}
 <link rel="stylesheet" href="{{ url_for('dashboard.static', filename='workbenches/overview/overview.css') }}">
-<style>
-
-
-</style>
 {% endblock css %}
 {% block workbenches_content %}
 <div class="main-contribute">
@@ -30,7 +26,11 @@
     </div>
     <div class="contribute-content">
         <div class="calendar-wrap">
-            <div class="weekdays fonts-color-minor" id="weekdays"></div>
+            <div class="weekdays fonts-color-minor" id="weekdays">
+                <span>周一</span>
+                <span>周四</span>
+                <span>周日</span>
+            </div>
             <div class="calendar">
                 <div class="months" id="months"></div>
                 <div class="weeks" id="calendar">
@@ -112,28 +112,4 @@
 {% block js_end %}
 {{ super() }}
 <script src="{{ url_for('dashboard.static', filename='workbenches/overview/overview.js') }}"></script>
-<script>
-    // 日期选择框事项
-    document.getElementById('contribute-year-select').addEventListener('change', function () {
-        const year = this.value;
-        fetch(`/dashboard/user/contribution_data?year=${year}`)
-            .then(res => res.json())
-            .then(data => {
-                let selectYear = year
-                drawCalendar(data, selectYear); // 热力图数据
-                // renderActivityList(data.activities); // 动态列表数据
-            });
-    });
-
-
-    const TimeLineLoadMore = document.getElementById("TimeLineLoadMore")
-    TimeLineLoadMore.addEventListener("click", () => {
-        TimeLineLoadMore.innerHTML = `<s-circular-progress indeterminate="true" slot="start"></s-circular-progress>`
-
-        setTimeout(() => {
-            TimeLineLoadMore.innerText = "加载更多"
-        }, 2000)
-    })
-
-</script>
 {% endblock js_end %}

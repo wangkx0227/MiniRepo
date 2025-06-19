@@ -15,22 +15,6 @@ function getLastDayOfYear(yearStr) {
 }
 
 
-// 热力图-星期展示
-function drawWeekdays() {
-    // 只显示“周一/三/五”示例
-    const weekdays = ['周一', '周二', '周三', '周四', '周五', '周六', '周日'];
-    const showIdx = [0, 3, 6]; // 只显示周一/四/日
-    let html = '';
-    for (let i = 0; i < 7; i++) {
-        if (showIdx.includes(i)) {
-            html += `<span >${weekdays[i]}</span>`;
-        }
-    }
-    document.getElementById('weekdays').innerHTML = html;
-}
-
-drawWeekdays();
-
 // 热力图-根据后端数据,区分每天的颜色
 function getColorLevel(count) {
     if (count === 0) return '';
@@ -131,18 +115,31 @@ function drawCalendar(data, selectYear) {
     }
 }
 
-// drawCalendar(data);
+
+// 贡献度-日期选择框事项
+document.getElementById('contribute-year-select').addEventListener('change', function () {
+    const year = this.value;
+    fetch(`/dashboard/user/contribution_data?year=${year}`)
+        .then(res => res.json())
+        .then(data => {
+            let selectYear = year
+            drawCalendar(data, selectYear); // 热力图数据
+            // renderActivityList(data.activities); // 动态列表数据
+        });
+});
+
+// 动态-加载更多按钮
+const TimeLineLoadMore = document.getElementById("TimeLineLoadMore")
+TimeLineLoadMore.addEventListener("click", () => {
+    TimeLineLoadMore.innerHTML = `<s-circular-progress indeterminate="true" slot="start"></s-circular-progress>`
+
+    setTimeout(() => {
+        TimeLineLoadMore.innerText = "加载更多"
+    }, 2000)
+})
 
 
-// 假数据 函数
-// function generateData() {
-//     const data = {};
-//     const today = new Date();
-//     for (let i = 0; i < 364; i++) {
-//         const d = new Date(today);
-//         d.setDate(today.getDate() - i);
-//         const dateStr = d.toISOString().slice(0, 10);
-//         data[dateStr] = Math.random() < 0.8 ? Math.floor(Math.random() * 5) : 0;
-//     }
-//     return data;
-// }
+// 页面初始化加载贡献图
+document.addEventListener('DOMContentLoaded', function () {
+    drawCalendar({"2025-06-15": 10});
+});

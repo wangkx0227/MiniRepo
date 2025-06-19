@@ -15,4 +15,5 @@ from flask import request, jsonify
 @dashboard_bp.route('/user/contribution_data')
 def contribution_data():
     year = int(request.args.get('year', 2025))
-    return jsonify({'year': year})
+    return jsonify(
+        {'year': year, 'data': {}})
