@@ -140,14 +140,24 @@ document.querySelectorAll('.toggle-btn').forEach(function (btn) {
             this.classList.remove('hide');
             this.classList.add('show');
             this.innerText = '展开查看';
-            this.parentElement.querySelector('span').innerText = `已隐藏${liAll.length - 2}条推送信息，`;
+            this.parentElement.querySelector('span').innerText = `已隐藏${liAll.length - 3}条推送信息，`; // liAll.length - 3 2个初始显示和1个展开查看按钮 3个li
         }
     }
 });
 
 
+// 动态 - 加载更多按钮
+const TimeLineLoadMore = document.getElementById("TimeLineLoadMore")
+TimeLineLoadMore.addEventListener("click", () => {
+    TimeLineLoadMore.innerHTML = `<s-circular-progress indeterminate="true" slot="start"></s-circular-progress>`
+
+    setTimeout(() => {
+        TimeLineLoadMore.innerText = "加载更多"
+    }, 2000)
+})
+
 // 贡献度-日期选择框事项
-document.getElementById('contribute-year-select').addEventListener('change', function () {
+document.getElementById('contributeYearSelect').addEventListener('change', function () {
     const year = this.value;
     fetch(`/dashboard/user/contribution_data?year=${year}`)
         .then(res => res.json())
@@ -159,18 +169,7 @@ document.getElementById('contribute-year-select').addEventListener('change', fun
 });
 
 
-// 动态区域-加载更多按钮
-const TimeLineLoadMore = document.getElementById("TimeLineLoadMore")
-TimeLineLoadMore.addEventListener("click", () => {
-    TimeLineLoadMore.innerHTML = `<s-circular-progress indeterminate="true" slot="start"></s-circular-progress>`
-
-    setTimeout(() => {
-        TimeLineLoadMore.innerText = "加载更多"
-    }, 2000)
-})
-
-
-// 页面初始化加载贡献图
+// 页面初始化只加载贡献图
 document.addEventListener('DOMContentLoaded', function () {
     const contribute_data_dict = document.getElementById("contribute_data_dict").dataset.info;
     const contributeData = JSON.parse(contribute_data_dict);

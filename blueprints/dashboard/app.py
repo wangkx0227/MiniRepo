@@ -1,4 +1,5 @@
 from flask import Blueprint
+
 from .filters import do_date_differ
 
 # 指定的静态和模版相对于蓝图
