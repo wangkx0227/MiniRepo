@@ -51,10 +51,12 @@
         </div>
         <div class="describe">
             <p class="fonts-color-minor" style="display: inline-block;margin-right: 20px;font-size: 12px;">
-                最近一年贡献：49 次</p>
-            <p class="fonts-color-minor" style="display: inline-block;margin-right: 20px;font-size: 12px;">最长连续贡献：5
+                最近一年贡献：{{ data.contribute_total }} 次</p>
+            <p class="fonts-color-minor" style="display: inline-block;margin-right: 20px;font-size: 12px;">最长连续贡献：{{
+                data.contribute_continuous_longest_day }}
                 日</p>
-            <p class="fonts-color-minor" style="display: inline-block;margin-right: 20px;font-size: 12px;">最近连续贡献：5
+            <p class="fonts-color-minor" style="display: inline-block;margin-right: 20px;font-size: 12px;">最近连续贡献：{{
+                data.contribute_continuous_day }}
                 日</p>
             <p style="margin: 0;font-size: 12px;" class="fonts-color-routine">
                 贡献度的统计数据包括代码提交、创建任务 / Pull Request、合并 Pull Request，其中代码提交的次数需本地配置的 Git 邮箱帐号已确认绑定的才会被统计。
@@ -74,11 +76,11 @@
                 <div class="fonts-color-major">{{ event.date }}</div>
                 <ul class="time-line-items fonts-color-major">
                     {% for commit in event.save_commit_list %}
-                    <li class="time-line-item">
+                    <li class="time-line-item {% if loop.index > 2%} time-line-item-hide {% endif %}">
                         <!--更新上传信息-->
                         <div class="time-line-content fonts-color-routine">
                             <div>
-                                <span>推送到了</span>
+                                <span>{{ commit.action_human_name }}</span>
                                 <a href="{{ commit.project_tree_path }}">{{ commit.name_with_namespace }}</a>
                                 <span>的 {{ commit.branch_name}} 分支</span>
                             </div>
@@ -93,13 +95,12 @@
                     {% endfor %}
                     <!--展示按钮-->
                     <li style=" font-size: 14px;margin-top: 5px" class="fonts-color-minor">
-                        <span>已隐藏 5 条推送信息，</span>
-                        <a href="#" style="color: #409EFF;">展开查看</a>
+                        <span>已隐藏 {{ event.hide_number }} 条推送信息，</span>
+                        <a href="javascript:void(0);" class="fonts-color-routine toggle-btn show">展开查看</a>
                     </li>
                 </ul>
             </div>
             {% endfor %}
-
         </div>
         <div style="height: 80px">
             <s-button style="display: flex;border-radius: 0;" type="outlined" id="TimeLineLoadMore">
@@ -115,4 +116,7 @@
 {% block js_end %}
 {{ super() }}
 <script src="{{ url_for('dashboard.static', filename='workbenches/overview/overview.js') }}"></script>
+<script>
+
+</script>
 {% endblock js_end %}

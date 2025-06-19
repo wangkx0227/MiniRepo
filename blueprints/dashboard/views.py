@@ -1,7 +1,7 @@
 from flask import render_template, session, redirect, url_for, request
 from resource import redis_link
 
-from .public import get_workbenches_data
+from .views_data import get_workbenches_data
 
 """
     # print(session.get("userStatus")) # 登录使用

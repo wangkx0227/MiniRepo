@@ -116,6 +116,36 @@ function contributionRendering(data, selectYear = null) {
 }
 
 
+// 动态 - 展开查看 与 收回 点击按钮事项
+document.querySelectorAll('.toggle-btn').forEach(function (btn) {
+    btn.onclick = function () {
+        const liAll = this.parentElement.parentElement.querySelectorAll('li');
+        if (this.classList.contains('show')) {
+            liAll.forEach((li) => {
+                if (li.classList.contains("time-line-item-hide")) {
+                    li.classList.remove("time-line-item-hide")
+                }
+            })
+            // 展开逻辑
+            this.classList.remove('show');
+            this.classList.add('hide');
+            this.innerText = '收起';
+            this.parentElement.querySelector('span').innerText = `已显示全部推送信息，`;
+        } else if (this.classList.contains('hide')) {
+            // 收起逻辑
+            liAll.forEach((li, idx) => {
+                if (li.contains(this)) return;
+                if (idx > 1) li.classList.add('time-line-item-hide');
+            })
+            this.classList.remove('hide');
+            this.classList.add('show');
+            this.innerText = '展开查看';
+            this.parentElement.querySelector('span').innerText = `已隐藏${liAll.length - 2}条推送信息，`;
+        }
+    }
+});
+
+
 // 贡献度-日期选择框事项
 document.getElementById('contribute-year-select').addEventListener('change', function () {
     const year = this.value;
@@ -127,6 +157,7 @@ document.getElementById('contribute-year-select').addEventListener('change', fun
             // renderActivityList(data.activities); // 动态列表数据
         });
 });
+
 
 // 动态区域-加载更多按钮
 const TimeLineLoadMore = document.getElementById("TimeLineLoadMore")

@@ -145,3 +145,7 @@
     margin-left: 10px;
     flex-shrink: 0;
 }
+
+.time-line-item-hide {
+    display: none;
+}
