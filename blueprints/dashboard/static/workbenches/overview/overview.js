@@ -2,7 +2,8 @@
  * 生成模拟贡献数据：返回一个对象 { '2025-05-01': 1, ... }
  * 你可以用后台接口数据替换此处
  */
-
+const TimeLineLoadMore = document.getElementById("TimeLineLoadMore")
+const contributeYearSelect = document.getElementById('contributeYearSelect')
 
 // 贡献图-根据年获取最后一天
 function contributionGetLastDayOfYear(yearStr) {
@@ -145,19 +146,7 @@ document.querySelectorAll('.toggle-btn').forEach(function (btn) {
     }
 });
 
-
-// 动态 - 加载更多按钮
-const TimeLineLoadMore = document.getElementById("TimeLineLoadMore")
-TimeLineLoadMore.addEventListener("click", () => {
-    TimeLineLoadMore.innerHTML = `<s-circular-progress indeterminate="true" slot="start"></s-circular-progress>`
-
-    setTimeout(() => {
-        TimeLineLoadMore.innerText = "加载更多"
-    }, 2000)
-})
-
-// 贡献度-日期选择框事项
-const contributeYearSelect = document.getElementById('contributeYearSelect')
+// 贡献度-日期选择框事项 - 请求后端
 contributeYearSelect.addEventListener('change', function () {
     const year = this.value;
     fetch(`/dashboard/api/annual_contribution_data?year=${year}`, {
@@ -168,12 +157,99 @@ contributeYearSelect.addEventListener('change', function () {
     })
         .then(res => res.json())
         .then(data => {
-            console.log(data)
             let contributionData = data.data.contribution_data;
             contributionRendering(contributionData, year); // 热力图数据
             // renderActivityList(data.activities); // 动态列表数据
         });
 });
+
+
+// 动态 - 加载更多按钮 - 将数据插入
+function appendToEventLine(LineDataList) {
+    let eventLine = document.querySelector('.event-line');
+    if (!eventLine) return;
+    // 创建外层的div
+    LineDataList.forEach((item) => {
+        console.log(item)
+        let timeLineGroup = document.createElement('div');
+        timeLineGroup.classList.add("time-line-group");
+        let timeLineDate = document.createElement('div');
+        timeLineDate.classList.add("fonts-color-major");
+        timeLineDate.innerText = item.date;
+        let timeLineUl = document.createElement('ul');
+        timeLineUl.classList.add("time-line-items");
+        timeLineUl.classList.add("fonts-color-major");
+        let commits = item.commits;
+        for (let i = 0; i < item.commits.length; i++) {
+            let timeLineLi = document.createElement('li');
+            timeLineLi.classList.add("time-line-item");
+            let timeLineContent = document.createElement('div');
+            timeLineContent.classList.add("time-line-content");
+            timeLineContent.classList.add("fonts-color-routine");
+
+            let timeLineContentCommitDiv = document.createElement('div');
+            let span_1 = document.createElement('span');
+            span_1.innerText = item.commits[i].action_human_name;
+            timeLineContentCommitDiv.appendChild(span_1);
+            let a = document.createElement('a');
+            a.href = item.commits[i].project_tree_path;
+            a.innerText = item.commits[i].name_with_namespace;
+            timeLineContentCommitDiv.appendChild(a);
+            let span_2 = document.createElement('span');
+            span_2.innerText = "的 master 分支"; // 需要后端传递数据
+            timeLineContentCommitDiv.appendChild(span_2);
+            let timeLineContentDescribeDiv = document.createElement('div');
+            timeLineContentDescribeDiv.insertAdjacentHTML("beforeend", `<s-avatar src="${item.commits[i].profile_photo_link}"></s-avatar>`)
+            timeLineContentDescribeDiv.insertAdjacentHTML("beforeend", `<span><a href="${item.commits[i].project_commit_path}">${item.commits[i].commit_from}</a></span><span>${item.commits[i].message}</span>`)
+            timeLineLi.appendChild(timeLineContentCommitDiv);
+            timeLineLi.appendChild(timeLineContentDescribeDiv);
+
+            let timeLineMeta = document.createElement('div');
+            timeLineMeta.classList.add("time-line-meta");
+            timeLineMeta.classList.add("fonts-color-minor");
+            timeLineMeta.innerText = "10天前"; // 需要从后台传递
+
+            timeLineLi.appendChild(timeLineContent);
+            timeLineLi.appendChild(timeLineMeta);
+            timeLineUl.appendChild(timeLineLi);
+        }
+
+        timeLineGroup.appendChild(timeLineDate);
+        timeLineGroup.appendChild(timeLineUl);
+        eventLine.appendChild(timeLineGroup);
+    })
+
+
+}
+
+
+// 动态 - 加载更多按钮 - 请求后端
+TimeLineLoadMore.addEventListener("click", () => {
+    TimeLineLoadMore.disabled = true;
+    TimeLineLoadMore.innerHTML = `<s-circular-progress indeterminate="true" slot="start"></s-circular-progress>`
+    let contributeYearSelectValue = contributeYearSelect.value; // 是否选中年的value值
+    let url = "/dashboard/api/dynamic_time_line_data?limit=20"
+    if (contributeYearSelectValue) {
+        url = url + `&year=${contributeYearSelectValue}`
+    }
+    fetch(url, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    })
+        .then(res => res.json())
+        .then(data => {
+            appendToEventLine(data.data)
+        })
+        .finally(() => {
+            setTimeout(() => {
+                TimeLineLoadMore.disabled = false;
+                TimeLineLoadMore.innerText = "加载更多";
+            }, 2000)
+        });
+
+})
 
 
 // 页面初始化只加载贡献图
