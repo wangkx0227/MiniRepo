@@ -2,10 +2,10 @@ from flask_session import Session
 from flask import Flask, redirect, url_for
 
 # core包
-from .views import index, error_403, error_404, health_check, login
-from .public import save_routes_to_redis
-from .filters import do_date_differ
 from .hooks import register_hooks
+from .public import save_routes_to_redis
+from .views import index, error_403, error_404, health_check, login
+
 # 外部导入包
 from resource import redis_link
 from blueprints import user_bp, dashboard_bp, new_bp
@@ -31,8 +31,6 @@ def create_app():
     save_routes_to_redis(app)
     # 注册钩子,需要在存储url路由之后
     register_hooks(app)
-    # 注册过滤器
-    app.add_template_filter(do_date_differ, "do_date_differ")
     return app
 
 
