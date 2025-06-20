@@ -35,6 +35,7 @@ function contributionRendering(data, selectYear = null) {
 
     // 1. 计算开始和结束日期
     let today = new Date();
+    // 传递有值的情况下，需要判断这个值是 当年 还是其他年
     if (selectYear) {
         const year = new Date().getFullYear();
         if (selectYear !== year.toString()) {
@@ -146,26 +147,11 @@ document.querySelectorAll('.toggle-btn').forEach(function (btn) {
     }
 });
 
-// 贡献度-日期选择框事项 - 请求后端
-contributeYearSelect.addEventListener('change', function () {
-    const year = this.value;
-    fetch(`/dashboard/api/annual_contribution_data?year=${year}`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-    })
-        .then(res => res.json())
-        .then(data => {
-            let contributionData = data.data.contribution_data;
-            contributionRendering(contributionData, year); // 热力图数据
-            // renderActivityList(data.activities); // 动态列表数据
-        });
-});
-
 
 // 动态 - 加载更多按钮 - 将数据插入
-function appendToEventLine(LineDataList) {
+function EventLineRendering(LineDataList, dataExists = false) {
+
+    // LineDataList 数据 dataExists 代表更新或者插入，
     let eventLine = document.querySelector('.event-line');
     if (!eventLine) return;
     // 创建外层的div
@@ -206,9 +192,33 @@ function appendToEventLine(LineDataList) {
                 </ul>
             </div>
         `
-        eventLine.insertAdjacentHTML("beforeend",timeLineGroup)
+        if (!dataExists) {
+            eventLine.insertAdjacentHTML("beforeend", timeLineGroup);
+        } else {
+            eventLine.innerHTML = timeLineGroup;
+        }
+
     })
 }
+
+
+// 贡献度-日期选择框事项（根据日期，展示贡献度-动态） - 请求后端
+contributeYearSelect.addEventListener('change', function () {
+    const year = this.value;
+    fetch(`/dashboard/api/annual_contribution_data?year=${year}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    })
+        .then(res => res.json())
+        .then(data => {
+            let contributionData = data.data.contribution_data;
+            let eventData = data.data.event_data;
+            contributionRendering(contributionData, year); // 热力图数据
+            EventLineRendering(eventData, true); // 动态列表数据
+        });
+});
 
 
 // 动态 - 加载更多按钮 - 请求后端
@@ -228,7 +238,7 @@ TimeLineLoadMore.addEventListener("click", () => {
     })
         .then(res => res.json())
         .then(data => {
-            appendToEventLine(data.data)
+            EventLineRendering(data.data)
         })
         .finally(() => {
             setTimeout(() => {
