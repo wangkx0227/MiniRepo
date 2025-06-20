@@ -154,13 +154,17 @@ function EventLineRendering(LineDataList, dataExists = false) {
     // LineDataList 数据 dataExists 代表更新或者插入，
     let eventLine = document.querySelector('.event-line');
     if (!eventLine) return;
-    // 创建外层的div
-    LineDataList.forEach((item) => {
-        let commits = item.commits;
-        let timeLineUlli_s = '';
-        for (let i = 0; i < commits.length; i++) {
-            let hideAttribute = i > 1 ? 'time-line-item-hide' : ''; // 隐藏属性
-            let timeLineLi = `
+    if (!LineDataList && dataExists) {
+        let dynamicsContent = document.querySelector('.dynamics-content');
+        dynamicsContent.innerHTML = '<s-empty style="min-height: 300px">暂时没有数据</s-empty>';
+    } else {
+        // 创建外层的div
+        LineDataList.forEach((item) => {
+            let commits = item.commits;
+            let timeLineUlli_s = '';
+            for (let i = 0; i < commits.length; i++) {
+                let hideAttribute = i > 1 ? 'time-line-item-hide' : ''; // 隐藏属性
+                let timeLineLi = `
                 <li class="time-line-item ${hideAttribute}">
                     <!--更新上传信息-->
                     <div class="time-line-content fonts-color-routine">
@@ -178,9 +182,9 @@ function EventLineRendering(LineDataList, dataExists = false) {
                     <div class="time-line-meta fonts-color-minor">需要后台传递参数</div>
                 </li>
             `
-            timeLineUlli_s += timeLineLi;
-        }
-        let timeLineGroup = `
+                timeLineUlli_s += timeLineLi;
+            }
+            let timeLineGroup = `
             <div class="time-line-group">
                 <div class="fonts-color-major">${item.date}</div>
                 <ul class="time-line-items fonts-color-major">
@@ -192,13 +196,15 @@ function EventLineRendering(LineDataList, dataExists = false) {
                 </ul>
             </div>
         `
-        if (!dataExists) {
-            eventLine.insertAdjacentHTML("beforeend", timeLineGroup);
-        } else {
-            eventLine.innerHTML = timeLineGroup;
-        }
+            if (!dataExists) {
+                eventLine.insertAdjacentHTML("beforeend", timeLineGroup);
+            } else {
+                eventLine.innerHTML = timeLineGroup;
+            }
 
-    })
+        })
+    }
+
 }
 
 
@@ -230,6 +236,10 @@ TimeLineLoadMore.addEventListener("click", () => {
     if (contributeYearSelectValue) {
         url = url + `&year=${contributeYearSelectValue}`
     }
+
+    // 新增一个变量用于标记是否还有更多
+    let hasMore = true;
+
     fetch(url, {
         method: 'GET',
         headers: {
@@ -238,15 +248,23 @@ TimeLineLoadMore.addEventListener("click", () => {
     })
         .then(res => res.json())
         .then(data => {
-            EventLineRendering(data.data)
+            let LineDataList = data.data;
+            if (Array.isArray(LineDataList) && LineDataList.length === 0) {
+                TimeLineLoadMore.disabled = true;
+                TimeLineLoadMore.innerText = "没有更多";
+                hasMore = false; // 没有更多数据了
+            } else {
+                EventLineRendering(LineDataList);
+            }
         })
         .finally(() => {
-            setTimeout(() => {
-                TimeLineLoadMore.disabled = false;
-                TimeLineLoadMore.innerText = "加载更多";
-            }, 2000)
+            if (hasMore) {
+                setTimeout(() => {
+                    TimeLineLoadMore.disabled = false;
+                    TimeLineLoadMore.innerText = "加载更多";
+                }, 2000)
+            }
         });
-
 })
 
 

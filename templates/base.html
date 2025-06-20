@@ -10,18 +10,21 @@
         {% endblock title %}
     </title>
     <!-- 三方样式   -->
-    <script src="/static/lib/nprogress/nprogress.js"></script>
-    <script src="/static/lib/sober/sober.min.js"></script>
-    <link rel="stylesheet" href="/static/lib/nprogress/nprogress.css"/>
+    <script src="{{ url_for('static', filename='lib/nprogress/nprogress.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/sober/sober.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='lib/nprogress/nprogress.css') }}"/>
 
-    <!-- 菜单栏的icon图标 -->
-    <script src="/static/base/menus/menuIcon.js"></script>
+
+    <script src="{{ url_for('static', filename='base/api.js') }}"></script>
     <!-- 菜单栏路由函数 -->
-    <script src="/static/base/menus/menuPublic.js"></script>
+    <script src="{{ url_for('static', filename='base/menus/menuPublic.js') }}"></script>
+    <!-- 菜单栏的icon图标 -->
+    <script src="{{ url_for('static', filename='base/menus/menuIcon.js') }}"></script>
 
-    <link rel="stylesheet" href="/static/base/base.css">
-    <link rel="stylesheet" href="/static/base/public.css">
-    <link rel="stylesheet" href="/static/base/notification/notification.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='base/base.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='base/public.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='base/notification/notification.css') }}"/>
+
 
 
     <!-- 导入css样式表 -->
@@ -263,9 +266,9 @@
 </s-page>
 
 </body>
-<script src="/static/base/base.js"></script>
-<script src="/static/base/menus/menuRoutes.js"></script>
-<script src="/static/base/notification/notification.js"></script>
+<script src="{{ url_for('static', filename='base/base.js') }}"></script>
+<script src="{{ url_for('static', filename='base/menus/menuRoutes.js') }}"></script>
+<script src="{{ url_for('static', filename='base/notification/notification.js') }}"></script>
 
 {% block js_end %}
 {% endblock js_end %}
