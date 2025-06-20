@@ -170,56 +170,44 @@ function appendToEventLine(LineDataList) {
     if (!eventLine) return;
     // 创建外层的div
     LineDataList.forEach((item) => {
-        console.log(item)
-        let timeLineGroup = document.createElement('div');
-        timeLineGroup.classList.add("time-line-group");
-        let timeLineDate = document.createElement('div');
-        timeLineDate.classList.add("fonts-color-major");
-        timeLineDate.innerText = item.date;
-        let timeLineUl = document.createElement('ul');
-        timeLineUl.classList.add("time-line-items");
-        timeLineUl.classList.add("fonts-color-major");
         let commits = item.commits;
-        for (let i = 0; i < item.commits.length; i++) {
-            let timeLineLi = document.createElement('li');
-            timeLineLi.classList.add("time-line-item");
-            let timeLineContent = document.createElement('div');
-            timeLineContent.classList.add("time-line-content");
-            timeLineContent.classList.add("fonts-color-routine");
-
-            let timeLineContentCommitDiv = document.createElement('div');
-            let span_1 = document.createElement('span');
-            span_1.innerText = item.commits[i].action_human_name;
-            timeLineContentCommitDiv.appendChild(span_1);
-            let a = document.createElement('a');
-            a.href = item.commits[i].project_tree_path;
-            a.innerText = item.commits[i].name_with_namespace;
-            timeLineContentCommitDiv.appendChild(a);
-            let span_2 = document.createElement('span');
-            span_2.innerText = "的 master 分支"; // 需要后端传递数据
-            timeLineContentCommitDiv.appendChild(span_2);
-            let timeLineContentDescribeDiv = document.createElement('div');
-            timeLineContentDescribeDiv.insertAdjacentHTML("beforeend", `<s-avatar src="${item.commits[i].profile_photo_link}"></s-avatar>`)
-            timeLineContentDescribeDiv.insertAdjacentHTML("beforeend", `<span><a href="${item.commits[i].project_commit_path}">${item.commits[i].commit_from}</a></span><span>${item.commits[i].message}</span>`)
-            timeLineLi.appendChild(timeLineContentCommitDiv);
-            timeLineLi.appendChild(timeLineContentDescribeDiv);
-
-            let timeLineMeta = document.createElement('div');
-            timeLineMeta.classList.add("time-line-meta");
-            timeLineMeta.classList.add("fonts-color-minor");
-            timeLineMeta.innerText = "10天前"; // 需要从后台传递
-
-            timeLineLi.appendChild(timeLineContent);
-            timeLineLi.appendChild(timeLineMeta);
-            timeLineUl.appendChild(timeLineLi);
+        let timeLineUlli_s = '';
+        for (let i = 0; i < commits.length; i++) {
+            let hideAttribute = i > 1 ? 'time-line-item-hide' : ''; // 隐藏属性
+            let timeLineLi = `
+                <li class="time-line-item ${hideAttribute}">
+                    <!--更新上传信息-->
+                    <div class="time-line-content fonts-color-routine">
+                        <div>
+                            <span>${commits[i].action_human_name}</span>
+                            <a href="${commits[i].project_tree_path}">${commits[i].name_with_namespace}</a>
+                            <span>需要后台传递参数</span>
+                        </div>
+                            <div>
+                                <s-avatar src="${commits[i].profile_photo_link}"></s-avatar><!--头像-->
+                                <span><a href="${commits[i].project_commit_path}">${commits[i].commit_from}</a></span>
+                                <span>${commits[i].message}</span>
+                            </div>
+                        </div>
+                    <div class="time-line-meta fonts-color-minor">需要后台传递参数</div>
+                </li>
+            `
+            timeLineUlli_s += timeLineLi;
         }
-
-        timeLineGroup.appendChild(timeLineDate);
-        timeLineGroup.appendChild(timeLineUl);
-        eventLine.appendChild(timeLineGroup);
+        let timeLineGroup = `
+            <div class="time-line-group">
+                <div class="fonts-color-major">${item.date}</div>
+                <ul class="time-line-items fonts-color-major">
+                        ${timeLineUlli_s}
+                    <li style=" font-size: 14px;margin-top: 5px" class="fonts-color-minor">
+                        <span>已隐藏 ${commits.length - 1} 条推送信息，</span>
+                        <a href="javascript:void(0);" class="fonts-color-routine toggle-btn show">展开查看</a>
+                    </li>
+                </ul>
+            </div>
+        `
+        eventLine.insertAdjacentHTML("beforeend",timeLineGroup)
     })
-
-
 }
 
 
