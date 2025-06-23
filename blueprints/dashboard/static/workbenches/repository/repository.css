@@ -33,7 +33,29 @@
 .repository-content .repository-content-title {
     display: flex;
     align-items: center;
-    margin: 0
+    justify-content: space-between;
+    width: 100%;
+}
+
+.repository-content-title .repository-content-title-ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 8px;
+}
+
+.repository-content-title .repository-content-title-ul li {
+    font-size: 12px;
+}
+
+.repository-content-title h4 {
+    margin: 0;
+}
+
+.repository-content-title .repository-content-title-ul .icon {
+    width: 55%;
+    height: 55%;
 }
 
 .repository-content .repository-content-description {
@@ -43,7 +65,13 @@
     align-items: center;
 }
 
-
+.repository-content-description .repository-content-description-introduction {
+    max-width: clamp(150px, 40vw, 400px);
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
 .repository-content .repository-content-language {
     display: flex;
