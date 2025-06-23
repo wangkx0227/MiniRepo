@@ -10,7 +10,7 @@
 {% endblock css %}
 {% block workbenches_content %}
 <div class="main-repository">
-    <div class="repository-head" style="display:flex;justify-content: space-between;flex-direction: row;margin-top: 2em;">
+    <div class="repository-head">
         <div class="repository-head-select">
             <s-picker label="展示类型" id="repositoryTypeSelect">
                 <s-picker-item value="all">全部</s-picker-item>
@@ -29,8 +29,68 @@
             </s-text-field>
         </div>
     </div>
-    <div class="repository-content" style="">
-        <s-empty>暂时没有数据</s-empty>
+    <div class="repository-content">
+        <ul class="repository-content-ul">
+            <s-divider style="margin: 0"></s-divider>
+            <li class="repository-content-li">
+                <h4 class="fonts-color-major repository-content-title">
+                    <s-tooltip align="right">
+                        <s-icon slot="trigger">
+                            <s2-icon name="repository_locked"></s2-icon>
+                        </s-icon>
+                        私有（根据仓库的属性决定）
+                    </s-tooltip>
+                    <a href="">不会换牙的鲨鱼/MiniRepo</a>
+                </h4>
+                <div class="repository-content-description fonts-color-routine">
+                    <span>简介：</span>
+                    <s-tooltip align="bottom">
+                        <span style="max-width: 300px;display:inline-block;white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+                              slot="trigger">代码仓库项目sadasdasdqweasd1321321321321sadada11111111111111111111111111111111111111111111111111111111111111111111111
+
+                        </span>
+                        悬浮显示
+                    </s-tooltip>
+                </div>
+                <div class="fonts-color-minor repository-content-language">
+                    <span><s-icon>
+                        <s2-icon name="repository_code"></s2-icon>
+                    </s-icon>
+                        Python
+                    </span>
+                    <span>最近更新：6分钟前</span>
+                </div>
+            </li>
+            <s-divider style="margin: 0"></s-divider>
+            <li class="repository-content-li">
+                <h4 class="fonts-color-major repository-content-title">
+                    <s-tooltip align="right">
+                        <s-icon slot="trigger">
+                            <s2-icon name="repository_unlocked"></s2-icon>
+                        </s-icon>
+                        公有（根据仓库的属性决定）
+                    </s-tooltip>
+                    <a href="">不会换牙的鲨鱼/MiniRepo</a>
+                </h4>
+                <div class="repository-content-description fonts-color-routine">
+                    <span>简介：</span>
+                    <s-tooltip align="bottom">
+                        <span style="width: 200px;display:inline-block;white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+                              slot="trigger">代码仓库项目sadasdasdqweasd1321321321321sadada</span>
+                        代码仓库项目sadasdasdqweasd1321321321321sadada
+                    </s-tooltip>
+                </div>
+                <div class="fonts-color-minor repository-content-language">
+                    <span><s-icon>
+                        <s2-icon name="repository_code"></s2-icon>
+                    </s-icon>
+                        Python
+                    </span>
+                    <span>最近更新：6分钟前</span>
+                </div>
+            </li>
+        </ul>
+        <!--        <s-empty style="min-height: 70vh">暂时没有数据</s-empty>-->
     </div>
 </div>
 

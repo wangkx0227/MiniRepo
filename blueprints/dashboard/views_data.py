@@ -70,6 +70,7 @@ def get_repository_data():
     """
     获取repository需要的数据
     """
+    print(111)
     return {}
 
 
