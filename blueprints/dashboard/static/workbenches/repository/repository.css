@@ -38,7 +38,7 @@
 
 .repository-content .repository-content-description {
     font-size: 14px;
-    margin: 0 0 0 2px;
+    margin: 0 0 0 4px;
     display: flex;
     align-items: center;
 }
@@ -49,7 +49,6 @@
     display: flex;
     align-items: center;
     font-size: 12px;
-    margin-left: -3px;
     gap: 10px;
 }
 
