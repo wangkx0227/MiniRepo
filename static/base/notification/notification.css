@@ -1,13 +1,13 @@
 /*手机端自适应-有点小问题*/
-@media (max-width: 768px) {
-    .main-interface-notification {
-        width: 300px;
-        margin-left: 115px;
-    }
-    .notification-content-circular-progress{
-        left: 75% !important;
-    }
-}
+/*@media (max-width: 768px) {*/
+/*    .main-interface-notification {*/
+/*        width: 300px;*/
+/*        margin-left: 115px;*/
+/*    }*/
+/*    .notification-content-circular-progress{*/
+/*        left: 75% !important;*/
+/*    }*/
+/*}*/
 
 .main-interface-notification {
     min-height: 180px;
