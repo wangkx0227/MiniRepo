@@ -72,7 +72,8 @@ def get_repository_data():
     """
     data = [
         {
-            "type_name": "私有（根据仓库的属性决定）",
+            "repository_type_name": "公有（根据仓库的属性决定）",
+            "repository_type_value": 0,
             "user_name": "不会换牙的鲨鱼",
             "repository_path_name": "MiniRepo",
             "repository_path_url": "#",
@@ -84,7 +85,8 @@ def get_repository_data():
             "repository_recently_time": "6分钟前",
         },
         {
-            "type_name": "私有（根据仓库的属性决定）",
+            "repository_type_name": "私有（根据仓库的属性决定）",
+            "repository_type_value": 1,
             "user_name": "不会换牙的鲨鱼",
             "repository_path_name": "MiniRepo",
             "repository_path_url": "#",
@@ -96,7 +98,8 @@ def get_repository_data():
             "repository_recently_time": "6分钟前",
         },
         {
-            "type_name": "私有（根据仓库的属性决定）",
+            "repository_type_name": "公有（根据仓库的属性决定）",
+            "repository_type_value": 0,
             "user_name": "不会换牙的鲨鱼",
             "repository_path_name": "MiniRepo",
             "repository_path_url": "#",
