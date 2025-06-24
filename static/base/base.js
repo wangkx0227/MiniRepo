@@ -1,5 +1,5 @@
 // 进度条
-NProgress.configure({ showSpinner: false, trickleSpeed: 200 });
+NProgress.configure({showSpinner: false, trickleSpeed: 200});
 
 // 侧边栏抽屉控制显示
 const Drawer = document.querySelector("#drawer"); // 抽屉
@@ -8,24 +8,33 @@ localStorage.setItem("SidebarDisplayProperties", "show"); // 初始化页面侧�
 const InterfaceMenuTip = document.getElementById("interface_menu_tip"); // 侧边栏提示
 // 侧边栏-按钮 Drawer.toggle();
 DrawerTriggerBut.addEventListener("click", () => {
-  Drawer.toggle();
-  const SidebarDisplayPropertiesStatus = localStorage.getItem(
-    "SidebarDisplayProperties"
-  );
-  if (SidebarDisplayPropertiesStatus === "hide") {
-    InterfaceMenuTip.innerText = "隐藏侧边栏";
-    localStorage.setItem("SidebarDisplayProperties", "show");
-  } else {
-    InterfaceMenuTip.innerText = "展开侧边栏";
-    localStorage.setItem("SidebarDisplayProperties", "hide");
-  }
+    Drawer.toggle();
+    const SidebarDisplayPropertiesStatus = localStorage.getItem(
+        "SidebarDisplayProperties"
+    );
+    if (SidebarDisplayPropertiesStatus === "hide") {
+        InterfaceMenuTip.innerText = "隐藏侧边栏";
+        localStorage.setItem("SidebarDisplayProperties", "show");
+    } else {
+        InterfaceMenuTip.innerText = "展开侧边栏";
+        localStorage.setItem("SidebarDisplayProperties", "hide");
+    }
 });
 
-// NProgress加载函数-ajax异步时调用
+// NProgress加载函数-ajax异步时调用-加载效果
 function NProgressLongin() {
-  NProgress.start(); // 开启加载
-  return function () {
-    // 返回关闭调用函数，当执行返回结果后结束加载
-    NProgress.done();
-  };
+    NProgress.start(); // 开启加载
+    const mainContent = document.querySelector("body");
+    const overlay = document.createElement('div');
+    overlay.classList.add("overlay-loader");
+    const circular = document.createElement('s-circular-progress');
+    circular.indeterminate = true;
+    circular.classList.add("circular");
+    overlay.appendChild(circular);
+    mainContent.appendChild(overlay)
+    return function () {
+        // 返回关闭调用函数，当执行返回结果后结束加载
+        mainContent.removeChild(overlay);
+        NProgress.done();
+    };
 }
