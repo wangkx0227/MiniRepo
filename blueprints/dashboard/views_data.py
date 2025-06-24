@@ -70,8 +70,45 @@ def get_repository_data():
     """
     获取repository需要的数据
     """
-
-    return {}
+    data = [
+        {
+            "type_name": "私有（根据仓库的属性决定）",
+            "user_name": "不会换牙的鲨鱼",
+            "repository_path_name": "MiniRepo",
+            "repository_path_url": "#",
+            "see_repository_number": 15,
+            "start_repository_number": 10,
+            "fork_repository_number": 6,
+            "repository_description": "代码仓库项目",
+            "repository_code_language": "Python",
+            "repository_recently_time": "6分钟前",
+        },
+        {
+            "type_name": "私有（根据仓库的属性决定）",
+            "user_name": "不会换牙的鲨鱼",
+            "repository_path_name": "MiniRepo",
+            "repository_path_url": "#",
+            "see_repository_number": 15,
+            "start_repository_number": 10,
+            "fork_repository_number": 6,
+            "repository_description": "代码仓库项目",
+            "repository_code_language": "Python",
+            "repository_recently_time": "6分钟前",
+        },
+        {
+            "type_name": "私有（根据仓库的属性决定）",
+            "user_name": "不会换牙的鲨鱼",
+            "repository_path_name": "MiniRepo",
+            "repository_path_url": "#",
+            "see_repository_number": 15,
+            "start_repository_number": 10,
+            "fork_repository_number": 6,
+            "repository_description": "代码仓库项目",
+            "repository_code_language": "Python",
+            "repository_recently_time": "6分钟前",
+        }
+    ]
+    return data
 
 
 def get_analysis_data():
