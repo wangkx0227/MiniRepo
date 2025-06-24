@@ -211,6 +211,7 @@ function EventLineRendering(LineDataList, dataExists = false) {
 // 贡献度-日期选择框事项（根据日期，展示贡献度-动态） - 请求后端
 contributeYearSelect.addEventListener('change', function () {
     const year = this.value;
+    const loader = NProgressLongin(); // 开启加载
     fetch(`/dashboard/api/annual_contribution_data?year=${year}`, {
         method: 'GET',
         headers: {
@@ -223,6 +224,11 @@ contributeYearSelect.addEventListener('change', function () {
             let eventData = data.data.event_data;
             contributionRendering(contributionData, year); // 热力图数据
             EventLineRendering(eventData, true); // 动态列表数据
+        })
+        .finally(() => {
+            setTimeout(() => {
+                loader();
+            }, 12000)
         });
 });
 
