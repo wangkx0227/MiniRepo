@@ -136,3 +136,5 @@ class DynamicTimelineDataApi(BaseResource):
             #         }]
             # },
         ]
+
+# 仓库搜索与下拉框

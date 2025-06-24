@@ -1,149 +1,162 @@
 {% extends 'dashboard/workbenches.html' %}
 <!-- {{ super() }} 继承父类的内容不重写,而是增加 -->
 {% block main_navigation_bar %}
-    {{ super() }}
-    <span>/</span>
-    <span><a href="javascript:void(0);">仓库</a></span>
+{{ super() }}
+<span>/</span>
+<span><a href="javascript:void(0);">仓库</a></span>
 {% endblock main_navigation_bar %}
 {% block css %}
-    <link rel="stylesheet"
-          href="{{ url_for('dashboard_page.static', filename='workbenches/repository/repository.css') }}">
+<link rel="stylesheet"
+      href="{{ url_for('dashboard_page.static', filename='workbenches/repository/repository.css') }}">
 {% endblock css %}
 {% block workbenches_content %}
-    <div class="main-repository">
-        <div class="repository-head">
-            <div class="repository-head-select">
-                <s-picker label="展示类型" id="repositoryTypeSelect">
-                    <s-picker-item value="all">全部</s-picker-item>
-                    <s-picker-item value="personal">我自己的</s-picker-item>
-                    <s-picker-item value="joined">我参与的</s-picker-item>
-                    <s-picker-item value="forked">Forks</s-picker-item>
-                    <s-picker-item value="stopped_closed">暂停/关闭</s-picker-item>
-                </s-picker>
-            </div>
-            <div class="repository-head-search">
-                <s-text-field label="快速搜索" id="SearchInput" value="">
-                    <s-icon slot="start" name="search"></s-icon>
-                    <s-icon-button slot="end" id="clearBtn">
-                        <s-icon name="close"></s-icon>
-                    </s-icon-button>
-                </s-text-field>
-            </div>
+<div class="main-repository">
+    <div class="repository-head">
+        <div class="repository-head-select">
+            <s-picker label="展示类型" id="repositoryTypeSelect">
+                <s-picker-item value="all">全部</s-picker-item>
+                <s-picker-item value="personal">我自己的</s-picker-item>
+                <s-picker-item value="joined">我参与的</s-picker-item>
+                <s-picker-item value="forked">Forks</s-picker-item>
+                <s-picker-item value="stopped_closed">暂停/关闭</s-picker-item>
+            </s-picker>
         </div>
-        <div class="repository-content">
-            <ul class="repository-content-ul">
-                <s-divider style="margin: 0"></s-divider>
-                <li class="repository-content-li">
-                    <div class="repository-content-title">
-                        <div style="display: flex">
-                            <s-tooltip align="right">
-                                <s-icon slot="trigger">
-                                    <s2-icon name="repository_locked"></s2-icon>
-                                </s-icon>
-                                私有（根据仓库的属性决定）
-                            </s-tooltip>
-                            <h4 class="fonts-color-major">
-                                <a href="">不会换牙的鲨鱼/MiniRepo</a>
-                            </h4>
-                        </div>
-                        <ul class="repository-content-title-ul fonts-color-minor">
-                            <li class="watch">
-                                <s-icon>
-                                    <s2-icon name="repository_eye"></s2-icon>
-                                </s-icon>
-                                <span>8</span>
-                            </li>
-                            <li class="start">
-                                <s-icon>
-                                    <s2-icon name="repository_start"></s2-icon>
-                                </s-icon>
-                                <span>8</span>
-                            </li>
-                            <li class="fork">
-                                <s-icon>
-                                    <s2-icon name="repository_fork"></s2-icon>
-                                </s-icon>
-                                <span>8</span>
-                            </li>
-                        </ul>
+        <div class="repository-head-search">
+            <s-text-field label="快速搜索" id="SearchInput" value="">
+                <s-icon slot="start" name="search"></s-icon>
+                <s-icon-button slot="end" id="clearBtn">
+                    <s-icon name="close"></s-icon>
+                </s-icon-button>
+            </s-text-field>
+        </div>
+    </div>
+    <div class="repository-content">
+        <ul class="repository-content-ul">
+            <s-divider style="margin: 0"></s-divider>
+            <li class="repository-content-li">
+                <div class="repository-content-title">
+                    <div style="display: flex">
+                        <s-tooltip align="right">
+                            <s-icon slot="trigger">
+                                <s2-icon name="repository_locked"></s2-icon>
+                            </s-icon>
+                            私有（根据仓库的属性决定）
+                        </s-tooltip>
+                        <h4 class="fonts-color-major">
+                            <a href="">不会换牙的鲨鱼/MiniRepo</a>
+                        </h4>
                     </div>
-                    <div class="repository-content-description fonts-color-routine">
-                        <span>简介：</span>
-                        <s-tooltip align="bottom">
+                    <ul class="repository-content-title-ul fonts-color-minor">
+                        <li class="watch">
+                            <s-icon>
+                                <s2-icon name="repository_eye"></s2-icon>
+                            </s-icon>
+                            <span>8</span>
+                        </li>
+                        <li class="start">
+                            <s-icon>
+                                <s2-icon name="repository_start"></s2-icon>
+                            </s-icon>
+                            <span>8</span>
+                        </li>
+                        <li class="fork">
+                            <s-icon>
+                                <s2-icon name="repository_fork"></s2-icon>
+                            </s-icon>
+                            <span>8</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="repository-content-description fonts-color-routine">
+                    <span>简介：</span>
+                    <s-tooltip align="bottom">
                         <span class="repository-content-description-introduction"
                               slot="trigger">代码仓库项目sadasdasdqweasd1321321321321sadada11111111111111111111111111111111111111111111111111111111111111111111111
                         </span>
-                            悬浮显示
-                        </s-tooltip>
-                    </div>
-                    <div class="fonts-color-minor repository-content-language">
-                    <span>
+                        悬浮显示
+                    </s-tooltip>
+                </div>
+                <div class="fonts-color-minor repository-content-language">
+                    <div>
                         <s-icon>
                             <s2-icon name="repository_code"></s2-icon>
                         </s-icon>
-                        Python
-                    </span>
-                        <span>最近更新：6分钟前</span>
+                        <span>Python</span>
                     </div>
-                </li>
-                <s-divider style="margin: 0"></s-divider>
-                <li class="repository-content-li">
-                    <div class="repository-content-title">
-                        <div style="display: flex">
-                            <s-tooltip align="right">
-                                <s-icon slot="trigger">
-                                    <s2-icon name="repository_unlocked"></s2-icon>
-                                </s-icon>
-                                私有（根据仓库的属性决定）
-                            </s-tooltip>
-                            <h4 class="fonts-color-major ">
-                                <a href="">不会换牙的鲨鱼/MiniRepo</a>
-                            </h4>
-                        </div>
-                        <ul class="repository-content-title-ul fonts-color-minor">
-                            <li class="watch">
-                                <s-icon>
-                                    <s2-icon name="repository_eye"></s2-icon>
-                                </s-icon>
-                                <span>8</span>
-                            </li>
-                            <li class="start">
-                                <s-icon>
-                                    <s2-icon name="repository_start"></s2-icon>
-                                </s-icon>
-                                <span>8</span>
-                            </li>
-                            <li class="fork">
-                                <s-icon>
-                                    <s2-icon name="repository_fork"></s2-icon>
-                                </s-icon>
-                                <span>8</span>
-                            </li>
-                        </ul>
+                    <div>
+                        <s-icon>
+                            <s2-icon name="repository_time"></s2-icon>
+                        </s-icon>
+                        <span>6分钟前</span>
                     </div>
-                    <div class="repository-content-description fonts-color-routine">
-                        <span>简介：</span>
-                        <s-tooltip align="bottom">
+                    <div>
+                        <s-icon>
+                            <s2-icon name="repository_attachment"></s2-icon>
+                        </s-icon>
+                        <span>私有</span>
+                    </div>
+
+                </div>
+            </li>
+            <s-divider style="margin: 0"></s-divider>
+            <li class="repository-content-li">
+                <div class="repository-content-title">
+                    <div style="display: flex">
+                        <s-tooltip align="right">
+                            <s-icon slot="trigger">
+                                <s2-icon name="repository_unlocked"></s2-icon>
+                            </s-icon>
+                            私有（根据仓库的属性决定）
+                        </s-tooltip>
+                        <h4 class="fonts-color-major ">
+                            <a href="">不会换牙的鲨鱼/MiniRepo</a>
+                        </h4>
+                    </div>
+                    <ul class="repository-content-title-ul fonts-color-minor">
+                        <li class="watch">
+                            <s-icon>
+                                <s2-icon name="repository_eye"></s2-icon>
+                            </s-icon>
+                            <span>8</span>
+                        </li>
+                        <li class="start">
+                            <s-icon>
+                                <s2-icon name="repository_start"></s2-icon>
+                            </s-icon>
+                            <span>8</span>
+                        </li>
+                        <li class="fork">
+                            <s-icon>
+                                <s2-icon name="repository_fork"></s2-icon>
+                            </s-icon>
+                            <span>8</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="repository-content-description fonts-color-routine">
+                    <span>简介：</span>
+                    <s-tooltip align="bottom">
                         <span class="repository-content-description-introduction"
                               slot="trigger">代码仓库项目sadasdasdqweasd1321321321321sadada</span>
-                            代码仓库项目sadasdasdqweasd1321321321321sadada
-                        </s-tooltip>
-                    </div>
-                    <div class="fonts-color-minor repository-content-language">
+                        代码仓库项目sadasdasdqweasd1321321321321sadada
+                    </s-tooltip>
+                </div>
+                <div class="fonts-color-minor repository-content-language">
                     <span><s-icon>
                         <s2-icon name="repository_code"></s2-icon>
                     </s-icon>
                         Python
                     </span>
-                        <span>最近更新：6分钟前</span>
-                    </div>
-                </li>
-            </ul>
-            <!--        <s-empty style="min-height: 70vh">暂时没有数据</s-empty>-->
-        </div>
+                    <span>最近更新：6分钟前</span>
+                    <span>类型：私有</span>
+                </div>
+            </li>
+            <!--                <s-empty style="min-height: 70vh">暂时没有数据</s-empty>-->
+        </ul>
     </div>
+</div>
 {% endblock workbenches_content %}
 {% block js_end %}
-    {{ super() }}
-    <script src="{{ url_for('dashboard_page.static', filename='workbenches/repository/repository.js') }}"></script>
+{{ super() }}
+<script src="{{ url_for('dashboard_page.static', filename='workbenches/repository/repository.js') }}"></script>
 {% endblock js_end %}
