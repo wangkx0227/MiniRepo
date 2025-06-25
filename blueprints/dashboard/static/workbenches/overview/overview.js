@@ -228,7 +228,7 @@ contributeYearSelect.addEventListener('change', function () {
         .finally(() => {
             setTimeout(() => {
                 loader();
-            }, 12000)
+            }, 2000) // 测试
         });
 });
 
