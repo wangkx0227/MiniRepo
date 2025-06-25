@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='lib/nprogress/nprogress.css') }}"/>
 
 
-    <script src="{{ url_for('static', filename='base/api.js') }}"></script>
     <!-- 菜单栏路由函数 -->
     <script src="{{ url_for('static', filename='base/menus/menuPublic.js') }}"></script>
     <!-- 菜单栏的icon图标 -->
@@ -24,7 +23,6 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='base/base.css') }}"/>
     <link rel="stylesheet" href="{{ url_for('static', filename='base/public.css') }}"/>
     <link rel="stylesheet" href="{{ url_for('static', filename='base/notification/notification.css') }}"/>
-
 
 
     <!-- 导入css样式表 -->
@@ -118,7 +116,8 @@
         <s-appbar style="width: 100%;background-color: #FFFFFF;border-bottom: 1px solid #eceef0;">
             <!--左侧菜单按钮-->
             <s-tooltip align="bottom" slot="navigation">
-                <s-icon-button slot="trigger" id="DrawerTriggerBut"  {% if page_show_status  %} disabled="true" {% endif %} >
+                <s-icon-button slot="trigger" id="DrawerTriggerBut" {% if page_show_status %} disabled="true" {% endif
+                               %}>
                     <s2-icon name="interface_menu_fold"></s2-icon>
                 </s-icon-button>
                 <span id="interface_menu_tip">隐藏侧边栏</span>
@@ -260,6 +259,8 @@
 <script src="{{ url_for('static', filename='base/base.js') }}"></script>
 <script src="{{ url_for('static', filename='base/menus/menuRoutes.js') }}"></script>
 <script src="{{ url_for('static', filename='base/notification/notification.js') }}"></script>
+<!--接口封装函数-->
+<script src="{{ url_for('static', filename='base/api.js') }}"></script>
 
 {% block js_end %}
 {% endblock js_end %}
