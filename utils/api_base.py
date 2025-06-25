@@ -1,4 +1,4 @@
-from flask import jsonify, session
+from flask import jsonify, session,Response
 from flask_restful import Resource
 
 import traceback
@@ -93,6 +93,7 @@ class BaseResource(Resource):
         """
         统一成功响应消息
         """
+
         return jsonify({
             "code": code,
             "message": message,

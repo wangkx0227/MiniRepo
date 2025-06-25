@@ -211,25 +211,17 @@ function EventLineRendering(LineDataList, dataExists = false) {
 // 贡献度-日期选择框事项（根据日期，展示贡献度-动态） - 请求后端
 contributeYearSelect.addEventListener('change', function () {
     const year = this.value;
-    const loader = NProgressLongin(); // 开启加载
-    fetch(`/dashboard/api/annual_contribution_data?year=${year}`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-    })
-        .then(res => res.json())
-        .then(data => {
-            let contributionData = data.data.contribution_data;
-            let eventData = data.data.event_data;
+    let url = `/dashboard/api/annual_contribution_data?year=${year}`;
+    apiRequest(url)
+        .then(response => {
+            let contributionData = response.data.contribution_data;
+            let eventData = response.data.event_data;
             contributionRendering(contributionData, year); // 热力图数据
             EventLineRendering(eventData, true); // 动态列表数据
         })
-        .finally(() => {
-            setTimeout(() => {
-                loader();
-            }, 2000) // 测试
-        });
+        .catch((error) => {
+            console.log(error)
+        })
 });
 
 
@@ -242,19 +234,11 @@ TimeLineLoadMore.addEventListener("click", () => {
     if (contributeYearSelectValue) {
         url = url + `&year=${contributeYearSelectValue}`
     }
-
     // 新增一个变量用于标记是否还有更多
     let hasMore = true;
-
-    fetch(url, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-    })
-        .then(res => res.json())
-        .then(data => {
-            let LineDataList = data.data;
+    apiRequest(url)
+        .then(response => {
+            let LineDataList = response.data;
             if (Array.isArray(LineDataList) && LineDataList.length === 0) {
                 TimeLineLoadMore.disabled = true;
                 TimeLineLoadMore.innerText = "没有更多";
@@ -262,6 +246,9 @@ TimeLineLoadMore.addEventListener("click", () => {
             } else {
                 EventLineRendering(LineDataList);
             }
+        })
+        .catch((error) => {
+            console.log(error)
         })
         .finally(() => {
             if (hasMore) {

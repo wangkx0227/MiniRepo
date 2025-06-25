@@ -23,24 +23,15 @@ async function apiRequest(url, options = {}) {
         if (!response.ok) {
             const error = new Error(`HTTP error! status: ${response.status}`);
             error.status = response.status;
-            throw error;
+            throw error; // 输出错误，被catch捕获
         }
-
         // 解析响应数据
         return await response.json();
     } catch (error) {
-        console.error('Fetch error:', error);
-        throw error;
+        throw error; // 向上传递，被调用函数的catch捕获
     } finally {
         setTimeout(() => {
             loader();
         }, 2000) // 测试
     }
 }
-
-apiRequest("/dashboard/api/annual_contribution_data?year=2024", {
-    method: 'GET', headers: {}
-})
-    .then((res) => {
-        console.log(res)
-    })
