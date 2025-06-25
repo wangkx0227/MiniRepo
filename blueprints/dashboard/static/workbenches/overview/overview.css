@@ -2,45 +2,29 @@
 .calendar-wrap {
     display: flex;
     align-items: flex-start;
+    justify-content: center;
 }
 
 
-/*.calendar {*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*}*/
-
-/*.months {*/
-/*    display: flex;*/
-/*    margin-left: 24px;*/
-/*}*/
-
-/*.month-label {*/
-/*    flex: 1;*/
-/*    text-align: left;*/
-/*    font-size: 10px;*/
-/*    color: #888;*/
-/*    min-width: 14px;*/
-/*}*/
-
 .calendar {
-    display: inline-block; /* 改为 inline-block 避免被父容器截断 */
-    min-width: 100%; /* 强制最小宽度与父容器一致 */
+    display: flex;
+    flex-direction: column;
 }
 
 .months {
     display: flex;
-    margin-left: 0; /* 移除左侧间距 */
-    width: 100%; /* 充满父容器 */
+    margin-left: 0;
+    width: 100%;
 }
 
 .month-label {
     flex: 1;
-    text-align: center; /* 居中显示月份 */
+    text-align: left;
     font-size: 10px;
     color: #888;
-    min-width: 0; /* 允许缩小 */
+    min-width: 14px;
 }
+
 
 
 .weeks {
@@ -63,14 +47,10 @@
     cursor: pointer;
 }
 
-/*.day {*/
-/*    width: calc(100% / 53); !* 按53周（一年）平均分配宽度 *!*/
-/*    height: 12px; !* 固定高度 *!*/
-/*    margin: 1px;*/
-/*    border-radius: 2px;*/
-/*    background: #ebedf0;*/
-/*    box-sizing: border-box;*/
-/*}*/
+.day:hover {
+    transform: scale(1);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
 
 /*星期显示标签样式*/
 .weekdays {
