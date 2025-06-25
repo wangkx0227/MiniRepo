@@ -21,3 +21,9 @@ repositoryTypeSelect.addEventListener("change", function () {
     console.log(repositoryType)
 
 })
+
+
+sober.Snackbar.align = "top";
+console.log(sober.Snackbar.arguments)
+console.log(sober.Snackbar.prototype)
+sober.Snackbar.builder("111")

@@ -137,4 +137,10 @@ class DynamicTimelineDataApi(BaseResource):
             # },
         ]
 
+
 # 仓库搜索与下拉框
+class RepositoryDataApi(BaseResource):
+    def get(self):
+        repository_type = request.args.get('type', 'all')
+        repository_search = request.args.get('search', None)
+        return []
