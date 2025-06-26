@@ -180,11 +180,20 @@ const iconMap = {
         </path>
     </svg>
   `,
-    index_sidebar_close: `
-    <svg t="1750906168247"  viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="14215" width="24" height="24">
-        <path d="M85.312 170.688h853.376V256H85.312V170.688z m0 298.624h597.376v85.376H85.312V469.312zM128 768h-42.688v85.312h853.376V768H128z" p-id="14216">
-        </path>
-    </svg>
+    index_theme_sunny: `
+   <svg aria-label="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor">
+                    <circle cx="12" cy="12" r="4"></circle>
+                    <path d="M12 2v2"></path>
+                    <path d="M12 20v2"></path>
+                    <path d="m4.93 4.93 1.41 1.41"></path>
+                    <path d="m17.66 17.66 1.41 1.41"></path>
+                    <path d="M2 12h2"></path>
+                    <path d="M20 12h2"></path>
+                    <path d="m6.34 17.66-1.41 1.41"></path>
+                    <path d="m19.07 4.93-1.41 1.41"></path>
+                </g>
+            </svg>
   `,
 };
 
