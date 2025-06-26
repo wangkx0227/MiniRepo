@@ -19,7 +19,8 @@ def workbenches():
         'repository': 'dashboard/workbenches/repository.html',
         'analysis': 'dashboard/workbenches/analysis.html',
         'snippet': 'dashboard/workbenches/snippet.html',
-        'overview': 'dashboard/workbenches/overview.html'
+        'overview': 'dashboard/workbenches/overview.html',
+        '123': 'bases.html'
     }
     # 默认用 overview，无论是登录跳转还是点击工作台
     template = template_map.get(tab, 'dashboard/workbenches/overview.html')

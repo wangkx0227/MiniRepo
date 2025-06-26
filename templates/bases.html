@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="{{ url_for('static', filename='daisyui.css') }}" rel="stylesheet" type="text/css"/>
+    <script src="{{ url_for('static', filename='tailwind.js') }}"></script>
+    <script src="{{ url_for('static', filename='base/menus/menuIcon.js') }}"></script>
+    <style>
+        .navbar .tooltip .flex-none .drawer ul .icon {
+            width: 16px;
+            height: 16px;
+        }
+
+        .navbar .flex-one .dropdown ul .icon {
+            width: 14px;
+            height: 14px;
+        }
+
+        .navbar .divider {
+            margin: 0;
+        }
+    </style>
+<body>
+<!--
+背景 bg-颜色-程度
+字体 text-颜色-程度
+
+text-gray-950 主要字体
+text-gray-700 一般字体
+text-gray-500 次要字体
+-->
+<!--主体-->
+<div class="flex flex-col min-h-screen">
+    <div class="navbar bg-base-100 shadow-sm">
+        <div class="tooltip tooltip-bottom" data-tip="菜单">
+            <div class="flex-none">
+                <!--抽屉，侧边栏-->
+                <div class="drawer">
+                    <input id="my-drawer" type="checkbox" class="drawer-toggle"/>
+                    <div class="drawer-content">
+                        <label for="my-drawer" class="btn btn-square btn-ghost">
+                            <s2-icon name="index_sidebar_menu"></s2-icon>
+                        </label>
+                    </div>
+                    <div class="drawer-side">
+                        <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay">111</label>
+                        <ul class="menu  menu-md bg-base-200 text-base-content min-h-full w-80 p-4">
+                            <summary>菜单</summary>
+                            <li>
+                                <a>
+                                    <s2-icon name="interface_work"></s2-icon>
+                                    工作台
+                                </a>
+                            </li>
+                            <li><a>
+                                <s2-icon name="interface_file_code"></s2-icon>
+                                项目</a></li>
+                            <li><a>
+                                <s2-icon name="interface_user_group"></s2-icon>
+                                群组</a></li>
+                            <li><a>
+                                <s2-icon name="interface_merge"></s2-icon>
+                                合并请求</a></li>
+                            <li><a>
+                                <s2-icon name="interface_export"></s2-icon>
+                                代办事项列表</a></li>
+                            <div class="divider"></div>
+                            <summary>其他</summary>
+                            <li>
+                                <details open>
+                                    <summary>
+                                        <s2-icon name="interface_setting"></s2-icon>
+                                        设置
+                                    </summary>
+                                    <ul>
+                                        <li><a>
+                                            <s2-icon name="interface_user_setting"></s2-icon>
+                                            账号设置</a></li>
+                                        <li><a>
+                                            <s2-icon name="interface_secured"></s2-icon>
+                                            安全设置</a></li>
+                                    </ul>
+                                </details>
+                            </li>
+                            <li><a>
+                                <s2-icon name="interface_export"></s2-icon>
+                                菜单-001</a></li>
+                            <li><a>
+                                <s2-icon name="interface_export"></s2-icon>
+                                菜单-002</a></li>
+                            <li><a>
+                                <s2-icon name="interface_export"></s2-icon>
+                                菜单-003</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flex-1 text-gray-950">
+            <a class="btn btn-ghost text-xl " href="#">GitMiniRepo</a>
+        </div>
+        <div class="flex-one">
+            <div class="dropdown dropdown-end">
+                <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
+                    <s2-icon name="interface_notification"></s2-icon>
+                </div>
+                <div class="dropdown-content bg-base-200 rounded-box z-1 mt-1 w-80 drop-shadow-xl/50">
+                    <div class="tabs tabs-border tab-active	">
+                        <input type="radio" name="notificationTab" class="tab" aria-label="@我"/>
+                        <div class="tab-content bg-base-100 border-base-300 p-6">
+                            第一条消息
+                            <div class="divider"></div>
+                        </div>
+                        <input type="radio" name="notificationTab" class="tab" aria-label="消息" checked="checked"/>
+                        <div class="tab-content bg-base-100 border-base-300 p-6">
+                            第一条消息
+                            <div class="divider"></div>
+                        </div>
+                        <input type="radio" name="notificationTab" class="tab" aria-label="其他"/>
+                        <div class="tab-content bg-base-100 border-base-300 p-6">
+                            第一条消息
+                            <div class="divider"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="dropdown dropdown-end">
+                <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
+                    <s2-icon name="interface_add"></s2-icon>
+                </div>
+                <ul tabindex="0"
+                    class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-1 w-52 p-2 drop-shadow-xl/50">
+                    <li>
+                        <a>
+                            <s2-icon name="interface_add_menu_add"></s2-icon>
+                            新建项目/仓库
+                        </a>
+                    </li>
+                    <li><a>
+                        <s2-icon name="interface_add_menu_group"></s2-icon>
+                        新建群组
+                    </a></li>
+                    <li><a>
+                        <s2-icon name="interface_add_menu_code"></s2-icon>
+                        新建代码片段</a></li>
+                </ul>
+            </div>
+            <div class="dropdown dropdown-end">
+                <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+                    <div class="avatar avatar-placeholder">
+                        <div class="bg-neutral text-neutral-content w-8 rounded-full">
+                            <!--有头像显示头像路径，没有头像显示us-->
+                            <span>US</span>
+                            <!--<img src="https://img.daisyui.com/images/profile/demo/idiotsandwich@192.webp"/>-->
+                        </div>
+                    </div>
+                </div>
+                <ul tabindex="0"
+                    class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-1 w-52 p-2 drop-shadow-xl/50">
+                    <li><a>
+                        <s2-icon name="user_menu_star"></s2-icon>
+                        我的关注</a></li>
+                    <li><a>
+                        <s2-icon name="user_menu_home"></s2-icon>
+                        我的主页</a></li>
+                    <li><a>
+                        <s2-icon name="user_menu_code"></s2-icon>
+                        我的仓库</a></li>
+                    <div class="divider"></div>
+                    <li><a>
+                        <s2-icon name="user_menu_export"></s2-icon>
+                        代办</a></li>
+                    <li><a>
+                        <s2-icon name="user_menu_notification"></s2-icon>
+                        与我相关</a></li>
+                    <li><a>
+                        <s2-icon name="user_menu_setting"></s2-icon>
+                        个人设置</a></li>
+                    <div class="divider"></div>
+                    <li><a>
+                        <s2-icon name="user_menu_logout"></s2-icon>
+                        退出登录</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="main flex flex-1 flex-col px-4 pb-4">
+        <!--导航条-->
+        <div class="breadcrumbs text-sm text-gray-500 ">
+            <ul>
+                <span>当前位置：</span>
+                <li><a>菜单</a></li>
+                <li><a>工作台</a></li>
+                <li>概览</li>
+            </ul>
+        </div>
+        <!--主要内容-->
+        <div class="flex-1  rounded-lg p-4 overflow-auto">
+            111
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
