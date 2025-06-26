@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="{{ url_for('static', filename='daisyui.css') }}" rel="stylesheet" type="text/css"/>
+    <script src="{{ url_for('static', filename='tailwind.js') }}"></script>
+    <script src="{{ url_for('static', filename='base/menus/menuIcon.js') }}"></script>
+    <style>
+        .navbar .flex-none .drawer ul .icon{
+            width: 16px;
+            height: 16px;
+        }
+    </style>
+<body>
+<div class="navbar bg-base-100 shadow-sm">
+    <div class="flex-none">
+        <!--抽屉，侧边栏-->
+        <div class="drawer">
+            <input id="my-drawer" type="checkbox" class="drawer-toggle"/>
+            <div class="drawer-content">
+                <label for="my-drawer" class="btn btn-square btn-ghost">
+                    <s2-icon name="index_sidebar_menu"></s2-icon>
+                </label>
+            </div>
+            <div class="drawer-side">
+                <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay">111</label>
+                <ul class="menu  menu-md bg-base-200 text-base-content min-h-full w-80 p-4">
+                    <summary>菜单</summary>
+                    <li>
+                        <a>
+                            <s2-icon name="interface_work"></s2-icon>
+                            工作台
+                        </a>
+                    </li>
+                    <li><a>
+                        <s2-icon name="interface_file_code"></s2-icon>
+                        项目</a></li>
+                    <li><a>
+                        <s2-icon name="interface_user_group"></s2-icon>
+                        群组</a></li>
+                    <li><a>
+                        <s2-icon name="interface_merge"></s2-icon>
+                        合并请求</a></li>
+                    <li><a>
+                        <s2-icon name="interface_export"></s2-icon>
+                        代办事项列表</a></li>
+                    <summary>其他</summary>
+                    <li>
+                        <details open>
+                            <summary>
+                                <s2-icon name="interface_setting"></s2-icon>
+                                设置
+                            </summary>
+                            <ul>
+                                <li><a>
+                                    <s2-icon name="interface_user_setting"></s2-icon>
+                                    账号设置</a></li>
+                                <li><a>
+                                    <s2-icon name="interface_secured"></s2-icon>
+                                    安全设置</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                    <li><a><s2-icon name="interface_export"></s2-icon>菜单-001</a></li>
+                    <li><a><s2-icon name="interface_export"></s2-icon>菜单-002</a></li>
+                    <li><a><s2-icon name="interface_export"></s2-icon>菜单-003</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="flex-1">
+        <a class="btn btn-ghost text-xl " href="#">GitMiniRepo</a>
+    </div>
+    <div class="flex-one">
+        <button class="btn btn-ghost btn-circle">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                 stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
+        </button>
+        <button class="btn btn-ghost btn-circle">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                 stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+            </svg>
+        </button>
+        <div class="dropdown dropdown-end">
+            <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+                <div class="w-10 rounded-full">
+                    <img
+                            alt="Tailwind CSS Navbar component"
+                            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"/>
+                </div>
+            </div>
+            <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                <li><a>我的关注</a></li>
+                <li><a>我的主页</a></li>
+                <li><a>我的仓库</a></li>
+                <div class="divider" style="margin:0"></div>
+                <li><a>代办</a></li>
+                <li><a>与我相关</a></li>
+                <li><a>个人设置</a></li>
+                <div class="divider" style="margin:0"></div>
+                <li><a>退出登录</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>
