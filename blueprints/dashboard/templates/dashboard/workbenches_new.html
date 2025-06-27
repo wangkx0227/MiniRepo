@@ -1,0 +1,52 @@
+{% extends 'bases.html' %}
+{% block title %}
+{{ super() }}
+工作台
+{% endblock %}
+{% block main_navigation_bar %}
+{{ super() }}
+<li>概览</li>
+{% endblock main_navigation_bar %}
+<!--主体内容-->
+{% block main_content %}
+<div class="content">
+    <!-- name of each tab group should be unique -->
+    <div class="tabs  tabs-border">
+        <label class="tab">
+            <input type="radio" name="my_tabs_4" checked="checked"/>
+            <s2-icon name="workbenches_overview"></s2-icon>
+            概览
+        </label>
+        <div class="tab-content bg-base-100 border-base-300 p-6">Tab content 1</div>
+
+        <label class="tab">
+            <input type="radio" name="my_tabs_4"/>
+            <s2-icon name="workbenches_repository"></s2-icon>
+            仓库
+        </label>
+        <div class="tab-content bg-base-100 border-base-300 p-6">Tab content 2</div>
+
+        <label class="tab">
+            <input type="radio" name="my_tabs_4"/>
+            <s2-icon name="workbenches_analysis"></s2-icon>
+            统计分析
+        </label>
+        <div class="tab-content bg-base-100 border-base-300 p-6">Tab content 3</div>
+
+        <label class="tab">
+            <input type="radio" name="my_tabs_4"/>
+            <s2-icon name="workbenches_snippet"></s2-icon>
+            代码片段
+        </label>
+        <div class="tab-content bg-base-100 border-base-300 p-6">Tab content 3</div>
+    </div>
+    <div>
+        {% block workbenches_content %}
+
+        {% endblock workbenches_content %}
+    </div>
+</div>
+
+{% endblock main_content %}
+
+
