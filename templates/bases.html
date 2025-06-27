@@ -8,7 +8,7 @@
     <script src="{{ url_for('static', filename='tailwind.js') }}"></script>
     <script src="{{ url_for('static', filename='base/menus/menuIcon.js') }}"></script>
     <style>
-        .navbar .tooltip .flex-none .drawer ul .icon {
+        .navbar .flex-none .drawer ul .icon {
             width: 16px;
             height: 16px;
         }
@@ -34,67 +34,65 @@ text-gray-500 次要字体
 <!--主体-->
 <div class="flex flex-col min-h-screen">
     <div class="navbar bg-base-100 shadow-sm">
-        <div class="tooltip tooltip-bottom" data-tip="菜单">
-            <div class="flex-none">
-                <!--抽屉，侧边栏-->
-                <div class="drawer">
-                    <input id="my-drawer" type="checkbox" class="drawer-toggle"/>
-                    <div class="drawer-content">
-                        <label for="my-drawer" class="btn btn-square btn-ghost">
-                            <s2-icon name="index_sidebar_menu"></s2-icon>
-                        </label>
-                    </div>
-                    <div class="drawer-side">
-                        <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay">111</label>
-                        <ul class="menu  menu-md bg-base-200 text-base-content min-h-full w-80 p-4">
-                            <summary>菜单</summary>
-                            <li>
-                                <a>
-                                    <s2-icon name="interface_work"></s2-icon>
-                                    工作台
-                                </a>
-                            </li>
-                            <li><a>
-                                <s2-icon name="interface_file_code"></s2-icon>
-                                项目</a></li>
-                            <li><a>
-                                <s2-icon name="interface_user_group"></s2-icon>
-                                群组</a></li>
-                            <li><a>
-                                <s2-icon name="interface_merge"></s2-icon>
-                                合并请求</a></li>
-                            <li><a>
-                                <s2-icon name="interface_export"></s2-icon>
-                                代办事项列表</a></li>
-                            <div class="divider"></div>
-                            <summary>其他</summary>
-                            <li>
-                                <details open>
-                                    <summary>
-                                        <s2-icon name="interface_setting"></s2-icon>
-                                        设置
-                                    </summary>
-                                    <ul>
-                                        <li><a>
-                                            <s2-icon name="interface_user_setting"></s2-icon>
-                                            账号设置</a></li>
-                                        <li><a>
-                                            <s2-icon name="interface_secured"></s2-icon>
-                                            安全设置</a></li>
-                                    </ul>
-                                </details>
-                            </li>
-                            <li><a>
-                                <s2-icon name="interface_export"></s2-icon>
-                                菜单-001</a></li>
-                            <li><a>
-                                <s2-icon name="interface_export"></s2-icon>
-                                菜单-002</a></li>
-                            <li><a>
-                                <s2-icon name="interface_export"></s2-icon>
-                                菜单-003</a></li>
-                        </ul>
-                    </div>
+        <div class="flex-none">
+            <!--抽屉，侧边栏-->
+            <div class="drawer">
+                <input id="my-drawer" type="checkbox" class="drawer-toggle"/>
+                <div class="drawer-content">
+                    <label for="my-drawer" class="btn btn-square btn-ghost">
+                        <s2-icon name="index_sidebar_menu"></s2-icon>
+                    </label>
+                </div>
+                <div class="drawer-side">
+                    <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay">111</label>
+                    <ul class="menu  menu-md bg-base-200 text-base-content min-h-full w-80 p-4">
+                        <summary>菜单</summary>
+                        <li>
+                            <a>
+                                <s2-icon name="interface_work"></s2-icon>
+                                工作台
+                            </a>
+                        </li>
+                        <li><a>
+                            <s2-icon name="interface_file_code"></s2-icon>
+                            项目</a></li>
+                        <li><a>
+                            <s2-icon name="interface_user_group"></s2-icon>
+                            群组</a></li>
+                        <li><a>
+                            <s2-icon name="interface_merge"></s2-icon>
+                            合并请求</a></li>
+                        <li><a>
+                            <s2-icon name="interface_export"></s2-icon>
+                            代办事项列表</a></li>
+                        <div class="divider"></div>
+                        <summary>其他</summary>
+                        <li>
+                            <details>
+                                <summary>
+                                    <s2-icon name="interface_setting"></s2-icon>
+                                    设置
+                                </summary>
+                                <ul>
+                                    <li><a>
+                                        <s2-icon name="interface_user_setting"></s2-icon>
+                                        账号设置</a></li>
+                                    <li><a>
+                                        <s2-icon name="interface_secured"></s2-icon>
+                                        安全设置</a></li>
+                                </ul>
+                            </details>
+                        </li>
+                        <li><a>
+                            <s2-icon name="interface_export"></s2-icon>
+                            菜单-001</a></li>
+                        <li><a>
+                            <s2-icon name="interface_export"></s2-icon>
+                            菜单-002</a></li>
+                        <li><a>
+                            <s2-icon name="interface_export"></s2-icon>
+                            菜单-003</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -106,20 +104,21 @@ text-gray-500 次要字体
                 <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
                     <s2-icon name="interface_notification"></s2-icon>
                 </div>
-                <div class="dropdown-content bg-base-200 rounded-box z-1 mt-1 w-80 drop-shadow-xl/50">
-                    <div class="tabs tabs-border tab-active	">
-                        <input type="radio" name="notificationTab" class="tab" aria-label="@我"/>
-                        <div class="tab-content bg-base-100 border-base-300 p-6">
-                            第一条消息
+                <div class="dropdown-content bg-base-200 rounded-md z-1 mt-1 w-80 h-48 drop-shadow-xl/50">
+                    <div class="tabs tabs-border tab-active	h-48">
+                        <input type="radio" name="notificationTab" class="tab" aria-label="@我" checked="checked"/>
+                        <div class="tab-content bg-base-100 border-base-300 bg-cover p-3 ">
+                             <p>第一条消息</p>
+                             <p>第一条消息</p>
                             <div class="divider"></div>
                         </div>
-                        <input type="radio" name="notificationTab" class="tab" aria-label="消息" checked="checked"/>
-                        <div class="tab-content bg-base-100 border-base-300 p-6">
+                        <input type="radio" name="notificationTab" class="tab" aria-label="消息" />
+                        <div class="tab-content bg-base-100 border-base-300 p-3">
                             第一条消息
                             <div class="divider"></div>
                         </div>
                         <input type="radio" name="notificationTab" class="tab" aria-label="其他"/>
-                        <div class="tab-content bg-base-100 border-base-300 p-6">
+                        <div class="tab-content bg-base-100 border-base-300 p-3 ">
                             第一条消息
                             <div class="divider"></div>
                         </div>
@@ -131,7 +130,7 @@ text-gray-500 次要字体
                     <s2-icon name="interface_add"></s2-icon>
                 </div>
                 <ul tabindex="0"
-                    class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-1 w-52 p-2 drop-shadow-xl/50">
+                    class="menu menu-sm dropdown-content bg-base-100 rounded-md z-1 mt-1 w-52 p-2 drop-shadow-xl/50">
                     <li>
                         <a>
                             <s2-icon name="interface_add_menu_add"></s2-icon>
@@ -158,7 +157,7 @@ text-gray-500 次要字体
                     </div>
                 </div>
                 <ul tabindex="0"
-                    class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-1 w-52 p-2 drop-shadow-xl/50">
+                    class="menu menu-sm dropdown-content bg-base-100 rounded-md z-1 mt-1 w-52 p-2 drop-shadow-xl/50">
                     <li><a>
                         <s2-icon name="user_menu_star"></s2-icon>
                         我的关注</a></li>
@@ -196,8 +195,8 @@ text-gray-500 次要字体
                 <li>概览</li>
             </ul>
         </div>
-        <!--主要内容-->
-        <div class="flex-1  rounded-lg p-4 overflow-auto">
+        <!--主要内容 borde边框-->
+        <div class="flex-1 border p-4 overflow-auto">
             111
         </div>
     </div>
