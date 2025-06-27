@@ -8,15 +8,7 @@
     <script src="{{ url_for('static', filename='tailwind.js') }}"></script>
     <script src="{{ url_for('static', filename='base/menus/menuIcon.js') }}"></script>
     <style>
-        .navbar .flex-none .drawer ul .icon {
-            width: 16px;
-            height: 16px;
-        }
 
-        .navbar .flex-one .dropdown ul .icon {
-            width: 14px;
-            height: 14px;
-        }
 
         .navbar .divider {
             margin: 0;
@@ -100,32 +92,11 @@ text-gray-500 次要字体
             <a class="btn btn-ghost text-xl " href="#">GitMiniRepo</a>
         </div>
         <div class="flex-one">
-            <div class="dropdown dropdown-end">
-                <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
-                    <s2-icon name="interface_notification"></s2-icon>
-                </div>
-                <div class="dropdown-content bg-base-200 rounded-md z-1 mt-1 w-80 h-48 drop-shadow-xl/50">
-                    <div class="tabs tabs-border tab-active	h-48">
-                        <input type="radio" name="notificationTab" class="tab" aria-label="@我" checked="checked"/>
-                        <div class="tab-content bg-base-100 border-base-300 bg-cover p-3 ">
-                             <p>第一条消息</p>
-                             <p>第一条消息</p>
-                            <div class="divider"></div>
-                        </div>
-                        <input type="radio" name="notificationTab" class="tab" aria-label="消息" />
-                        <div class="tab-content bg-base-100 border-base-300 p-3">
-                            第一条消息
-                            <div class="divider"></div>
-                        </div>
-                        <input type="radio" name="notificationTab" class="tab" aria-label="其他"/>
-                        <div class="tab-content bg-base-100 border-base-300 p-3 ">
-                            第一条消息
-                            <div class="divider"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="dropdown dropdown-end">
+            <!--通知按钮-->
+            <button class="btn btn-ghost btn-circle">
+                <s2-icon name="interface_notification"></s2-icon>
+            </button>
+            <div class="dropdown dropdown-end dropdown-hover">
                 <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
                     <s2-icon name="interface_add"></s2-icon>
                 </div>
@@ -146,7 +117,7 @@ text-gray-500 次要字体
                         新建代码片段</a></li>
                 </ul>
             </div>
-            <div class="dropdown dropdown-end">
+            <div class="dropdown dropdown-end dropdown-hover">
                 <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
                     <div class="avatar avatar-placeholder">
                         <div class="bg-neutral text-neutral-content w-8 rounded-full">
