@@ -106,7 +106,7 @@ text-gray-400 次要字体
             <a class="btn btn-ghost text-xl">GitMiniRepo</a>
         </div>
         <div class="flex-one">
-            <input type="text" placeholder="搜索" class="input input-bordered w-24 md:w-auto"/>
+            <input type="text" placeholder="搜索" class="input input-bordered w-24 md:w-auto mr-2"/>
             <!--通知按钮-->
             <button class="btn btn-ghost btn-circle">
                 <s2-icon name="index_notification"></s2-icon>
@@ -133,13 +133,7 @@ text-gray-400 次要字体
                         新建代码片段</a></li>
                 </ul>
             </div>
-            <!--主题切换器-->
-            <label class="toggle text-base-content ml-2 mr-2.5">
-                <input type="checkbox" value="theme" id="theme" class="theme-controller"/>
-                <s2-icon name="index_switch_sun"></s2-icon>
-                <s2-icon name="index_switch_moon"></s2-icon>
-            </label>
-            <!--用户-->
+             <!--用户-->
             <div class="dropdown dropdown-end ">
                 <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
                     <div class="avatar avatar-placeholder">
@@ -177,6 +171,13 @@ text-gray-400 次要字体
                         退出登录</a></li>
                 </ul>
             </div>
+            <!--主题切换器-->
+            <label class="toggle text-base-content ml-2 mr-1 ">
+                <input type="checkbox" value="theme" id="theme" class="theme-controller"/>
+                <s2-icon name="index_switch_sun"></s2-icon>
+                <s2-icon name="index_switch_moon"></s2-icon>
+            </label>
+
         </div>
     </div>
     <div class="main flex flex-1 flex-col px-4 pb-4">
