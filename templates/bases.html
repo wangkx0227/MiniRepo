@@ -2,18 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>
+        {% block title %}
+        GitMiniRepo ·
+        {% endblock title %}
+    </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script src="{{ url_for('static', filename='lib/nprogress/nprogress.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='lib/nprogress/nprogress.css') }}"/>
     <link href="{{ url_for('static', filename='daisyui.css') }}" rel="stylesheet" type="text/css"/>
     <script src="{{ url_for('static', filename='tailwind.js') }}"></script>
     <script src="{{ url_for('static', filename='base/menus/menuIcon.js') }}"></script>
     <style>
-
-
         .navbar .divider {
             margin: 0;
         }
     </style>
+    <!-- 导入css样式表 -->
+    {% block css %}
+    {% endblock css %}
+    <!-- 导入js-start -->
+    {% block js_start %}
+    {% endblock js_start %}
 <body>
 <!--
 背景 bg-颜色-程度
@@ -21,7 +31,7 @@
 
 text-gray-950 主要字体
 text-gray-700 一般字体
-text-gray-500 次要字体
+text-gray-400 次要字体
 -->
 <!--主体-->
 <div class="flex flex-col min-h-screen">
@@ -158,20 +168,35 @@ text-gray-500 次要字体
     </div>
     <div class="main flex flex-1 flex-col px-4 pb-4">
         <!--导航条-->
-        <div class="breadcrumbs text-sm text-gray-500 ">
+        <div class="breadcrumbs text-xs/7 text-gray-400 ">
             <ul>
+                {% block main_navigation_bar %}
                 <span>当前位置：</span>
                 <li><a>菜单</a></li>
                 <li><a>工作台</a></li>
                 <li>概览</li>
+                {% endblock main_navigation_bar %}
             </ul>
         </div>
         <!--主要内容 borde边框-->
-        <div class="flex-1 border p-4 overflow-auto">
+        <div class="flex-1 border  overflow-auto">
+            {% block main_content %}
             111
+            {% endblock main_content %}
         </div>
     </div>
 </div>
-
 </body>
+<script src="{{ url_for('static', filename='base/base.js') }}"></script>
+<script>
+    // 页面开始加载时调用 start()，放在 head 的 script 里或内联脚本里
+    NProgress.start();
+
+    // DOM内容加载完成后关闭加载条
+    window.addEventListener('DOMContentLoaded', () => {
+        NProgress.done();
+    });
+</script>
+{% block js_end %}
+{% endblock js_end %}
 </html>
