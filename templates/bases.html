@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"  data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <title>
@@ -15,7 +15,7 @@
     <script src="{{ url_for('static', filename='lib/tailwind/tailwind.js') }}"></script>
     <!-- 个人 -->
     <script src="{{ url_for('static', filename='lib/base/menus/menuicon.js') }}"></script>
-    <script src="{{ url_for('static', filename='lib/base/base.js') }}"></script>
+
 
     <style>
         .navbar .divider {
@@ -102,8 +102,8 @@ text-gray-400 次要字体
                 </div>
             </div>
         </div>
-        <div class="flex-1 text-gray-950">
-            <a class="btn btn-ghost text-xl " href="#">GitMiniRepo</a>
+        <div class="flex-1 ">
+            <a class="btn btn-ghost text-xl">GitMiniRepo</a>
         </div>
         <div class="flex-one">
             <input type="text" placeholder="搜索" class="input input-bordered w-24 md:w-auto"/>
@@ -133,6 +133,12 @@ text-gray-400 次要字体
                         新建代码片段</a></li>
                 </ul>
             </div>
+            <!--主题切换器-->
+            <label class="toggle text-base-content">
+                <input type="checkbox" value="theme" id="theme" class="theme-controller"/>
+                <s2-icon name="index_switch_sun"></s2-icon>
+                <s2-icon name="index_switch_moon"></s2-icon>
+            </label>
             <!--用户-->
             <div class="dropdown dropdown-end ">
                 <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
@@ -192,7 +198,7 @@ text-gray-400 次要字体
     </div>
 </div>
 </body>
-
+<script src="{{ url_for('static', filename='lib/base/base.js') }}"></script>
 <script>
     // 页面开始加载时调用 start()，放在 head 的 script 里或内联脚本里
     NProgress.start();

@@ -19,6 +19,7 @@ function NProgressLongin() {
     };
 }
 
+// api
 async function apiRequest(url, options = {}) {
     const loader = NProgressLongin(); // 开启加载
     const headers = {
@@ -50,3 +51,13 @@ async function apiRequest(url, options = {}) {
         }, 2000) // 测试
     }
 }
+
+// 主题切换
+document.getElementById("theme").addEventListener("click", () => {
+    const theme = document.querySelector("html").dataset.theme;
+    if (theme === "dark") {
+        document.querySelector("html").dataset.theme = "light";
+    }else {
+        document.querySelector("html").dataset.theme = "dark";
+    }
+})
