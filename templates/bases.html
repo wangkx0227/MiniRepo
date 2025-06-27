@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"  data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <title>
@@ -55,48 +55,48 @@ text-gray-400 次要字体
                         <summary>菜单</summary>
                         <li>
                             <a>
-                                <s2-icon name="interface_work"></s2-icon>
+                                <s2-icon name="sidebar_work"></s2-icon>
                                 工作台
                             </a>
                         </li>
                         <li><a>
-                            <s2-icon name="interface_file_code"></s2-icon>
+                            <s2-icon name="sidebar_file_code"></s2-icon>
                             项目</a></li>
                         <li><a>
-                            <s2-icon name="interface_user_group"></s2-icon>
+                            <s2-icon name="sidebar_user_group"></s2-icon>
                             群组</a></li>
                         <li><a>
-                            <s2-icon name="interface_merge"></s2-icon>
+                            <s2-icon name="sidebar_merge"></s2-icon>
                             合并请求</a></li>
                         <li><a>
-                            <s2-icon name="interface_export"></s2-icon>
+                            <s2-icon name="sidebar_export"></s2-icon>
                             代办事项列表</a></li>
                         <div class="divider"></div>
                         <summary>其他</summary>
                         <li>
                             <details>
                                 <summary>
-                                    <s2-icon name="interface_setting"></s2-icon>
+                                    <s2-icon name="sidebar_setting"></s2-icon>
                                     设置
                                 </summary>
                                 <ul>
                                     <li><a>
-                                        <s2-icon name="interface_user_setting"></s2-icon>
+                                        <s2-icon name="sidebar_user_setting"></s2-icon>
                                         账号设置</a></li>
                                     <li><a>
-                                        <s2-icon name="interface_secured"></s2-icon>
+                                        <s2-icon name="sidebar_secured"></s2-icon>
                                         安全设置</a></li>
                                 </ul>
                             </details>
                         </li>
                         <li><a>
-                            <s2-icon name="interface_export"></s2-icon>
+                            <s2-icon name="sidebar_export"></s2-icon>
                             菜单-001</a></li>
                         <li><a>
-                            <s2-icon name="interface_export"></s2-icon>
+                            <s2-icon name="sidebar_export"></s2-icon>
                             菜单-002</a></li>
                         <li><a>
-                            <s2-icon name="interface_export"></s2-icon>
+                            <s2-icon name="sidebar_export"></s2-icon>
                             菜单-003</a></li>
                     </ul>
                 </div>
@@ -109,27 +109,27 @@ text-gray-400 次要字体
             <input type="text" placeholder="搜索" class="input input-bordered w-24 md:w-auto"/>
             <!--通知按钮-->
             <button class="btn btn-ghost btn-circle">
-                <s2-icon name="interface_notification"></s2-icon>
+                <s2-icon name="index_notification"></s2-icon>
             </button>
             <!--+号-->
             <div class="dropdown dropdown-end ">
                 <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
-                    <s2-icon name="interface_add"></s2-icon>
+                    <s2-icon name="index_add"></s2-icon>
                 </div>
                 <ul tabindex="0"
                     class="menu menu-sm dropdown-content bg-base-100 rounded-md z-1 mt-1 w-52 p-2 drop-shadow-xl/50">
                     <li>
                         <a>
-                            <s2-icon name="interface_add_menu_add"></s2-icon>
+                            <s2-icon name="index_add_warehouse"></s2-icon>
                             新建项目/仓库
                         </a>
                     </li>
                     <li><a>
-                        <s2-icon name="interface_add_menu_group"></s2-icon>
+                        <s2-icon name="index_add_group"></s2-icon>
                         新建群组
                     </a></li>
                     <li><a>
-                        <s2-icon name="interface_add_menu_code"></s2-icon>
+                        <s2-icon name="index_add_code"></s2-icon>
                         新建代码片段</a></li>
                 </ul>
             </div>
@@ -181,14 +181,12 @@ text-gray-400 次要字体
                 <span>当前位置：</span>
                 <li><a>菜单</a></li>
                 <li><a>工作台</a></li>
-                <li>概览</li>
                 {% endblock main_navigation_bar %}
             </ul>
         </div>
         <!--主要内容 borde边框-->
-        <div class="flex-1 border  overflow-auto">
+        <div class="flex-1 overflow-auto">
             {% block main_content %}
-            111
             {% endblock main_content %}
         </div>
     </div>
