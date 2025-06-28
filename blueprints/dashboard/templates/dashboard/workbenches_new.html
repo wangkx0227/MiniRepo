@@ -10,7 +10,7 @@
 <!--主体内容-->
 {% block main %}
 <div class="content flex h-full ">
-    <div class="w-1/3 h-full">
+    <div class="w-4/1 h-full">
         <!--个人头像显示-->
         <div class="avatar avatar-placeholder w-full">
             <div class="w-42  ring-2 ring-offset-2 rounded-full ring-gray-200  my-3 m-auto cursor-pointer ">
@@ -52,7 +52,7 @@
         </div>
     </div>
     <!-- tab切换 -->
-    <div class="w-2/3  h-full">
+    <div class="w-4/3  h-full">
         <div class="tabs tabs-border">
             <label class="tab">
                 <input type="radio" name="workbenchesTab" checked="checked" id="overview"/>
@@ -68,27 +68,25 @@
                 <s2-icon name="workbenches_repository"></s2-icon>
                 <span>仓库</span>
             </label>
-            <div class="tab-content bg-base-100 py-2"">
+            <div class="tab-content bg-base-100 py-2">
                 {% block repository %}
                 {% endblock repository %}
             </div>
-
             <label class="tab">
                 <input type="radio" name="workbenchesTab" id="analysis"/>
                 <s2-icon name="workbenches_analysis"></s2-icon>
                 <span>统计分析</span>
             </label>
-            <div class="tab-content bg-base-100 py-2"">（展示更详细的活跃度、代码量、周/月报等。）
+            <div class="tab-content bg-base-100 py-2">（展示更详细的活跃度、代码量、周/月报等。）
                 {% block analysis %}
                 {% endblock analysis %}
             </div>
-
             <label class="tab">
                 <input type="radio" name="workbenchesTab" id="snippet"/>
                 <s2-icon name="workbenches_snippet"></s2-icon>
                 <span>统计分析</span>
             </label>
-            <div class="tab-content bg-base-100 py-2"">存放个人常用代码片段、开发备忘
+            <div class="tab-content bg-base-100 py-2">存放个人常用代码片段、开发备忘
                 {% block snippet %}
                 {% endblock snippet %}
             </div>
