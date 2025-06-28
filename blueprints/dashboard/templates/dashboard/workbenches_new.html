@@ -9,8 +9,8 @@
 {% endblock main_navigation_bar %}
 <!--主体内容-->
 {% block main_content %}
-<div class="content flex h-screen">
-    <div class="w-1/3">
+<div class="content flex h-full ">
+    <div class="w-1/3 h-full">
         <!--个人头像显示-->
         <div class="avatar avatar-placeholder w-full">
             <div class="w-42  ring-2 ring-offset-2 rounded-full ring-gray-200  my-3 m-auto cursor-pointer ">
@@ -52,10 +52,10 @@
         </div>
     </div>
     <!-- tab切换 -->
-    <div class="w-2/3">
+    <div class="w-2/3  h-full">
         <div class="tabs tabs-border">
             <label class="tab">
-                <input type="radio" name="my_tabs_4" checked="checked"/>
+                <input type="radio" name="workbenchesTab" checked="checked" id="overview"/>
                 <s2-icon name="workbenches_overview"></s2-icon>
                 <span>概览</span>
             </label>
@@ -63,25 +63,25 @@
                 1231321
             </div>
             <label class="tab">
-                <input type="radio" name="my_tabs_4"/>
+                <input type="radio" name="workbenchesTab" id="repository"/>
                 <s2-icon name="workbenches_repository"></s2-icon>
                 <span>仓库</span>
             </label>
             <div class="tab-content bg-base-100 py-6">Tab content 2</div>
 
             <label class="tab">
-                <input type="radio" name="my_tabs_4"/>
+                <input type="radio" name="workbenchesTab" id="analysis"/>
                 <s2-icon name="workbenches_analysis"></s2-icon>
                 <span>统计分析</span>
             </label>
-            <div class="tab-content bg-base-100 py-6">Tab content 3</div>
+            <div class="tab-content bg-base-100 py-6">（展示更详细的活跃度、代码量、周/月报等。）</div>
 
             <label class="tab">
-                <input type="radio" name="my_tabs_4"/>
+                <input type="radio" name="workbenchesTab" id="snippet"/>
                 <s2-icon name="workbenches_snippet"></s2-icon>
                 <span>统计分析</span>
             </label>
-            <div class="tab-content bg-base-100 py-6">Tab content 3</div>
+            <div class="tab-content bg-base-100 py-6">存放个人常用代码片段、开发备忘</div>
         </div>
     </div>
 
@@ -91,7 +91,18 @@
     <!--        {% endblock workbenches_content %}-->
     <!--    </div>-->
 </div>
-
 {% endblock main_content %}
-
+{% block js_end %}
+{{ super() }}
+<script>
+    // tab切换路由方式
+    const workbenchesTab = document.getElementsByName("workbenchesTab")
+    workbenchesTab.forEach((tab) => {
+        let tab_id = tab.id
+        tab.addEventListener("click", () => {
+            window.location.href = `?tab=${tab_id}`; // 修改为你的实际路径
+        })
+    })
+</script>
+{% endblock js_end %}
 
