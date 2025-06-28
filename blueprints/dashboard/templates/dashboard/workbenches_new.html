@@ -13,12 +13,12 @@
     <div class="w-1/3">
         <!--个人头像显示-->
         <div class="avatar avatar-placeholder w-full">
-            <div class="w-42  ring-2 ring-offset-2 rounded-full ring-gray-200  my-3 m-auto ">
+            <div class="w-42  ring-2 ring-offset-2 rounded-full ring-gray-200  my-3 m-auto cursor-pointer ">
                 <img src="https://img.daisyui.com/images/profile/demo/spiderperson@192.webp"/>
             </div>
         </div>
         <!--        <div class="avatar  avatar-placeholder w-full">-->
-        <!--            <div class="bg-neutral text-neutral-content w-42 rounded-full mt-3 m-auto ring-gray-200 ring-2 ring-offset-2">-->
+        <!--            <div class="bg-neutral text-neutral-content w-42 rounded-full mt-3 m-auto ring-gray-200 ring-2 ring-offset-2 cursor-pointer ">-->
         <!--                <span class="text-7xl">U</span>-->
         <!--            </div>-->
         <!--        </div>-->
@@ -30,9 +30,11 @@
         <div class="text-center font-thin antialiased text-sm my-1">
             <span>@</span><span>wangkx0227</span>
         </div>
-        <!--如果有简介就显示简介，如果没有就显示五个人简介-->
-        <div class="text-center font-thin antialiased text-sm  my-2 text-base-content/50">
-            无个人简介
+        <!--如果有简介就显示简介，如果没有就显示无个人简介 个人简介字体不能超出...-->
+        <div class="font-thin my-2 w-64 m-auto">
+            <div class="text-base-content/50 text-sm  antialiased text-center">
+                无个人简介11111撒打算大苏打大苏打实打实大苏打撒阿斯顿3131313131313下自成蹊政策咨询曹张新村行政村自行车31312313131sadasdad
+            </div>
         </div>
         <!--标签最多5个-->
         <div class="text-center font-thin antialiased my-2 text-content">
@@ -55,7 +57,7 @@
             <label class="tab">
                 <input type="radio" name="my_tabs_4" checked="checked"/>
                 <s2-icon name="workbenches_overview"></s2-icon>
-                概览
+                <span>概览</span>
             </label>
             <div class="tab-content bg-base-100 py-6">
                 1231321
@@ -63,26 +65,25 @@
             <label class="tab">
                 <input type="radio" name="my_tabs_4"/>
                 <s2-icon name="workbenches_repository"></s2-icon>
-                仓库
+                <span>仓库</span>
             </label>
             <div class="tab-content bg-base-100 py-6">Tab content 2</div>
 
             <label class="tab">
                 <input type="radio" name="my_tabs_4"/>
                 <s2-icon name="workbenches_analysis"></s2-icon>
-                统计分析
+                <span>统计分析</span>
             </label>
             <div class="tab-content bg-base-100 py-6">Tab content 3</div>
 
             <label class="tab">
                 <input type="radio" name="my_tabs_4"/>
                 <s2-icon name="workbenches_snippet"></s2-icon>
-                代码片段
+                <span>统计分析</span>
             </label>
             <div class="tab-content bg-base-100 py-6">Tab content 3</div>
         </div>
     </div>
-
 
     <!--    <div>-->
     <!--        {% block workbenches_content %}-->
