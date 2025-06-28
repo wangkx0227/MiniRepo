@@ -2,6 +2,8 @@
  * 生成模拟贡献数据：返回一个对象 { '2025-05-01': 1, ... }
  * 你可以用后台接口数据替换此处
  */
+const calendar = document.getElementById('calendar');
+const months = document.getElementById('months');
 const contributeYearSelect = document.getElementById('contributeYearSelect')
 
 // 贡献图-根据年获取最后一天
@@ -27,8 +29,6 @@ function contributionGrade(count) {
 
 // 贡献图-数据渲染
 function contributionRendering(data, selectYear = null) {
-    const calendar = document.getElementById('calendar');
-    const months = document.getElementById('months');
     calendar.innerHTML = '';
     months.innerHTML = '';
 
@@ -59,15 +59,13 @@ function contributionRendering(data, selectYear = null) {
     // 以列为单位循环
     while (current <= endDate || leadingEmpty > 0) {
         const weekColumn = document.createElement('div');
-        weekColumn.className = 'week';
+        weekColumn.classList = "grid grid-rows-7 gap-1 "
         let hasMonthLabel = false;
-
         for (let i = 0; i < 7; i++) {
             // 首周需要补空格
             if (leadingEmpty > 0) {
                 const emptyBox = document.createElement('div');
-                emptyBox.className = 'day ';
-                emptyBox.style.visibility = "hidden";
+                emptyBox.className = ' w-5 h-5 ';
                 weekColumn.appendChild(emptyBox);
                 leadingEmpty--;
                 continue;
@@ -75,8 +73,7 @@ function contributionRendering(data, selectYear = null) {
             // 当前日期超出endDate，补空格
             if (current > endDate) {
                 const emptyBox = document.createElement('div');
-                emptyBox.className = 'day ';
-                emptyBox.style.visibility = "hidden";
+                emptyBox.className = ' w-5 h-5 ';
                 weekColumn.appendChild(emptyBox);
                 continue;
             }
@@ -84,8 +81,9 @@ function contributionRendering(data, selectYear = null) {
             const dateStr = current.toISOString().slice(0, 10);
             const count = data[dateStr] || 0;
             const dayBox = document.createElement('div');
-            dayBox.className = 'day ' + contributionGrade(count);
-            dayBox.title = `${dateStr}: ${count} 次贡献`;
+            // dayBox.className = 'day ' + contributionGrade(count);
+            dayBox.className = 'tooltip mr-0.5 w-5 h-5 box-border transition-colors cursor-pointer rounded-sm bg-gray-100'
+            dayBox.setAttribute("data-tip",`${count} 个贡献：${dateStr}`)
             dayBox.dataset.date = dateStr;
             weekColumn.appendChild(dayBox);
 
@@ -103,15 +101,18 @@ function contributionRendering(data, selectYear = null) {
         if (hasMonthLabel) {
             monthLabels.push(`${lastMonth + 1}月`);
         } else {
-            monthLabels.push('');
+            // monthLabels.push("")
         }
     }
-
     // 渲染月份标签
     for (let i = 0; i < monthLabels.length; i++) {
         const monthDiv = document.createElement('div');
-        monthDiv.innerHTML = monthLabels[i] ? monthLabels[i] : '&nbsp;';
+        if (monthLabels[i]) {
+            monthDiv.classList.add("w-1")
+        }
+        monthDiv.innerHTML = monthLabels[i];
         months.appendChild(monthDiv);
+
     }
 }
 
