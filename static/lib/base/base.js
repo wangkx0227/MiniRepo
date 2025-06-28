@@ -57,7 +57,14 @@ document.getElementById("theme").addEventListener("click", () => {
     const theme = document.querySelector("html").dataset.theme;
     if (theme === "dark") {
         document.querySelector("html").dataset.theme = "light";
-    }else {
+    } else {
         document.querySelector("html").dataset.theme = "dark";
     }
 })
+
+// 页面开始加载时调用 start()，放在 head 的 script 里或内联脚本里
+NProgress.start();
+// DOM内容加载完成后关闭加载条
+window.addEventListener('DOMContentLoaded', () => {
+    NProgress.done();
+});

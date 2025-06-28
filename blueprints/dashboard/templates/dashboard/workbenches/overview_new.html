@@ -1,0 +1,46 @@
+{% extends 'dashboard/workbenches_new.html' %}
+<!-- {{ super() }} 继承父类的内容不重写,而是增加 -->
+{% block navigation %}
+{{ super() }}
+<li>概览</li>
+{% endblock navigation %}
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('dashboard_page.static', filename='workbenches/overview/overview.css') }}">
+{% endblock css %}
+{% block overview %}
+<div class="p-2 h-full">
+    <div class="contribute">
+        <!-- 标题与日期选择框 -->
+        <div class="flex justify-between items-center">
+            <div class="flex-1 text-2xl antialiased font-bold">贡献度</div>
+            <div class=" w-fit">
+                <select class="select cursor-pointer">
+                    <option disabled selected>日期</option>
+                    <option>2025</option>
+                    <option>2024</option>
+                    <option>2023</option>
+                </select>
+            </div>
+        </div>
+        <!--贡献图-->
+        <div class="contribute-picture min-h-64">
+
+        </div>
+        <!--说明-->
+        <div class="describe">
+            <div class="flex font-thin text-base-content/50 text-xs gap-4">
+                <p>最近一年贡献：150次</p>
+                <p>最近长连续贡献：20日</p>
+                <p>最近连续贡献：10日</p>
+            </div>
+            <p class="font-thin text-base-content/75 text-xs">贡献度的统计数据包括代码提交、创建任务 / Pull Request、合并 Pull Request，其中代码提交的次数需本地配置的 Git 邮箱帐号已确认绑定的才会被统计。</p>
+        </div>
+    </div>
+    <div class="dynamics">
+    </div>
+</div>
+{% endblock overview %}
+{% block js_end %}
+{{ super() }}
+<script src="{{ url_for('dashboard_page.static', filename='workbenches/overview/overview.js') }}"></script>
+{% endblock js_end %}

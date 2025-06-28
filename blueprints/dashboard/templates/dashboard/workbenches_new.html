@@ -3,12 +3,12 @@
 {{ super() }}
 工作台
 {% endblock %}
-{% block main_navigation_bar %}
+{% block navigation %}
 {{ super() }}
-<li>概览</li>
-{% endblock main_navigation_bar %}
+<li>工作台</li>
+{% endblock navigation %}
 <!--主体内容-->
-{% block main_content %}
+{% block main %}
 <div class="content flex h-full ">
     <div class="w-1/3 h-full">
         <!--个人头像显示-->
@@ -59,39 +59,43 @@
                 <s2-icon name="workbenches_overview"></s2-icon>
                 <span>概览</span>
             </label>
-            <div class="tab-content bg-base-100 py-6">
-                1231321
+            <div class="tab-content bg-base-100 py-2">
+                {% block overview %}
+                {% endblock overview %}
             </div>
             <label class="tab">
                 <input type="radio" name="workbenchesTab" id="repository"/>
                 <s2-icon name="workbenches_repository"></s2-icon>
                 <span>仓库</span>
             </label>
-            <div class="tab-content bg-base-100 py-6">Tab content 2</div>
+            <div class="tab-content bg-base-100 py-2"">
+                {% block repository %}
+                {% endblock repository %}
+            </div>
 
             <label class="tab">
                 <input type="radio" name="workbenchesTab" id="analysis"/>
                 <s2-icon name="workbenches_analysis"></s2-icon>
                 <span>统计分析</span>
             </label>
-            <div class="tab-content bg-base-100 py-6">（展示更详细的活跃度、代码量、周/月报等。）</div>
+            <div class="tab-content bg-base-100 py-2"">（展示更详细的活跃度、代码量、周/月报等。）
+                {% block analysis %}
+                {% endblock analysis %}
+            </div>
 
             <label class="tab">
                 <input type="radio" name="workbenchesTab" id="snippet"/>
                 <s2-icon name="workbenches_snippet"></s2-icon>
                 <span>统计分析</span>
             </label>
-            <div class="tab-content bg-base-100 py-6">存放个人常用代码片段、开发备忘</div>
+            <div class="tab-content bg-base-100 py-2"">存放个人常用代码片段、开发备忘
+                {% block snippet %}
+                {% endblock snippet %}
+            </div>
         </div>
     </div>
-
-    <!--    <div>-->
-    <!--        {% block workbenches_content %}-->
-
-    <!--        {% endblock workbenches_content %}-->
-    <!--    </div>-->
 </div>
-{% endblock main_content %}
+{% endblock main %}
 {% block js_end %}
 {{ super() }}
 <script>

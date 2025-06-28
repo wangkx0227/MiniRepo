@@ -29,14 +29,6 @@
     {% block js_start %}
     {% endblock js_start %}
 <body>
-<!--
-背景 bg-颜色-程度
-字体 text-颜色-程度
-
-text-gray-950 主要字体
-text-gray-700 一般字体
-text-gray-400 次要字体
--->
 <!--主体-->
 <div class="flex flex-col min-h-screen">
     <div class="navbar bg-base-100 shadow-sm">
@@ -185,30 +177,20 @@ text-gray-400 次要字体
         <!--导航条-->
         <div class="breadcrumbs text-xs/7 text-gray-400 ">
             <ul>
-                {% block main_navigation_bar %}
+                {% block navigation %}
                 <span>当前位置：</span>
-                <li><a>菜单</a></li>
-                <li><a>工作台</a></li>
-                {% endblock main_navigation_bar %}
+                {% endblock navigation %}
             </ul>
         </div>
         <!--主要内容 borde边框-->
         <div class="flex-1 overflow-auto">
-            {% block main_content %}
-            {% endblock main_content %}
+            {% block main %}
+            {% endblock main %}
         </div>
     </div>
 </div>
 </body>
 <script src="{{ url_for('static', filename='lib/base/base.js') }}"></script>
-<script>
-    // 页面开始加载时调用 start()，放在 head 的 script 里或内联脚本里
-    NProgress.start();
-    // DOM内容加载完成后关闭加载条
-    window.addEventListener('DOMContentLoaded', () => {
-        NProgress.done();
-    });
-</script>
 {% block js_end %}
 {% endblock js_end %}
 </html>
