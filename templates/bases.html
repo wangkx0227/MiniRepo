@@ -18,9 +18,35 @@
 
 
     <style>
+        html {
+            scrollbar-width: thin;
+            scrollbar-color: #cbd5e0 #f1f1f1;
+        }
+
         .navbar .divider {
             margin: 0;
         }
+
+        /* 全局滚动条样式 */
+        ::-webkit-scrollbar {
+            width: 8px; /* 垂直滚动条宽度 */
+            height: 8px; /* 水平滚动条高度 */
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; /* 轨道颜色 */
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e0; /* 滑块颜色（Tailwind gray-300） */
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a0aec0; /* 悬停颜色（Tailwind gray-400） */
+        }
+
     </style>
     <!-- 导入css样式表 -->
     {% block css %}
