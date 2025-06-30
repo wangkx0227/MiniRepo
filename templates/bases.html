@@ -18,34 +18,38 @@
 
 
     <style>
-        html {
-            scrollbar-width: thin;
-            scrollbar-color: #cbd5e0 #f1f1f1;
-        }
-
         .navbar .divider {
             margin: 0;
         }
 
-        /* 全局滚动条样式 */
+        /* 全局滚动条样式 (Chrome/Safari/Edge) */
         ::-webkit-scrollbar {
-            width: 8px; /* 垂直滚动条宽度 */
-            height: 8px; /* 水平滚动条高度 */
+            width: 2px !important; /* 强制覆盖 */
+            height: 2px !important;
         }
 
         ::-webkit-scrollbar-track {
-            background: #f1f1f1; /* 轨道颜色 */
-            border-radius: 4px;
+            background: #f1f1f1 !important;
+            border-radius: 2px !important;
         }
 
         ::-webkit-scrollbar-thumb {
-            background: #cbd5e0; /* 滑块颜色（Tailwind gray-300） */
-            border-radius: 4px;
+            background: #cbd5e0 !important;
+            border-radius: 2px !important;
         }
 
-        ::-webkit-scrollbar-thumb:hover {
-            background: #a0aec0; /* 悬停颜色（Tailwind gray-400） */
+        /* Firefox 滚动条 */
+        html {
+            scrollbar-width: thin !important;
+            scrollbar-color: #cbd5e0 #f1f1f1 !important;
         }
+
+        /* 确保可滚动容器激活样式 */
+        .scroll-container {
+            overflow: auto;
+            scrollbar-gutter: stable; /* 防止布局偏移 */
+        }
+
 
     </style>
     <!-- 导入css样式表 -->

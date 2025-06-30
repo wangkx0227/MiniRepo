@@ -7,6 +7,12 @@
 {% block css %}
 <link rel="stylesheet"
       href="{{ url_for('dashboard_page.static', filename='workbenches/overview/overview_new.css') }}">
+<style>
+    /* 可选：自定义滚动条样式 */
+    .contribute-picture::-webkit-scrollbar {
+        height: 2px;
+    }
+</style>
 {% endblock css %}
 {% block js_start %}
 
@@ -15,7 +21,7 @@
 <!--日历数据-->
 <div id="contribute_data_dict" data-info='{{ data.contribute_data_dict|tojson }}' hidden></div>
 <div class="p-2 h-full">
-    <div class="contribute">
+    <div class="contribute max-w-full">
         <!-- 标题与日期选择框 -->
         <div class="flex justify-between items-center">
             <div class="flex-1 text-2xl antialiased font-bold">贡献度</div>
@@ -30,7 +36,7 @@
             </div>
         </div>
         <!--贡献图-->
-        <div class="contribute-picture min-h-38 flex my-2 flex-wrap outline outline-gray-200 rounded-sm p-4 overflow-x-auto whitespace-nowrap">
+        <div class="contribute-picture my-2 min-h-38 flex flex-wrap outline outline-gray-200 rounded-sm pl-3 py-4 overflow-x-auto whitespace-nowrap">
             <div class="flex text-xs text-left text-base-content/50 gap-23 w-full mb-4  ml-18" id="months"></div>
             <div class="flex-none flex flex-col justify-between text-base-content/75 text-xs w-12 " id="week">
                 <span>周一</span>
@@ -52,16 +58,263 @@
         </div>
         <!--说明-->
         <div class="describe">
-            <div class="flex font-thin text-base-content/50 text-xs gap-4">
+            <div class="flex font-thin text-xs gap-4">
                 <p>最近一年贡献：150次</p>
                 <p>最近长连续贡献：20日</p>
                 <p>最近连续贡献：10日</p>
             </div>
-            <p class="font-thin text-base-content/75 text-xs mt-2">贡献度的统计数据包括代码提交、创建任务 / Pull Request、合并 Pull
+            <p class="font-thin text-xs mt-2">贡献度的统计数据包括代码提交、创建任务 / Pull Request、合并 Pull
                 Request，其中代码提交的次数需本地配置的 Git 邮箱帐号已确认绑定的才会被统计。</p>
         </div>
     </div>
-    <div class="dynamics">
+    <div class="dynamics mt-2 min-h-80 max-w-full space-y-2">
+        <div class="flex justify-between items-center mb-2">
+            <div class="flex-1 text-2xl antialiased font-bold">动态</div>
+        </div>
+        <div class="border-l-1 border-gray-300">
+            <div class="grid gap-5 pl-2 ">
+                <div class="inline">
+                    <div class="text-base text-black-content/85 font-semibold mb-3">2025-06-30</div>
+                    <ul class="pl-5 grid grid-rows-2 gap-2">
+                        <li class="text-sm text-base-content/70 flex">
+                            <div class="grid grid-rows-2 gap-2 flex-1">
+                                <div class="flex gap-2 items-center items-center">
+                                    <!--git操作,根据后端分析获取-->
+                                    <span>推送了</span>
+                                    <!--git操作,推送仓库地址-->
+                                    <a class="link" href="/wangkx0227/MiniRepo/tree/master">不会换牙的鲨鱼/MiniRepo</a>
+                                    <!--git操作,推送分支-->
+                                    <span>的master分支</span>
+                                </div>
+                                <div class="flex gap-2 items-center">
+                                    <!--提交git的用户头像,如果没有头像就使用默认的-->
+                                    <div class="avatar">
+                                        <div class="w-6 rounded-full">
+                                            <img src="https://img.daisyui.com/images/profile/demo/yellingcat@192.webp"/>
+                                        </div>
+                                    </div>
+                                    <!--git执行的版本-->
+                                    <div>
+                                        <a class="link"
+                                           href="/wangkx0227/MiniRepo/commit/d960e14bc58e5679bf4d5cb076eb321c8c8932a8">d960e14</a>
+                                        <!--git执行commit信息的从后端来-->
+                                        <span>更新了css样式</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>0个月前</div>
+                        </li>
+                        <li class="text-sm text-base-content/70 flex">
+                            <div class="grid grid-rows-2 gap-2 flex-1">
+                                <div class="flex gap-2 items-center items-center">
+                                    <!--git操作,根据后端分析获取-->
+                                    <span>推送了</span>
+                                    <!--git操作,推送仓库地址-->
+                                    <a class="link" href="/wangkx0227/MiniRepo/tree/master">不会换牙的鲨鱼/MiniRepo</a>
+                                    <!--git操作,推送分支-->
+                                    <span>的master分支</span>
+                                </div>
+                                <div class="flex gap-2 items-center">
+                                    <!--提交git的用户头像,如果没有头像就使用默认的-->
+                                    <div class="avatar">
+                                        <div class="w-6 rounded-full">
+                                            <img src="https://img.daisyui.com/images/profile/demo/yellingcat@192.webp"/>
+                                        </div>
+                                    </div>
+                                    <!--git执行的版本-->
+                                    <div>
+                                        <a class="link"
+                                           href="/wangkx0227/MiniRepo/commit/d960e14bc58e5679bf4d5cb076eb321c8c8932a8">d960e14</a>
+                                        <!--git执行commit信息的从后端来-->
+                                        <span>更新了css样式</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>0个月前</div>
+                        </li>
+                        <li class="text-sm text-base-content/70 flex">
+                            <div class="grid grid-rows-2 gap-2 flex-1">
+                                <div class="flex gap-2 items-center items-center">
+                                    <!--git操作,根据后端分析获取-->
+                                    <span>推送了</span>
+                                    <!--git操作,推送仓库地址-->
+                                    <a class="link" href="/wangkx0227/MiniRepo/tree/master">不会换牙的鲨鱼/MiniRepo</a>
+                                    <!--git操作,推送分支-->
+                                    <span>的master分支</span>
+                                </div>
+                                <div class="flex gap-2 items-center">
+                                    <!--提交git的用户头像,如果没有头像就使用默认的-->
+                                    <div class="avatar">
+                                        <div class="w-6 rounded-full">
+                                            <img src="https://img.daisyui.com/images/profile/demo/yellingcat@192.webp"/>
+                                        </div>
+                                    </div>
+                                    <!--git执行的版本-->
+                                    <div>
+                                        <a class="link"
+                                           href="/wangkx0227/MiniRepo/commit/d960e14bc58e5679bf4d5cb076eb321c8c8932a8">d960e14</a>
+                                        <!--git执行commit信息的从后端来-->
+                                        <span>更新了css样式</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>0个月前</div>
+                        </li>
+                        <li class="text-sm text-base-content/70 flex">
+                            <div class="grid grid-rows-2 gap-2 flex-1">
+                                <div class="flex gap-2 items-center items-center">
+                                    <!--git操作,根据后端分析获取-->
+                                    <span>推送了</span>
+                                    <!--git操作,推送仓库地址-->
+                                    <a class="link" href="/wangkx0227/MiniRepo/tree/master">不会换牙的鲨鱼/MiniRepo</a>
+                                    <!--git操作,推送分支-->
+                                    <span>的master分支</span>
+                                </div>
+                                <div class="flex gap-2 items-center">
+                                    <!--提交git的用户头像,如果没有头像就使用默认的-->
+                                    <div class="avatar">
+                                        <div class="w-6 rounded-full">
+                                            <img src="https://img.daisyui.com/images/profile/demo/yellingcat@192.webp"/>
+                                        </div>
+                                    </div>
+                                    <!--git执行的版本-->
+                                    <div>
+                                        <a class="link"
+                                           href="/wangkx0227/MiniRepo/commit/d960e14bc58e5679bf4d5cb076eb321c8c8932a8">d960e14</a>
+                                        <!--git执行commit信息的从后端来-->
+                                        <span>更新了css样式</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>0个月前</div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="inline">
+                    <div class="text-base text-black-content/85 font-semibold mb-3">2025-06-30</div>
+                    <ul class="pl-5 grid grid-rows-2 gap-2">
+                        <li class="text-sm text-base-content/70 flex">
+                            <div class="grid grid-rows-2 gap-2 flex-1">
+                                <div class="flex gap-2 items-center items-center">
+                                    <!--git操作,根据后端分析获取-->
+                                    <span>推送了</span>
+                                    <!--git操作,推送仓库地址-->
+                                    <a class="link" href="/wangkx0227/MiniRepo/tree/master">不会换牙的鲨鱼/MiniRepo</a>
+                                    <!--git操作,推送分支-->
+                                    <span>的master分支</span>
+                                </div>
+                                <div class="flex gap-2 items-center">
+                                    <!--提交git的用户头像,如果没有头像就使用默认的-->
+                                    <div class="avatar">
+                                        <div class="w-6 rounded-full">
+                                            <img src="https://img.daisyui.com/images/profile/demo/yellingcat@192.webp"/>
+                                        </div>
+                                    </div>
+                                    <!--git执行的版本-->
+                                    <div>
+                                        <a class="link"
+                                           href="/wangkx0227/MiniRepo/commit/d960e14bc58e5679bf4d5cb076eb321c8c8932a8">d960e14</a>
+                                        <!--git执行commit信息的从后端来-->
+                                        <span>更新了css样式</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>0个月前</div>
+                        </li>
+                        <li class="text-sm text-base-content/70 flex">
+                            <div class="grid grid-rows-2 gap-2 flex-1">
+                                <div class="flex gap-2 items-center items-center">
+                                    <!--git操作,根据后端分析获取-->
+                                    <span>推送了</span>
+                                    <!--git操作,推送仓库地址-->
+                                    <a class="link" href="/wangkx0227/MiniRepo/tree/master">不会换牙的鲨鱼/MiniRepo</a>
+                                    <!--git操作,推送分支-->
+                                    <span>的master分支</span>
+                                </div>
+                                <div class="flex gap-2 items-center">
+                                    <!--提交git的用户头像,如果没有头像就使用默认的-->
+                                    <div class="avatar">
+                                        <div class="w-6 rounded-full">
+                                            <img src="https://img.daisyui.com/images/profile/demo/yellingcat@192.webp"/>
+                                        </div>
+                                    </div>
+                                    <!--git执行的版本-->
+                                    <div>
+                                        <a class="link"
+                                           href="/wangkx0227/MiniRepo/commit/d960e14bc58e5679bf4d5cb076eb321c8c8932a8">d960e14</a>
+                                        <!--git执行commit信息的从后端来-->
+                                        <span>更新了css样式</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>0个月前</div>
+                        </li>
+                        <li class="text-sm text-base-content/70 flex">
+                            <div class="grid grid-rows-2 gap-2 flex-1">
+                                <div class="flex gap-2 items-center items-center">
+                                    <!--git操作,根据后端分析获取-->
+                                    <span>推送了</span>
+                                    <!--git操作,推送仓库地址-->
+                                    <a class="link" href="/wangkx0227/MiniRepo/tree/master">不会换牙的鲨鱼/MiniRepo</a>
+                                    <!--git操作,推送分支-->
+                                    <span>的master分支</span>
+                                </div>
+                                <div class="flex gap-2 items-center">
+                                    <!--提交git的用户头像,如果没有头像就使用默认的-->
+                                    <div class="avatar">
+                                        <div class="w-6 rounded-full">
+                                            <img src="https://img.daisyui.com/images/profile/demo/yellingcat@192.webp"/>
+                                        </div>
+                                    </div>
+                                    <!--git执行的版本-->
+                                    <div>
+                                        <a class="link"
+                                           href="/wangkx0227/MiniRepo/commit/d960e14bc58e5679bf4d5cb076eb321c8c8932a8">d960e14</a>
+                                        <!--git执行commit信息的从后端来-->
+                                        <span>更新了css样式</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>0个月前</div>
+                        </li>
+                        <li class="text-sm text-base-content/70 flex">
+                            <div class="grid grid-rows-2 gap-2 flex-1">
+                                <div class="flex gap-2 items-center items-center">
+                                    <!--git操作,根据后端分析获取-->
+                                    <span>推送了</span>
+                                    <!--git操作,推送仓库地址-->
+                                    <a class="link" href="/wangkx0227/MiniRepo/tree/master">不会换牙的鲨鱼/MiniRepo</a>
+                                    <!--git操作,推送分支-->
+                                    <span>的master分支</span>
+                                </div>
+                                <div class="flex gap-2 items-center">
+                                    <!--提交git的用户头像,如果没有头像就使用默认的-->
+                                    <div class="avatar">
+                                        <div class="w-6 rounded-full">
+                                            <img src="https://img.daisyui.com/images/profile/demo/yellingcat@192.webp"/>
+                                        </div>
+                                    </div>
+                                    <!--git执行的版本-->
+                                    <div>
+                                        <a class="link"
+                                           href="/wangkx0227/MiniRepo/commit/d960e14bc58e5679bf4d5cb076eb321c8c8932a8">d960e14</a>
+                                        <!--git执行commit信息的从后端来-->
+                                        <span>更新了css样式</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>0个月前</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="mt-15 flex justify-center">
+            <button class="btn bg-white text-black border-[#e5e5e5]">
+                <span class="loading loading-spinner"></span>
+                加载更多
+            </button>
+        </div>
     </div>
 </div>
 {% endblock overview %}
