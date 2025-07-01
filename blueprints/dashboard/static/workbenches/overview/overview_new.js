@@ -81,9 +81,14 @@ function contributionRendering(data, selectYear = null) {
             const dateStr = current.toISOString().slice(0, 10);
             const count = data[dateStr] || 0;
             const dayBox = document.createElement('div');
-            // dayBox.className = 'day ' + contributionGrade(count);
-            dayBox.className = 'tooltip mr-0.5 w-5 h-5 box-border transition-colors cursor-pointer rounded-sm bg-gray-100'
-            dayBox.setAttribute("data-tip",`${count} 个贡献：${dateStr}`)
+            dayBox.className = 'tooltip mr-0.5 w-5 h-5 box-border transition-colors cursor-pointer rounded-sm';
+            // 根据数据计算，贡献图的颜色显示深度
+            if (count === 0) {
+                dayBox.classList.add("level-0");
+            } else {
+                dayBox.classList.add(contributionGrade(count));
+            }
+            dayBox.setAttribute("data-tip", `${count} 个贡献：${dateStr}`)
             dayBox.dataset.date = dateStr;
             weekColumn.appendChild(dayBox);
 
@@ -100,8 +105,6 @@ function contributionRendering(data, selectYear = null) {
         // 记录月份名或空字符串
         if (hasMonthLabel) {
             monthLabels.push(`${lastMonth + 1}月`);
-        } else {
-            // monthLabels.push("")
         }
     }
     // 渲染月份标签
@@ -121,10 +124,11 @@ function contributionRendering(data, selectYear = null) {
 document.querySelectorAll('.toggle-btn').forEach(function (btn) {
     btn.onclick = function () {
         const liAll = this.parentElement.parentElement.querySelectorAll('li');
+        // 给动态记录的li标签添加隐藏属性
         if (this.classList.contains('show')) {
             liAll.forEach((li) => {
-                if (li.classList.contains("time-line-item-hide")) {
-                    li.classList.remove("time-line-item-hide")
+                if (li.classList.contains("hidden")) {
+                    li.classList.remove("hidden")
                 }
             })
             // 展开逻辑
@@ -136,12 +140,12 @@ document.querySelectorAll('.toggle-btn').forEach(function (btn) {
             // 收起逻辑
             liAll.forEach((li, idx) => {
                 if (li.contains(this)) return;
-                if (idx > 1) li.classList.add('time-line-item-hide');
+                if (idx > 1) li.classList.add('hidden');
             })
             this.classList.remove('hide');
             this.classList.add('show');
             this.innerText = '展开查看';
-            this.parentElement.querySelector('span').innerText = `已隐藏${liAll.length - 3}条推送信息，`; // liAll.length - 3 2个初始显示和1个展开查看按钮 3个li
+            this.parentElement.querySelector('span').innerText = `已隐藏${liAll.length - 2}条推送信息，`; // liAll.length - 3 2个初始显示和1个展开查看按钮 3个li
         }
     }
 });
