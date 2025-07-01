@@ -2,8 +2,9 @@
  * 生成模拟贡献数据：返回一个对象 { '2025-05-01': 1, ... }
  * 你可以用后台接口数据替换此处
  */
-const calendar = document.getElementById('calendar');
 const months = document.getElementById('months');
+const calendar = document.getElementById('calendar');
+const TimeLineLoadMore = document.getElementById("TimeLineLoadMore")
 const contributeYearSelect = document.getElementById('contributeYearSelect')
 
 // 贡献图-根据年获取最后一天
@@ -151,7 +152,7 @@ document.querySelectorAll('.toggle-btn').forEach(function (btn) {
 });
 
 
-// 动态 - 加载更多按钮 - 将数据插入
+// 动态 - 加载更多按钮 - 将数据插入 结构需要变更
 function EventLineRendering(LineDataList, dataExists = false) {
 
     // LineDataList 数据 dataExists 代表更新或者插入，
@@ -227,6 +228,41 @@ contributeYearSelect.addEventListener('change', function () {
         })
 });
 
+// 动态 - 加载更多按钮 - 请求后端
+TimeLineLoadMore.addEventListener("click", () => {
+    let hasMore = true;
+    TimeLineLoadMore.disabled = true;
+    // 插入加载状态
+    TimeLineLoadMore.insertAdjacentHTML("afterbegin", `<span class="loading loading-spinner"></span>`);
+    let contributeYearSelectValue = contributeYearSelect.value; // 是否选中年的value值
+    let url = "/dashboard/api/dynamic_time_line_data?limit=20"
+    if (contributeYearSelectValue) {
+        url = url + `&year=${contributeYearSelectValue}`
+    }
+    // 新增一个变量用于标记是否还有更多
+    apiRequest(url)
+        .then(response => {
+            let LineDataList = response.data;
+            if (Array.isArray(LineDataList) && LineDataList.length === 0) {
+                TimeLineLoadMore.disabled = true;
+                TimeLineLoadMore.innerText = "没有更多";
+                hasMore = false; // 没有更多数据了
+            } else {
+                EventLineRendering(LineDataList);
+            }
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+        .finally(() => {
+            if (hasMore) {
+                setTimeout(() => {
+                    TimeLineLoadMore.disabled = false;
+                    TimeLineLoadMore.innerText = "加载更多";
+                }, 2000)
+            }
+        });
+})
 
 // 页面初始化只加载贡献图
 document.addEventListener('DOMContentLoaded', function () {
