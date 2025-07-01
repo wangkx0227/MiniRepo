@@ -8,9 +8,12 @@
 <link rel="stylesheet"
       href="{{ url_for('dashboard_page.static', filename='workbenches/overview/overview.css') }}">
 <style>
-    /* 可选：自定义滚动条样式 */
-    .contribute-picture::-webkit-scrollbar {
-        height: 2px;
+    .tooltip {
+        --tooltip-text-size: 0.6rem;
+    }
+
+    .tooltip::before {
+        font-size: var(--tooltip-text-size) !important;
     }
 </style>
 {% endblock css %}
@@ -37,7 +40,7 @@
         </div>
         <!--贡献图-->
         <div class="contribute-picture my-2 min-h-38 flex flex-wrap outline outline-gray-200 rounded-sm pl-3 py-4 overflow-x-auto whitespace-nowrap">
-            <div class="flex text-xs text-left text-base-content/50 gap-23 w-full mb-4  ml-18" id="months"></div>
+            <div class="flex text-xs text-left text-base-content/50 gap-21 w-full mb-4  ml-18" id="months"></div>
             <div class="flex-none flex flex-col justify-between text-base-content/75 text-xs w-12 " id="week">
                 <span>周一</span>
                 <span>周四</span>
@@ -72,9 +75,9 @@
         <div class="flex justify-between items-center mb-2">
             <div class="flex-1 text-2xl antialiased font-bold">动态</div>
         </div>
-<!--        <div class="absolute inset-0 flex items-center justify-center pointer-events-none">-->
-<!--            <div class="bg-white p-2 rounded pointer-events-auto text-sm text-base-content/70">暂时没有数据</div>-->
-<!--        </div>-->
+        <!--        <div class="absolute inset-0 flex items-center justify-center pointer-events-none">-->
+        <!--            <div class="bg-white p-2 rounded pointer-events-auto text-sm text-base-content/70">暂时没有数据</div>-->
+        <!--        </div>-->
         <div class="border-l-1 border-gray-300">
             <div class="grid gap-5 pl-2 ">
                 <div class="inline">
