@@ -67,10 +67,14 @@
                 Request，其中代码提交的次数需本地配置的 Git 邮箱帐号已确认绑定的才会被统计。</p>
         </div>
     </div>
-    <div class="dynamics mt-2 min-h-80 max-w-full space-y-2">
+    <!--    <div class="dynamics mt-2 min-h-90 max-w-full space-y-2">-->
+    <div class="dynamics mt-2 min-h-90 max-w-full space-y-2 relative">
         <div class="flex justify-between items-center mb-2">
             <div class="flex-1 text-2xl antialiased font-bold">动态</div>
         </div>
+<!--        <div class="absolute inset-0 flex items-center justify-center pointer-events-none">-->
+<!--            <div class="bg-white p-2 rounded pointer-events-auto text-sm text-base-content/70">暂时没有数据</div>-->
+<!--        </div>-->
         <div class="border-l-1 border-gray-300">
             <div class="grid gap-5 pl-2 ">
                 <div class="inline">
@@ -272,7 +276,7 @@
             </div>
         </div>
         <div class="mt-15 flex justify-center">
-            <button class="btn bg-white text-black border-[#e5e5e5]" id="TimeLineLoadMore">
+            <button class="btn bg-white text-black border-[#e5e5e5] font-normal" id="TimeLineLoadMore">
                 加载更多
             </button>
         </div>

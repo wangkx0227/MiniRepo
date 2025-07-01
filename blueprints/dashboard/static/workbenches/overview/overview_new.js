@@ -229,11 +229,11 @@ contributeYearSelect.addEventListener('change', function () {
 });
 
 // 动态 - 加载更多按钮 - 请求后端
-TimeLineLoadMore.addEventListener("click", () => {
+TimeLineLoadMore?.addEventListener("click", () => {
     let hasMore = true;
     TimeLineLoadMore.disabled = true;
     // 插入加载状态
-    TimeLineLoadMore.insertAdjacentHTML("afterbegin", `<span class="loading loading-spinner"></span>`);
+    TimeLineLoadMore.insertAdjacentHTML("afterbegin", `<span class="loading loading-spinner loading-md"></span>`);
     let contributeYearSelectValue = contributeYearSelect.value; // 是否选中年的value值
     let url = "/dashboard/api/dynamic_time_line_data?limit=20"
     if (contributeYearSelectValue) {
