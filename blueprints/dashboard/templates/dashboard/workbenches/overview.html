@@ -6,7 +6,7 @@
 {% endblock navigation %}
 {% block css %}
 <link rel="stylesheet"
-      href="{{ url_for('dashboard_page.static', filename='workbenches/overview/overview_new.css') }}">
+      href="{{ url_for('dashboard_page.static', filename='workbenches/overview/overview.css') }}">
 <style>
     /* 可选：自定义滚动条样式 */
     .contribute-picture::-webkit-scrollbar {
@@ -285,5 +285,5 @@
 {% endblock overview %}
 {% block js_end %}
 {{ super() }}
-<script src="{{ url_for('dashboard_page.static', filename='workbenches/overview/overview_new.js') }}"></script>
+<script src="{{ url_for('dashboard_page.static', filename='workbenches/overview/overview.js') }}"></script>
 {% endblock js_end %}
