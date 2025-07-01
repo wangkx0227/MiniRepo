@@ -1,119 +1,289 @@
-{% extends 'dashboard/workbenches.html' %}
+{% extends 'dashboard/workbenches_new.html' %}
 <!-- {{ super() }} 继承父类的内容不重写,而是增加 -->
-{% block main_navigation_bar %}
+{% block navigation %}
 {{ super() }}
-<span>/</span>
-<span><a href="javascript:void(0);">概览</a></span>
-{% endblock main_navigation_bar %}
+<li>概览</li>
+{% endblock navigation %}
 {% block css %}
-<link rel="stylesheet" href="{{ url_for('dashboard_page.static', filename='workbenches/overview/overview.css') }}">
+<link rel="stylesheet"
+      href="{{ url_for('dashboard_page.static', filename='workbenches/overview/overview_new.css') }}">
+<style>
+    /* 可选：自定义滚动条样式 */
+    .contribute-picture::-webkit-scrollbar {
+        height: 2px;
+    }
+</style>
 {% endblock css %}
-{% block workbenches_content %}
+{% block js_start %}
 
-<div class="main-contribute">
-    <div class="contribute-head"
-         style="margin-top:2em;display: flex;justify-content: space-between;align-items: center;">
-        <h3 class="fonts-color-major">贡献度</h3>
-        <div>
-            <s-picker label="日期" id="contributeYearSelect">
-                <s-picker-item value="2025">2025</s-picker-item>
-                <s-picker-item value="2024">2024</s-picker-item>
-                <s-picker-item value="2023">2023</s-picker-item>
-                <s-picker-item value="2022">2022</s-picker-item>
-                <s-picker-item value="2021">2021</s-picker-item>
-                <s-picker-item value="2020">2020</s-picker-item>
-            </s-picker>
+{% endblock js_start %}
+{% block overview %}
+<!--日历数据-->
+<div id="contribute_data_dict" data-info='{{ data.contribute_data_dict|tojson }}' hidden></div>
+<div class="p-2 h-full">
+    <div class="contribute max-w-full">
+        <!-- 标题与日期选择框 -->
+        <div class="flex justify-between items-center">
+            <div class="flex-1 text-2xl antialiased font-bold">贡献度</div>
+            <div class=" w-fit">
+                <select class="select cursor-pointer" id="contributeYearSelect">
+                    <option disabled selected value="">日期</option>
+                    {# 日期需要从后端进行获取#}
+                    <option value="2025">2025</option>
+                    <option value="2024">2024</option>
+                    <option value="2023">2023</option>
+                </select>
+            </div>
         </div>
-    </div>
-    <div class="contribute-content">
-        <!--显示jinja2模板传递的数据-->
-        <div id="contribute_data_dict" data-info='{{ data.contribute_data_dict|tojson }}' hidden></div>
-        <div class="calendar-wrap">
-            <div class="weekdays fonts-color-minor" id="weekdays">
+        <!--贡献图-->
+        <div class="contribute-picture my-2 min-h-38 flex flex-wrap outline outline-gray-200 rounded-sm pl-3 py-4 overflow-x-auto whitespace-nowrap">
+            <div class="flex text-xs text-left text-base-content/50 gap-23 w-full mb-4  ml-18" id="months"></div>
+            <div class="flex-none flex flex-col justify-between text-base-content/75 text-xs w-12 " id="week">
                 <span>周一</span>
                 <span>周四</span>
                 <span>周日</span>
             </div>
-            <div class="calendar">
-                <div class="months" id="months"></div>
-                <div class="weeks" id="calendar">
+            <div class="flex-1 flex min-w-0" id="calendar"></div>
+            <div class="mt-3 flex w-full justify-end">
+                <div class="grid grid-cols-7 gap-1 text-base-content/75 text-xs">
+                    <span>少</span>
+                    <span class="size-4 rounded-sm inline-block level-0"></span>
+                    <span class="size-4 rounded-sm inline-block level-1"></span>
+                    <span class="size-4 rounded-sm inline-block level-2"></span>
+                    <span class="size-4 rounded-sm inline-block level-3"></span>
+                    <span class="size-4 rounded-sm inline-block level-4"></span>
+                    <span>多</span>
                 </div>
             </div>
         </div>
-        <div class="legend fonts-color-routine">
-            <span>少</span>
-            <span class="legend-box level-0"></span>
-            <span class="legend-box level-1"></span>
-            <span class="legend-box level-2"></span>
-            <span class="legend-box level-3"></span>
-            <span class="legend-box level-4"></span>
-            <span>多</span>
-        </div>
+        <!--说明-->
         <div class="describe">
-            <p class="fonts-color-minor" style="display: inline-block;margin-right: 20px;font-size: 12px;">
-                最近一年贡献：{{ data.contribute_total }} 次</p>
-            <p class="fonts-color-minor" style="display: inline-block;margin-right: 20px;font-size: 12px;">最长连续贡献：{{
-                data.contribute_continuous_longest_day }}
-                日</p>
-            <p class="fonts-color-minor" style="display: inline-block;margin-right: 20px;font-size: 12px;">最近连续贡献：{{
-                data.contribute_continuous_day }}
-                日</p>
-            <p style="margin: 0;font-size: 12px;" class="fonts-color-routine">
-                贡献度的统计数据包括代码提交、创建任务 / Pull Request、合并 Pull Request，其中代码提交的次数需本地配置的 Git 邮箱帐号已确认绑定的才会被统计。
-            </p>
-        </div>
-    </div>
-</div>
-<div class="main-dynamics">
-    <div class="dynamics-head">
-        <h3 class="fonts-color-major">动态</h3>
-    </div>
-    <div class="dynamics-content">
-        {% if data %}
-        <div class="event-line">
-            {% for event in data.event_data_list %}
-            <div class="time-line-group">
-                <div class="fonts-color-major">{{ event.date }}</div>
-                <ul class="time-line-items fonts-color-major">
-                    {% for commit in event.commits %}
-                    <li class="time-line-item {% if loop.index > 2%} time-line-item-hide {% endif %}">
-                        <!--更新上传信息-->
-                        <div class="time-line-content fonts-color-routine">
-                            <div>
-                                <span>{{ commit.action_human_name }}</span>
-                                <a href="{{ commit.project_tree_path }}">{{ commit.name_with_namespace }}</a>
-                                <span>的 {{ commit.branch_name}} 分支</span>
-                            </div>
-                            <div>
-                                <s-avatar src="{{ commit.profile_photo_link }}"></s-avatar><!--头像-->
-                                <span><a href="{{ commit.project_commit_path }}">{{ commit.commit_from }}</a></span>
-                                <span>{{ commit.message }}</span>
-                            </div>
-                        </div>
-                        <div class="time-line-meta fonts-color-minor">{{ commit.create_at_date | do_date_differ}}</div>
-                    </li>
-                    {% endfor %}
-                    <!--展示按钮-->
-                    <li style=" font-size: 14px;margin-top: 5px" class="fonts-color-minor">
-                        <span>已隐藏 {{ event.hide_number }} 条推送信息，</span>
-                        <a href="javascript:void(0);" class="fonts-color-routine toggle-btn show">展开查看</a>
-                    </li>
-                </ul>
+            <div class="flex font-thin text-xs gap-4">
+                <p>最近一年贡献：150次</p>
+                <p>最近长连续贡献：20日</p>
+                <p>最近连续贡献：10日</p>
             </div>
-            {% endfor %}
+            <p class="font-thin text-xs mt-2">贡献度的统计数据包括代码提交、创建任务 / Pull Request、合并 Pull
+                Request，其中代码提交的次数需本地配置的 Git 邮箱帐号已确认绑定的才会被统计。</p>
         </div>
-        <div style="height: 80px">
-            <s-button style="display: flex;border-radius: 0;" type="outlined" id="TimeLineLoadMore">
+    </div>
+    <!--    <div class="dynamics mt-2 min-h-90 max-w-full space-y-2">-->
+    <div class="dynamics mt-2 min-h-90 max-w-full space-y-2 relative">
+        <div class="flex justify-between items-center mb-2">
+            <div class="flex-1 text-2xl antialiased font-bold">动态</div>
+        </div>
+<!--        <div class="absolute inset-0 flex items-center justify-center pointer-events-none">-->
+<!--            <div class="bg-white p-2 rounded pointer-events-auto text-sm text-base-content/70">暂时没有数据</div>-->
+<!--        </div>-->
+        <div class="border-l-1 border-gray-300">
+            <div class="grid gap-5 pl-2 ">
+                <div class="inline">
+                    <div class="text-base text-black-content/85 font-semibold mb-3">2025-06-30</div>
+                    <ul class="pl-5 grid grid-rows-2 gap-2">
+                        <li class="text-sm text-base-content/70 flex">
+                            <div class="grid grid-rows-2 gap-2 flex-1">
+                                <div class="flex gap-2 items-center items-center">
+                                    <!--git操作,根据后端分析获取-->
+                                    <span>推送了</span>
+                                    <!--git操作,推送仓库地址-->
+                                    <a class="link link-primary text-slate-500 hover:text-slate-700"
+                                       href="/wangkx0227/MiniRepo/tree/master">不会换牙的鲨鱼/MiniRepo</a>
+                                    <!--git操作,推送分支-->
+                                    <span>的master分支</span>
+                                </div>
+                                <div class="flex gap-2 items-center">
+                                    <!--提交git的用户头像,如果没有头像就使用默认的-->
+                                    <div class="avatar">
+                                        <div class="w-6 rounded-full">
+                                            <img src="https://img.daisyui.com/images/profile/demo/yellingcat@192.webp"/>
+                                        </div>
+                                    </div>
+                                    <!--git执行的版本-->
+                                    <div>
+                                        <a class="link link-primary text-slate-500 hover:text-slate-700"
+                                           href="/wangkx0227/MiniRepo/commit/d960e14bc58e5679bf4d5cb076eb321c8c8932a8">d960e14</a>
+                                        <!--git执行commit信息的从后端来-->
+                                        <span>更新了css样式</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>0个月前</div>
+                        </li>
+                        <li class="text-sm text-base-content/70 flex">
+                            <div class="grid grid-rows-2 gap-2 flex-1">
+                                <div class="flex gap-2 items-center items-center">
+                                    <!--git操作,根据后端分析获取-->
+                                    <span>推送了</span>
+                                    <!--git操作,推送仓库地址-->
+                                    <a class="link link-primary text-slate-500 hover:text-slate-700"
+                                       href="/wangkx0227/MiniRepo/tree/master">不会换牙的鲨鱼/MiniRepo</a>
+                                    <!--git操作,推送分支-->
+                                    <span>的master分支</span>
+                                </div>
+                                <div class="flex gap-2 items-center">
+                                    <!--提交git的用户头像,如果没有头像就使用默认的-->
+                                    <div class="avatar">
+                                        <div class="w-6 rounded-full">
+                                            <img src="https://img.daisyui.com/images/profile/demo/yellingcat@192.webp"/>
+                                        </div>
+                                    </div>
+                                    <!--git执行的版本-->
+                                    <div>
+                                        <a class="link link-primary text-slate-500 hover:text-slate-700"
+                                           href="/wangkx0227/MiniRepo/commit/d960e14bc58e5679bf4d5cb076eb321c8c8932a8">d960e14</a>
+                                        <!--git执行commit信息的从后端来-->
+                                        <span>更新了css样式</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>0个月前</div>
+                        </li>
+                        <li class="hidden text-sm text-base-content/70 flex">
+                            <div class="grid grid-rows-2 gap-2 flex-1">
+                                <div class="flex gap-2 items-center items-center">
+                                    <!--git操作,根据后端分析获取-->
+                                    <span>推送了</span>
+                                    <!--git操作,推送仓库地址-->
+                                    <a class="link link-primary text-slate-500 hover:text-slate-700"
+                                       href="/wangkx0227/MiniRepo/tree/master">不会换牙的鲨鱼/MiniRepo</a>
+                                    <!--git操作,推送分支-->
+                                    <span>的master分支</span>
+                                </div>
+                                <div class="flex gap-2 items-center">
+                                    <!--提交git的用户头像,如果没有头像就使用默认的-->
+                                    <div class="avatar">
+                                        <div class="w-6 rounded-full">
+                                            <img src="https://img.daisyui.com/images/profile/demo/yellingcat@192.webp"/>
+                                        </div>
+                                    </div>
+                                    <!--git执行的版本-->
+                                    <div>
+                                        <a class="link link-primary text-slate-500 hover:text-slate-700"
+                                           href="/wangkx0227/MiniRepo/commit/d960e14bc58e5679bf4d5cb076eb321c8c8932a8">d960e14</a>
+                                        <!--git执行commit信息的从后端来-->
+                                        <span>更新了css样式</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>0个月前</div>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="text-base-content/50 text-xs">已隐藏 1 条推送信息，</span>
+                            <button class="btn btn-link toggle-btn show link btn-xs text-slate-600 hover:text-slate-800 font-normal">
+                                展开查看
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <div class="inline">
+                    <div class="text-base text-black-content/85 font-semibold mb-3">2025-06-30</div>
+                    <ul class="pl-5 grid grid-rows-2 gap-2">
+                        <li class="text-sm text-base-content/70 flex">
+                            <div class="grid grid-rows-2 gap-2 flex-1">
+                                <div class="flex gap-2 items-center items-center">
+                                    <!--git操作,根据后端分析获取-->
+                                    <span>推送了</span>
+                                    <!--git操作,推送仓库地址-->
+                                    <a class="link link-primary text-slate-500 hover:text-slate-700"
+                                       href="/wangkx0227/MiniRepo/tree/master">不会换牙的鲨鱼/MiniRepo</a>
+                                    <!--git操作,推送分支-->
+                                    <span>的master分支</span>
+                                </div>
+                                <div class="flex gap-2 items-center">
+                                    <!--提交git的用户头像,如果没有头像就使用默认的-->
+                                    <div class="avatar">
+                                        <div class="w-6 rounded-full">
+                                            <img src="https://img.daisyui.com/images/profile/demo/yellingcat@192.webp"/>
+                                        </div>
+                                    </div>
+                                    <!--git执行的版本-->
+                                    <div>
+                                        <a class="link link-primary text-slate-500 hover:text-slate-700"
+                                           href="/wangkx0227/MiniRepo/commit/d960e14bc58e5679bf4d5cb076eb321c8c8932a8">d960e14</a>
+                                        <!--git执行commit信息的从后端来-->
+                                        <span>更新了css样式</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>0个月前</div>
+                        </li>
+                        <li class="text-sm text-base-content/70 flex">
+                            <div class="grid grid-rows-2 gap-2 flex-1">
+                                <div class="flex gap-2 items-center items-center">
+                                    <!--git操作,根据后端分析获取-->
+                                    <span>推送了</span>
+                                    <!--git操作,推送仓库地址-->
+                                    <a class="link link-primary text-slate-500 hover:text-slate-700"
+                                       href="/wangkx0227/MiniRepo/tree/master">不会换牙的鲨鱼/MiniRepo</a>
+                                    <!--git操作,推送分支-->
+                                    <span>的master分支</span>
+                                </div>
+                                <div class="flex gap-2 items-center">
+                                    <!--提交git的用户头像,如果没有头像就使用默认的-->
+                                    <div class="avatar">
+                                        <div class="w-6 rounded-full">
+                                            <img src="https://img.daisyui.com/images/profile/demo/yellingcat@192.webp"/>
+                                        </div>
+                                    </div>
+                                    <!--git执行的版本-->
+                                    <div>
+                                        <a class="link link-primary text-slate-500 hover:text-slate-700"
+                                           href="/wangkx0227/MiniRepo/commit/d960e14bc58e5679bf4d5cb076eb321c8c8932a8">d960e14</a>
+                                        <!--git执行commit信息的从后端来-->
+                                        <span>更新了css样式</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>0个月前</div>
+                        </li>
+                        <li class="hidden text-sm text-base-content/70 flex">
+                            <div class="grid grid-rows-2 gap-2 flex-1">
+                                <div class="flex gap-2 items-center items-center">
+                                    <!--git操作,根据后端分析获取-->
+                                    <span>推送了</span>
+                                    <!--git操作,推送仓库地址-->
+                                    <a class="link link-primary text-slate-500 hover:text-slate-700"
+                                       href="/wangkx0227/MiniRepo/tree/master">不会换牙的鲨鱼/MiniRepo</a>
+                                    <!--git操作,推送分支-->
+                                    <span>的master分支</span>
+                                </div>
+                                <div class="flex gap-2 items-center">
+                                    <!--提交git的用户头像,如果没有头像就使用默认的-->
+                                    <div class="avatar">
+                                        <div class="w-6 rounded-full">
+                                            <img src="https://img.daisyui.com/images/profile/demo/yellingcat@192.webp"/>
+                                        </div>
+                                    </div>
+                                    <!--git执行的版本-->
+                                    <div>
+                                        <a class="link link-primary text-slate-500 hover:text-slate-700"
+                                           href="/wangkx0227/MiniRepo/commit/d960e14bc58e5679bf4d5cb076eb321c8c8932a8">d960e14</a>
+                                        <!--git执行commit信息的从后端来-->
+                                        <span>更新了css样式</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>0个月前</div>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="text-base-content/50 text-xs">已隐藏 1 条推送信息，</span>
+                            <button class="btn btn-link toggle-btn show link btn-xs text-slate-600 hover:text-slate-800 font-normal">
+                                展开查看
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="mt-15 flex justify-center">
+            <button class="btn bg-white text-black border-[#e5e5e5] font-normal" id="TimeLineLoadMore">
                 加载更多
-            </s-button>
+            </button>
         </div>
-        {% else %}
-        <s-empty style="min-height: 300px">暂时没有数据</s-empty>
-        {% endif %}
     </div>
 </div>
-{% endblock workbenches_content %}
+{% endblock overview %}
 {% block js_end %}
 {{ super() }}
-<script src="{{ url_for('dashboard_page.static', filename='workbenches/overview/overview.js') }}"></script>
+<script src="{{ url_for('dashboard_page.static', filename='workbenches/overview/overview_new.js') }}"></script>
 {% endblock js_end %}

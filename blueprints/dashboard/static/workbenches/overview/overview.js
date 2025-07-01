@@ -2,6 +2,8 @@
  * 生成模拟贡献数据：返回一个对象 { '2025-05-01': 1, ... }
  * 你可以用后台接口数据替换此处
  */
+const months = document.getElementById('months');
+const calendar = document.getElementById('calendar');
 const TimeLineLoadMore = document.getElementById("TimeLineLoadMore")
 const contributeYearSelect = document.getElementById('contributeYearSelect')
 
@@ -28,8 +30,6 @@ function contributionGrade(count) {
 
 // 贡献图-数据渲染
 function contributionRendering(data, selectYear = null) {
-    const calendar = document.getElementById('calendar');
-    const months = document.getElementById('months');
     calendar.innerHTML = '';
     months.innerHTML = '';
 
@@ -60,15 +60,13 @@ function contributionRendering(data, selectYear = null) {
     // 以列为单位循环
     while (current <= endDate || leadingEmpty > 0) {
         const weekColumn = document.createElement('div');
-        weekColumn.className = 'week';
+        weekColumn.classList = "grid grid-rows-7 gap-1 "
         let hasMonthLabel = false;
-
         for (let i = 0; i < 7; i++) {
             // 首周需要补空格
             if (leadingEmpty > 0) {
                 const emptyBox = document.createElement('div');
-                emptyBox.className = 'day ';
-                emptyBox.style.visibility = "hidden";
+                emptyBox.className = ' w-5 h-5 ';
                 weekColumn.appendChild(emptyBox);
                 leadingEmpty--;
                 continue;
@@ -76,8 +74,7 @@ function contributionRendering(data, selectYear = null) {
             // 当前日期超出endDate，补空格
             if (current > endDate) {
                 const emptyBox = document.createElement('div');
-                emptyBox.className = 'day ';
-                emptyBox.style.visibility = "hidden";
+                emptyBox.className = ' w-5 h-5 ';
                 weekColumn.appendChild(emptyBox);
                 continue;
             }
@@ -85,8 +82,14 @@ function contributionRendering(data, selectYear = null) {
             const dateStr = current.toISOString().slice(0, 10);
             const count = data[dateStr] || 0;
             const dayBox = document.createElement('div');
-            dayBox.className = 'day ' + contributionGrade(count);
-            dayBox.title = `${dateStr}: ${count} 次贡献`;
+            dayBox.className = 'tooltip mr-0.5 w-5 h-5 box-border transition-colors cursor-pointer rounded-sm';
+            // 根据数据计算，贡献图的颜色显示深度
+            if (count === 0) {
+                dayBox.classList.add("level-0");
+            } else {
+                dayBox.classList.add(contributionGrade(count));
+            }
+            dayBox.setAttribute("data-tip", `${count} 个贡献：${dateStr}`)
             dayBox.dataset.date = dateStr;
             weekColumn.appendChild(dayBox);
 
@@ -103,17 +106,17 @@ function contributionRendering(data, selectYear = null) {
         // 记录月份名或空字符串
         if (hasMonthLabel) {
             monthLabels.push(`${lastMonth + 1}月`);
-        } else {
-            monthLabels.push('');
         }
     }
-
     // 渲染月份标签
     for (let i = 0; i < monthLabels.length; i++) {
         const monthDiv = document.createElement('div');
-        monthDiv.className = 'month-label';
-        monthDiv.innerHTML = monthLabels[i] ? monthLabels[i] : '&nbsp;';
+        if (monthLabels[i]) {
+            monthDiv.classList.add("w-1")
+        }
+        monthDiv.innerHTML = monthLabels[i];
         months.appendChild(monthDiv);
+
     }
 }
 
@@ -122,10 +125,11 @@ function contributionRendering(data, selectYear = null) {
 document.querySelectorAll('.toggle-btn').forEach(function (btn) {
     btn.onclick = function () {
         const liAll = this.parentElement.parentElement.querySelectorAll('li');
+        // 给动态记录的li标签添加隐藏属性
         if (this.classList.contains('show')) {
             liAll.forEach((li) => {
-                if (li.classList.contains("time-line-item-hide")) {
-                    li.classList.remove("time-line-item-hide")
+                if (li.classList.contains("hidden")) {
+                    li.classList.remove("hidden")
                 }
             })
             // 展开逻辑
@@ -137,18 +141,18 @@ document.querySelectorAll('.toggle-btn').forEach(function (btn) {
             // 收起逻辑
             liAll.forEach((li, idx) => {
                 if (li.contains(this)) return;
-                if (idx > 1) li.classList.add('time-line-item-hide');
+                if (idx > 1) li.classList.add('hidden');
             })
             this.classList.remove('hide');
             this.classList.add('show');
             this.innerText = '展开查看';
-            this.parentElement.querySelector('span').innerText = `已隐藏${liAll.length - 3}条推送信息，`; // liAll.length - 3 2个初始显示和1个展开查看按钮 3个li
+            this.parentElement.querySelector('span').innerText = `已隐藏${liAll.length - 2}条推送信息，`; // liAll.length - 3 2个初始显示和1个展开查看按钮 3个li
         }
     }
 });
 
 
-// 动态 - 加载更多按钮 - 将数据插入
+// 动态 - 加载更多按钮 - 将数据插入 结构需要变更
 function EventLineRendering(LineDataList, dataExists = false) {
 
     // LineDataList 数据 dataExists 代表更新或者插入，
@@ -224,18 +228,19 @@ contributeYearSelect.addEventListener('change', function () {
         })
 });
 
-
 // 动态 - 加载更多按钮 - 请求后端
-TimeLineLoadMore.addEventListener("click", () => {
+// ?. 可选链操作符，类似与 TimeLineLoadMore && TimeLineLoadMore.addEventListener ...
+TimeLineLoadMore?.addEventListener("click", () => {
+    let hasMore = true;
     TimeLineLoadMore.disabled = true;
-    TimeLineLoadMore.innerHTML = `<s-circular-progress indeterminate="true" slot="start"></s-circular-progress>`
+    // 插入加载状态
+    TimeLineLoadMore.insertAdjacentHTML("afterbegin", `<span class="loading loading-spinner loading-md"></span>`);
     let contributeYearSelectValue = contributeYearSelect.value; // 是否选中年的value值
     let url = "/dashboard/api/dynamic_time_line_data?limit=20"
     if (contributeYearSelectValue) {
         url = url + `&year=${contributeYearSelectValue}`
     }
     // 新增一个变量用于标记是否还有更多
-    let hasMore = true;
     apiRequest(url)
         .then(response => {
             let LineDataList = response.data;
@@ -259,7 +264,6 @@ TimeLineLoadMore.addEventListener("click", () => {
             }
         });
 })
-
 
 // 页面初始化只加载贡献图
 document.addEventListener('DOMContentLoaded', function () {
