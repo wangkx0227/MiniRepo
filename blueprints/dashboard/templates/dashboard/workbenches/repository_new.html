@@ -1,0 +1,19 @@
+{% extends 'dashboard/workbenches_new.html' %}
+<!-- {{ super() }} 继承父类的内容不重写,而是增加 -->
+{% block navigation %}
+{{ super() }}
+<li>仓库</li>
+{% endblock navigation %}
+{% block css %}
+
+{% endblock css %}
+{% block js_start %}
+
+{% endblock js_start %}
+{% block repository %}
+23131312
+{% endblock repository %}
+{% block js_end %}
+{{ super() }}
+
+{% endblock js_end %}

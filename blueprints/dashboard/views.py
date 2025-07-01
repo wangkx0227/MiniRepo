@@ -20,12 +20,14 @@ def workbenches():
         'analysis': 'dashboard/workbenches/analysis.html',
         'snippet': 'dashboard/workbenches/snippet.html',
         'overview': 'dashboard/workbenches/overview.html',
-        '123': 'dashboard/workbenches/overview_new.html',
+        '123': 'dashboard/workbenches/repository_new.html',
     }
     # 默认用 overview，无论是登录跳转还是点击工作台
     template = template_map.get(tab, 'dashboard/workbenches/overview.html')
     data = get_workbenches_data(tab)  # 获取当前数据
     # 传递 tab 让前端的tab标签默认选中
+    if tab == "123":
+        tab = "repository"
     return render_template(template, tab=tab, data=data)
 
 

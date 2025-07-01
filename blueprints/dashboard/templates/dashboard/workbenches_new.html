@@ -55,7 +55,7 @@
     <div class="w-3/4  h-full">
         <div class="tabs tabs-border">
             <label class="tab">
-                <input type="radio" name="workbenchesTab" checked="checked" id="overview"/>
+                <input type="radio" name="workbenchesTab" {% if tab=='overview' %}checked{% endif %} id="overview"/>
                 <s2-icon name="workbenches_overview"></s2-icon>
                 <span>概览</span>
             </label>
@@ -64,7 +64,7 @@
                 {% endblock overview %}
             </div>
             <label class="tab">
-                <input type="radio" name="workbenchesTab" id="repository"/>
+                <input type="radio" name="workbenchesTab" {% if tab=='repository' %}checked{% endif %}  id="repository"/>
                 <s2-icon name="workbenches_repository"></s2-icon>
                 <span>仓库</span>
             </label>
@@ -73,7 +73,7 @@
                 {% endblock repository %}
             </div>
             <label class="tab">
-                <input type="radio" name="workbenchesTab" id="analysis"/>
+                <input type="radio" name="workbenchesTab" {% if tab=='analysis' %}checked{% endif %} id="analysis"/>
                 <s2-icon name="workbenches_analysis"></s2-icon>
                 <span>统计分析</span>
             </label>
@@ -82,7 +82,7 @@
                 {% endblock analysis %}
             </div>
             <label class="tab">
-                <input type="radio" name="workbenchesTab" id="snippet"/>
+                <input type="radio" name="workbenchesTab" {% if tab=='snippet' %}checked{% endif %} id="snippet"/>
                 <s2-icon name="workbenches_snippet"></s2-icon>
                 <span>统计分析</span>
             </label>
