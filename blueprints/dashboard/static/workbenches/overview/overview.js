@@ -82,7 +82,7 @@ function contributionRendering(data, selectYear = null) {
             const dateStr = current.toISOString().slice(0, 10);
             const count = data[dateStr] || 0;
             const dayBox = document.createElement('div');
-            dayBox.className = 'tooltip mr-0.5 w-5 h-5 box-border transition-colors cursor-pointer rounded-sm';
+            dayBox.className = 'tooltip mr-0.5 w-5 h-5 box-border cursor-pointer rounded-sm';
             // 根据数据计算，贡献图的颜色显示深度
             if (count === 0) {
                 dayBox.classList.add("level-0");
