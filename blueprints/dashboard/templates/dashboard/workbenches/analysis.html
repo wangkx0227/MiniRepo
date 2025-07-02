@@ -4,3 +4,72 @@
 {{ super() }}
 <li>统计分析</li>
 {% endblock navigation %}
+{% block analysis %}
+（展示更详细的活跃度、代码量、周/月报等。）
+1. 基础活跃度指标
+指标    说明    示例展示方式
+提交次数    总提交数/近期趋势    📈 128 次（+12% 本周）
+分支数量    活跃分支数    🌿 5 个分支
+贡献者数    参与贡献的开发者数量    👥 8 位贡献者
+Issue/Pull Request    未关闭的 Issue/PR 数    ⚠️ 3 Open Issues · 5 Open PRs
+2. 代码维度分析
+模块    说明    可视化建议
+代码量统计    按语言分类的代码行数    饼图/条形图（如 Python 60%, JS 30%）
+文件变更频率    高频修改的文件/目录    热力图或树状图
+代码注释率    代码注释覆盖率    📝 注释率 25%
+3. 时间趋势图表
+图表类型    用途    示例
+提交时间分布    每日/每周提交活跃时段    折线图（X轴为时间）
+贡献者活跃周期    长期贡献者的参与频率    日历热力图（GitHub风格）
+Issue 解决周期    从创建到关闭的平均时间    柱状图（按月份分组）
+4. 高级分析（可选）
+功能    说明    适用场景
+代码重复检测    重复代码块的比例    代码质量优化
+依赖库分析    第三方依赖的版本/漏洞    安全审计
+Commit 信息分析    高频关键词（如 fix, feat）    了解开发重点
+
+
+GitHub Insights：原生数据分析工具
+
+GitStats：本地生成仓库统计报告
+
+Grafana：自定义可视化仪表盘
+
+
+
+<!-- 工作台菜单中的统计卡片 -->
+<div class="p-2 border rounded-lg bg-gray-50 w-64">
+  <!-- 标题 + 最近活动 -->
+  <div class="flex justify-between items-center mb-2">
+    <h3 class="font-medium">仓库动态</h3>
+    <span class="text-xs text-gray-500">最近4周</span>
+  </div>
+
+  <!-- 核心指标 -->
+  <div class="space-y-1 text-sm">
+    <div class="flex justify-between">
+      <span>提交总数</span>
+      <span class="font-mono">161</span>
+    </div>
+    <div class="flex justify-between">
+      <span>本周提交</span>
+      <span class="font-mono">25</span>
+    </div>
+    <div class="flex justify-between">
+      <span>活跃分支</span>
+      <span class="font-mono">master</span>
+    </div>
+  </div>
+
+  <!-- 迷你趋势图（可选） -->
+  <div class="mt-2 h-10 w-full bg-gray-200 rounded">
+    <!-- 这里可嵌入微型条形图或使用CSS渐变模拟 -->
+    <div class="h-full flex items-end gap-px">
+      <div class="w-3 bg-green-500" style="height: 30%;"></div>
+      <div class="w-3 bg-green-500" style="height: 80%;"></div>
+      <!-- 更多条形... -->
+    </div>
+  </div>
+</div>
+
+{% endblock analysis %}

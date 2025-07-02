@@ -77,14 +77,14 @@
                 <s2-icon name="workbenches_analysis"></s2-icon>
                 <span>统计分析</span>
             </label>
-            <div class="tab-content bg-base-100 py-2">（展示更详细的活跃度、代码量、周/月报等。）
+            <div class="tab-content bg-base-100 py-2">
                 {% block analysis %}
                 {% endblock analysis %}
             </div>
             <label class="tab">
                 <input type="radio" name="workbenchesTab" {% if tab=='snippet' %}checked{% endif %} id="snippet"/>
                 <s2-icon name="workbenches_snippet"></s2-icon>
-                <span>统计分析</span>
+                <span>代码片段</span>
             </label>
             <div class="tab-content bg-base-100 py-2">存放个人常用代码片段、开发备忘
                 {% block snippet %}
