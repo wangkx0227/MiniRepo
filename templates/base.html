@@ -1,288 +1,226 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-        GitMiniRepo ·
         {% block title %}
+        GitMiniRepo ·
         {% endblock title %}
     </title>
-    <!-- 三方样式   -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!--  三方  -->
     <script src="{{ url_for('static', filename='lib/nprogress/nprogress.js') }}"></script>
-    <script src="{{ url_for('static', filename='lib/sober/sober.min.js') }}"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='lib/nprogress/nprogress.css') }}"/>
+    <link href="{{ url_for('static', filename='lib/daisyui/daisyui.css') }}" rel="stylesheet" type="text/css"/>
+    <script src="{{ url_for('static', filename='lib/tailwind/tailwind.js') }}"></script>
+    <!-- 个人 -->
+    <script src="{{ url_for('static', filename='lib/base/menus/menuicon.js') }}"></script>
 
 
-    <!-- 菜单栏路由函数 -->
-    <script src="{{ url_for('static', filename='base/menus/menuPublic.js') }}"></script>
-    <!-- 菜单栏的icon图标 -->
-    <script src="{{ url_for('static', filename='base/menus/menuIcon.js') }}"></script>
+    <style>
+        .navbar .divider {
+            margin: 0;
+        }
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='base/base.css') }}"/>
-    <link rel="stylesheet" href="{{ url_for('static', filename='base/public.css') }}"/>
-    <link rel="stylesheet" href="{{ url_for('static', filename='base/notification/notification.css') }}"/>
+        /* 全局滚动条样式 (Chrome/Safari/Edge) */
+        ::-webkit-scrollbar {
+            width: 2px !important; /* 强制覆盖 */
+            height: 2px !important;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1 !important;
+            border-radius: 2px !important;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e0 !important;
+            border-radius: 2px !important;
+        }
+
+        /* Firefox 滚动条 */
+        html {
+            scrollbar-width: thin !important;
+            scrollbar-color: #cbd5e0 #f1f1f1 !important;
+        }
+
+        /* 确保可滚动容器激活样式 */
+        .scroll-container {
+            overflow: auto;
+            scrollbar-gutter: stable; /* 防止布局偏移 */
+        }
 
 
+    </style>
     <!-- 导入css样式表 -->
     {% block css %}
     {% endblock css %}
     <!-- 导入js-start -->
     {% block js_start %}
     {% endblock js_start %}
-</head>
-
 <body>
-<s-page class="content">
-    <s-drawer id="drawer">
-        <div slot="start" {% if page_show_status %} style="display: none" {% endif %}>
-            <s-menu style="max-width: 280px; margin: 0;">
-                <div slot="label">
-                    菜单
+<!--主体-->
+<div class="flex flex-col min-h-screen antialiased">
+    <div class="navbar bg-base shadow-sm">
+        <div class="flex-none">
+            <!--抽屉，侧边栏-->
+            <div class="drawer">
+                <input id="my-drawer" type="checkbox" class="drawer-toggle"/>
+                <div class="drawer-content">
+                    <label for="my-drawer" class="btn btn-square btn-ghost">
+                        <s2-icon name="index_sidebar_menu"></s2-icon>
+                    </label>
                 </div>
-                <s-menu-item id="interfaceSidebarWorkbenches">
-                    <s-icon slot="start">
-                        <s2-icon name="interface_work"></s2-icon>
-                    </s-icon>
-                    <span>工作台</span>
-                </s-menu-item>
-                <s-menu-item id="interfaceSidebarProjects">
-                    <s-icon slot="start">
-                        <s2-icon name="interface_file_code"></s2-icon>
-                    </s-icon>
-                    <span>项目</span>
-                </s-menu-item>
-                <s-menu-item id="interfaceSidebarGroups">
-                    <s-icon slot="start">
-                        <s2-icon name="interface_user_group"></s2-icon>
-                    </s-icon>
-                    <span>群组</span>
-                </s-menu-item>
-                <s-menu-item id="interfaceSidebarMergeRequests">
-                    <s-icon slot="start">
-                        <s2-icon name="interface_merge"></s2-icon>
-                    </s-icon>
-                    <span>合并请求</span>
-                </s-menu-item>
-                <s-menu-item id="interfaceSidebarTodos">
-                    <s-icon slot="start">
-                        <s2-icon name="interface_export"></s2-icon>
-                    </s-icon>
-                    <span>待办事项列表</span>
-                </s-menu-item>
-
-            </s-menu>
-            <s-menu style="max-width: 280px; margin: 0">
-                <div slot="label">其他</div>
-                <!--folded="false" 展开二级菜单-->
-                <!--通过Jinja2方式控制菜单展示效果，它在服务器端把你的 HTML 模板和变量“渲染成”最终的 HTML 字符串，然后把这个字符串返回给浏览器-->
-                <s-menu-item id="interfaceSidebarSetting"
-                             folded="{{ 'false' if folded else 'true' }}">
-                    <s-icon slot="start">
-                        <s2-icon name="interface_setting"></s2-icon>
-                    </s-icon>
-                    <span>设置</span>
-                    <s-menu slot="menu">
-                        <!--默认选择 checked="true"-->
-                        <s-menu-item id="interfaceSidebarUserSetting">
-                            <s-icon slot="start">
-                                <s2-icon name="interface_user_setting"></s2-icon>
-                            </s-icon>
-                            <span>账号设置</span>
-                        </s-menu-item>
-                        <s-menu-item id="interfaceSidebarSecuredSetting">
-                            <s-icon slot="start">
-                                <s2-icon name="interface_secured"></s2-icon>
-                            </s-icon>
-                            <span>安全设置</span>
-                        </s-menu-item>
-                    </s-menu>
-                </s-menu-item>
-                <s-menu-item>
-                    <s-icon slot="start" name="add"></s-icon>
-                    其他菜单-01
-                </s-menu-item>
-                <s-menu-item>
-                    <s-icon slot="start" name="add"></s-icon>
-                    其他菜单-02
-                </s-menu-item>
-                <s-menu-item>
-                    <s-icon slot="start" name="add"></s-icon>
-                    其他菜单-03
-                </s-menu-item>
-            </s-menu>
-        </div>
-        <s-appbar style="width: 100%;background-color: #FFFFFF;border-bottom: 1px solid #eceef0;">
-            <!--左侧菜单按钮-->
-            <s-tooltip align="bottom" slot="navigation">
-                <s-icon-button slot="trigger" id="DrawerTriggerBut" {% if page_show_status %} disabled="true" {% endif
-                               %}>
-                    <s2-icon name="interface_menu_fold"></s2-icon>
-                </s-icon-button>
-                <span id="interface_menu_tip">隐藏侧边栏</span>
-            </s-tooltip>
-            <!--标题-->
-            <div slot="headline">
-                <span class="title" id="HeadIndexTile">GitMiniRepo</span>
+                <div class="drawer-side">
+                    <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay">111</label>
+                    <ul class="menu  menu-md bg-base-200 text-base-content min-h-full w-80 p-4">
+                        <summary>菜单</summary>
+                        <li>
+                            <a>
+                                <s2-icon name="sidebar_work"></s2-icon>
+                                工作台
+                            </a>
+                        </li>
+                        <li><a>
+                            <s2-icon name="sidebar_file_code"></s2-icon>
+                            项目</a></li>
+                        <li><a>
+                            <s2-icon name="sidebar_user_group"></s2-icon>
+                            群组</a></li>
+                        <li><a>
+                            <s2-icon name="sidebar_merge"></s2-icon>
+                            合并请求</a></li>
+                        <li><a>
+                            <s2-icon name="sidebar_export"></s2-icon>
+                            代办事项列表</a></li>
+                        <div class="divider"></div>
+                        <summary>其他</summary>
+                        <li>
+                            <details>
+                                <summary>
+                                    <s2-icon name="sidebar_setting"></s2-icon>
+                                    设置
+                                </summary>
+                                <ul>
+                                    <li><a>
+                                        <s2-icon name="sidebar_user_setting"></s2-icon>
+                                        账号设置</a></li>
+                                    <li><a>
+                                        <s2-icon name="sidebar_secured"></s2-icon>
+                                        安全设置</a></li>
+                                </ul>
+                            </details>
+                        </li>
+                        <li><a>
+                            <s2-icon name="sidebar_export"></s2-icon>
+                            菜单-001</a></li>
+                        <li><a>
+                            <s2-icon name="sidebar_export"></s2-icon>
+                            菜单-002</a></li>
+                        <li><a>
+                            <s2-icon name="sidebar_export"></s2-icon>
+                            菜单-003</a></li>
+                    </ul>
+                </div>
             </div>
-            <!-- 通知 -->
-            <div slot="action">
-                <s-popup align="center">
-                    <s-icon-button slot="trigger" id="DrawerNotificationBut">
-                        <s2-icon name="interface_notification"></s2-icon>
-                    </s-icon-button>
-                    <div class="main-interface-notification">
-                        <s-tab mode="fixed">
-                            <s-tab-item selected="true" id="notification-referer">
-                                <div slot="text">@我</div>
-                            </s-tab-item>
-                            <s-tab-item id="notification-message">
-                                <div slot="text">消息</div>
-                            </s-tab-item>
-                            <s-tab-item id="notification-other">
-                                <div slot="text">其他</div>
-                            </s-tab-item>
-                        </s-tab>
-                        <div class="notification-content" id="notification-content" style="min-height: 164px;">
+        </div>
+        <div class="flex-1 ">
+            <a class="btn btn-ghost text-xl">GitMiniRepo</a>
+        </div>
+        <div class="flex-one">
+            <input type="text" placeholder="搜索" class="input input-bordered w-24 md:w-auto mr-2"/>
+            <!--通知按钮-->
+            <button class="btn btn-ghost btn-circle">
+                <s2-icon name="index_notification"></s2-icon>
+            </button>
+            <!--+号-->
+            <div class="dropdown dropdown-end ">
+                <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
+                    <s2-icon name="index_add"></s2-icon>
+                </div>
+                <ul tabindex="0"
+                    class="menu menu-sm dropdown-content bg-base-100 rounded-md z-1 mt-1 w-52 p-2 drop-shadow-xl/50">
+                    <li>
+                        <a>
+                            <s2-icon name="index_add_warehouse"></s2-icon>
+                            新建项目/仓库
+                        </a>
+                    </li>
+                    <li><a>
+                        <s2-icon name="index_add_group"></s2-icon>
+                        新建群组
+                    </a></li>
+                    <li><a>
+                        <s2-icon name="index_add_code"></s2-icon>
+                        新建代码片段</a></li>
+                </ul>
+            </div>
+            <!--用户-->
+            <div class="dropdown dropdown-end ">
+                <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+                    <div class="avatar avatar-placeholder">
+                        <div class="bg-neutral text-neutral-content w-8 rounded-full">
+                            <!--有头像显示头像路径，没有头像显示us-->
+                            <span>US</span>
+                            <!--<img src="https://img.daisyui.com/images/profile/demo/idiotsandwich@192.webp"/>-->
                         </div>
                     </div>
-                </s-popup>
-            </div>
-            <!-- +按钮 -->
-            <div slot="action">
-                <s-popup-menu>
-                    <div slot="trigger">
-                        <s-icon-button slot="trigger">
-                            <s2-icon name="interface_add"></s2-icon>
-                        </s-icon-button>
-                    </div>
-                    <div class="popup-menu-item">
-                        <s-popup-menu-item id="menuAddProjects">
-                            <s-icon slot="start">
-                                <s2-icon name="interface_add_menu_add"></s-2icon>
-                            </s-icon>
-                            <span>新建项目/仓库</span>
-                        </s-popup-menu-item>
-                        <s-popup-menu-item id="menuAddOrganizations">
-                            <s-icon slot="start">
-                                <s2-icon name="interface_add_menu_group"></s-2icon>
-                            </s-icon>
-                            <span>新建群组</span>
-                        </s-popup-menu-item>
-                        <s-popup-menu-item id="menuAddCodes">
-                            <s-icon slot="start">
-                                <s2-icon name="interface_add_menu_code"></s-2icon>
-                            </s-icon>
-                            <span>新建代码片段</span>
-                        </s-popup-menu-item>
-                    </div>
-                </s-popup-menu>
-            </div>
-            <!-- 用户菜单 -->
-            <div slot="action">
-                <s-popup-menu>
-                    <div class="popup-menu-item-button" slot="trigger">
-                        <s-icon-button slot="trigger">
-                            <s-avatar slot="start" style="color: #FFFFFF;">US</s-avatar>
-                        </s-icon-button>
-                    </div>
-                    <div class="popup-menu-item">
-                        <s-popup-menu-item id="menuUTodos">
-                            <s-icon slot="start">
-                                <!-- s2-icon 自建标签，用来显示图标 -->
-                                <s2-icon name="user_menu_export"></s-2icon>
-                            </s-icon>
-                            <span>待办</span>
-                        </s-popup-menu-item>
-                        <s-popup-menu-item id="menuURelated">
-                            <s-icon slot="start">
-                                <s2-icon name="user_menu_notification"></s-2icon>
-                            </s-icon>
-                            <span>与我相关</span>
-                        </s-popup-menu-item>
-                        <s-divider></s-divider>
-                        <s-popup-menu-item id="menuUSetting">
-                            <s-icon slot="start">
-                                <s2-icon name="user_menu_setting"></s-2icon>
-                            </s-icon>
-                            <span>个人设置</span>
-                        </s-popup-menu-item>
-                        <s-divider></s-divider>
-                        <s-popup-menu-item id="menuUStars">
-                            <s-icon slot="start">
-                                <s2-icon name="user_menu_star"></s-2icon>
-                            </s-icon>
-                            <span>我的关注</span>
-                        </s-popup-menu-item>
-                        <s-popup-menu-item id="menuUHome">
-                            <s-icon slot="start">
-                                <s2-icon name="user_menu_home"></s-2icon>
-                            </s-icon>
-                            <span>我的主页</span>
-                        </s-popup-menu-item>
-                        <s-popup-menu-item id="menuURepos">
-                            <s-icon slot="start">
-                                <s2-icon name="user_menu_code"></s-2icon>
-                            </s-icon>
-                            <span>我的仓库</span>
-                        </s-popup-menu-item>
-                        <s-divider></s-divider>
-                        <s-popup-menu-item>
-                            <s-icon slot="start">
-                                <s2-icon name="user_menu_logout"></s-2icon>
-                            </s-icon>
-                            <span>退出登录</span>
-                        </s-popup-menu-item>
-                    </div>
-                </s-popup-menu>
-            </div>
-        </s-appbar>
-        <s-scroll-view style="height: 100%;background-color: #FFFFFF;">
-            <div class="main-content-base">
-                <div class="main-navigation-bar">
-                    <span class="fonts-color-routine">当前位置：</span>
-                    {% block main_navigation_bar %}
-                    {% endblock main_navigation_bar %}
                 </div>
-                <div class="main-content">
-                    {% block main_content %}
-                    {% endblock main_content %}
-                </div>
-
+                <ul tabindex="0"
+                    class="menu menu-sm dropdown-content bg-base-100 rounded-md z-1 mt-1 w-52 p-2 drop-shadow-xl/50">
+                    <li><a>
+                        <s2-icon name="user_menu_star"></s2-icon>
+                        我的关注</a></li>
+                    <li><a>
+                        <s2-icon name="user_menu_home"></s2-icon>
+                        我的主页</a></li>
+                    <li><a>
+                        <s2-icon name="user_menu_code"></s2-icon>
+                        我的仓库</a></li>
+                    <div class="divider"></div>
+                    <li><a>
+                        <s2-icon name="user_menu_export"></s2-icon>
+                        代办</a></li>
+                    <li><a>
+                        <s2-icon name="user_menu_notification"></s2-icon>
+                        与我相关</a></li>
+                    <li><a>
+                        <s2-icon name="user_menu_setting"></s2-icon>
+                        个人设置</a></li>
+                    <div class="divider"></div>
+                    <li><a>
+                        <s2-icon name="user_menu_logout"></s2-icon>
+                        退出登录</a></li>
+                </ul>
             </div>
-        </s-scroll-view>
-    </s-drawer>
-</s-page>
+            <!--主题切换器-->
+            <label class="toggle text-base-content ml-2 mr-1 ">
+                <input type="checkbox" value="theme" id="theme" class="theme-controller"/>
+                <s2-icon name="index_switch_sun"></s2-icon>
+                <s2-icon name="index_switch_moon"></s2-icon>
+            </label>
 
+        </div>
+    </div>
+    <!--主体内容-->
+    <div class="main flex flex-1 flex-col px-16 pb-4">
+        <!--导航条-->
+        <div class="breadcrumbs text-xs/7 text-gray-400 ">
+            <ul>
+                {% block navigation %}
+                <span>当前位置：</span>
+                {% endblock navigation %}
+            </ul>
+        </div>
+        <!--主要内容 borde边框-->
+        <div class="flex-1 overflow-auto">
+            {% block main %}
+            {% endblock main %}
+        </div>
+    </div>
+</div>
 </body>
-<script src="{{ url_for('static', filename='base/base.js') }}"></script>
-<script src="{{ url_for('static', filename='base/menus/menuRoutes.js') }}"></script>
-<script src="{{ url_for('static', filename='base/notification/notification.js') }}"></script>
-<!--接口封装函数-->
-<script src="{{ url_for('static', filename='base/api.js') }}"></script>
-
+<script src="{{ url_for('static', filename='lib/base/base.js') }}"></script>
 {% block js_end %}
 {% endblock js_end %}
-<script>
-    window.autoSelectMenu && window.autoSelectMenu(); // 侧边栏默认选中
-    // 页面开始加载时调用 start()，放在 head 的 script 里或内联脚本里
-    NProgress.start();
-
-    // DOM内容加载完成后关闭加载条
-    window.addEventListener('DOMContentLoaded', () => {
-        NProgress.done();
-    });
-
-
-    // ajax使用
-    // const stopProgress = NProgressLongin(); // 开始加载条
-    // // 异步操作完成后调用：
-    // setTimeout(() => {
-    //     stopProgress(); // 结束加载条
-    // }, 2000);
-
-
-</script>
-
 </html>
