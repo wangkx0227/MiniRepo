@@ -12,10 +12,10 @@
 {% endblock js_start %}
 {% block repository %}
 <div class="p-2 h-full">
-    <div class="flex justify-between items-center">
+    <div class=" max-w-full repository-head flex justify-between items-center">
         <!--筛选框-->
-        <div class="flex-1 w-fit">
-            <select class="select cursor-pointer w-32" id="contributeYearSelect">
+        <div class="flex-1 w-fit transition">
+            <select class="select cursor-pointer w-32 " id="contributeYearSelect">
                 <option disabled selected value="">展示类型</option>
                 <option value="all">全部</option>
                 <option value="personal">我自己的</option>
@@ -27,33 +27,20 @@
         <!--搜索框-->
         <div class="">
             <label class="input">
-                <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <g
-                            stroke-linejoin="round"
-                            stroke-linecap="round"
-                            stroke-width="2.5"
-                            fill="none"
-                            stroke="currentColor"
-                    >
-                        <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path>
-                        <path d="M14 2v4a2 2 0 0 0 2 2h4"></path>
-                    </g>
-                </svg>
+                <s2-icon name="repository_search"></s2-icon>
                 <input type="text" class="grow" placeholder="快速搜索"/>
-                <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <g
-                            stroke-linejoin="round"
-                            stroke-linecap="round"
-                            stroke-width="2.5"
-                            fill="none"
-                            stroke="currentColor"
-                    >
-                        <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path>
-                        <path d="M14 2v4a2 2 0 0 0 2 2h4"></path>
-                    </g>
-                </svg>
             </label>
         </div>
+    </div>
+    <div class="repository-content m-3 max-w-full">
+        <ul class="repository-content-ul">
+            <li class="border-t border-gray-200 p-4 min-h-40">
+                111111
+            </li>
+            <li class="border-t border-gray-200 p-4 min-h-40">
+                111111
+            </li>
+        </ul>
     </div>
 </div>
 {% endblock repository %}
