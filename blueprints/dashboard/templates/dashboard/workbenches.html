@@ -1,39 +1,110 @@
-{% extends 'base.html' %}
+{% extends 'bases.html' %}
 {% block title %}
-    工作台
+{{ super() }}
+工作台
 {% endblock %}
-{% block main_navigation_bar %}
-    <span><a href="javascript:void(0);">菜单</a></span>
-    <span>/</span>
-    <span><a href="javascript:void(0);">工作台</a></span>
-{% endblock main_navigation_bar %}
+{% block navigation %}
+{{ super() }}
+<li>工作台</li>
+{% endblock navigation %}
 <!--主体内容-->
-{% block main_content %}
-    <div class="head-tab-content">
-        <s-tab mode="fixed">
-            <s-tab-item id="workbenches-overview" selected="{% if tab=='overview' %}true{% endif %}">
-                <div slot="text">概览</div>
-                <!--代码上传的日期和上传的动态记录-->
-            </s-tab-item>
-            <s-tab-item id="workbenches-repository" selected="{% if tab=='repository' %}true{% endif %}">
-                <div slot="text">仓库</div>
-                <!--仓库相关信息-->
-            </s-tab-item>
-            <s-tab-item id="workbenches-analysis" selected="{% if tab=='analysis' %}true{% endif %}">
-                <div slot="text">统计分析</div>
-                <!--（展示更详细的活跃度、代码量、周/月报等。） -->
-            </s-tab-item>
-            <s-tab-item id="workbenches-snippet" selected="{% if tab=='snippet' %}true{% endif %}">
-                <div slot="text">代码片段</div>
-                <!--存放个人常用代码片段、开发备忘-->
-            </s-tab-item>
-        </s-tab>
+{% block main %}
+<div class="content flex h-full ">
+    <div class="w-1/4 h-full">
+        <!--个人头像显示-->
+        <div class="avatar avatar-placeholder w-full">
+            <div class="w-42  ring-2 ring-offset-2 rounded-full ring-gray-200  my-3 m-auto cursor-pointer ">
+                <img src="https://img.daisyui.com/images/profile/demo/spiderperson@192.webp"/>
+            </div>
+        </div>
+        <!--        <div class="avatar  avatar-placeholder w-full">-->
+        <!--            <div class="bg-neutral text-neutral-content w-42 rounded-full mt-3 m-auto ring-gray-200 ring-2 ring-offset-2 cursor-pointer ">-->
+        <!--                <span class="text-7xl">U</span>-->
+        <!--            </div>-->
+        <!--        </div>-->
+        <!-- 显示用户名称-->
+        <div class="text-center font-bold antialiased text-2xl my-2">
+            不会换牙的鲨鱼
+        </div>
+        <!--显示账户名称-->
+        <div class="text-center font-thin antialiased text-sm my-1">
+            <span>@</span><span>wangkx0227</span>
+        </div>
+        <!--如果有简介就显示简介，如果没有就显示无个人简介 个人简介字体不能超出...-->
+        <div class="font-thin my-2 w-64 m-auto">
+            <div class="text-base-content/50 text-sm  antialiased text-center">
+                无个人简介11111撒打算大苏打大苏打实打实大苏打撒阿斯顿3131313131313下自成蹊政策咨询曹张新村行政村自行车31312313131sadasdad
+            </div>
+        </div>
+        <!--标签最多5个-->
+        <div class="text-center font-thin antialiased my-2 text-content">
+            <kbd class="kbd  border-1 border-solid ">python</kbd>
+            <kbd class="kbd  border-1 border-solid ">C</kbd>
+            <kbd class="kbd  border-1 border-solid ">Java</kbd>
+            <kbd class="kbd  border-1 border-solid ">Go</kbd>
+            <kbd class="kbd  border-1 border-solid ">HTML</kbd>
+        </div>
+        <div class=" w-full my-4 flex justify-center">
+            <button class="btn btn-outline  w-45">
+                <s2-icon name="workbenches_user_setting"></s2-icon>
+                个人设置
+            </button>
+        </div>
     </div>
-    <div class="actual-display-content" style="width: 80%;margin: 0 auto">
-        {% block workbenches_content %}
-
-        {% endblock workbenches_content %}
+    <!-- tab切换 -->
+    <div class="w-3/4  h-full">
+        <div class="tabs tabs-border">
+            <label class="tab">
+                <input type="radio" name="workbenchesTab" {% if tab=='overview' %}checked{% endif %} id="overview"/>
+                <s2-icon name="workbenches_overview"></s2-icon>
+                <span>概览</span>
+            </label>
+            <div class="tab-content bg-base-100 py-2">
+                {% block overview %}
+                {% endblock overview %}
+            </div>
+            <label class="tab">
+                <input type="radio" name="workbenchesTab" {% if tab=='repository' %}checked{% endif %}  id="repository"/>
+                <s2-icon name="workbenches_repository"></s2-icon>
+                <span>仓库</span>
+            </label>
+            <div class="tab-content bg-base-100 py-2">
+                {% block repository %}
+                {% endblock repository %}
+            </div>
+            <label class="tab">
+                <input type="radio" name="workbenchesTab" {% if tab=='analysis' %}checked{% endif %} id="analysis"/>
+                <s2-icon name="workbenches_analysis"></s2-icon>
+                <span>统计分析</span>
+            </label>
+            <div class="tab-content bg-base-100 py-2">（展示更详细的活跃度、代码量、周/月报等。）
+                {% block analysis %}
+                {% endblock analysis %}
+            </div>
+            <label class="tab">
+                <input type="radio" name="workbenchesTab" {% if tab=='snippet' %}checked{% endif %} id="snippet"/>
+                <s2-icon name="workbenches_snippet"></s2-icon>
+                <span>统计分析</span>
+            </label>
+            <div class="tab-content bg-base-100 py-2">存放个人常用代码片段、开发备忘
+                {% block snippet %}
+                {% endblock snippet %}
+            </div>
+        </div>
     </div>
-{% endblock main_content %}
-
+</div>
+{% endblock main %}
+{% block js_end %}
+{{ super() }}
+<script>
+    // tab切换路由方式
+    const workbenchesTab = document.getElementsByName("workbenchesTab")
+    workbenchesTab.forEach((tab) => {
+        let tab_id = tab.id
+        tab.addEventListener("click", () => {
+            window.location.href = `?tab=${tab_id}`; // 修改为你的实际路径
+        })
+    })
+</script>
+{% endblock js_end %}
 

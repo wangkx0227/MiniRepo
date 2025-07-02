@@ -1,4 +1,4 @@
-{% extends 'dashboard/workbenches_new.html' %}
+{% extends 'dashboard/workbenches.html' %}
 <!-- {{ super() }} 继承父类的内容不重写,而是增加 -->
 {% block navigation %}
 {{ super() }}
@@ -205,9 +205,10 @@
         </ul>
         <!--需要根据渲染的数据进行显示这个按钮是否显示，如果大于显示页面的4个就显示，如果小于就不显示-->
         <div class="mt-15 flex justify-center">
-            <button class="bg-white btn btn-outline font-normal " id="RepositoryLoadMore">
+            <button class=" btn btn-outline font-normal " id="RepositoryLoadMore">
                 加载更多
             </button>
+
         </div>
     </div>
 </div>
