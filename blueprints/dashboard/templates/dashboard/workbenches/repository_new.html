@@ -20,8 +20,8 @@
                 <option value="all">全部</option>
                 <option value="personal">我自己的</option>
                 <option value="joined">我参与的</option>
-                <option value="forked">Forks</s-picker-item>
-                <option value="stopped_closed">暂停/关闭</s-picker-item>
+                <option value="forked">Forks</option>
+                <option value="stopped_closed">暂停/关闭</option>
             </select>
         </div>
         <!--搜索框-->
@@ -32,14 +32,345 @@
             </label>
         </div>
     </div>
-    <div class="repository-content m-3 max-w-full">
-        <ul class="repository-content-ul">
-            <li class="border-t border-gray-200 p-4 min-h-40">
-                111111
+    <div class="repository-content mt-3 max-w-full">
+        <ul class="repository-content-ul ">
+            <li class="border-t border-gray-200 p-4 min-h-35 cursor-pointer  transition duration-100 ease-in-out flex flex-col gap-5">
+                <div class="flex">
+                    <div class="flex-1 flex justify-start items-center">
+                        <div class="tooltip  tooltip-right" data-tip="共有">
+                            <s2-icon name="repository_unlocked"></s2-icon>
+                        </div>
+                        <samp class="text-lg font-semibold">不会换牙的鲨鱼/MiniRepo</samp>
+                    </div>
+                    <div class="flex items-center gap-4 text-xs text-base-content/50">
+                        <div class="flex items-center">
+                             <s2-icon name="repository_eye"></s2-icon>
+                            <span>5</span>
+                        </div>
+                        <div class="flex items-center">
+                            <s2-icon name="repository_start"></s2-icon>
+                            <span>10</span>
+                        </div>
+                        <div class="flex items-center">
+                            <s2-icon name="repository_fork"></s2-icon>
+                            <span>20</span>
+                        </div>
+                    </div>
+                </div>
+                <div class=" text-sm text-base-content/70">
+                    <span>简介：</span>
+                    <span>这是一个仓库</span>
+                </div>
+                <div class="flex text-xs text-base-content/50 gap-4 justify-start items-center">
+                    <div class="flex items-center">
+                        <s2-icon name="repository_code"></s2-icon>
+                        <samp class="">Python</samp>
+                    </div>
+                    <div class="flex items-center">
+                        <s2-icon name="repository_time"></s2-icon>
+                        <samp class="">6分钟前</samp>
+                    </div>
+                    <div class="flex items-center">
+                        <s2-icon name="repository_attachment"></s2-icon>
+                        <samp class="">公有</samp>
+                    </div>
+                </div>
             </li>
-            <li class="border-t border-gray-200 p-4 min-h-40">
-                111111
+            <li class="border-t border-gray-200 p-4 min-h-35 cursor-pointer  transition duration-100 ease-in-out flex flex-col gap-5">
+                <div class="flex">
+                    <div class="flex-1 flex justify-start items-center">
+                        <div class="tooltip  tooltip-right" data-tip="共有">
+                            <s2-icon name="repository_unlocked"></s2-icon>
+                        </div>
+                        <samp class="text-lg font-semibold">不会换牙的鲨鱼/MiniRepo</samp>
+                    </div>
+                    <div class="flex items-center gap-4 text-xs text-base-content/50">
+                        <div class="flex items-center">
+                             <s2-icon name="repository_eye"></s2-icon>
+                            <span>5</span>
+                        </div>
+                        <div class="flex items-center">
+                            <s2-icon name="repository_start"></s2-icon>
+                            <span>10</span>
+                        </div>
+                        <div class="flex items-center">
+                            <s2-icon name="repository_fork"></s2-icon>
+                            <span>20</span>
+                        </div>
+                    </div>
+                </div>
+                <div class=" text-sm text-base-content/70">
+                    <span>简介：</span>
+                    <span>这是一个仓库</span>
+                </div>
+                <div class="flex text-xs text-base-content/50 gap-4 justify-start items-center">
+                    <div class="flex items-center">
+                        <s2-icon name="repository_code"></s2-icon>
+                        <samp class="">Python</samp>
+                    </div>
+                    <div class="flex items-center">
+                        <s2-icon name="repository_time"></s2-icon>
+                        <samp class="">6分钟前</samp>
+                    </div>
+                    <div class="flex items-center">
+                        <s2-icon name="repository_attachment"></s2-icon>
+                        <samp class="">公有</samp>
+                    </div>
+                </div>
             </li>
+            <li class="border-t border-gray-200 p-4 min-h-35 cursor-pointer  transition duration-100 ease-in-out flex flex-col gap-5">
+                <div class="flex">
+                    <div class="flex-1 flex justify-start items-center">
+                        <div class="tooltip  tooltip-right" data-tip="共有">
+                            <s2-icon name="repository_unlocked"></s2-icon>
+                        </div>
+                        <samp class="text-lg font-semibold">不会换牙的鲨鱼/MiniRepo</samp>
+                    </div>
+                    <div class="flex items-center gap-4 text-xs text-base-content/50">
+                        <div class="flex items-center">
+                             <s2-icon name="repository_eye"></s2-icon>
+                            <span>5</span>
+                        </div>
+                        <div class="flex items-center">
+                            <s2-icon name="repository_start"></s2-icon>
+                            <span>10</span>
+                        </div>
+                        <div class="flex items-center">
+                            <s2-icon name="repository_fork"></s2-icon>
+                            <span>20</span>
+                        </div>
+                    </div>
+                </div>
+                <div class=" text-sm text-base-content/70">
+                    <span>简介：</span>
+                    <span>这是一个仓库</span>
+                </div>
+                <div class="flex text-xs text-base-content/50 gap-4 justify-start items-center">
+                    <div class="flex items-center">
+                        <s2-icon name="repository_code"></s2-icon>
+                        <samp class="">Python</samp>
+                    </div>
+                    <div class="flex items-center">
+                        <s2-icon name="repository_time"></s2-icon>
+                        <samp class="">6分钟前</samp>
+                    </div>
+                    <div class="flex items-center">
+                        <s2-icon name="repository_attachment"></s2-icon>
+                        <samp class="">公有</samp>
+                    </div>
+                </div>
+            </li>
+            <li class="border-t border-gray-200 p-4 min-h-35 cursor-pointer  transition duration-100 ease-in-out flex flex-col gap-5">
+                <div class="flex">
+                    <div class="flex-1 flex justify-start items-center">
+                        <div class="tooltip  tooltip-right" data-tip="共有">
+                            <s2-icon name="repository_unlocked"></s2-icon>
+                        </div>
+                        <samp class="text-lg font-semibold">不会换牙的鲨鱼/MiniRepo</samp>
+                    </div>
+                    <div class="flex items-center gap-4 text-xs text-base-content/50">
+                        <div class="flex items-center">
+                             <s2-icon name="repository_eye"></s2-icon>
+                            <span>5</span>
+                        </div>
+                        <div class="flex items-center">
+                            <s2-icon name="repository_start"></s2-icon>
+                            <span>10</span>
+                        </div>
+                        <div class="flex items-center">
+                            <s2-icon name="repository_fork"></s2-icon>
+                            <span>20</span>
+                        </div>
+                    </div>
+                </div>
+                <div class=" text-sm text-base-content/70">
+                    <span>简介：</span>
+                    <span>这是一个仓库</span>
+                </div>
+                <div class="flex text-xs text-base-content/50 gap-4 justify-start items-center">
+                    <div class="flex items-center">
+                        <s2-icon name="repository_code"></s2-icon>
+                        <samp class="">Python</samp>
+                    </div>
+                    <div class="flex items-center">
+                        <s2-icon name="repository_time"></s2-icon>
+                        <samp class="">6分钟前</samp>
+                    </div>
+                    <div class="flex items-center">
+                        <s2-icon name="repository_attachment"></s2-icon>
+                        <samp class="">公有</samp>
+                    </div>
+                </div>
+            </li>
+            <li class="border-t border-gray-200 p-4 min-h-35 cursor-pointer  transition duration-100 ease-in-out flex flex-col gap-5">
+                <div class="flex">
+                    <div class="flex-1 flex justify-start items-center">
+                        <div class="tooltip  tooltip-right" data-tip="共有">
+                            <s2-icon name="repository_unlocked"></s2-icon>
+                        </div>
+                        <samp class="text-lg font-semibold">不会换牙的鲨鱼/MiniRepo</samp>
+                    </div>
+                    <div class="flex items-center gap-4 text-xs text-base-content/50">
+                        <div class="flex items-center">
+                             <s2-icon name="repository_eye"></s2-icon>
+                            <span>5</span>
+                        </div>
+                        <div class="flex items-center">
+                            <s2-icon name="repository_start"></s2-icon>
+                            <span>10</span>
+                        </div>
+                        <div class="flex items-center">
+                            <s2-icon name="repository_fork"></s2-icon>
+                            <span>20</span>
+                        </div>
+                    </div>
+                </div>
+                <div class=" text-sm text-base-content/70">
+                    <span>简介：</span>
+                    <span>这是一个仓库</span>
+                </div>
+                <div class="flex text-xs text-base-content/50 gap-4 justify-start items-center">
+                    <div class="flex items-center">
+                        <s2-icon name="repository_code"></s2-icon>
+                        <samp class="">Python</samp>
+                    </div>
+                    <div class="flex items-center">
+                        <s2-icon name="repository_time"></s2-icon>
+                        <samp class="">6分钟前</samp>
+                    </div>
+                    <div class="flex items-center">
+                        <s2-icon name="repository_attachment"></s2-icon>
+                        <samp class="">公有</samp>
+                    </div>
+                </div>
+            </li>
+            <li class="border-t border-gray-200 p-4 min-h-35 cursor-pointer  transition duration-100 ease-in-out flex flex-col gap-5">
+                <div class="flex">
+                    <div class="flex-1 flex justify-start items-center">
+                        <div class="tooltip  tooltip-right" data-tip="共有">
+                            <s2-icon name="repository_unlocked"></s2-icon>
+                        </div>
+                        <samp class="text-lg font-semibold">不会换牙的鲨鱼/MiniRepo</samp>
+                    </div>
+                    <div class="flex items-center gap-4 text-xs text-base-content/50">
+                        <div class="flex items-center">
+                             <s2-icon name="repository_eye"></s2-icon>
+                            <span>5</span>
+                        </div>
+                        <div class="flex items-center">
+                            <s2-icon name="repository_start"></s2-icon>
+                            <span>10</span>
+                        </div>
+                        <div class="flex items-center">
+                            <s2-icon name="repository_fork"></s2-icon>
+                            <span>20</span>
+                        </div>
+                    </div>
+                </div>
+                <div class=" text-sm text-base-content/70">
+                    <span>简介：</span>
+                    <span>这是一个仓库</span>
+                </div>
+                <div class="flex text-xs text-base-content/50 gap-4 justify-start items-center">
+                    <div class="flex items-center">
+                        <s2-icon name="repository_code"></s2-icon>
+                        <samp class="">Python</samp>
+                    </div>
+                    <div class="flex items-center">
+                        <s2-icon name="repository_time"></s2-icon>
+                        <samp class="">6分钟前</samp>
+                    </div>
+                    <div class="flex items-center">
+                        <s2-icon name="repository_attachment"></s2-icon>
+                        <samp class="">公有</samp>
+                    </div>
+                </div>
+            </li>
+            <li class="border-t border-gray-200 p-4 min-h-35 cursor-pointer  transition duration-100 ease-in-out flex flex-col gap-5">
+                <div class="flex">
+                    <div class="flex-1 flex justify-start items-center">
+                        <div class="tooltip  tooltip-right" data-tip="共有">
+                            <s2-icon name="repository_unlocked"></s2-icon>
+                        </div>
+                        <samp class="text-lg font-semibold">不会换牙的鲨鱼/MiniRepo</samp>
+                    </div>
+                    <div class="flex items-center gap-4 text-xs text-base-content/50">
+                        <div class="flex items-center">
+                             <s2-icon name="repository_eye"></s2-icon>
+                            <span>5</span>
+                        </div>
+                        <div class="flex items-center">
+                            <s2-icon name="repository_start"></s2-icon>
+                            <span>10</span>
+                        </div>
+                        <div class="flex items-center">
+                            <s2-icon name="repository_fork"></s2-icon>
+                            <span>20</span>
+                        </div>
+                    </div>
+                </div>
+                <div class=" text-sm text-base-content/70">
+                    <span>简介：</span>
+                    <span>这是一个仓库</span>
+                </div>
+                <div class="flex text-xs text-base-content/50 gap-4 justify-start items-center">
+                    <div class="flex items-center">
+                        <s2-icon name="repository_code"></s2-icon>
+                        <samp class="">Python</samp>
+                    </div>
+                    <div class="flex items-center">
+                        <s2-icon name="repository_time"></s2-icon>
+                        <samp class="">6分钟前</samp>
+                    </div>
+                    <div class="flex items-center">
+                        <s2-icon name="repository_attachment"></s2-icon>
+                        <samp class="">公有</samp>
+                    </div>
+                </div>
+            </li>
+            <li class="border-t border-gray-200 p-4 min-h-35 cursor-pointer  transition duration-100 ease-in-out flex flex-col gap-5">
+                <div class="flex">
+                    <div class="flex-1 flex justify-start items-center">
+                        <div class="tooltip  tooltip-right" data-tip="共有">
+                            <s2-icon name="repository_unlocked"></s2-icon>
+                        </div>
+                        <samp class="text-lg font-semibold">不会换牙的鲨鱼/MiniRepo</samp>
+                    </div>
+                    <div class="flex items-center gap-4 text-xs text-base-content/50">
+                        <div class="flex items-center">
+                             <s2-icon name="repository_eye"></s2-icon>
+                            <span>5</span>
+                        </div>
+                        <div class="flex items-center">
+                            <s2-icon name="repository_start"></s2-icon>
+                            <span>10</span>
+                        </div>
+                        <div class="flex items-center">
+                            <s2-icon name="repository_fork"></s2-icon>
+                            <span>20</span>
+                        </div>
+                    </div>
+                </div>
+                <div class=" text-sm text-base-content/70">
+                    <span>简介：</span>
+                    <span>这是一个仓库</span>
+                </div>
+                <div class="flex text-xs text-base-content/50 gap-4 justify-start items-center">
+                    <div class="flex items-center">
+                        <s2-icon name="repository_code"></s2-icon>
+                        <samp class="">Python</samp>
+                    </div>
+                    <div class="flex items-center">
+                        <s2-icon name="repository_time"></s2-icon>
+                        <samp class="">6分钟前</samp>
+                    </div>
+                    <div class="flex items-center">
+                        <s2-icon name="repository_attachment"></s2-icon>
+                        <samp class="">公有</samp>
+                    </div>
+                </div>
+            </li>
+
         </ul>
     </div>
 </div>
