@@ -1,6 +1,5 @@
 界面菜单图标：https://www.iconfont.cn/collections/detail?spm=a313x.collections_index.i1.d9df05512.347d3a813V8kqX&cid=52104
-其他图标：https://www.iconfont.cn/collections/detail?spm=a313x.search_index.0.da5a778a4.7f4c3a81LfF2iL&cid=9402
-    # 仓库页面 颜色选用 #8a8a8a
+其他图标：https://www.iconfont.cn/collections/detail?spm=a313x.search_index.0.da5a778a4.7f4c3a81LfF2iL&cid=9402 # 仓库页面 颜色选用 #8a8a8a
 css样式：https://tailwindcss.com/
 css组件：https://daisyui.com/components/tab/
 进度条：https://rstacruz.github.io/nprogress/
