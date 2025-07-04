@@ -35,9 +35,23 @@
             </label>
         </div>
     </div>
-    <div class="snippet-content mt-3 max-w-full">
+    <div class=" bg-gray-100 mt-1 rounded-sm p-4 flex items-center">
+        <span class="text-xs ">标签：</span>
+        <div class="flex gap-1">
+            <div class="badge rounded-sm text-xs badge-outline border-gray-400">
+                <a href=""> Outline </a>
+            </div>
+            <div class="badge rounded-sm text-xs badge-outline border-gray-400">
+                <a href=""> Java </a>
+            </div>
+            <div class="badge rounded-sm text-xs badge-outline border-gray-400">
+                <a href=""> Python </a>
+            </div>
+        </div>
+    </div>
+    <div class="snippet-content mt-1 max-w-full">
         <ul class="snippet-content-ul ">
-            <li class="hover:bg-gray-100 border-t border-gray-200 p-4 min-h-35 cursor-pointer transition duration-100 ease-in-out flex flex-col gap-5">
+            <li class="hover:bg-gray-50 border-t border-gray-200 p-4 min-h-35 cursor-pointer transition duration-100 ease-in-out flex flex-col gap-5">
                 <div class="flex">
                     <div class="flex-1 flex justify-start items-center gap-2">
                         <div class="tooltip  tooltip-right" data-tip="公开">
@@ -79,7 +93,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="grid grid-cols-3 gap-1 text-base-content/70" > <!-- 使用更小的字体(text-sm) -->
+                    <div class="grid grid-cols-3 gap-1 text-base-content/70"> <!-- 使用更小的字体(text-sm) -->
                         <kbd class="kbd  border-1 border-solid text-xs">测试</kbd>
                         <kbd class="kbd  border-1 border-solid text-xs">Java</kbd>
                         <kbd class="kbd  border-1 border-solid text-xs">接口</kbd>
