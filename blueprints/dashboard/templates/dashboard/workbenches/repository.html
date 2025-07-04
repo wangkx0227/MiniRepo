@@ -75,31 +75,42 @@
                         </div>
                         <div class="flex items-center">
                             <s2-icon name="repository_detail"></s2-icon>
-                             <div class="tooltip " data-tip="Issues">
+                            <div class="tooltip " data-tip="Issues">
                                 <a class="link no-underline hover:underline">10</a>
                             </div>
                         </div>
 
                     </div>
                 </div>
-                <div class=" text-sm text-base-content/70">
-                    <span>简介：</span>
-                    <span>这是一个仓库</span>
+                <div class="flex">
+                    <div class="flex-1 grid grid-rows-2 gap-5">
+                        <div class=" text-sm text-base-content/70">
+                            简介：这是一个仓库
+                        </div>
+                        <div class="flex text-xs text-base-content/50 gap-4 justify-start items-center">
+                            <div class="flex items-center">
+                                <s2-icon name="repository_code"></s2-icon>
+                                <samp class="">Python</samp>
+                            </div>
+                            <div class="flex items-center">
+                                <s2-icon name="repository_time"></s2-icon>
+                                <samp class="">6分钟前</samp>
+                            </div>
+                            <div class="flex items-center">
+                                <s2-icon name="repository_attachment"></s2-icon>
+                                <samp class="">公有</samp>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-1 text-base-content/70"> <!-- 使用更小的字体(text-sm) -->
+                        <kbd class="kbd  border-1 border-solid text-xs">测试</kbd>
+                        <kbd class="kbd  border-1 border-solid text-xs">Java</kbd>
+                        <kbd class="kbd  border-1 border-solid text-xs">接口</kbd>
+                        <kbd class="kbd  border-1 border-solid text-xs">后端</kbd>
+                        <kbd class="kbd  border-1 border-solid text-xs">数据库</kbd>
+                    </div>
                 </div>
-                <div class="flex text-xs text-base-content/50 gap-4 justify-start items-center">
-                    <div class="flex items-center">
-                        <s2-icon name="repository_code"></s2-icon>
-                        <samp class="">Python</samp>
-                    </div>
-                    <div class="flex items-center">
-                        <s2-icon name="repository_time"></s2-icon>
-                        <samp class="">6分钟前</samp>
-                    </div>
-                    <div class="flex items-center">
-                        <s2-icon name="repository_attachment"></s2-icon>
-                        <samp class="">公有</samp>
-                    </div>
-                </div>
+
             </li>
         </ul>
         <!--需要根据渲染的数据进行显示这个按钮是否显示，如果大于显示页面的4个就显示，如果小于就不显示-->
