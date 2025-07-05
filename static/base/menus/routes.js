@@ -11,15 +11,15 @@ const menuRouteMap = [
 // 菜单设置点击事件
 function createMenuItem(labelId, url) {
     const el = document.getElementById(labelId);
-    console.log(el)
     if (!el) return;
-    el.addEventListener("click", () => {
-        // 等待菜单按钮动画效果结束后执行跳转
-        setTimeout(() => {
-            // 执行页面跳转
-            window.location.href = url;
-        }, 350);
-    });
+    el.href=url
+    // el.addEventListener("click", () => {
+    //     // 等待菜单按钮动画效果结束后执行跳转
+    //     setTimeout(() => {
+    //         // 执行页面跳转
+    //         window.location.href = url;
+    //     }, 350);
+    // });
 }
 
 

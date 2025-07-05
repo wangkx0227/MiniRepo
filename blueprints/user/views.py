@@ -159,12 +159,12 @@ def home():
 
 
 def setting():
-    return render_template("setting.html")
+    return render_template("u_setting.html")
 
 
 def stars():
-    return render_template("stars.html")
+    return render_template("u_stars.html")
 
 
 def repository():
-    return render_template("repository.html")
+    return render_template("u_repository.html")
