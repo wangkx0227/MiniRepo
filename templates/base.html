@@ -9,12 +9,12 @@
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <!--  三方  -->
-    <script src="{{ url_for('static', filename='lib/nprogress/nprogress.js') }}"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='lib/nprogress/nprogress.css') }}"/>
-    <link href="{{ url_for('static', filename='lib/daisyui/daisyui.css') }}" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='lib/daisyui/daisyui.css') }}"/>
+    <script src="{{ url_for('static', filename='lib/nprogress/nprogress.js') }}"></script>
     <script src="{{ url_for('static', filename='lib/tailwind/tailwind.js') }}"></script>
     <!-- 个人 -->
-    <script src="{{ url_for('static', filename='lib/base/menus/menuicon.js') }}"></script>
+    <script src="{{ url_for('static', filename='base/menus/icon.js') }}"></script>
 
 
     <style>
@@ -190,29 +190,50 @@
                 </div>
                 <ul tabindex="0"
                     class="menu menu-sm dropdown-content bg-base-100 rounded-md z-1 mt-1 w-52 p-2 drop-shadow-xl/50">
-                    <li><a>
-                        <s2-icon name="user_menu_star"></s2-icon>
-                        我的关注</a></li>
-                    <li><a>
-                        <s2-icon name="user_menu_home"></s2-icon>
-                        我的主页</a></li>
-                    <li><a>
-                        <s2-icon name="user_menu_code"></s2-icon>
-                        我的仓库</a></li>
+                    <li>
+                        <a id="u-star">
+                            <s2-icon name="user_menu_star"></s2-icon>
+                            <span>我的关注</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a id="u-home">
+                            <s2-icon name="user_menu_home"></s2-icon>
+                            <span>我的主页</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a id="u-code">
+                            <s2-icon name="user_menu_code"></s2-icon>
+                            <span>我的仓库</span>
+                        </a>
+                    </li>
                     <div class="divider"></div>
-                    <li><a>
-                        <s2-icon name="user_menu_export"></s2-icon>
-                        代办</a></li>
-                    <li><a>
-                        <s2-icon name="user_menu_notification"></s2-icon>
-                        与我相关</a></li>
-                    <li><a>
-                        <s2-icon name="user_setting"></s2-icon>
-                        个人设置</a></li>
+                    <li>
+                        <a id="u-export">
+                            <s2-icon name="user_menu_export"></s2-icon>
+                            <span>代办</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a id="u-notification">
+                            <s2-icon name="user_menu_notification"></s2-icon>
+                            <span>与我相关</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a id="u-setting">
+                            <s2-icon name="user_setting"></s2-icon>
+                            <span>个人设置</span>
+                        </a>
+                    </li>
                     <div class="divider"></div>
-                    <li><a>
-                        <s2-icon name="user_menu_logout"></s2-icon>
-                        退出登录</a></li>
+                    <li>
+                        <a id="u-logout">
+                            <s2-icon name="user_menu_logout"></s2-icon>
+                            <span>退出登录</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -235,7 +256,8 @@
     </div>
 </div>
 </body>
-<script src="{{ url_for('static', filename='lib/base/base.js') }}"></script>
+<script src="{{ url_for('static', filename='base/base.js') }}"></script>
+<script src="{{ url_for('static', filename='base/menus/routes.js') }}"></script>
 {% block js_end %}
 {% endblock js_end %}
 </html>

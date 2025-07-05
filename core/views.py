@@ -5,9 +5,10 @@ from .config import USER_SESSION_KEY
 
 def index():
     """
-        首页跳转工作台概览tab
+        用户登录的首页默认是：
+            home?tab=overview
     """
-    return redirect(url_for("dashboard_page.workbenches", tab="overview"))
+    return redirect(url_for("user_page.home", tab="overview"))
 
 
 def login():

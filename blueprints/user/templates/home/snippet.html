@@ -1,0 +1,121 @@
+{% extends 'dashboard/workbenches.html' %}
+<!-- {{ super() }} 继承父类的内容不重写,而是增加 -->
+{% block navigation %}
+{{ super() }}
+<li>代码片段</li>
+{% endblock navigation %}
+{% block css %}
+<style>
+    .tooltip {
+        --tooltip-text-size: 0.7rem;
+    }
+
+    .tooltip::before {
+        font-size: var(--tooltip-text-size) !important;
+    }
+</style>
+{% endblock css %}
+{% block snippet %}
+<div class="p-2 h-full">
+    <div class=" max-w-full snippet-head flex justify-between items-center">
+        <!--筛选框-->
+        <div class="flex-1 w-fit transition">
+            <select class="select cursor-pointer w-32 " id="contributeYearSelect">
+                <option disabled selected value="">展示类型</option>
+                <option value="all">全部</option>
+                <option value="personal">公开</option>
+                <option value="joined">私有</option>
+            </select>
+        </div>
+        <!--搜索框-->
+        <div class="">
+            <label class="input">
+                <s2-icon name="repository_search"></s2-icon>
+                <input type="text" class="grow" placeholder="快速搜索"/>
+            </label>
+        </div>
+    </div>
+    <div class=" bg-gray-100 mt-1 rounded-sm p-4 flex items-center">
+        <span class="text-sm flex items-center gap-1">
+            <s2-icon name="tags"></s2-icon>
+            标签：
+        </span>
+        <div class="flex gap-1">
+            <div class="badge rounded-sm text-xs badge-outline border-gray-400">
+                <a href="">
+                    Outline
+                </a>
+            </div>
+            <div class="badge rounded-sm text-xs badge-outline border-gray-400">
+                <a href=""> Java </a>
+            </div>
+            <div class="badge rounded-sm text-xs badge-outline border-gray-400">
+                <a href=""> Python </a>
+            </div>
+        </div>
+    </div>
+    <div class="snippet-content mt-1 max-w-full">
+        <ul class="snippet-content-ul ">
+            <li class="hover:bg-gray-50 border-t border-gray-200 p-4 min-h-35 cursor-pointer transition duration-100 ease-in-out flex flex-col gap-5">
+                <div class="flex">
+                    <div class="flex-1 flex justify-start items-center gap-2">
+                        <div class="tooltip  tooltip-right" data-tip="公开">
+                            <s2-icon name="repository_unlocked"></s2-icon>
+                        </div>
+                        <samp class="text-lg font-bold">
+                            <a class="link text-black hover:text-slate-500 no-underline hover:underline  transition-colors duration-200"
+                               href="">
+                                代码片段测试
+                            </a>
+                        </samp>
+                    </div>
+                    <div class="flex items-center gap-4 text-xs text-base-content/50">
+                        <div class="flex items-center">
+                            <s2-icon name="snippet_comment"></s2-icon>
+                            <div class="tooltip " data-tip="评论">
+                                <a class="link no-underline hover:underline">10</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex">
+                    <div class="flex-1 grid grid-rows-2 gap-5">
+                        <div class="flex text-sm text-base-content/70">
+                            简介：代码测试
+                        </div>
+                        <div class="flex text-xs text-base-content/50 gap-4 justify-start items-center">
+                            <div class="flex items-center">
+                                <s2-icon name="snippet_category"></s2-icon>
+                                <samp class="">后端接口代码</samp>
+                            </div>
+                            <div class="flex items-center">
+                                <s2-icon name="code"></s2-icon>
+                                <samp class="">Python</samp>
+                            </div>
+                            <div class="flex items-center">
+                                <s2-icon name="time"></s2-icon>
+                                <samp class="">6分钟前</samp>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-1 text-base-content/70"> <!-- 使用更小的字体(text-sm) -->
+                        <kbd class="kbd  border-1 border-solid text-xs">测试</kbd>
+                        <kbd class="kbd  border-1 border-solid text-xs">Java</kbd>
+                        <kbd class="kbd  border-1 border-solid text-xs">接口</kbd>
+                        <kbd class="kbd  border-1 border-solid text-xs">后端</kbd>
+                        <kbd class="kbd  border-1 border-solid text-xs">数据库</kbd>
+                    </div>
+                </div>
+
+            </li>
+        </ul>
+        <!--需要根据渲染的数据进行显示这个按钮是否显示，如果大于显示页面的4个就显示，如果小于就不显示-->
+        <div class="mt-15 flex justify-center">
+            <button class=" btn btn-outline font-normal " id="RepositoryLoadMore">
+                加载更多
+            </button>
+
+        </div>
+    </div>
+</div>
+{% endblock snippet %}
