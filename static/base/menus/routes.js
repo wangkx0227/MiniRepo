@@ -6,6 +6,10 @@ const menuRouteMap = [
     {labelId: "u-repository", url: "/u/repository"}, // 仓库
     {labelId: "u-setting", url: "/u/setting", }, // 个人设置
     // {labelId: "u-login", url: "/u/repos"}, // 需要再进行确认怎么设置
+    // 新建的下拉框路由设置
+    {labelId: "n-projects", url: "/n/projects", },  // 新建项目
+    {labelId: "n-groups", url: "/n/groups"}, // 新建群组
+    {labelId: "n-snippets", url: "/n/snippets", }, // 新建代码片段
 ];
 
 // 菜单设置点击事件
