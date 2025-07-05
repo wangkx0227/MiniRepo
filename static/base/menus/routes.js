@@ -12,7 +12,7 @@ const menuRouteMap = [
 function createMenuItem(labelId, url) {
     const el = document.getElementById(labelId);
     if (!el) return;
-    el.href=url
+    el.href = url;
     // el.addEventListener("click", () => {
     //     // 等待菜单按钮动画效果结束后执行跳转
     //     setTimeout(() => {

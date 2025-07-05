@@ -8,5 +8,5 @@ user_page_bp = Blueprint('user_page',
                          url_prefix='/u'
                          )
 
-user_api_bp = Blueprint('user_api', __name__, url_prefix='/user/api')
+user_api_bp = Blueprint('user_api', __name__, url_prefix='/u/api')
 user_api = Api(user_api_bp)
