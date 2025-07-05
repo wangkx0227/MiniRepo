@@ -1,12 +1,10 @@
 // 路由
 const menuRouteMap = [
     // 用户头像，点击下来框的路由设置
-    {labelId: "u-todos", url: "/u/todos", },
-    {labelId: "u-related", url: "/u/related",},
-    {labelId: "u-setting", url: "/u/setting", },
-    {labelId: "u-stars", url: "/u/stars", },
-    {labelId: "u-home", url: "/u/home", },
-    {labelId: "u-repos", url: "/u/repos"},
+    {labelId: "u-stars", url: "/u/stars", }, // 星
+    {labelId: "u-home", url: "/u/home", },  // 主页
+    {labelId: "u-repository", url: "/u/repository"}, // 仓库
+    {labelId: "u-setting", url: "/u/setting", }, // 个人设置
     // {labelId: "u-login", url: "/u/repos"}, // 需要再进行确认怎么设置
 ];
 
