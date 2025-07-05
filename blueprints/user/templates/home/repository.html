@@ -28,9 +28,7 @@
         focus:border-gray-400
         focus:ring-2 focus:ring-indigo-200
         focus:outline-2 focus:outline-offset-0 focus:outline-indigo-700
-       transition-all duration-200 ease-in-out
-
-" id="contributeYearSelect">
+       transition-all duration-200 ease-in-out" id="contributeYearSelect">
                 <option disabled selected value="">展示类型</option>
                 <option value="all">全部（包含所有）</option>
                 <option value="personal">我自己的（自己创建的）</option>
@@ -40,9 +38,16 @@
         </div>
         <!--搜索框-->
         <div class="">
-            <label class="input ">
+              <label class="
+                input input-bordered
+                focus-within:outline-none
+                focus-within:border-gray-400
+                focus-within:ring-2 focus-within:ring-indigo-200
+                focus-within:outline-2 focus-within:outline-offset-0 focus-within:outline-indigo-700
+                transition-all duration-200 ease-in-out
+              ">
                 <s2-icon name="repository_search"></s2-icon>
-                <input type="text" class="grow" placeholder="快速搜索"/>
+                <input type="text" class="grow" placeholder="快速搜索-001"/>
             </label>
         </div>
     </div>
@@ -52,15 +57,33 @@
             标签：
         </span>
         <div class="flex gap-1">
-            <div class="badge rounded-sm text-xs badge-outline border-gray-400">
+            <div class="badge rounded-sm text-xs badge-outline border-gray-400
+                hover:bg-white
+                hover:outline-none
+                hover:border-gray-400
+                hover:ring-2 hover:ring-indigo-200
+                transition-all duration-200 ease-in-out
+                ">
                 <a href="">
                     Outline
                 </a>
             </div>
-            <div class="badge rounded-sm text-xs badge-outline border-gray-400">
+            <div class="badge rounded-sm text-xs badge-outline border-gray-400
+                hover:bg-white
+                hover:outline-none
+                hover:border-gray-400
+                hover:ring-2 hover:ring-indigo-200
+                transition-all duration-200 ease-in-out
+                ">
                 <a href=""> Java </a>
             </div>
-            <div class="badge rounded-sm text-xs badge-outline border-gray-400">
+            <div class="badge rounded-sm text-xs badge-outline border-gray-400
+                hover:bg-white
+                hover:outline-none
+                hover:border-gray-400
+                hover:ring-2 hover:ring-indigo-200
+                transition-all duration-200 ease-in-out
+                ">
                 <a href=""> Python </a>
             </div>
         </div>
@@ -141,7 +164,12 @@
         </ul>
         <!--需要根据渲染的数据进行显示这个按钮是否显示，如果大于显示页面的4个就显示，如果小于就不显示-->
         <div class="mt-15 flex justify-center">
-            <button class=" btn btn-outline font-normal " id="RepositoryLoadMore">
+            <button class=" btn btn-outline font-normal
+            hover:bg-white
+            hover:outline-none
+            hover:border-gray-400
+            hover:ring-2 hover:ring-indigo-200
+" id="RepositoryLoadMore">
                 加载更多
             </button>
 

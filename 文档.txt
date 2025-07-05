@@ -8,3 +8,17 @@ css组件：https://daisyui.com/components/tab/
 单元测试 pytest：https://docs.pytest.org/en/stable/ -- https://learning-pytest.readthedocs.io/zh/latest/doc/intro/getting-started.html
 开源柱状图：https://echarts.apache.org/examples/zh/index.html
 
+
+# 按钮悬浮效果
+hover:bg-white
+hover:outline-none
+hover:border-gray-400
+hover:ring-2 hover:ring-indigo-200
+transition-all duration-200 ease-in-out  # 动画效果，如果是按钮就不需要增加，因为按钮自带的
+
+# 文本输入框，点击后的效果
+focus:outline-none
+focus:border-gray-400
+focus:ring-2 focus:ring-indigo-200
+focus:outline-2 focus:outline-offset-0 focus:outline-indigo-700
+transition-all duration-200 ease-in-out
