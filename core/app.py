@@ -29,13 +29,13 @@ def create_app():
     # 注册全局视图路由
     app.add_url_rule('/', view_func=index, methods=['GET'])
     app.add_url_rule('/login', view_func=login, methods=['GET'])
-    app.add_url_rule('/error/403', view_func=error_403, methods=['GET'])
-    app.add_url_rule('/error/404', view_func=error_404, methods=['GET'])
-    app.add_url_rule('/health_check', view_func=health_check, methods=['GET'])
-    # 存储项目下的全部url
-    save_routes_to_redis(app)
-    # 注册钩子,需要在存储url路由之后
-    register_hooks(app)
+    # app.add_url_rule('/error/403', view_func=error_403, methods=['GET'])
+    # app.add_url_rule('/error/404', view_func=error_404, methods=['GET'])
+    # app.add_url_rule('/health_check', view_func=health_check, methods=['GET'])
+    # # 存储项目下的全部url
+    # save_routes_to_redis(app)
+    # # 注册钩子,需要在存储url路由之后
+    # register_hooks(app)
     return app
 
 

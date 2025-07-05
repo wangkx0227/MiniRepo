@@ -27,9 +27,13 @@
     <div class="contribute max-w-full">
         <!-- 标题与日期选择框 -->
         <div class="flex justify-between items-center">
-            <div class="flex-1 text-2xl antialiased font-bold">贡献度</div>
+            <div class="flex-1 text-2xl  font-bold">贡献度</div>
             <div class=" w-fit">
-                <select class="select cursor-pointer" id="contributeYearSelect">
+                <select class="select cursor-pointer         focus:outline-none
+        focus:border-gray-400
+        focus:ring-2 focus:ring-indigo-200
+        focus:outline-2 focus:outline-offset-0 focus:outline-indigo-700
+       transition-all duration-200 ease-in-out" id="contributeYearSelect">
                     <option disabled selected value="">日期</option>
                     {# 日期需要从后端进行获取#}
                     <option value="2025">2025</option>

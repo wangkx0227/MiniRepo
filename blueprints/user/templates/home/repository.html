@@ -23,7 +23,14 @@
     <div class=" max-w-full repository-head flex justify-between items-center">
         <!--筛选框-->
         <div class="flex-1 w-fit transition">
-            <select class="select cursor-pointer w-32 " id="contributeYearSelect">
+            <select class="select cursor-pointer w-32
+        focus:outline-none
+        focus:border-gray-400
+        focus:ring-2 focus:ring-indigo-200
+        focus:outline-2 focus:outline-offset-0 focus:outline-indigo-700
+       transition-all duration-200 ease-in-out
+
+" id="contributeYearSelect">
                 <option disabled selected value="">展示类型</option>
                 <option value="all">全部（包含所有）</option>
                 <option value="personal">我自己的（自己创建的）</option>
@@ -33,7 +40,7 @@
         </div>
         <!--搜索框-->
         <div class="">
-            <label class="input">
+            <label class="input ">
                 <s2-icon name="repository_search"></s2-icon>
                 <input type="text" class="grow" placeholder="快速搜索"/>
             </label>
