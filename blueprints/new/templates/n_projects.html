@@ -10,7 +10,7 @@
 {% block js_start %}
 {% endblock js_start %}
 {% block main %}
-<div class="projects h-full border-b border-gray-200 rounded-sm p-4">
+<div class="projects h-full  p-4">
     <div class="text-2xl  font-bold">新建项目</div>
     <div class="p-2 w-full max-w-full">
         <fieldset class="fieldset w-full">
@@ -132,9 +132,16 @@
             <p class="label pl-8">如果有推送计划，跳过该操作。</p>
         </fieldset>
     </div>
-    <div class="mt-10 flex justify-between">
-        <button class="btn btn-outline btn-success">创建</button>
-        <button class="btn btn-outline font-normal
+    <div class="mt-10 flex justify-between border-t border-gray-200 rounded-sm">
+        <button class=" mt-2 btn
+        btn-outline
+        font-normal
+         hover:bg-white
+         hover:outline-none
+         hover:border-gray-400
+         hover:ring-2 hover:ring-green-300
+        ">创建</button>
+        <button class=" mt-2 btn btn-outline font-normal
             hover:bg-white
             hover:outline-none
             hover:border-gray-400

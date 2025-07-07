@@ -26,21 +26,21 @@ const iconMap = {
    `,
     // 通知图标
     index_notification: `
-    <svg t="1750993388076" class="size-6" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="13903">
+    <svg t="1750993388076" class="size-6 text-gray-300 hover:text-white" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="13903">
         <path d="M170.688 341.312a341.312 341.312 0 1 1 682.624 0v200.448l85.376 128v183.552h-239.424a192.064 192.064 0 0 1-374.528 0h-239.36v-183.552l85.312-128V341.312z m243.52 512a106.688 106.688 0 0 0 195.584 0H414.208zM512 85.312a256 256 0 0 0-256 256V567.68l-85.312 128V768h682.624v-72.448l-85.312-128V341.376a256 256 0 0 0-256-256z" p-id="13904" fill="currentColor">
         </path>
     </svg>
    `,
     // 侧边栏图标
     index_sidebar_menu: `
-    <svg t="1750909285422" class="size-6" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="14531">
+    <svg t="1750909285422" class="size-6 text-gray-300" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="14531">
         <path d="M85.312 170.688h853.376V256H85.312V170.688z m0 179.328L266.752 512l-181.44 162.048V349.952zM384 469.312h554.688v85.376H384V469.248zM85.312 768h853.376v85.312H85.312V768z" p-id="14532" fill="currentColor">
         </path>
     </svg>
   `,
     // 增加菜单图标
     index_add: `
-    <svg t="1749457145778" class="size-6" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="14364">
+    <svg t="1749457145778" class="size-6 text-gray-300 " viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="14364">
       <path d="M554.688 170.688v298.624h298.624v85.376H554.688v298.624H469.312V554.688H170.688V469.312h298.624V170.688h85.376z" p-id="14365" fill="currentColor">
       </path>
     </svg>
