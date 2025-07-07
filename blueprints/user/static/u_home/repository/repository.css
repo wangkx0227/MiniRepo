@@ -1,0 +1,87 @@
+.repository-head {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    margin-top: 2em;
+}
+
+.repository-content {
+    margin-top: 2em;
+}
+
+.repository-content .repository-content-ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.repository-content .repository-content-li {
+    padding: 16px 16px;
+    max-width: 100%;
+    gap: 15px;
+    display: grid;
+    justify-items: start;
+    align-items: center;
+    transition: background-color 0.3s ease; /* 添加过渡效果 */
+}
+
+/*悬浮效果*/
+.repository-content .repository-content-li:hover {
+    background: #fafafb;
+}
+
+.repository-content .repository-content-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.repository-content-title .repository-content-title-ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 8px;
+}
+
+.repository-content-title .repository-content-title-ul li {
+    font-size: 14px;
+}
+
+.repository-content-title h4 {
+    margin: 0;
+}
+
+.repository-content-title .repository-content-title-ul .icon {
+    width: 55%;
+    height: 55%;
+}
+
+.repository-content .repository-content-description {
+    font-size: 14px;
+    margin: 0 0 0 4px;
+    display: flex;
+    align-items: center;
+}
+
+.repository-content-description .repository-content-description-introduction {
+    max-width: clamp(150px, 40vw, 400px);
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.repository-content .repository-content-language {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    gap: 10px;
+}
+
+/* 标签效果取消 */
+.repository-content ul a {
+    text-decoration: none;
+    color: #40485b;
+}
