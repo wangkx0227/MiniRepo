@@ -13,18 +13,7 @@ from .views_data import get_workbenches_data
 
 # 工作台
 def workbenches():
-    tab = request.args.get('tab', 'overview')
-    # 工作台tab标签，对应get请求参数对应的模版路径
-    template_map = {
-        'repository': 'dashboard/workbenches/repository.html',
-        'analysis': 'dashboard/workbenches/analysis.html',
-        'snippet': 'dashboard/workbenches/snippet.html',
-        'overview': 'dashboard/workbenches/overview.html',
-    }
-    # 默认用 overview，无论是登录跳转还是点击工作台
-    template = template_map.get(tab, 'dashboard/workbenches/overview.html')
-    data = get_workbenches_data(tab)  # 获取当前数据
-    return render_template(template, tab=tab, data=data)
+    return render_template("dashboard/workbenches.html")
 
 
 def projects():
