@@ -74,7 +74,7 @@ function contributionRendering(data, selectYear = null) {
             // 当前日期超出endDate，补空格
             if (current > endDate) {
                 const emptyBox = document.createElement('div');
-                emptyBox.className = ' w-4.5 h-4.5 ';
+                emptyBox.className = 'w-4.5 h-4.5';
                 weekColumn.appendChild(emptyBox);
                 continue;
             }
@@ -82,7 +82,7 @@ function contributionRendering(data, selectYear = null) {
             const dateStr = current.toISOString().slice(0, 10);
             const count = data[dateStr] || 0;
             const dayBox = document.createElement('div');
-            dayBox.className = 'tooltip mr-0.5 w-4.5 h-4.5 box-border cursor-pointer rounded-sm';
+            dayBox.className = 'tooltip w-4.5 h-4.5 box-border cursor-pointer rounded-sm';
             // 根据数据计算，贡献图的颜色显示深度
             if (count === 0) {
                 dayBox.classList.add("level-0");
@@ -112,7 +112,7 @@ function contributionRendering(data, selectYear = null) {
     for (let i = 0; i < monthLabels.length; i++) {
         const monthDiv = document.createElement('div');
         if (monthLabels[i]) {
-            monthDiv.classList.add("w-1")
+             monthDiv.className = "w-4.5 text-xs text-center"; // 宽度和日期格一致，居中显示
         }
         monthDiv.innerHTML = monthLabels[i];
         months.appendChild(monthDiv);

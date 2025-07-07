@@ -15,6 +15,21 @@
     .tooltip::before {
         font-size: var(--tooltip-text-size) !important;
     }
+
+    .week-column {
+        width: calc(100% / 54);
+        display: grid;
+        grid-template-rows: repeat(7, minmax(0, 1fr));
+        gap: 0.25rem; /* 等价 tailwind gap-1 */
+    }
+
+    .day-box {
+        aspect-ratio: 1 / 1;
+        width: 100%;
+        border-radius: 0.125rem; /* rounded-sm */
+        box-sizing: border-box;
+        cursor: pointer;
+    }
 </style>
 {% endblock css %}
 {% block js_start %}
@@ -43,15 +58,17 @@
             </div>
         </div>
         <!--贡献图-->
-        <div class="contribute-picture my-2 min-h-38 flex flex-wrap outline outline-gray-200 rounded-sm pl-3 py-4 overflow-x-auto whitespace-nowrap">
-            <div class="flex text-xs text-left text-base-content/50 gap-21 w-full mb-4  ml-18" id="months"></div>
-            <div class="flex-none flex flex-col justify-between text-base-content/75 text-xs w-12 " id="week">
-                <span>周一</span>
-                <span>周四</span>
-                <span>周日</span>
+        <div class="contribute-picture flex flex-col gap-4  my-2 outline outline-gray-200  overflow-x-auto whitespace-nowrap p-2 rounded-sm min-h-48">
+            <div class="flex text-xs text-left text-base-content/50 gap-16 mx-auto" id="months"></div>
+            <div class="flex mx-auto">
+                <div class="flex-none flex flex-col justify-between text-base-content/75 text-xs mr-2" id="week">
+                    <span>周一</span>
+                    <span>周四</span>
+                    <span>周日</span>
+                </div>
+                <div class="flex-1 min-w-0 flex gap-1" id="calendar"></div>
             </div>
-            <div class="flex-1 flex min-w-0" id="calendar"></div>
-            <div class="mt-3 flex w-full justify-end">
+            <div class="grid grid-flow-col justify-items-end ">
                 <div class="grid grid-cols-7 gap-1 text-base-content/75 text-xs">
                     <span>少</span>
                     <span class="size-4 rounded-sm inline-block level-0"></span>
