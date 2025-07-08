@@ -12,6 +12,7 @@
 {% block main %}
 <div class="projects h-full  p-4">
     <div class="text-2xl  font-bold">新建项目</div>
+    <div class="divider"></div>
     <div class="p-2 w-full max-w-full">
         <fieldset class="fieldset w-full">
             <legend class="fieldset-legend text-base text-gray-600">
@@ -140,8 +141,9 @@
             <p class="label pl-8">如果有推送计划，可以跳过该操作。</p>
         </fieldset>
     </div>
-    <div class="mt-10 flex justify-between border-t border-gray-300 rounded-sm">
-        <button class=" mt-2 btn
+    <div class="divider"></div>
+    <div class="flex justify-between">
+        <button class="btn
         btn-outline
         font-normal
          hover:bg-white
@@ -150,7 +152,7 @@
          hover:ring-2 hover:ring-green-300
         ">创建
         </button>
-        <button class=" mt-2 btn btn-outline font-normal
+        <button class=" btn btn-outline font-normal
             hover:bg-white
             hover:outline-none
             hover:border-gray-400
@@ -160,7 +162,6 @@
         </button>
     </div>
 </div>
-
 {% endblock main %}
 {% block js_end %}
 {{ super() }}

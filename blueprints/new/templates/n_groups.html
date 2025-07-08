@@ -8,70 +8,58 @@
 <li>新建群组</li>
 {% endblock navigation %}
 {% block main %}
-    <div class="projects h-full  p-4">
-    <div class="text-2xl  font-bold">新建项目</div>
+<div class="projects h-full  p-4">
+    <div class="text-2xl  font-bold">新建群组</div>
+    <div class="divider"></div>
     <div class="p-2 w-full max-w-full">
         <fieldset class="fieldset w-full">
             <legend class="fieldset-legend text-base text-gray-600">
-                <span class="text-red-500">*</span><span>项目名称：</span>
+                <span class="text-red-500">*</span><span>群组名称：</span>
             </legend>
             <input type="text" class="input input-bordered w-full
             focus:outline-none
-            focus:border-gray-400
-            focus:ring-2 focus:ring-indigo-200
-            focus:outline-2 focus:outline-offset-0 focus:outline-indigo-700
+            focus:border-gray-200
+            focus:ring-2
+            focus:ring-indigo-200
+            focus:outline-2
+            focus:outline-offset-0
+            focus:outline-indigo-700
            transition-all duration-200 ease-in-out
-    " placeholder="请填写项目名称"/>
+    " placeholder="请填写群组名称"/>
         </fieldset>
         <fieldset class="fieldset w-full flex gap-4 mt-2">
-            <!-- 项目URL部分 -->
-            <div class="flex-1">
-                <legend class="fieldset-legend text-base text-gray-600 justify-start">
-                    <span class="text-red-500">*</span>
-                    <span>项目归属：</span>
-                </legend>
-                <select class="select w-full
-                focus:outline-none
-                focus:border-gray-400
-                focus:ring-2 focus:ring-indigo-200
-                focus:outline-2 focus:outline-offset-0 focus:outline-indigo-700
-               transition-all duration-200 ease-in-out">
-                    <option disabled selected>请选择项目归属</option>
-                    <optgroup label="用户" class="text-gray-600 cursor-pointer">
-                        <option value="root">当前用户（管理员）</option>
-                        <option value="root">其用户</option>
-                    </optgroup>
-                    <optgroup label="组" class="text-gray-600">
-                        <option value="test">当前用户所在的组-01</option>
-                        <option value="test">当前用户所在的组-02</option>
-                    </optgroup>
-                </select>
-            </div>
-            <!-- 项目标识串部分 -->
-            <div class="flex-1">
-                <legend class="fieldset-legend text-base text-gray-600 justify-start">
-                    <span class="text-red-500">*</span>
-                    <span>项目标识串：</span>
-                </legend>
-                <input type="text" class="input input-bordered w-full
-
-            focus:outline-none
-            focus:border-gray-400
-            focus:ring-2 focus:ring-indigo-200
-            focus:outline-2 focus:outline-offset-0 focus:outline-indigo-700
-           transition-all duration-200 ease-in-out
-    " placeholder="请填写项目标识串"/>
-            </div>
+            <legend class="fieldset-legend text-base text-gray-600 justify-start">
+                <span class="text-red-500">*</span>
+                <span>群组URL：</span>
+            </legend>
+            <label class="input w-full
+                        hover:outline-none
+                        focus-within:outline-none
+                        focus-within:border-transparent
+                        focus-within:ring-2
+                        focus-within:ring-indigo-200
+                        transition-all
+                        ">
+                <span class="label ">https//:127.0.0.1:5000</span>
+                <input type="text" placeholder="URL"/>
+            </label>
         </fieldset>
         <fieldset class="fieldset w-full mt-2">
-            <legend class="fieldset-legend text-base text-gray-600"><span>项目介绍（可选）：</span></legend>
+            <legend class="fieldset-legend text-base text-gray-600"><span>群组介绍（可选）：</span></legend>
             <textarea class="textarea w-full h-24
             focus:outline-none
-            focus:border-gray-400
+            focus:border-gray-200
             focus:ring-2 focus:ring-indigo-200
             focus:outline-2 focus:outline-offset-0 focus:outline-indigo-700
            transition-all duration-200 ease-in-out
         " placeholder="请填写项目介绍"></textarea>
+        </fieldset>
+        <fieldset class="fieldset  mt-2">
+            <legend class="fieldset-legend text-base text-gray-600">
+                <span>群组头像：</span>
+            </legend>
+            <input type="file" class="file-input file-input-sm w-64"/>
+            <label class="label">文件大小限制为 200KB。</label>
         </fieldset>
         <fieldset class="fieldset  mt-2">
             <legend class="fieldset-legend text-base text-gray-600">
@@ -119,27 +107,19 @@
                 <p class="label pl-8">该项目允许任何人访问。</p>
             </div>
         </fieldset>
-        <fieldset class="fieldset  mt-2 ">
-            <legend class="fieldset-legend text-base text-gray-600">
-                <span>初始化：</span>
-            </legend>
-            <label class="flex items-center gap-2 cursor-pointer">
-                <input type="checkbox" class="checkbox checkbox-info checkbox-xs rounded-none"/>
-                <span class="text-sm pointer-events-none">使用README文件初始化仓库</span>
-            </label>
-            <p class="label pl-8">如果有推送计划，可以跳过该操作。</p>
-        </fieldset>
     </div>
-    <div class="mt-10 flex justify-between border-t border-gray-200 rounded-sm">
-        <button class=" mt-2 btn
+    <div class="divider"></div>
+    <div class="flex justify-between">
+        <button class="btn
         btn-outline
         font-normal
          hover:bg-white
          hover:outline-none
          hover:border-gray-400
          hover:ring-2 hover:ring-green-300
-        ">创建</button>
-        <button class=" mt-2 btn btn-outline font-normal
+        ">创建
+        </button>
+        <button class="btn btn-outline font-normal
             hover:bg-white
             hover:outline-none
             hover:border-gray-400
