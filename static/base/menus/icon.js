@@ -26,7 +26,7 @@ const iconMap = {
    `,
     // 通知图标
     index_notification: `
-    <svg t="1750993388076" class="size-6 text-gray-300 hover:text-white" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="13903">
+    <svg t="1750993388076" class="size-6 text-gray-300 " viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="13903">
         <path d="M170.688 341.312a341.312 341.312 0 1 1 682.624 0v200.448l85.376 128v183.552h-239.424a192.064 192.064 0 0 1-374.528 0h-239.36v-183.552l85.312-128V341.312z m243.52 512a106.688 106.688 0 0 0 195.584 0H414.208zM512 85.312a256 256 0 0 0-256 256V567.68l-85.312 128V768h682.624v-72.448l-85.312-128V341.376a256 256 0 0 0-256-256z" p-id="13904" fill="currentColor">
         </path>
     </svg>
