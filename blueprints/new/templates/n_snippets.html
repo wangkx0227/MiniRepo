@@ -7,6 +7,138 @@
 {{ super() }}
 <li>新建代码片段</li>
 {% endblock navigation %}
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='lib/quill/quill.css') }}"/>
+{% endblock css %}
 {% block main %}
-    新建群组
+<div class="projects h-full  p-4">
+    <div class="text-2xl  font-bold">新建代码片段</div>
+    <div class="divider"></div>
+    <div class="p-2 w-full max-w-full">
+        <fieldset class="fieldset w-full">
+            <legend class="fieldset-legend text-base text-gray-600">
+                <span class="text-red-500">*</span><span>代码片段名称：</span>
+            </legend>
+            <input type="text" class="input input-bordered w-full
+            focus:outline-none
+            focus:border-gray-200
+            focus:ring-2
+            focus:ring-indigo-200
+            focus:outline-2
+            focus:outline-offset-0
+            focus:outline-indigo-700
+           transition-all duration-200 ease-in-out
+    " placeholder="请填写代码片段名称"/>
+        </fieldset>
+        <fieldset class="fieldset w-full mt-2">
+            <legend class="fieldset-legend text-base text-gray-600">
+                <span>代码片段描述（可选）：</span>
+            </legend>
+            <!--编辑器骨架-->
+            <div class="flex flex-col gap-2 w-full" id="editor-skeleton">
+                <div class="skeleton h-6 w-full"></div>
+                <div class="skeleton h-54 w-full"></div>
+            </div>
+            <!--编辑器-->
+            <div id="editor" class="hidden bg-white transition-all duration-500 ease-in-out">
+            </div>
+        </fieldset>
+        <fieldset class="fieldset  mt-2">
+            <legend class="fieldset-legend text-base text-gray-600">
+                <span class="text-red-500">*</span>
+                <span>可见级别：</span>
+            </legend>
+            <div class="space-y-2  inline-block ">
+                <label class="flex items-center gap-2 cursor-pointer">
+                    <input
+                            type="radio"
+                            name="radio-1"
+                            class="radio radio-xs radio-info cursor-pointer"
+                            checked="checked"
+                    />
+                    <span class="text-sm pointer-events-none inline-flex items-center gap-1">
+                        <s2-icon name="projects_private" class="shrink-0 align-middle"></s2-icon>
+                        <span class="align-middle">私有</span>
+                    </span>
+                </label>
+                <p class="label pl-8">创建当前用户可访问。</p>
+                <label class="flex items-center gap-2 cursor-pointer">
+                    <input
+                            type="radio"
+                            name="radio-1"
+                            class="radio radio-xs radio-info cursor-pointer"
+                    />
+                    <span class="text-sm pointer-events-none inline-flex items-center gap-1">
+                        <s2-icon name="projects_internal" class="shrink-0 align-middle"></s2-icon>
+                        <span class="align-middle">内部</span>
+                    </span>
+                </label>
+                <p class="label pl-8">只有登录用户可访问。</p>
+                <label class="flex items-center gap-2 cursor-pointer">
+                    <input
+                            type="radio"
+                            name="radio-1"
+                            class="radio radio-xs radio-info cursor-pointer"
+
+                    />
+                    <span class="text-sm pointer-events-none inline-flex items-center gap-1">
+                        <s2-icon name="projects_earth" class="shrink-0 align-middle"></s2-icon>
+                        <span class="align-middle">公开</span>
+                    </span>
+                </label>
+                <p class="label pl-8">该项目允许任何人访问。</p>
+            </div>
+        </fieldset>
+    </div>
+    <div class="divider"></div>
+    <div class="flex justify-between">
+        <button class="btn
+        btn-outline
+        font-normal
+         hover:bg-white
+         hover:outline-none
+         hover:border-gray-400
+         hover:ring-2 hover:ring-green-300
+        ">创建
+        </button>
+        <button class=" btn btn-outline font-normal
+            hover:bg-white
+            hover:outline-none
+            hover:border-gray-400
+            hover:ring-2 hover:ring-indigo-200
+            ">
+            取消（当前用户的项目页面）
+        </button>
+    </div>
+
+</div>
 {% endblock main %}
+{% block js_end %}
+{{ super() }}
+<script src="{{ url_for('static', filename='lib/quill/quill.js') }}"></script>
+<script>
+    const QuillToolbarOptions = [
+        ['bold', 'italic', 'underline', 'blockquote', 'code-block', 'image'],
+        [{'list': 'ordered'}, {'list': 'bullet'}, {'list': 'check'}],
+        [{'color': []}, {'background': []}],
+    ];
+    document.addEventListener('DOMContentLoaded', () => {
+        setTimeout(() => {
+            const quill = new Quill('#editor', {
+                modules: {
+                    toolbar: QuillToolbarOptions
+                },
+                theme: 'snow'
+            });
+            const ql_container = document.querySelector(".ql-container"); // 主体内容
+            ql_container && ql_container.classList.add("top-[-6px]"); // 增加白色背景
+            const ql_toolbar = document.querySelector(".ql-toolbar"); // 工具栏
+            ql_toolbar && ql_toolbar.classList.add("bg-white"); // 增加白色背景
+            const ql_editor = document.querySelector(".ql-editor"); // 填写内容
+            ql_editor && ql_editor.classList.add('max-h-[200px]','overflow-y-auto','min-h-[200px]');
+            document.getElementById('editor-skeleton').classList.add('hidden');
+            document.getElementById('editor').classList.remove('hidden');
+        }, 1000); // 延迟 100ms 确保布局稳定
+    });
+</script>
+{% endblock js_end %}
