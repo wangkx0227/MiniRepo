@@ -17,7 +17,7 @@
     <div class="p-2 w-full max-w-full">
         <fieldset class="fieldset w-full">
             <legend class="fieldset-legend text-base text-gray-600">
-                <span class="text-red-500">*</span><span>代码片段名称：</span>
+                <span class="text-red-500">*</span><span>标题：</span>
             </legend>
             <input type="text" class="input input-bordered w-full
             focus:outline-none
@@ -32,7 +32,7 @@
         </fieldset>
         <fieldset class="fieldset w-full mt-2">
             <legend class="fieldset-legend text-base text-gray-600">
-                <span>代码片段描述（可选）：</span>
+                <span>描述（可选）：</span>
             </legend>
             <!--编辑器骨架-->
             <div class="flex flex-col gap-2 w-full" id="editor-skeleton">
@@ -43,7 +43,7 @@
             <div id="editor" class="hidden bg-white transition-all duration-500 ease-in-out">
             </div>
         </fieldset>
-        <fieldset class="fieldset  mt-2">
+        <fieldset class="fieldset mt-2">
             <legend class="fieldset-legend text-base text-gray-600">
                 <span class="text-red-500">*</span>
                 <span>可见级别：</span>
@@ -89,6 +89,13 @@
                 <p class="label pl-8">该项目允许任何人访问。</p>
             </div>
         </fieldset>
+        <fieldset class="fieldset mt-2">
+            <legend class="fieldset-legend text-base text-gray-600">
+                <span class="text-red-500">*</span>
+                <span>内容：</span>
+            </legend>
+
+        </fieldset>
     </div>
     <div class="divider"></div>
     <div class="flex justify-between">
@@ -117,6 +124,7 @@
 {{ super() }}
 <script src="{{ url_for('static', filename='lib/quill/quill.js') }}"></script>
 <script>
+    // 这是编辑框样式
     const QuillToolbarOptions = [
         ['bold', 'italic', 'underline', 'blockquote', 'code-block', 'image'],
         [{'list': 'ordered'}, {'list': 'bullet'}, {'list': 'check'}],
@@ -138,7 +146,8 @@
             ql_editor && ql_editor.classList.add('max-h-[200px]','overflow-y-auto','min-h-[200px]');
             document.getElementById('editor-skeleton').classList.add('hidden');
             document.getElementById('editor').classList.remove('hidden');
-        }, 1000); // 延迟 100ms 确保布局稳定
+        }, 500); // 延迟 1500ms 确保布局稳定
     });
+
 </script>
 {% endblock js_end %}
