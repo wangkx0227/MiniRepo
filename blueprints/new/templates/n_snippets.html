@@ -8,7 +8,7 @@
 <li>新建代码片段</li>
 {% endblock navigation %}
 {% block css %}
-<link rel="stylesheet" href="{{ url_for('static', filename='lib/quill/quill.css') }}"/>
+<link rel="stylesheet" href="{{ url_for('static', filename='lib/quill/quill.css') }}" />
 {% endblock css %}
 {% block main %}
 <div class="projects h-full  p-4">
@@ -28,7 +28,7 @@
             focus:outline-offset-0
             focus:outline-indigo-700
            transition-all duration-200 ease-in-out
-    " placeholder="请填写代码片段名称"/>
+    " placeholder="请填写代码片段名称" />
         </fieldset>
         <fieldset class="fieldset w-full mt-2">
             <legend class="fieldset-legend text-base text-gray-600">
@@ -50,12 +50,8 @@
             </legend>
             <div class="space-y-2  inline-block ">
                 <label class="flex items-center gap-2 cursor-pointer">
-                    <input
-                            type="radio"
-                            name="radio-1"
-                            class="radio radio-xs radio-info cursor-pointer"
-                            checked="checked"
-                    />
+                    <input type="radio" name="radio-1" class="radio radio-xs radio-info cursor-pointer"
+                        checked="checked" />
                     <span class="text-sm pointer-events-none inline-flex items-center gap-1">
                         <s2-icon name="projects_private" class="shrink-0 align-middle"></s2-icon>
                         <span class="align-middle">私有</span>
@@ -63,11 +59,7 @@
                 </label>
                 <p class="label pl-8">创建当前用户可访问。</p>
                 <label class="flex items-center gap-2 cursor-pointer">
-                    <input
-                            type="radio"
-                            name="radio-1"
-                            class="radio radio-xs radio-info cursor-pointer"
-                    />
+                    <input type="radio" name="radio-1" class="radio radio-xs radio-info cursor-pointer" />
                     <span class="text-sm pointer-events-none inline-flex items-center gap-1">
                         <s2-icon name="projects_internal" class="shrink-0 align-middle"></s2-icon>
                         <span class="align-middle">内部</span>
@@ -75,12 +67,7 @@
                 </label>
                 <p class="label pl-8">只有登录用户可访问。</p>
                 <label class="flex items-center gap-2 cursor-pointer">
-                    <input
-                            type="radio"
-                            name="radio-1"
-                            class="radio radio-xs radio-info cursor-pointer"
-
-                    />
+                    <input type="radio" name="radio-1" class="radio radio-xs radio-info cursor-pointer" />
                     <span class="text-sm pointer-events-none inline-flex items-center gap-1">
                         <s2-icon name="projects_earth" class="shrink-0 align-middle"></s2-icon>
                         <span class="align-middle">公开</span>
@@ -92,9 +79,25 @@
         <fieldset class="fieldset mt-2">
             <legend class="fieldset-legend text-base text-gray-600">
                 <span class="text-red-500">*</span>
-                <span>内容：</span>
+                <span>文件：</span>
             </legend>
-
+            <!-- 根据文件输入的后缀判断，采用什么样的高亮 -->
+            <input type="text" class="input input-bordered w-full
+            focus:outline-none
+            focus:border-gray-200
+            focus:ring-2
+            focus:ring-indigo-200
+            focus:outline-2
+            focus:outline-offset-0
+            focus:outline-indigo-700
+           transition-all duration-200 ease-in-out
+    " placeholder="可以选择命名此文件以添加代码突出显示，例如Ruby的example.rb。" />
+            <!-- 代码编辑框-骨架  -->
+            <div class="flex flex-col gap-2 w-full" id="code-editor-skeleton">
+                <div class="skeleton h-54 w-full"></div>
+            </div>
+            <!-- 代码编辑框 -->
+            <textarea id="code-editor" class="max-[200px] hidden"></textarea>
         </fieldset>
     </div>
     <div class="divider"></div>
@@ -124,14 +127,15 @@
 {{ super() }}
 <script src="{{ url_for('static', filename='lib/quill/quill.js') }}"></script>
 <script>
-    // 这是编辑框样式
+
     const QuillToolbarOptions = [
         ['bold', 'italic', 'underline', 'blockquote', 'code-block', 'image'],
-        [{'list': 'ordered'}, {'list': 'bullet'}, {'list': 'check'}],
-        [{'color': []}, {'background': []}],
+        [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'list': 'check' }],
+        [{ 'color': [] }, { 'background': [] }],
     ];
     document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
+            // 这是编辑框样式
             const quill = new Quill('#editor', {
                 modules: {
                     toolbar: QuillToolbarOptions
@@ -143,11 +147,23 @@
             const ql_toolbar = document.querySelector(".ql-toolbar"); // 工具栏
             ql_toolbar && ql_toolbar.classList.add("bg-white"); // 增加白色背景
             const ql_editor = document.querySelector(".ql-editor"); // 填写内容
-            ql_editor && ql_editor.classList.add('max-h-[200px]','overflow-y-auto','min-h-[200px]');
+            ql_editor && ql_editor.classList.add('max-h-[200px]', 'overflow-y-auto', 'min-h-[200px]');
             document.getElementById('editor-skeleton').classList.add('hidden');
             document.getElementById('editor').classList.remove('hidden');
-        }, 500); // 延迟 1500ms 确保布局稳定
-    });
+            // 这是代码编辑框样式
+            const code_editor = CodeMirror.fromTextArea(document.getElementById("code-editor"), {
+                mode: "text/plain",  // 语法模式
+                lineNumbers: true,    // 显示行号
+                indentUnit: 4,        // 缩进单位
+                theme: "default",     // 主题
+            });
+            code_editor.setSize(null, "200"); // 高度设为父容器高度
+            const code_mirror_table = document.querySelector(".CodeMirror");
+            code_mirror_table && code_mirror_table.classList.add('border', 'border-gray-300')
+            document.getElementById('code-editor-skeleton').classList.add('hidden');
+            document.getElementById('code-editor').classList.remove('hidden');
 
+        }, 500);
+    });
 </script>
 {% endblock js_end %}
