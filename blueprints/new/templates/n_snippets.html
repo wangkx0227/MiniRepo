@@ -165,5 +165,34 @@
 
         }, 500);
     });
+
+    function getModeFromFilename(filename) {
+      const ext = filename.split('.').pop().toLowerCase();
+      switch (ext) {
+        case 'c': return 'text/x-csrc';
+        case 'cpp':
+        case 'cc':
+        case 'cxx': return 'text/x-c++src';
+        case 'java': return 'text/x-java';
+        case 'cs': return 'text/x-csharp';
+        case 'py': return 'python';
+        case 'js': return 'javascript';
+        case 'ts': return 'text/typescript';
+        case 'json': return 'application/json';
+        case 'html': return 'htmlmixed';
+        case 'css': return 'css';
+        case 'php': return 'php';
+        case 'xml': return 'xml';
+        case 'sh':
+        case 'bash': return 'shell';
+        case 'go': return 'go';
+        case 'lua': return 'lua';
+        case 'sql': return 'sql';
+        case 'rb': return 'ruby';
+        case 'swift': return 'swift';
+        case 'md': return 'markdown';
+        default: return 'text/plain';  // 默认不设置
+      }
+    }
 </script>
 {% endblock js_end %}

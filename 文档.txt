@@ -8,7 +8,7 @@ css组件：https://daisyui.com/components/tab/
 单元测试 pytest：https://docs.pytest.org/en/stable/ -- https://learning-pytest.readthedocs.io/zh/latest/doc/intro/getting-started.html # 未使用
 开源柱状图：https://echarts.apache.org/examples/zh/index.html # 未使用
 文本编辑器: https://quilljs.com/
-代码编辑器: https://codemirror.net/
+代码编辑器: https://codemirror.net/ github：https://github.com/codemirror/codemirror5 高亮对照表：https://codemirror.net/5/mode/
 
 # 按钮悬浮效果 - 正常按钮
 hover:bg-white
