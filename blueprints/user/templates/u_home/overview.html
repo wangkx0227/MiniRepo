@@ -44,11 +44,13 @@
         <div class="flex justify-between items-center">
             <div class="flex-1 text-2xl  font-bold">贡献度</div>
             <div class=" w-fit">
-                <select class="select cursor-pointer         focus:outline-none
-        focus:border-gray-400
-        focus:ring-2 focus:ring-indigo-200
-        focus:outline-2 focus:outline-offset-0 focus:outline-indigo-700
-       transition-all duration-200 ease-in-out" id="contributeYearSelect">
+                <select class="select
+                    cursor-pointer
+                    focus:outline-none
+                    focus:border-gray-200
+                    focus:ring-2 focus:ring-indigo-200
+                    focus:outline-2 focus:outline-offset-0 focus:outline-indigo-700
+                    transition-all duration-200 ease-in-out" id="contributeYearSelect">
                     <option disabled selected value="">日期</option>
                     {# 日期需要从后端进行获取#}
                     <option value="2025">2025</option>
@@ -57,7 +59,7 @@
                 </select>
             </div>
         </div>
-        <!--贡献图（有问题）-->
+        <!--贡献图-->
         <div class="contribute-picture flex flex-col gap-4  my-2 outline outline-gray-200  overflow-x-auto whitespace-nowrap p-2 rounded-sm min-h-48">
             <div class="flex text-xs text-left text-base-content/50 gap-16 mx-auto" id="months"></div>
             <div class="flex mx-auto">
