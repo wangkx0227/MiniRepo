@@ -8,7 +8,7 @@
 <li>新建代码片段</li>
 {% endblock navigation %}
 {% block css %}
-<link rel="stylesheet" href="{{ url_for('static', filename='lib/quill/quill.css') }}" />
+<link rel="stylesheet" href="{{ url_for('static', filename='lib/quill/quill.css') }}"/>
 {% endblock css %}
 {% block main %}
 <div class="projects h-full  p-4">
@@ -28,7 +28,7 @@
             focus:outline-offset-0
             focus:outline-indigo-700
            transition-all duration-200 ease-in-out
-    " placeholder="请填写代码片段名称" />
+    " placeholder="请填写代码片段名称"/>
         </fieldset>
         <fieldset class="fieldset w-full mt-2">
             <legend class="fieldset-legend text-base text-gray-600">
@@ -51,7 +51,7 @@
             <div class="space-y-2  inline-block ">
                 <label class="flex items-center gap-2 cursor-pointer">
                     <input type="radio" name="radio-1" class="radio radio-xs radio-info cursor-pointer"
-                        checked="checked" />
+                           checked="checked"/>
                     <span class="text-sm pointer-events-none inline-flex items-center gap-1">
                         <s2-icon name="projects_private" class="shrink-0 align-middle"></s2-icon>
                         <span class="align-middle">私有</span>
@@ -59,7 +59,7 @@
                 </label>
                 <p class="label pl-8">创建当前用户可访问。</p>
                 <label class="flex items-center gap-2 cursor-pointer">
-                    <input type="radio" name="radio-1" class="radio radio-xs radio-info cursor-pointer" />
+                    <input type="radio" name="radio-1" class="radio radio-xs radio-info cursor-pointer"/>
                     <span class="text-sm pointer-events-none inline-flex items-center gap-1">
                         <s2-icon name="projects_internal" class="shrink-0 align-middle"></s2-icon>
                         <span class="align-middle">内部</span>
@@ -67,7 +67,7 @@
                 </label>
                 <p class="label pl-8">只有登录用户可访问。</p>
                 <label class="flex items-center gap-2 cursor-pointer">
-                    <input type="radio" name="radio-1" class="radio radio-xs radio-info cursor-pointer" />
+                    <input type="radio" name="radio-1" class="radio radio-xs radio-info cursor-pointer"/>
                     <span class="text-sm pointer-events-none inline-flex items-center gap-1">
                         <s2-icon name="projects_earth" class="shrink-0 align-middle"></s2-icon>
                         <span class="align-middle">公开</span>
@@ -90,8 +90,8 @@
             focus:outline-2
             focus:outline-offset-0
             focus:outline-indigo-700
-           transition-all duration-200 ease-in-out
-    " placeholder="可以选择命名此文件以添加代码突出显示，例如Ruby的example.rb。" />
+           transition-all duration-200 ease-in-out" id="code-file-name"
+                   placeholder="可以选择命名此文件以添加代码突出显示，例如Ruby的example.rb。"/>
             <!-- 代码编辑框-骨架  -->
             <div class="flex flex-col gap-2 w-full" id="code-editor-skeleton">
                 <div class="skeleton h-54 w-full"></div>
@@ -127,11 +127,49 @@
 {{ super() }}
 <script src="{{ url_for('static', filename='lib/quill/quill.js') }}"></script>
 <script>
+    // 根据文件名称的后缀进行判断，获取高亮文件并且加载
+    function getModeFromFilename(filename) {
+        const Default = {'mode': 'text/plain', 'highlight_file': ''};
+        const CodeMirrorHighlight = {
+            'py': {'mode': 'python', 'highlight_file': 'static/lib/mode/python/python.js'},
+            'c': {'mode': 'text/x-csrc', 'highlight_file': 'static/lib/mode/python/python.js'},
+            'cxx': {'mode': 'text/x-c++src', 'highlight_file': 'static/lib/mode/python/python.js'},
+            'java': {'mode': 'text/x-java', 'highlight_file': 'static/lib/mode/python/python.js'},
+            'cpp': {'mode': 'python', 'highlight_file': 'static/lib/mode/python/python.js'},
+            'cc': {'mode': 'python', 'highlight_file': 'static/lib/mode/python/python.js'},
+            'cs': {'mode': 'text/x-csharp', 'highlight_file': 'static/lib/mode/python/python.js'},
+            'js': {'mode': 'javascript', 'highlight_file': 'static/lib/mode/python/python.js'},
+            'ts': {'mode': 'text/typescript', 'highlight_file': 'static/lib/mode/python/python.js'},
+            'json': {'mode': 'application/json', 'highlight_file': 'static/lib/mode/python/python.js'},
+            'html': {'mode': 'htmlmixed', 'highlight_file': 'static/lib/mode/python/python.js'},
+            'css': {'mode': 'css', 'highlight_file': 'static/lib/mode/python/python.js'},
+            'php': {'mode': 'php', 'highlight_file': 'static/lib/mode/python/python.js'},
+            'xml': {'mode': 'xml', 'highlight_file': 'static/lib/mode/python/python.js'},
+            'sh': {'mode': 'shell', 'highlight_file': 'static/lib/mode/python/python.js'},
+            'bash': {'mode': 'shell', 'highlight_file': 'static/lib/mode/python/python.js'},
+            'go': {'mode': 'go', 'highlight_file': 'static/lib/mode/python/python.js'},
+            'lua': {'mode': 'lua', 'highlight_file': 'static/lib/mode/python/python.js'},
+            'sql': {'mode': 'sql', 'highlight_file': 'static/lib/mode/python/python.js'},
+            'rb': {'mode': 'ruby', 'highlight_file': 'static/lib/mode/python/python.js'},
+            'swift': {'mode': 'swift', 'highlight_file': 'static/lib/mode/python/python.js'},
+            'md': {'mode': 'md', 'highlight_file': 'static/lib/mode/python/python.js'},
+        }
+        try {
+            if (filename.includes('.') && !filename.endsWith('.') && filename.lastIndexOf('.') !== 0) {
+                const ext = filename.split('.').pop().toLowerCase();
+                return CodeMirrorHighlight[ext];
+            } else {
+                return Default;
+            }
+        } catch (error) {
+            return Default;
+        }
+    }
 
     const QuillToolbarOptions = [
         ['bold', 'italic', 'underline', 'blockquote', 'code-block', 'image'],
-        [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'list': 'check' }],
-        [{ 'color': [] }, { 'background': [] }],
+        [{'list': 'ordered'}, {'list': 'bullet'}, {'list': 'check'}],
+        [{'color': []}, {'background': []}],
     ];
     document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
@@ -166,33 +204,11 @@
         }, 500);
     });
 
-    function getModeFromFilename(filename) {
-      const ext = filename.split('.').pop().toLowerCase();
-      switch (ext) {
-        case 'c': return 'text/x-csrc';
-        case 'cpp':
-        case 'cc':
-        case 'cxx': return 'text/x-c++src';
-        case 'java': return 'text/x-java';
-        case 'cs': return 'text/x-csharp';
-        case 'py': return 'python';
-        case 'js': return 'javascript';
-        case 'ts': return 'text/typescript';
-        case 'json': return 'application/json';
-        case 'html': return 'htmlmixed';
-        case 'css': return 'css';
-        case 'php': return 'php';
-        case 'xml': return 'xml';
-        case 'sh':
-        case 'bash': return 'shell';
-        case 'go': return 'go';
-        case 'lua': return 'lua';
-        case 'sql': return 'sql';
-        case 'rb': return 'ruby';
-        case 'swift': return 'swift';
-        case 'md': return 'markdown';
-        default: return 'text/plain';  // 默认不设置
-      }
-    }
+    // 输入文件名称焦点事项
+    document.getElementById("code-file-name").addEventListener("blur", function () {
+        const codeFileName = document.getElementById("code-file-name").value
+        const ext = getModeFromFilename(codeFileName)
+        console.log(ext)
+    })
 </script>
 {% endblock js_end %}
