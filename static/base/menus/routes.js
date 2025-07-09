@@ -1,18 +1,21 @@
 // 路由
 // const username = "{{ username }}";  // 来自 Flask 注入
-const username = "wkx0227";  // 来自 Flask 注入
+const currentUser = "wkx0227";  // 来自 Flask 注入
 const menuRouteMap = [
     // 用户头像，点击下来框的路由设置
-    {labelId: "u-stars", url: `/${username}/stars`, }, // 关注
-    {labelId: "u-home", url: `/${username}/home`, },  // 主页
-    {labelId: "u-repository", url: `/${username}/repository`}, // 仓库
-    {labelId: "u-setting", url: `/${username}/setting` }, // 个人设置
-    {labelId: "u-organization", url: `/${username}/organization` }, // 个人设置
+    {labelId: "u-stars", url: `/${currentUser}/stars`,}, // 关注
+    {labelId: "u-home", url: `/${currentUser}/home`,},  // 主页
+    {labelId: "u-repository", url: `/${currentUser}/repository`}, // 仓库
+    {labelId: "u-setting", url: `/${currentUser}/setting`}, // 个人设置
+    {labelId: "u-organization", url: `/${currentUser}/organization`}, // 个人设置
+    // 通知路由
+    {labelId: "u-notifications", url: `/${currentUser}/notifications`,}, // 通知
     // {labelId: "u-login", url: `/u/repos`}, // 需要再进行确认怎么设置
-    // 新建的下拉框路由设置
-    {labelId: "n-projects", url: "/n/projects", },  // 新建项目
-    {labelId: "n-groups", url: "/n/groups"}, // 新建群组
-    {labelId: "n-snippets", url: "/n/snippets", }, // 新建代码片段
+    // 新建的下拉框路由
+    {labelId: "n-projects", url: "/new/projects",},  // 新建项目
+    {labelId: "n-groups", url: "/new/groups"}, // 新建群组
+    {labelId: "n-snippets", url: "/new/snippets",}, // 新建代码片段
+
 ];
 
 // 菜单设置点击事件
@@ -28,7 +31,6 @@ function createMenuItem(labelId, url) {
     //     }, 350);
     // });
 }
-
 
 
 window.createMenuItem = createMenuItem;

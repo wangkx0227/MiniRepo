@@ -173,3 +173,6 @@ def repository(username):
 
 def organization(username):
     return render_template("u_organization.html")
+
+def notifications(username):
+    return render_template("u_notifications.html")
