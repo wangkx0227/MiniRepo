@@ -148,10 +148,10 @@ def home(username):
     tab = request.args.get('tab', 'overview')
     # 工作台tab标签，对应get请求参数对应的模版路径
     template_map = {
-        'repository': 'u_home/repository.html',
-        'analysis': 'u_home/analysis.html',
-        'snippet': 'u_home/snippet.html',
-        'overview': 'U_home/overview.html',
+        'repository': 'home/repository.html',
+        'analysis': 'home/analysis.html',
+        'snippet': 'home/snippet.html',
+        'overview': 'home/overview.html',
     }
     # 默认用 overview，无论是登录跳转还是点击工作台
     template = template_map.get(tab, 'home/overview.html')

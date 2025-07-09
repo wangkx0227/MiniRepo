@@ -6,7 +6,7 @@
 {% endblock navigation %}
 {% block css %}
 <link rel="stylesheet"
-      href="{{ url_for('user_page.static', filename='u_home/overview/overview.css') }}">
+      href="{{ url_for('user_page.static', filename='home/overview/overview.css') }}">
 <style>
     .tooltip {
         --tooltip-text-size: 0.6rem;
@@ -224,5 +224,5 @@
 {% endblock overview %}
 {% block js_end %}
 {{ super() }}
-<script src="{{ url_for('user_page.static', filename='u_home/overview/overview.js') }}"></script>
+<script src="{{ url_for('user_page.static', filename='home/overview/overview.js') }}"></script>
 {% endblock js_end %}
