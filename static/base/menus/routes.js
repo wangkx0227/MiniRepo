@@ -1,10 +1,11 @@
 // 路由
 const menuRouteMap = [
     // 用户头像，点击下来框的路由设置
-    {labelId: "u-stars", url: "/u/stars", }, // 星
+    {labelId: "u-stars", url: "/u/stars", }, // 关注
     {labelId: "u-home", url: "/u/home", },  // 主页
     {labelId: "u-repository", url: "/u/repository"}, // 仓库
     {labelId: "u-setting", url: "/u/setting", }, // 个人设置
+    {labelId: "u-organization", url: "/u/organization", }, // 个人设置
     // {labelId: "u-login", url: "/u/repos"}, // 需要再进行确认怎么设置
     // 新建的下拉框路由设置
     {labelId: "n-projects", url: "/n/projects", },  // 新建项目

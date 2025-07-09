@@ -1,4 +1,4 @@
-from flask import render_template,request
+from flask import render_template, request
 
 
 def get_overview_data():
@@ -142,6 +142,7 @@ def get_workbenches_data(tab):
     func = data_func_map.get(tab, get_overview_data)
     return func()
 
+
 # 用户主页
 def home():
     tab = request.args.get('tab', 'overview')
@@ -168,3 +169,7 @@ def stars():
 
 def repository():
     return render_template("u_repository.html")
+
+
+def organization():
+    return render_template("u_organization.html")
