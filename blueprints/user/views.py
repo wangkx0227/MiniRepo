@@ -144,7 +144,8 @@ def get_workbenches_data(tab):
 
 
 # 用户主页
-def home():
+def home(username):
+    print(username)
     tab = request.args.get('tab', 'overview')
     # 工作台tab标签，对应get请求参数对应的模版路径
     template_map = {
