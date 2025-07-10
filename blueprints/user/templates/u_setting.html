@@ -7,3 +7,31 @@
 {{ super() }}
 <li>个人设置</li>
 {% endblock navigation %}
+{% block main %}
+<!--设置的侧边栏菜单-->
+<ul class="menu  rounded-box w-64">
+    <summary>菜单-01</summary>
+    <li><a>菜单01</a></li>
+    <li>
+        <details>
+            <summary>菜单02</summary>
+            <ul>
+                <li><a>菜单01-1</a></li>
+                <li><a>菜单01-2</a></li>
+            </ul>
+        </details>
+    </li>
+    <li><a>菜单03</a></li>
+    <li><a>菜单01</a></li>
+    <li><a>菜单01</a></li>
+    <summary>菜单-02</summary>
+    <li><a>菜单03</a></li>
+    <li><a>菜单01</a></li>
+    <li><a>菜单01</a></li>
+    <li><a>菜单03</a></li>
+    <li><a class="block pl-4 py-2 border-l-4 border-blue-500 text-blue-600 font-medium">菜单01</a></li>
+    <li><a class="menu-active">菜单01</a></li>
+    <li><a>菜单03</a></li>
+</ul>
+<!--主要显示设置中点击侧边栏标签后显示的页面-->
+{% endblock main %}
