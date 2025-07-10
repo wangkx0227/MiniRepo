@@ -8,7 +8,7 @@ const menuRouteMap = [
     {labelId: "u-repository", url: `/${currentUser}/home?tab=repository`}, // 仓库
     {labelId: "u-snippet", url: `/${currentUser}/home?tab=snippet`}, // 仓库
 
-    {labelId: "u-setting", url: `/${currentUser}/setting`}, // 个人设置
+    {labelId: "u-setting", url: `/setting`}, // 个人设置
     {labelId: "u-organization", url: `/${currentUser}/organization`}, // 组织
     // 通知路由
     {labelId: "u-notifications", url: `/${currentUser}/notifications`,}, // 通知

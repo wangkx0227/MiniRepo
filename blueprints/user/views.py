@@ -160,7 +160,7 @@ def home(username):
     return render_template(template, tab=tab, data=data)
 
 
-def setting(username):
+def setting():
     return render_template("u_setting.html")
 
 
