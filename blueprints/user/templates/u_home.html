@@ -69,22 +69,13 @@
                 {% endblock overview %}
             </div>
             <label class="tab">
-                <input type="radio" name="workbenchesTab" {% if tab=='repository' %}checked{% endif %}  id="repository"/>
+                <input type="radio" name="workbenchesTab" {% if tab=='repository' %}checked{% endif %} id="repository"/>
                 <s2-icon name="workbenches_repository"></s2-icon>
                 <span>仓库</span>
             </label>
             <div class="tab-content bg-gray-50 py-2">
                 {% block repository %}
                 {% endblock repository %}
-            </div>
-            <label class="tab">
-                <input type="radio" name="workbenchesTab" {% if tab=='analysis' %}checked{% endif %} id="analysis"/>
-                <s2-icon name="workbenches_analysis"></s2-icon>
-                <span>统计分析</span>
-            </label>
-            <div class="tab-content bg-gray-50 py-2">
-                {% block analysis %}
-                {% endblock analysis %}
             </div>
             <label class="tab">
                 <input type="radio" name="workbenchesTab" {% if tab=='snippet' %}checked{% endif %} id="snippet"/>
@@ -94,6 +85,15 @@
             <div class="tab-content bg-gray-50 py-2">
                 {% block snippet %}
                 {% endblock snippet %}
+            </div>
+            <label class="tab">
+                <input type="radio" name="workbenchesTab" {% if tab=='stars' %}checked{% endif %} id="stars"/>
+                <s2-icon name="workbenches_analysis"></s2-icon>
+                <span>关注</span>
+            </label>
+            <div class="tab-content bg-gray-50 py-2">
+                {% block stars %}
+                {% endblock stars %}
             </div>
         </div>
     </div>

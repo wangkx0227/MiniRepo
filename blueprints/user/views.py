@@ -145,11 +145,12 @@ def get_workbenches_data(tab):
 
 # 用户主页
 def home(username):
+    print(username)
     tab = request.args.get('tab', 'overview')
-    # 工作台tab标签，对应get请求参数对应的模版路径
+    # 工作台tab标签，对应get请求参数对应的模版路径 stars
     template_map = {
         'repository': 'home/repository.html',
-        'analysis': 'home/analysis.html',
+        'stars': 'home/stars.html',
         'snippet': 'home/snippet.html',
         'overview': 'home/overview.html',
     }
@@ -163,16 +164,9 @@ def setting(username):
     return render_template("u_setting.html")
 
 
-def stars(username):
-    return render_template("u_stars.html")
-
-
-def repository(username):
-    return render_template("u_repository.html")
-
-
 def organization(username):
     return render_template("u_organization.html")
+
 
 def notifications(username):
     return render_template("u_notifications.html")
