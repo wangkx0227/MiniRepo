@@ -9,29 +9,73 @@
 {% endblock navigation %}
 {% block main %}
 <!--设置的侧边栏菜单-->
-<ul class="menu  rounded-box w-64">
-    <summary>菜单-01</summary>
-    <li><a>菜单01</a></li>
-    <li>
-        <details>
-            <summary>菜单02</summary>
-            <ul>
-                <li><a>菜单01-1</a></li>
-                <li><a>菜单01-2</a></li>
-            </ul>
-        </details>
-    </li>
-    <li><a>菜单03</a></li>
-    <li><a>菜单01</a></li>
-    <li><a>菜单01</a></li>
-    <summary>菜单-02</summary>
-    <li><a>菜单03</a></li>
-    <li><a>菜单01</a></li>
-    <li><a>菜单01</a></li>
-    <li><a>菜单03</a></li>
-    <li><a class="block pl-4 py-2 border-l-4 border-blue-500 text-blue-600 font-medium">菜单01</a></li>
-    <li><a class="menu-active">菜单01</a></li>
-    <li><a>菜单03</a></li>
-</ul>
+<div class="flex h-screen">
+    <!-- 左侧菜单 -->
+    <div class="w-1/5 h-full overflow-hidden bg-gray-100">
+        <ul class="menu rounded-box w-full text-base-content min-h-full p-4">
+            <summary>个人设置</summary>
+            <li><a>用户资料</a></li>
+            <li><a>通知</a></li>
+            <li><a>组织</a></li>
+            <li><a>账户</a></li>
+            <li><a>仓库</a></li>
+            <li><a>访问令牌</a></li>
+            <li><a>电子邮件</a></li>
+            <li><a>密码</a></li>
+            <li><a>SSH 密钥</a></li>
+            <li><a>GPG 密钥</a></li>
+            <li><a>活动会话</a></li>
+            <li>
+                <details>
+                    <summary>菜单02</summary>
+                    <ul>
+                        <li><a>菜单01-1</a></li>
+                        <li><a>菜单01-2</a></li>
+                    </ul>
+                </details>
+            </li>
+            <li><a class="block pl-4 py-2 border-l-4 border-blue-500 text-blue-600 font-medium">菜单01</a></li>
+        </ul>
+    </div>
+
+    <!-- 右侧内容 -->
+    <div class="w-4/5 h-full overflow-y-auto p-4 bg-white">
+        <p>内容</p>
+        <p>内容</p>
+        <p>内容</p>
+        <p>内容</p>
+        <!-- 添加很多内容测试滚动 -->
+        <p>内容</p>
+        <p>内容</p>
+        <p>内容</p>
+        <p>内容</p>
+        <p>内容</p>
+        <p>内容</p>
+        <p>内容</p>
+        <p>内容</p>
+        <p>内容</p>
+        <p>内容</p>
+        <p>内容</p>
+        <p>内容</p>
+        <p>内容</p>
+        <p>内容</p>
+        <p>内容</p>
+        <p>内容</p>
+        <p>内容</p>
+        <p>内容</p>
+        <p>内容</p>
+        <p>内容</p>
+        <p>内容</p>
+        <p>内容</p>
+        <p>内容</p>
+        <p>内容</p>
+        <p>内容</p>
+        <p>内容</p>
+        <p>内容</p>
+        <p>内容</p>
+        <p>内容</p>
+    </div>
+</div>
+
 <!--主要显示设置中点击侧边栏标签后显示的页面-->
 {% endblock main %}

@@ -8,7 +8,8 @@ def index():
         用户登录的首页默认是：
             home?tab=overview
     """
-    return redirect(url_for("user_page.home", tab="overview"))
+    some_username = "wangkx0227"
+    return redirect(url_for("user_page.home",username=some_username,tab="overview"))
 
 
 def login():
