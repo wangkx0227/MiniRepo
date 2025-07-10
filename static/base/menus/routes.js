@@ -6,6 +6,7 @@ const menuRouteMap = [
     {labelId: "u-home", url: `/${currentUser}/home`,},  // 主页
     {labelId: "u-stars", url: `/${currentUser}/home?tab=stars`,}, // 关注
     {labelId: "u-repository", url: `/${currentUser}/home?tab=repository`}, // 仓库
+    {labelId: "u-snippet", url: `/${currentUser}/home?tab=snippet`}, // 仓库
 
     {labelId: "u-setting", url: `/${currentUser}/setting`}, // 个人设置
     {labelId: "u-organization", url: `/${currentUser}/organization`}, // 组织
