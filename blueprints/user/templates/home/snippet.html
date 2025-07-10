@@ -17,9 +17,9 @@
 {% endblock css %}
 {% block snippet %}
 <div class="p-2 h-full">
-    <div class=" max-w-full snippet-head flex justify-between items-center">
+    <div class="max-w-full snippet-head flex justify-between items-center">
         <!--筛选框-->
-        <div class="flex-1 w-fit transition">
+        <div class="flex-1 w-fit">
             <select class="select cursor-pointer w-32
                 focus:outline-none
                 focus:border-gray-200
@@ -33,20 +33,15 @@
             </select>
         </div>
         <!--搜索框-->
-        <div class="">
-            <label class="
-                input input-bordered
-                focus-within:outline-none
-                focus-within:border-gray-200
-                focus-within:ring-2 focus-within:ring-indigo-200
-                focus-within:outline-2 focus-within:outline-offset-0 focus-within:outline-indigo-700
-                transition-all duration-200 ease-in-out">
-                <s2-icon name="repository_search"></s2-icon>
-                <input type="text" class="grow" placeholder="快速搜索"/>
-            </label>
-        </div>
+        <label class="input input-bordered w-64 flex items-center gap-2
+                      focus-within:outline-none focus-within:border-gray-200
+                      focus-within:ring-2 focus-within:ring-indigo-200
+                      transition-all duration-200">
+            <s2-icon name="repository_search"></s2-icon>
+            <input type="text" class="grow text-sm" placeholder="快速搜索"/>
+        </label>
     </div>
-    <div class=" bg-gray-100 mt-1 rounded-sm p-4 flex items-center">
+    <div class="bg-gray-100 mt-1 rounded-sm p-4 flex items-center">
         <span class="text-sm flex items-center gap-1">
             <s2-icon name="tags"></s2-icon>
             标签：
@@ -83,20 +78,20 @@
             </div>
         </div>
     </div>
-    <div class="snippet-content mt-1 max-w-full">
-        <ul class="snippet-content-ul ">
-            <li class="hover:bg-gray-100 border-t border-gray-200 p-4 min-h-35 cursor-pointer transition duration-100 ease-in-out flex flex-col gap-5">
+    <div class="snippet-content mt-1 space-y-3">
+        <ul class="snippet-content-ul space-y-2 ">
+            <li class="hover:bg-gray-100 border border-gray-200 rounded-md p-4 transition-all cursor-pointer">
                 <div class="flex">
                     <div class="flex-1 flex justify-start items-center gap-2">
                         <div class="tooltip  tooltip-right" data-tip="公开">
                             <s2-icon name="repository_unlocked"></s2-icon>
                         </div>
-                        <samp class="text-lg font-bold">
-                            <a class="link text-black hover:text-slate-500 no-underline hover:underline  transition-colors duration-200"
+                        <div>
+                            <a class="text-lg font-semibold text-black hover:text-slate-600 hover:underline transition"
                                href="">
                                 代码片段测试
                             </a>
-                        </samp>
+                        </div>
                     </div>
                     <div class="flex items-center gap-4 text-xs text-base-content/50">
                         <div class="flex items-center">
@@ -107,7 +102,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="flex">
+                <div class="mt-3 flex justify-between items-end flex-wrap gap-3">
                     <div class="flex-1 grid grid-rows-2 gap-5">
                         <div class="flex text-sm text-base-content/70">
                             简介：代码测试
@@ -135,20 +130,14 @@
                         <kbd class="kbd  border-1 border-solid text-xs">数据库</kbd>
                     </div>
                 </div>
-
             </li>
         </ul>
-        <!--需要根据渲染的数据进行显示这个按钮是否显示，如果大于显示页面的4个就显示，如果小于就不显示-->
-        <div class="mt-15 flex justify-center">
-            <button class=" btn btn-outline font-normal
-            hover:bg-white
-            hover:outline-none
-            hover:border-gray-400
-            hover:ring-2 hover:ring-indigo-200
-            " id="RepositoryLoadMore">
+        <!-- 加载更多按钮 -->
+        <div class="flex justify-center pt-4">
+            <button class="btn btn-outline font-normal hover:bg-white hover:border-gray-400 hover:ring-2 hover:ring-indigo-200"
+                    id="RepositoryLoadMore">
                 加载更多
             </button>
-
         </div>
     </div>
 </div>
