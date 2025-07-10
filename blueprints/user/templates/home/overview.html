@@ -59,8 +59,10 @@
                 </select>
             </div>
         </div>
+        <!--贡献图-骨架-->
+        <div class="skeleton h-54 w-full my-2" id="contribute-picture-skeleton"></div>
         <!--贡献图-->
-        <div class="contribute-picture flex flex-col gap-4  my-2 outline outline-gray-200  overflow-x-auto whitespace-nowrap p-2 rounded-sm min-h-48">
+        <div id="contribute-picture" class="contribute-picture flex flex-col gap-4  my-2 outline outline-gray-200  overflow-x-auto whitespace-nowrap p-2 rounded-sm min-h-48 hidden">
             <div class="flex text-xs text-left text-base-content/50 gap-16 mx-auto" id="months"></div>
             <div class="flex mx-auto">
                 <div class="flex-none flex flex-col justify-between text-base-content/75 text-xs mr-2" id="week">
@@ -70,7 +72,7 @@
                 </div>
                 <div class="flex-1 flex gap-0.5" id="calendar"></div>
             </div>
-            <div class="grid grid-flow-col justify-items-end ">
+            <div class="grid grid-flow-col justify-items-end">
                 <div class="grid grid-cols-7 gap-1 text-base-content/75 text-xs">
                     <span>少</span>
                     <span class="size-4 rounded-sm inline-block level-0"></span>

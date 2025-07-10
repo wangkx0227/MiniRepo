@@ -112,7 +112,7 @@ function contributionRendering(data, selectYear = null) {
     for (let i = 0; i < monthLabels.length; i++) {
         const monthDiv = document.createElement('div');
         if (monthLabels[i]) {
-             monthDiv.className = "w-4 h-4 text-xs text-center"; // 宽度和日期格一致，居中显示
+            monthDiv.className = "w-4 h-4 text-xs text-center"; // 宽度和日期格一致，居中显示
         }
         monthDiv.innerHTML = monthLabels[i];
         months.appendChild(monthDiv);
@@ -270,4 +270,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const contribute_data_dict = document.getElementById("contribute_data_dict").dataset.info;
     const contributeData = JSON.parse(contribute_data_dict);
     contributionRendering(contributeData);
+    // 延迟显示，防止页面抖动
+    setTimeout(() => {
+        document.getElementById('contribute-picture-skeleton').classList.add('hidden');
+        document.getElementById('contribute-picture').classList.remove('hidden');
+    }, 500)
 });
