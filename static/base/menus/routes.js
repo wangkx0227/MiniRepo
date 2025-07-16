@@ -11,7 +11,6 @@ const menuRouteMap = [
     {labelId: "u-setting", url: `/setting`}, // 个人设置
     {labelId: "u-organization", url: `/${currentUser}/organization`}, // 组织
     // 通知路由
-    {labelId: "u-notifications", url: `/${currentUser}/notifications`,}, // 通知
     // {labelId: "u-login", url: `/u/repos`}, // 需要再进行确认怎么设置
     // 新建的下拉框路由
     {labelId: "n-projects", url: "/new/projects",},  // 新建项目

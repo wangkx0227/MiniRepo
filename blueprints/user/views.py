@@ -168,5 +168,27 @@ def organization(username):
     return render_template("u_organization.html")
 
 
-def notifications(username):
-    return render_template("u_notifications.html")
+
+
+def ssh_keys():
+    return render_template("setting/ssh_keys.html")
+
+
+def gpg_keys():
+    return render_template("setting/gpg_keys.html")
+
+
+def private_access_tokens():
+    return render_template("setting/private_access_tokens.html")
+
+
+def conversation_info():
+    return render_template("setting/conversation_info.html")
+
+
+def repositories():
+    return render_template("setting/repositories.html")
+
+
+def notifications():
+    return render_template("setting/notifications.html")
