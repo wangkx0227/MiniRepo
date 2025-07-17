@@ -14,23 +14,21 @@
     <div class="w-64  overflow-hidden border-r border-gray-300">
         <ul class="menu text-base-content rounded-box w-full">
             <li class="text-xs  menu-title">消息中心</li>
-            <li>
-                <a class="{% if current_page=='notifications' %}menu-active{% endif %}">通知</a>
-            </li>
+            <li name="settingMenu" id="notifications"><a class="{% if current_page=='notifications' %}menu-active{% endif %}">通知</a></li>
             <div class="divider" style="margin: 0;"></div>
             <li class="text-xs  menu-title">基本设置</li>
-            <li><a>用户资料</a></li>
-            <li><a>账户</a></li>
-            <li><a>密码</a></li>
-            <li><a>仓库</a></li>
-            <li><a class="{% if current_page=='organization' %}menu-active{% endif %}">组织</a></li>
+            <li  name="settingMenu" id="profile"><a class="{% if current_page=='profile' %}menu-active{% endif %}">用户资料</a></li>
+            <li  name="settingMenu" id="account_information"><a class="{% if current_page=='account_information' %}menu-active{% endif %}">账户</a></li>
+            <li  name="settingMenu" id="password"><a class="{% if current_page=='password' %}menu-active{% endif %}">密码</a></li>
+            <li name="settingMenu" id="repositories"><a class="{% if current_page=='repositories' %}menu-active{% endif %}">仓库</a></li>
+            <li name="settingMenu" id="organization"><a class="{% if current_page=='organization' %}menu-active{% endif %}">组织</a></li>
             <div class="divider" style="margin: 0;"></div>
             <li class="text-xs  menu-title">安全设置</li>
-            <li><a>电子邮件</a></li>
-            <li><a class="{% if current_page=='ssh_keys' %}menu-active{% endif %}">SSH 密钥</a></li>
-            <li><a class="{% if current_page=='gpg_keys' %}menu-active{% endif %}">GPG 密钥</a></li>
-            <li><a class="{% if current_page=='private_access_tokens' %}menu-active{% endif %}">访问令牌</a></li>
-            <li><a class="{% if current_page=='conversation_info' %}menu-active{% endif %}">活动会话</a></li>
+            <li  name="settingMenu" id="emails"><a class="{% if current_page=='emails' %}menu-active{% endif %}">电子邮件</a></li>
+            <li name="settingMenu" id="ssh_keys"><a class="{% if current_page=='ssh_keys' %}menu-active{% endif %}">SSH 密钥</a></li>
+            <li name="settingMenu" id="gpg_keys"><a class="{% if current_page=='gpg_keys' %}menu-active{% endif %}">GPG 密钥</a></li>
+            <li name="settingMenu" id="private_access_tokens"><a class="{% if current_page=='private_access_tokens' %}menu-active{% endif %}">访问令牌</a></li>
+            <li name="settingMenu" id="sessions"><a class="{% if current_page=='sessions' %}menu-active{% endif %}">活动会话</a></li>
         </ul>
     </div>
 
@@ -43,3 +41,15 @@
 
 <!--主要显示设置中点击侧边栏标签后显示的页面-->
 {% endblock main %}
+{% block js_end %}
+{{ super() }}
+<script>
+    // 添加切换路由
+    const settingMenu = document.getElementsByName("settingMenu")
+    settingMenu.forEach((tab) => {
+        let tab_id = tab.id
+        if (!tab_id) return;
+        tab.querySelector("a").href = `/setting/${tab_id}`
+    })
+</script>
+{% endblock js_end %}

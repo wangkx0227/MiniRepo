@@ -180,13 +180,29 @@ def private_access_tokens():
     return render_template("setting/private_access_tokens.html", current_page='private_access_tokens')
 
 
-def conversation_info():
-    return render_template("setting/conversation_info.html", current_page='conversation_info')
+def sessions():
+    return render_template("setting/sessions.html", current_page='sessions')
 
 
 def repositories():
-    return render_template("setting/repositories.html", current_page='notifications')
+    return render_template("setting/repositories.html", current_page='repositories')
 
 
 def notifications():
     return render_template("setting/notifications.html", current_page='notifications')
+
+
+def emails():
+    return render_template("setting/emails.html", current_page='emails')
+
+
+def profile():
+    return render_template("setting/profile.html", current_page='profile')
+
+
+def password():
+    return render_template("setting/password.html", current_page='password')
+
+
+def account_information():
+    return render_template("setting/account_information.html", current_page='account_information')
