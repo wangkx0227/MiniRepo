@@ -12,23 +12,25 @@
 <div class="flex flex-1 min-h-0">
     <!-- 左侧菜单 -->
     <div class="w-64  overflow-hidden border-r border-gray-300">
-        <ul class="menu rounded-box w-full text-base-content p-4 ">
-            <summary class="text-xs text-base-content mb-1 text-gray-500">消息中心</summary>
-            <li><a>通知</a></li>
+        <ul class="menu text-base-content rounded-box w-full">
+            <li class="text-xs  menu-title">消息中心</li>
+            <li>
+                <a class="{% if current_page=='notifications' %}menu-active{% endif %}">通知</a>
+            </li>
             <div class="divider" style="margin: 0;"></div>
-            <summary class="text-xs text-base-content my-1 text-gray-500">基本设置</summary>
+            <li class="text-xs  menu-title">基本设置</li>
             <li><a>用户资料</a></li>
             <li><a>账户</a></li>
             <li><a>密码</a></li>
             <li><a>仓库</a></li>
-            <li><a>组织</a></li>
+            <li><a class="{% if current_page=='organization' %}menu-active{% endif %}">组织</a></li>
             <div class="divider" style="margin: 0;"></div>
-            <summary class="text-xs text-base-content my-1 text-gray-500">安全设置</summary>
+            <li class="text-xs  menu-title">安全设置</li>
             <li><a>电子邮件</a></li>
-            <li><a>SSH 密钥</a></li>
-            <li><a>GPG 密钥</a></li>
-            <li><a>访问令牌</a></li>
-            <li><a>活动会话</a></li>
+            <li><a class="{% if current_page=='ssh_keys' %}menu-active{% endif %}">SSH 密钥</a></li>
+            <li><a class="{% if current_page=='gpg_keys' %}menu-active{% endif %}">GPG 密钥</a></li>
+            <li><a class="{% if current_page=='private_access_tokens' %}menu-active{% endif %}">访问令牌</a></li>
+            <li><a class="{% if current_page=='conversation_info' %}menu-active{% endif %}">活动会话</a></li>
         </ul>
     </div>
 

@@ -164,31 +164,29 @@ def setting():
     return render_template("u_setting.html")
 
 
-def organization(username):
-    return render_template("u_organization.html")
-
-
+def organization():
+    return render_template("setting/organization.html", current_page='organization')
 
 
 def ssh_keys():
-    return render_template("setting/ssh_keys.html")
+    return render_template("setting/ssh_keys.html", current_page='ssh_keys')
 
 
 def gpg_keys():
-    return render_template("setting/gpg_keys.html")
+    return render_template("setting/gpg_keys.html", current_page='gpg_keys')
 
 
 def private_access_tokens():
-    return render_template("setting/private_access_tokens.html")
+    return render_template("setting/private_access_tokens.html", current_page='private_access_tokens')
 
 
 def conversation_info():
-    return render_template("setting/conversation_info.html")
+    return render_template("setting/conversation_info.html", current_page='conversation_info')
 
 
 def repositories():
-    return render_template("setting/repositories.html")
+    return render_template("setting/repositories.html", current_page='notifications')
 
 
 def notifications():
-    return render_template("setting/notifications.html")
+    return render_template("setting/notifications.html", current_page='notifications')

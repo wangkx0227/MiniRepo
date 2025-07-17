@@ -7,10 +7,11 @@ const menuRouteMap = [
     {labelId: "u-stars", url: `/${currentUser}/home?tab=stars`,}, // 关注
     {labelId: "u-repository", url: `/${currentUser}/home?tab=repository`}, // 仓库
     {labelId: "u-snippet", url: `/${currentUser}/home?tab=snippet`}, // 仓库
-
     {labelId: "u-setting", url: `/setting`}, // 个人设置
-    {labelId: "u-organization", url: `/${currentUser}/organization`}, // 组织
+
+    {labelId: "u-organization", url: `/setting/organization`}, // 组织
     // 通知路由
+    {labelId: "u-notifications", url: `/setting/notifications`,}, // 通知
     // {labelId: "u-login", url: `/u/repos`}, // 需要再进行确认怎么设置
     // 新建的下拉框路由
     {labelId: "n-projects", url: "/new/projects",},  // 新建项目

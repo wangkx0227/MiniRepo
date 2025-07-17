@@ -4,7 +4,8 @@ from .views import home, setting, organization, ssh_keys, gpg_keys, private_acce
 
 user_page_bp.add_url_rule('/<username>/home', view_func=home, methods=['GET'])  # 个人主页
 user_page_bp.add_url_rule('/setting', view_func=setting, methods=['GET'])  # 个人设置
-user_page_bp.add_url_rule('/<username>/organization', view_func=organization, methods=['GET'])  # 组织
+# 个人设置-组织
+user_page_bp.add_url_rule('/setting/organization', view_func=organization, methods=['GET'])
 # 个人设置-ssh密钥
 user_page_bp.add_url_rule('/setting/ssh_keys', view_func=ssh_keys, methods=['GET'])
 # 个人设置-GPG密钥
