@@ -7,16 +7,6 @@
 {{ super() }}
 <li>个人设置</li>
 {% endblock navigation %}
-{% block css%}
-<style>
-    .menu :where(.active),
-    .menu :where(.menu-active) {
-        background-color: #374151 !important;
-        /* bg-gray-700 */
-    }
-</style>
-
-{% endblock css %}
 {% block main %}
 <!--设置的侧边栏菜单-->
 <div class="flex flex-1 min-h-0">
