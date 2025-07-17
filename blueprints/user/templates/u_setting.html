@@ -7,6 +7,17 @@
 {{ super() }}
 <li>个人设置</li>
 {% endblock navigation %}
+{% block css%}
+<style>
+    .menu li a.menu-active,
+    .menu li a.menu-active:active,
+    .menu li a.menu-active:hover,
+    .menu li a.menu-active:focus {
+        background-color: #111827 !important;
+    }
+</style>
+
+{% endblock css %}
 {% block main %}
 <!--设置的侧边栏菜单-->
 <div class="flex flex-1 min-h-0">
@@ -15,7 +26,7 @@
         <ul class="menu text-base-content rounded-box w-full">
             <li class="text-xs  menu-title">消息中心</li>
             <li name="settingMenu" id="notifications"><a
-                    class=" {% if current_page=='notifications' %}menu-active{% endif %}">通知</a></li>
+                    class="{% if current_page=='notifications' %}menu-active{% endif %}">通知</a></li>
             <div class="divider" style="margin: 0;"></div>
             <li class="text-xs  menu-title">基本设置</li>
             <li name="settingMenu" id="profile"><a

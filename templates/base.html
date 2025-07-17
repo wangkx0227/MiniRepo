@@ -65,7 +65,7 @@
 <body>
     <!--主体-->
     <div class="flex flex-col min-h-screen antialiased ">
-        <div class="px-2 bg-black navbar bg-base shadow-sm">
+        <div class="px-2 bg-gray-900 navbar shadow-sm">
             <div class="flex-none">
                 <!--抽屉，侧边栏-->
                 <div class="drawer">
@@ -167,7 +167,8 @@
                 </a>
                 <!--+号-->
                 <div class="dropdown dropdown-end">
-                    <div tabindex="0" role="button" class="btn btn-ghost btn-circle hover:bg-gray-700 active:bg-transparent">
+                    <div tabindex="0" role="button"
+                        class="btn btn-ghost btn-circle hover:bg-gray-700 active:bg-transparent">
                         <s2-icon name="index_add"></s2-icon>
                     </div>
                     <ul tabindex="0"
@@ -190,11 +191,16 @@
                 <!--用户-->
                 <div class="dropdown dropdown-end ">
                     <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar hover:bg-gray-700 ">
-                        <div class="avatar avatar-placeholder">
+                        <!--  -->
+                        <!-- <div class="avatar">
                             <div class="bg-neutral text-neutral-content w-8 rounded-full">
-                                <!--有头像显示头像路径，没有头像显示us-->
-                                <span>US</span>
-                                <!--<img src="https://img.daisyui.com/images/profile/demo/idiotsandwich@192.webp"/>-->
+                                <img src="https://img.daisyui.com/images/profile/demo/idiotsandwich@192.webp"/>
+                            </div>
+                        </div> -->
+                        <!-- 无头像 -->
+                        <div class="avatar avatar-placeholder">
+                            <div class="bg-white text-black w-8 rounded-full">
+                                <span class="text-xs">UI</span>
                             </div>
                         </div>
                     </div>
